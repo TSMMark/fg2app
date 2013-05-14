@@ -21,15 +21,6 @@ doc/
 .project
 .DS_Store
 .idea
-*.gem
-.bundle
-gemfiles/*.lock
-pkg/*
-bin
-vendor/ruby
-gemfiles/vendor/ruby
-.rbenv-version
-.sass-cache
 
 # ignore paperclip uploaded files
 /public/system
@@ -40,11 +31,5 @@ gemfiles/vendor/ruby
 # ignore faker images
 /sample_images
 
-# ignore omniauth
-config/initializers/omniauth.rb
-
 # Ignore application configuration (uncomment in production)
 #/config/application.yml
-
-# Ignore application configuration
-/config/application.yml
