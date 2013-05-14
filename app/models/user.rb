@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :authentications, :dependent => :destroy
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -9,7 +10,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,
   				:remember_me, :name,
+
   				# omniauth stuff
-  				:provider, :uid
-  # attr_accessible :title, :body
+  				:provider,  
+          :uid        # social user id
 end
