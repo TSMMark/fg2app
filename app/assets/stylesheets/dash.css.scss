@@ -25,14 +25,14 @@ $navbarLinkColorHover:					white;
 $navbarLinkColorActive:					#CCC;
 
 // import bootstrap
-@import "bootstrap";
+@import 'bootstrap';
 body{
 	padding-top:40px;
 }
-@import "bootstrap-responsive";
+@import 'bootstrap-responsive';
 // .. bootstrap ..
 
 
 
 // font-awesome
-@import "font-awesome";
+@import 'font-awesome';
