@@ -46,3 +46,6 @@ config/initializers/omniauth.rb
 
 # Ignore application configuration (uncomment in production)
 #/config/application.yml
+
+# Ignore application configuration
+/config/application.yml

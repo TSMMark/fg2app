@@ -1,5 +1,7 @@
 Fg2app::Application.routes.draw do
 
+  devise_for :users
+
   get 'dash' => "dash#index"
 
   root :to => "dash#index"

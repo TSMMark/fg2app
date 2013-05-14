@@ -1,0 +1,22 @@
+div[class="navbar navbar-fixed-top"]
+  .navbar-inner
+    .container
+
+      a[class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"]
+        span[class="icon-bar"]
+        span[class="icon-bar"]
+        span[class="icon-bar"]
+      = link_to '', root_path, :class => 'brand', :id => 'navbar-brand'
+
+      div[class="nav-collapse collapse"]
+        
+        ul[class="nav pull-right"]
+          - if user_signed_in?
+            li
+              = link_to "Sign-Out", destroy_user_session_path, method: :delete
+          - else
+            li
+              = link_to "Sign-In", new_user_session_path
+            li
+              = link_to "Sign-Up", new_user_registration_path
+        
