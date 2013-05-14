@@ -1,4 +1,9 @@
 Fg2app::Application.routes.draw do
+
+  get 'dash' => "dash#index"
+
+  root :to => "dash#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
