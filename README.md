@@ -1,3 +1,3 @@
-== FanGate 2
+## FanGate 2
 
-link:http://fangate2.herokuapp.com
+[App](http://fangate2.herokuapp.com)
