@@ -23,7 +23,6 @@ doc/
 .idea
 *.gem
 .bundle
-Gemfile.lock
 gemfiles/*.lock
 pkg/*
 bin
