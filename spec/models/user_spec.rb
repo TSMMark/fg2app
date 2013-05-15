@@ -6,9 +6,14 @@ describe User do
     
   end
   
-  it "is named Ash" do
-    zombie = User.new(name: "Ash")
-    zombie.name.should == 'Ash'
+  it "creates a user" do
+    user = FactoryGirl.create(:user)
+    user.should be_persisted
+  end
+
+  it "builds a user" do
+    user = FactoryGirl.build(:user)
+    user.should be_new_record
   end
   
 end

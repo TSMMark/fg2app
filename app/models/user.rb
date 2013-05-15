@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,
-  				:remember_me, :name,
+  				:remember_me, :name
 
-  				# omniauth stuff
-  				:provider,  
-          :uid        # social user id
+  				# omniauth (no auth table) stuff
+  				#:provider,  
+          #:uid        # social user id
 end
