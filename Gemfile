@@ -11,7 +11,19 @@ group :development, :test do
 
   # rspec testing suite
   gem 'rspec-rails', '~> 2.0'
+  # factory girl !
+  gem "factory_girl_rails", "~> 4.0"
+
 end
+
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+end
+
 
 group :production do
 	gem 'pg'
