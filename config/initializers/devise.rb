@@ -240,6 +240,6 @@ Devise.setup do |config|
   
   require 'omniauth-facebook'
   config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
-                  :scope => 'email',
+                  :scope => 'email', # ask for email
                   :strategy_class => OmniAuth::Strategies::Facebook
 end
