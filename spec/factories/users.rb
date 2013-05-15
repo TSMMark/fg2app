@@ -1,5 +1,5 @@
 # This will guess the User class
-#User.delete_all
+# User.delete_all
 FactoryGirl.define do
   factory :user do
     name      "John"
