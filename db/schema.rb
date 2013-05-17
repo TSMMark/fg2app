@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517160032) do
+ActiveRecord::Schema.define(:version => 20130517180041) do
 
   create_table "authentications", :force => true do |t|
     t.datetime "created_at",                  :null => false
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(:version => 20130517160032) do
     t.string   "access_token",              :null => false
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+  end
+
+  create_table "pages_users", :id => false, :force => true do |t|
+    t.integer "page_id"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|

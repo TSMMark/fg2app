@@ -1,5 +1,18 @@
 class User < ActiveRecord::Base
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation,
+          :remember_me, :name
+
+          # omniauth (no auth table) stuff
+          #:provider,  
+          #:uid        # social user id
+
   has_many :authentications, :dependent => :destroy
+
+  # many to many with pages
+  #has_many :page_users
+  has_and_belongs_to_many :pages
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -7,13 +20,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,
-  				:remember_me, :name
-
-  				# omniauth (no auth table) stuff
-  				#:provider,  
-          #:uid        # social user id
 
   def fb_auth
     @auth ||= self.authentications.facebook.first
