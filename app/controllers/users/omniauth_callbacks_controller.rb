@@ -67,8 +67,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user.authentications.create!(
       :provider => @omni['provider'],
       :uid => @omni['uid'],
-      :token => @omni['credentials'].token,
-      :token_secret => @omni['credentials'].secret
+      :token => @omni['credentials'].token
     )
     return user
   end

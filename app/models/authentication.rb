@@ -1,12 +1,12 @@
 class Authentication < ActiveRecord::Base
   
-  attr_accessible :user_id, :provider, :uid, :token, :token_secret
+  attr_accessible :user_id, :provider, :uid, :token
   belongs_to :user
 
   scope :facebook, where({:provider => 'facebook'})
 
   def self.provider_is provider
-    where({:provider => 'facebook'})
+    where({:provider => "#{provider}"})
   end
 
 end

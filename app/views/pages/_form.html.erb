@@ -1,0 +1,20 @@
+<%= form_for @page do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :pid %><br />
+    <%= f.text_field :pid %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.label :access_token %><br />
+    <%= f.text_field :access_token %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

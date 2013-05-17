@@ -5,6 +5,10 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :development do
+  gem "nifty-generators"
+end
+
 group :development, :test do
 	gem 'sqlite3'
 	gem 'commands'
@@ -18,8 +22,8 @@ end
 
 
 group :test do
-  gem 'faker'
-  gem 'capybara'
+  #gem 'faker'
+  #gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
 end
@@ -85,3 +89,5 @@ gem 'fbgraph'
 
 # To use debugger
 # gem 'debugger'
+
+gem "mocha", :group => :test

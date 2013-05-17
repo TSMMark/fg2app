@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
           #:uid        # social user id
 
   def fb_auth
-    @auth = self.authentications.facebook.first
+    @auth ||= self.authentications.facebook.first
     #puts self.to_yaml
     #raise self.authentications.to_yaml
     #raise Authentication.where("provider"=>"facebook").to_yaml
@@ -36,13 +36,13 @@ class User < ActiveRecord::Base
   def fetch_fb
     self.fb_client
     @client.selection.user(@auth.uid).info!
+    #self.fb_client.selection.user(@auth.uid).info!
     #FbGraph::User.me(@auth.token)
     #FbGraph::User.fetch(@auth.uid)
   end
 
   def fetch_fb_pages
-    self.fb_auth
-    #user = FbGraph::User.fetch("#{@auth.uid}/accounts", @auth.token)
+    Pages.fetch_user_pages(@auth.uid)
   end
 
 

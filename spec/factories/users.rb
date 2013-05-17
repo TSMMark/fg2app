@@ -13,17 +13,17 @@ FactoryGirl.define do
   end
 
   factory :user_with_auth, parent: :user do
+    # one to many
     after(:create) do |user, evaluator|
       FactoryGirl.create_list(:authentication, 1, user: user)
     end
-    #authentications { [create(:authentication)] }
   end
 
   factory :authentication do
-    association :user, factory: :user
+    user
     provider  "facebook"
     uid       "1294176482"
-    token     "CAAFdElh3jpMBAE5MZCsrCCTn7yTFZAhlykvot6FcNPRzd9aHLZBzRiulcA15U2TWq5UK8DAcelYxOl8ZABCIkojQRl9MUoz2OyZCwn9ZAaMcNzy3MjpqZBSfvZBSueIiNv4bxYqwYiF6D2vqMYfSSknTSRdAYF1fmowZD"
+    token     "CAAFdElh3jpMBAHIfJ8ZBvs6UyMGIvI9mEmpSVQN3ulZBAQsbqmsPhm5vdj3Jjtujxq35TJY7lUVT4waxWNzvGfdx5y3ip8ksYVgLg2oDgiqQH3OsG26UOpzTFw6QzXDberhcZCNuDZAm1n0aVwShLPo9yuoQAicZD"
   end
 
 end

@@ -1,0 +1,23 @@
+<% title "Pages" %>
+
+<table>
+  <tr>
+    <th>Pid</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Access Token</th>
+  </tr>
+  <% for page in @pages %>
+    <tr>
+      <td><%= page.pid %></td>
+      <td><%= page.name %></td>
+      <td><%= page.category %></td>
+      <td><%= page.access_token %></td>
+      <td><%= link_to "Show", page %></td>
+      <td><%= link_to "Edit", edit_page_path(page) %></td>
+      <td><%= link_to "Destroy", page, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Page", new_page_path %></p>
