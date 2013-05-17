@@ -68,6 +68,14 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    fbgraph (1.10.0)
+      activesupport
+      faraday (>= 0.7.5)
+      hashie (>= 1.0.0)
+      i18n
+      json (>= 1.0.0)
+      oauth2 (>= 0.5.0)
+      rest-client
     ffi (1.8.1)
     figaro (0.6.3)
       bundler (~> 1.0)
@@ -161,6 +169,8 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -219,6 +229,7 @@ DEPENDENCIES
   devise
   factory_girl_rails (~> 4.0)
   faker
+  fbgraph
   figaro
   font-awesome-rails
   guard-rspec

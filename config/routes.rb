@@ -4,10 +4,10 @@ Fg2app::Application.routes.draw do
 
   get 'dash' => "dash#index"
 
-
   devise_scope :user do
-    match 'users/sign_in' => 'dash#index', :as => :new_user_session
-    match 'users/sign_up' => 'dash#index', :as => :new_user_registration
+    match 'users/sign_in' => 'dash#index', as: :new_user_session
+    match 'users/sign_up' => 'dash#index', as: :new_user_registration
+    match "user/:id"      => 'users#show', as: :user
   end
 
   #devise_for :users,

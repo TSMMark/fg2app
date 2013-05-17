@@ -25,7 +25,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     session["devise.provider_data"] = @omni['info']
     if @auth and @auth.persisted? then
-      # user has account, sign them in
+      # user has account
+      # update token in database
+      if @auth.token != @omni['credentials'].token then
+        @auth.token = @omni['credentials'].token
+        @auth.save
+      end
+      # sign them in
       sign_in_and_redirect @auth.user, :event => :authentication
       set_flash_message(:notice, :success, :kind => @omni['provider']) if is_navigational_format?
     elsif current_user
@@ -66,5 +72,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     )
     return user
   end
+
 
 end

@@ -14,4 +14,36 @@ class User < ActiveRecord::Base
   				# omniauth (no auth table) stuff
   				#:provider,  
           #:uid        # social user id
+
+  def fb_auth
+    @auth = self.authentications.facebook.first
+    #puts self.to_yaml
+    #raise self.authentications.to_yaml
+    #raise Authentication.where("provider"=>"facebook").to_yaml
+    #raise @auth.to_yaml
+  end
+
+  def fb_client
+    self.fb_auth
+    return unless !@auth.nil?
+    @client ||= FBGraph::Client.new(
+      client_id: ENV['FACEBOOK_KEY'],
+      secret_id: ENV['FACEBOOK_SECRET'],
+      token:     @auth.token
+    )
+  end
+
+  def fetch_fb
+    self.fb_client
+    @client.selection.user(@auth.uid).info!
+    #FbGraph::User.me(@auth.token)
+    #FbGraph::User.fetch(@auth.uid)
+  end
+
+  def fetch_fb_pages
+    self.fb_auth
+    #user = FbGraph::User.fetch("#{@auth.uid}/accounts", @auth.token)
+  end
+
+
 end

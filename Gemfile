@@ -67,6 +67,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 
+# facebook graph API
+gem 'fbgraph'
 
 
 # To use ActiveModel has_secure_password
