@@ -32,11 +32,12 @@ class User < ActiveRecord::Base
   def fb_client
     self.fb_auth
     return unless !@auth.nil?
-    @client ||= FBGraph::Client.new(
-      client_id: ENV['FACEBOOK_KEY'],
-      secret_id: ENV['FACEBOOK_SECRET'],
-      token:     @auth.token
-    )
+    Fb.set_current_user(@auth.token).client
+    #@client ||= FBGraph::Client.new(
+    #  client_id: ENV['FACEBOOK_KEY'],
+    #  secret_id: ENV['FACEBOOK_SECRET'],
+    #  token:     @auth.token
+    #)
   end
 
   def fetch_fb
@@ -47,8 +48,9 @@ class User < ActiveRecord::Base
     #FbGraph::User.fetch(@auth.uid)
   end
 
-  def fetch_fb_pages
-    Pages.fetch_user_pages(@auth.uid)
+  def fetch_pages
+    self.fb_client
+    Page.fetch_user_pages(self)
   end
 
 
