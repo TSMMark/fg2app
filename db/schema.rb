@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517180041) do
+ActiveRecord::Schema.define(:version => 20130518225144) do
 
   create_table "authentications", :force => true do |t|
     t.datetime "created_at",                  :null => false
@@ -26,18 +26,21 @@ ActiveRecord::Schema.define(:version => 20130517180041) do
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "pages", :force => true do |t|
-    t.integer  "pid",          :limit => 8, :null => false
-    t.string   "name",                      :null => false
-    t.string   "category",                  :null => false
-    t.string   "access_token",              :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "pid",        :limit => 8, :null => false
+    t.string   "name",                    :null => false
+    t.string   "category",                :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
-  create_table "pages_users", :id => false, :force => true do |t|
-    t.integer "page_id"
-    t.integer "user_id"
+  create_table "pagetokens", :force => true do |t|
+    t.integer "page_id", :null => false
+    t.integer "user_id", :null => false
+    t.string  "token",   :null => false
+    t.string  "perms",   :null => false
   end
+
+  add_index "pagetokens", ["user_id", "page_id"], :name => "index_pagetokens_on_user_id_and_page_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",  :null => false

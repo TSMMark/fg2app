@@ -8,10 +8,13 @@ class User < ActiveRecord::Base
           #:uid        # social user id
 
   has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications, :allow_destroy => true
 
   # many to many with pages
-  #has_many :page_users
-  has_and_belongs_to_many :pages
+  has_many :pagetokens, :dependent => :destroy
+  has_many :pages, :through => :pagetokens
+  accepts_nested_attributes_for :pagetokens, :allow_destroy => false
+  #has_and_belongs_to_many :pages
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
