@@ -74,6 +74,9 @@ gem 'oauth2'
 # facebook graph API
 gem 'fbgraph'
 
+# for sorting widget order in a tab
+gem 'acts_as_list'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

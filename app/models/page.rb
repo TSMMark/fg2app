@@ -17,7 +17,7 @@ class Page < ActiveRecord::Base
   # take an array of pages and add them to the database if they don't exist
   # push page to list of user's pages if not already there
   # currently stores page access_token in the page record, 
-  #   but maybe it should store it in the many_to_many table
+  #   but maybe it should store it in the join table
   def self.add_batch fbpages, user=@user
     fbpages.each do |fbp|
       # find existing page or create new page
@@ -32,6 +32,7 @@ class Page < ActiveRecord::Base
       # save the page
       page.save
 
+      # store token and perms in join table
       # move this to its own method
       pt = page.pagetokens.of_user(user).first || page.pagetokens.build
       pt.token  = fbp.access_token
