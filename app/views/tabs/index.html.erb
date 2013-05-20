@@ -1,0 +1,16 @@
+<% title "Tabs" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% for tab in @tabs %>
+    <tr>
+      <td><%= tab.name %></td>
+      <td><%= tab.description %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Tab", new_tab_path %></p>

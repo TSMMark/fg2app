@@ -1,5 +1,7 @@
 Fg2app::Application.routes.draw do
 
+  resources :tabs
+
   root :to => "dash#index"
 
   get 'dash' => "dash#index"
