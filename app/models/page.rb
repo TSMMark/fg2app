@@ -7,6 +7,8 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :pagetokens, :allow_destroy => false
   #has_and_belongs_to_many :users
 
+  has_many :tabs
+
   # fetch from facebook:: list of pages belonging to a user
   def self.fetch_user_pages user=@user
     @user = user

@@ -5,6 +5,10 @@ class CreateTabs < ActiveRecord::Migration
       t.string :description
       t.timestamps
     end
+
+    change_column :tabs, :name, :string, :null => false
+    change_column :tabs, :description, :string, :null => false
+    
   end
 
   def self.down

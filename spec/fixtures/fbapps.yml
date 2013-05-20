@@ -1,0 +1,9 @@
+one:
+  app_id: 1
+  namespace: MyString
+  secret: MyString
+
+two:
+  app_id: 1
+  namespace: MyString
+  secret: MyString

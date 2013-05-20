@@ -1,5 +1,7 @@
 Fg2app::Application.routes.draw do
 
+  resources :fbapps
+
   resources :tabs
 
   root :to => "dash#index"
