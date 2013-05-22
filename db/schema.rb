@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520174644) do
+ActiveRecord::Schema.define(:version => 20130521163412) do
 
   create_table "authentications", :force => true do |t|
     t.datetime "created_at",                  :null => false
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20130520174644) do
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "fbapps", :force => true do |t|
-    t.integer  "key",        :null => false
     t.string   "namespace",  :null => false
+    t.integer  "key",        :null => false
     t.string   "secret",     :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -55,11 +55,15 @@ ActiveRecord::Schema.define(:version => 20130520174644) do
     t.string   "description", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "page_id",     :null => false
+    t.integer  "fbapp_id",    :null => false
   end
 
+  add_index "tabs", ["page_id", "fbapp_id"], :name => "index_tabs_on_page_id_and_fbapp_id", :unique => true
+
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",  :null => false
-    t.string   "encrypted_password",     :default => "",  :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -68,9 +72,10 @@ ActiveRecord::Schema.define(:version => 20130520174644) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
-    t.string   "name",                   :default => "0", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "name",                   :default => "0",   :null => false
+    t.boolean  "admin",                  :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

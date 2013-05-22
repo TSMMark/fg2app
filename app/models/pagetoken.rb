@@ -1,4 +1,13 @@
 class Pagetoken < ActiveRecord::Base
+  include Ownable
+  
+  def get_owners
+    [self.user]
+  end
+  def get_owner
+    self.user
+  end
+  
   attr_accessible :user_id, :page_id, :token, :perms
   belongs_to :page
   belongs_to :user

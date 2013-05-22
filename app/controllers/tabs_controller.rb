@@ -15,4 +15,15 @@ class TabsController < ApplicationController
       render :action => 'new'
     end
   end
+
+  #private
+  #  def tab_params
+  #    if(current_user.admin?) then
+  #      params.require(:tab).permit!
+  #    else
+  #      params.require(:tab).permit(:name, :description)
+  #    end
+  #  end
+  #end
+
 end

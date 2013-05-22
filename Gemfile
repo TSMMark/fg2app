@@ -26,6 +26,7 @@ group :test do
   #gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem "mocha", :require => false
 end
 
 
@@ -77,6 +78,9 @@ gem 'fbgraph'
 # for sorting widget order in a tab
 gem 'acts_as_list'
 
+# hide attrs to certain user groups
+gem 'strong_parameters'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -93,4 +97,3 @@ gem 'acts_as_list'
 # To use debugger
 # gem 'debugger'
 
-gem "mocha", :group => :test

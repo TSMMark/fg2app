@@ -1,4 +1,10 @@
 class Page < ActiveRecord::Base
+  include Ownable
+  
+  def get_owners
+    self.users
+  end
+
   attr_accessible :pid, :name, :category #, :access_token
 
   # many to many with pages
@@ -9,6 +15,10 @@ class Page < ActiveRecord::Base
 
   has_many :tabs
 
+  def token u
+    self.pagetokens.where({:user_id => u})
+  end
+  
   # fetch from facebook:: list of pages belonging to a user
   def self.fetch_user_pages user=@user
     @user = user

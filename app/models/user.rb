@@ -1,4 +1,13 @@
 class User < ActiveRecord::Base
+  include Ownerable
+  include Ownable
+  def get_owners
+    [self]
+  end
+  def get_owner
+    self
+  end
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,
           :remember_me, :name
@@ -23,37 +32,40 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-
+  def token p
+    self.pagetokens.where({:page_id => p})
+  end
+  
+  # get the auth data (token etc) of user
   def fb_auth
     @auth ||= self.authentications.facebook.first
-    #puts self.to_yaml
-    #raise self.authentications.to_yaml
-    #raise Authentication.where("provider"=>"facebook").to_yaml
-    #raise @auth.to_yaml
   end
 
+  # set Fb Graph client of user
   def fb_client
     self.fb_auth
     return unless !@auth.nil?
     Fb.set_current_user(@auth.token).client
-    #@client ||= FBGraph::Client.new(
-    #  client_id: ENV['FACEBOOK_KEY'],
-    #  secret_id: ENV['FACEBOOK_SECRET'],
-    #  token:     @auth.token
-    #)
   end
 
   def fetch_fb
     self.fb_client
-    @client.selection.user(@auth.uid).info!
-    #self.fb_client.selection.user(@auth.uid).info!
-    #FbGraph::User.me(@auth.token)
-    #FbGraph::User.fetch(@auth.uid)
+    Fb.current_user_client.client.selection.user(@auth.uid).info!
   end
 
   def fetch_pages
     self.fb_client
     Page.fetch_user_pages(self)
+  end
+
+  # admin stuff
+  def admin?
+    !!self.admin
+  end
+
+  # get all admins users
+  def self.admins
+    where(admin: true)
   end
 
 
