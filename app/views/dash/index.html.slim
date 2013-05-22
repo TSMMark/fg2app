@@ -1,2 +1,11 @@
-h1 Dash#index
-p Find me in app/views/dash/index.html.erb
+h1 Your pages
+table
+  tr
+    th Pid
+    th Name
+    th Category
+  -for page in @pages
+    tr
+      td =page.pid
+      td =page.name
+      td =page.category
