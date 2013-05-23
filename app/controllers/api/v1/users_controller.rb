@@ -24,7 +24,7 @@ module Api
       def show
         respond_with User.find(params[:id])
         #@user = User.find(params[:id])
-        #ages = @user.fetch_pages
+        #pages = @user.fetch_pages
         #raise pages.to_yaml
       end
 

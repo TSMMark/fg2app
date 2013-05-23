@@ -14,7 +14,7 @@ Fg2app::Application.routes.draw do
 
   root :to => "dash#index"
 
-  get 'dash' => "dash#index"
+  get 'dash' => "dash#index", as: :user_root_path
 
   resources :pages
 

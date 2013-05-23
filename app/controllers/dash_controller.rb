@@ -4,7 +4,6 @@ class DashController < ApplicationController
     if user_signed_in? then
       @pages = current_user.pages
     else
-      RequestError.new(403)
     end
   end
 
