@@ -81,6 +81,8 @@ gem 'acts_as_list'
 # hide attrs to certain user groups
 gem 'strong_parameters'
 
+# backbone.js
+gem 'backbone-on-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

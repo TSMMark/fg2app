@@ -1,5 +1,11 @@
 Fg2app::Application.routes.draw do
 
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :users
+    end
+  end
+
   resources :fbapps
 
   resources :tabs
@@ -13,15 +19,17 @@ Fg2app::Application.routes.draw do
   devise_scope :user do
     match 'users/sign_in' => 'dash#index', as: :new_user_session
     match 'users/sign_up' => 'dash#index', as: :new_user_registration
-    match "user/:id"      => 'users#show', as: :user
+    match "users/:id"     => 'users#show', as: :user
   end
 
-  #devise_for :users,
   devise_for :users,
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
     #:path => 'users',
     #:skip => [:sessions],
 
-    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+
   #as :user do
     # sessions
     #post 'signin' => 'devise/sessions#create', :as => :user_session

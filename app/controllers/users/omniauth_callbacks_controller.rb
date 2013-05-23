@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_filter :authenticate_user!
   def facebook
-    return handle_auth
+    handle_auth
   end
 
   def twitter
