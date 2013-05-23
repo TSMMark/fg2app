@@ -2,6 +2,8 @@ Fg2app::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
+      match 'users/me'  => 'users#me', as: :me_api_path
+      match 'me'        => 'users#me', as: :me_api_path
       resources :users
     end
   end
@@ -13,14 +15,14 @@ Fg2app::Application.routes.draw do
   root :to => "dash#index"
 
   get 'dash' => "dash#index"
-  
+
   resources :pages
-  
-  devise_scope :user do
-    match 'users/sign_in' => 'dash#index', as: :new_user_session
-    match 'users/sign_up' => 'dash#index', as: :new_user_registration
-    match "users/:id"     => 'users#show', as: :user
-  end
+
+  #devise_scope :user do
+    #match 'users/sign_in' => 'dash#index', as: :new_user_session
+    #match 'users/sign_up' => 'dash#index', as: :new_user_registration
+    #match "users/:id"     => 'users#show', as: :user
+  #end
 
   devise_for :users,
     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

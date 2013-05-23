@@ -1,5 +1,5 @@
 class Fg2app.Collections.Users extends Backbone.Collection
-  url: '/api/users'
+  url: '/api/v1/users'
   # GET     /users
   # POST    /users
   # GET     /users/123

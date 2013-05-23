@@ -2,12 +2,20 @@ module Api
   module V1
     class UsersController < Api::BaseController
       class User < ::User
-        def as_json(options={})
-          super.merge(api_version: 1)
-        end
+        #def as_json(options={})
+        #  super.merge(api_version: 1)
+        #end
       end
 
       respond_to :json
+
+      def me
+        if user_signed_in? then
+          respond_with User.find(current_user)
+        else
+          respond_with RequestError.new 403
+        end
+      end
 
       def index
         respond_with User.all
