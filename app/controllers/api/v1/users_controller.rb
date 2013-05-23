@@ -1,6 +1,12 @@
 module Api
   module V1
     class UsersController < Api::BaseController
+      class User < ::User
+        def as_json(options={})
+          super.merge(api_version: 1)
+        end
+      end
+
       respond_to :json
 
       def index
