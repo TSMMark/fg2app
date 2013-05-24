@@ -30,4 +30,16 @@ describe :Ownable do
     @owner.can_create?(@tab).should == true
   end
 
+  it "should get user_type relative to an object" do
+    @owner.user_type(@tab).should == :owner
+  end
+
+  it "should list fields_for_admins" do
+    @tab.fields_for(:admin).should_not == false
+  end
+
+  it "should list fields for the owner by the owner" do
+    @tab.fields_for(@owner.user_type(@tab)).should_not == false
+  end
+
 end

@@ -1,5 +1,26 @@
 module Ownable
 
+  # REQUEST field list based on the requesting user
+  def requesting_user_type user=nil
+    return :public if(!user)
+    return :admin if user.admin?
+    return :owner if user.owner_of? self
+  end
+
+  # DEFINE FIELD PERMISSIONS (which fields can be accessed via API)
+  def fields_for user_type
+    self.send "fields_for_#{user_type}"
+  end
+  def fields_for_admin
+    true
+  end
+  def fields_for_owner
+    true
+  end
+  def fields_for_public
+    true
+  end
+
   # permission methods
   def ownable?
     true

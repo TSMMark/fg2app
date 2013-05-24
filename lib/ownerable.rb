@@ -1,10 +1,18 @@
 module Ownerable
 
+  # user type relative to an object
+  def user_type obj
+    obj.requesting_user_type self
+  end
+
   def ownerable?
     true
   end
 
   def is_owner_of? ownableAsset
+    self.owner_of ownableAsset
+  end
+  def owner_of? ownableAsset
     return true unless ownableAsset.is_a? Ownable
     ownableAsset.user_is_owner? self
   end
