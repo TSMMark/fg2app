@@ -84,6 +84,9 @@ gem 'strong_parameters'
 # backbone.js
 gem 'backbone-on-rails'
 
+# API attributes
+#gem 'acts_as_api'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

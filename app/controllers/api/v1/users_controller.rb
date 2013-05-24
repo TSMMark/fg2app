@@ -2,44 +2,38 @@ module Api
   module V1
     class UsersController < Api::BaseController
       class User < ::User
-        #def as_json(options={})
-        #  super.merge(api_version: 1)
-        #end
+        def as_json(options=nil)
+          options = @options if !options
+          #raise options.to_yaml
+          #super.except(:last_page_fetch)
+          #super(options).merge(api_v: 1)
+          super(options)
+          #super.attributes.slice(:last_page_fetch)
+        end
       end
-
-      respond_to :json
 
       def me
         if user_signed_in? then
-          respond_with User.find(current_user)
+          respond_with @table.find(current_user)
         else
           respond_with RequestError.new 403
         end
       end
 
-      def index
-        respond_with User.all
-      end
+      protected
+      def set_table
+        # ActiveModel Class of this Controller
+        @table = User
 
-      def show
-        respond_with User.find(params[:id])
-        #@user = User.find(params[:id])
-        #ages = @user.fetch_pages
-        #raise pages.to_yaml
-      end
-
-      def create
-        respond_with User.create(params[:id])
-      end
-
-      def update
-        respond_with User.update(params[:id], params[:user])
-      end
-
-      def destroy
-        respond_with User.destroy(params[:id])
+        # the parameter that will contain the object in an update or create request
+        @object_param = :user
       end
 
     end
+
+
+
+
+
   end
 end
