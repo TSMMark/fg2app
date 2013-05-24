@@ -36,18 +36,20 @@ class Api::BaseController < ApplicationController
     end
 
     def respond_with obj
-      #raise @options.to_yaml
       super obj, @options
     end
 
     def get_params
-      @options  = {only: []}
+      @options  = {
+        only:   [],
+        except: [:last_page_fetch]
+      }
       params.each do |key,val|
         case key
         when 'fields', :fields
           # only return the fields specified in URL (split by comma)
-          # always include id
-          @options[:only] = (val.split(/,/).collect(&:strip) << :id)
+          #   strip whitespace and always include id
+          @options[:only] = (val.split(/,/).collect(&:strip) << :id) unless !val || val.empty?
         end
       end
       @options.delete :only if @options[:only].empty?

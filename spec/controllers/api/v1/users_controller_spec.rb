@@ -27,6 +27,15 @@ describe Api::V1::UsersController do
       response.body.should include @user2.to_json
       response.body.should include @user3.to_json
     end
+
+    it "should limit the returned fields with fields param" do
+      get :index, :format => :json, :fields => 'name'
+      response.body.should     include @user1.name.to_json
+      response.body.should_not include @user1.email.to_json
+      response.body.should     include @user2.name.to_json
+      response.body.should_not include @user2.email.to_json
+    end
+    
   end
 
   describe "#show" do
@@ -48,7 +57,14 @@ describe Api::V1::UsersController do
 
     it "should limit the returned fields with fields param" do
       get :show, id: @user1.id, :format => :json, :fields => 'name'
-      response.body.should include @user1.as_json(only: :name).to_json
+      response.body.should     include @user1.name.to_json
+      response.body.should_not include @user1.email.to_json
+    end
+
+    it "should always include id" do
+      fields = ['name','email']
+      get :show, id: @user1.id, :format => :json, :fields => fields.join(',')
+      response.body.should include @user1.name.as_json(only: fields).to_json
     end
   end
 
