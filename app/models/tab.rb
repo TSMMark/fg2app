@@ -1,5 +1,4 @@
-class Tab < ActiveRecord::Base
-  include Ownable
+class Tab < ProtectedActiveRecord
 
   attr_accessible :name, :description
   belongs_to :page

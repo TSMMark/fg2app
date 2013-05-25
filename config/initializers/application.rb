@@ -10,3 +10,5 @@
 #require 'my_modules'
 #require 'my_modules/active_record/active_record_extensions'
 # ... require any other custom modules your application uses
+
+require 'rails_extensions'

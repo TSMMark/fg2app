@@ -12,6 +12,11 @@ module Api
         end
       end
 
+      exclude_fields :last_page_fetch
+      def initialize
+        #exclude_fields :last_page_fetch
+      end
+
       def me
         if user_signed_in? then
           respond_with @table.find(current_user)
