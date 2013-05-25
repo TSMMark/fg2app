@@ -4,11 +4,8 @@ describe ProtectedActiveRecord do
   before(:each) do
     @tab ||= FactoryGirl.create(:tab)
     @owner ||= @tab.get_owner
-  end
-
-  it 'should store block' do
-    Tab.readable_when {|ownable| ownable}
-    raise @tab.readable_attributes(@owner).to_yaml
+    @keep_only = [:id, :name]
+    Tab.readable_by {|ownable| @keep_only}
   end
 
   it 'should filter against key/value pairs' do
@@ -16,10 +13,15 @@ describe ProtectedActiveRecord do
   end
 
   it 'should prepare_readable_attributes' do
-    Tab.readable_when {|ownable| [:id]}
     readable_attrs = @tab.prepare_readable_attributes(@tab.attributes, @owner)
-    readable_attrs.has_key?(:id).should == true
-    readable_attrs.has_key?(:name).should == false
+    readable_attrs.delete_list @keep_only
+    readable_attrs.should == {}
+  end
+
+  it 'should read_attributes' do
+    readable_attrs = @owner.read_attributes @tab
+    readable_attrs.delete_list @keep_only
+    readable_attrs.should == {}
   end
 
 end
