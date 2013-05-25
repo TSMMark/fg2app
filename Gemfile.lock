@@ -101,6 +101,7 @@ GEM
     hike (1.2.2)
     httpauth (0.2.0)
     i18n (0.6.1)
+    insensitive_hash (0.3.2)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -243,6 +244,7 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   guard-rspec
+  insensitive_hash
   jquery-rails
   launchy
   mocha

@@ -84,6 +84,10 @@ gem 'strong_parameters'
 # backbone.js
 gem 'backbone-on-rails'
 
+# allow getting by symbol or string in hash
+gem 'insensitive_hash'
+
+
 # API attributes
 #gem 'acts_as_api'
 

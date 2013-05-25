@@ -16,10 +16,10 @@ describe ProtectedActiveRecord do
   end
 
   it 'should prepare_readable_attributes' do
-    Tab.readable_when {|ownable| ['id']}
+    Tab.readable_when {|ownable| [:id]}
     readable_attrs = @tab.prepare_readable_attributes(@tab.attributes, @owner)
-    readable_attrs.has_key?('id').should == true
-    readable_attrs.has_key?('name').should == false
+    readable_attrs.has_key?(:id).should == true
+    readable_attrs.has_key?(:name).should == false
   end
 
 end
