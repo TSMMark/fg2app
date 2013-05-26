@@ -4,11 +4,24 @@ describe ProtectedActiveRecord do
   before(:each) do
     @tab ||= FactoryGirl.create(:tab)
     @owner ||= @tab.get_owner
-
+    @not_owner ||= FactoryGirl.create(:user_default)
+    @admin ||= FactoryGirl.create(:user_default, admin: true)
     # fields to keep 
     @keep_only = [:id, :name]
 
-    Tab.readable_by {|ownable| @keep_only}
+    #Tab.readable_for {|ownable| @keep_only}
+  end
+  
+  it 'should be owner' do
+    @owner.ownerable_type(@tab).should == :owner
+  end
+
+  it 'should be admin' do
+    @admin.ownerable_type(@tab).should == :admin
+  end
+
+  it 'should be public' do
+    @not_owner.ownerable_type(@tab).should == :public
   end
 
   it 'should filter against key/value pairs' do

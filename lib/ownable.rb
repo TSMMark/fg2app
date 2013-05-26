@@ -1,27 +1,15 @@
-require 'active_support/concern'
 module Ownable
-  extend ActiveSupport::Concern
-
-  included do
-    scope :disabled, where(:disabled => true)
-  end
-
-  module ClassMethods
-    def owners_are &block
-      #raise self.to_yaml
-      @@get_owners_proc = block
-      #raise @@get_owners_proc.to_yaml
-    end
-  end
 
   #@@get_owners_proc  = Proc.new{|ownable| ownable.users}
 
   # REQUEST field list based on the requesting ownerable
   def ownerable_type_of ownerable=nil
-    return :public if(!ownerable)
-    return :admin if ownerable.admin?
-    return :owner if ownerable.owner_of? self
-    return :guest if ownerable.guest?
+    if(ownerable) then
+      return :admin if ownerable.admin?
+      return :owner if ownerable.owner_of? self
+      return :guest if ownerable.guest?
+    end
+    :public
   end
 
   # DEFINE FIELD PERMISSIONS (which fields can be accessed via API)
@@ -46,25 +34,6 @@ module Ownable
     true
   end
 
-
-  # get array of owners
-  def get_owners
-    #raise @@get_owners_proc.to_yaml
-    @@get_owners_proc.call_or_value self
-  end
-  # get last owner
-  def get_owner
-    self.get_owners.last
-  end
-
-  # alias get_owner
-  def owner
-    self.get_owner
-  end
-  # alias get_owners
-  def owners
-    self.get_owners
-  end
 
   # return true if a ownerable is an owner of the Ownable
   def ownerable_is_owner? ownerable
