@@ -2,7 +2,6 @@ class ProtectedActiveRecord < ActiveRecord::Base
   self.abstract_class = true
   include Ownable
 
-  @@is_readable_for = true
   @@get_owners_proc = Proc.new {|ownable| ownable.users}
 
   # CLASS METHODS / GLobal Setters
@@ -11,41 +10,97 @@ class ProtectedActiveRecord < ActiveRecord::Base
     @@get_owners_proc = block
   end
 
-  # determine attrs that a user can read
-  def self.readable_for_block &block
-    @@is_readable_for = block
+  @@CRUD_for  = { create:   true,
+                  read:     true,
+                  update:   true,
+                  destroy:  true
+                }#.insensitive
+
+  # specify how to determine attrs that a user can read
+  def self.crud_for (access, value)
+    if value.is_a? Hash then
+      self.crud_for_hash access, value
+    else
+      @@CRUD_for[access] = value
+    end
   end
-  def self.readable_for_hash hash
-    self.readable_for hash
+  def self.crud_for_hash (access, hash)
+    init_crud_attrs access unless @@CRUD_for[access].is_a? Hash
+    @@CRUD_for[access].merge! hash
   end
-  def self.readable_for val
-    @@is_readable_for = val
+  def self.crud_for_block (access, &block)
+    self.crud_for access, block
   end
 
-  def readable_attributes ownerable=nil
-    o_type = ownerable.ownerable_type(self)
-    case @@is_readable_for
+  # use the predetermined crud_for specifications
+  def crud_check (access, ownerable=nil)
+    o_type = self.ownerable_type_of(ownerable)
+    case @@CRUD_for[access]
       when Proc
-        return @@is_readable_for.call o_type, self
+        return @@CRUD_for[access].call o_type, self
       when Hash
-        return @@is_readable_for[o_type]
+        return @@CRUD_for[access][o_type]
       else
-        return @@is_readable_for
+        return @@CRUD_for[access]
+    end
+  end
+  def filter_crud_attributes(access, attrs, ownerable=nil)
+    permitted_attributes  = self.crud_check access
+    # true / false check within filter_against
+    attrs.filter_against(permitted_attributes, ownerable)
+  end
+  # def crud_attributes_action(access, ownerable=nil)
+  #   # check access
+  #   case access
+  #   when :read
+  #     self.filter_crud_attributes(access, self.attributes, ownerable)
+  #   when :update
+  #     self.update_attributes()
+  # end
+  def crud_action_read(ownerable=nil)
+    self.filter_crud_attributes(:read, self.attributes, ownerable)
+  end
+  def crud_action_create(attrs=nil, ownerable=nil)
+    attrs = self.filter_crud_attributes(:create, attrs, ownerable)
+    self.update_attributes attrs
+    self.save!
+  end
+
+
+
+  @@CRUD_for.each_key do |access|
+    # class methods
+    # define class methods to set CRUD rules from the ActiveModel
+    # readable_for, createable_for_hash, updateable_for_block
+    define_singleton_method "#{access}able_for" do |val|
+      self.crud_for access, val
+    end
+    define_singleton_method "#{access}able_for_hash" do |hash|
+      self.crud_for_hash access, hash
+    end
+    define_singleton_method "#{access}able_for_block" do |&block|
+      self.crud_for access, block
     end
 
-    #return @@is_readable_for.call if @@is_readable_for.is_a? Proc
-    #return @@is_readable_for[ownerable.ownerable_type(self)] if 
-    #@@is_readable_for.call_or_value ownerable.ownerable_type(self)
+    # instance methods
+    define_method "#{access}able" do |ownerable|
+      self.crud_check access, ownerable
+    end
+    define_method "filter_#{access}able" do |attrs, ownerable=nil|
+      self.filter_crud_attributes access, attrs, ownerable
+    end
+    # define_method "crud_action_#{access}" do |ownerable=nil|
+    #   self.crud_attributes_action access, ownerable
+    # end
+    next
   end
 
-  def filter_readable_attributes (attrs, ownerable=nil)
-    attrs.filter_against(readable_attributes ownerable)
-  end
 
-  def read_attributes ownerable=nil
-    self.filter_readable_attributes(attributes, ownerable)
-  end
 
+
+
+
+  #    OWNER STUFF    #
 
   # get array of owners
   def get_owners
@@ -64,6 +119,12 @@ class ProtectedActiveRecord < ActiveRecord::Base
   # alias get_owners
   def owners
     self.get_owners
+  end
+
+  protected
+  def self.init_crud_attrs access
+    before  = !!@@CRUD_for[access]
+    @@CRUD_for[access]  = {}.fill_with!(before, [:admin, :owner, :guest, :public])
   end
 
 

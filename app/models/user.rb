@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :pagetokens, :allow_destroy => false
   #has_and_belongs_to_many :pages
 
+  # 
+  has_many :tabs, through: :pages
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

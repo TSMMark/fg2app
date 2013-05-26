@@ -6,8 +6,10 @@ class Tab < ProtectedActiveRecord
   validates_presence_of :page, :fbapp
 
   has_many :users, through: :page#, as: :owners
-  @keep_only = [:id, :name]
-  readable_for_block { |type, ownable| @keep_only }
+
+  readable_for_block do |type, ownable|
+    [:id, :name, :description]
+  end
   readable_for  owner: [:id, :description],
                 admin: [:id, :name]
   

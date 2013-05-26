@@ -28,6 +28,11 @@ FactoryGirl.define do
     # the default user factory used everywhere
   end
 
+  factory :admin, parent: :user_default do
+    admin true
+    # the default user factory used everywhere
+  end
+
 
   # authentications
   factory :authentication do
