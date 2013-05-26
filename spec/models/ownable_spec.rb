@@ -31,7 +31,7 @@ describe :Ownable do
   end
 
   it "should get user_type relative to an object" do
-    @owner.user_type(@tab).should == :owner
+    @owner.ownerable_type(@tab).should == :owner
   end
 
   it "should list fields_for_admins" do
@@ -39,7 +39,7 @@ describe :Ownable do
   end
 
   it "should list fields for the owner by the owner" do
-    @tab.fields_for(@owner.user_type(@tab)).should_not == false
+    @tab.fields_for(@owner.ownerable_type(@tab)).should_not == false
   end
 
 end

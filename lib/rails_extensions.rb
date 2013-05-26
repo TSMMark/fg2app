@@ -1,5 +1,18 @@
 module RailsExtensions
+
   
+  #    Object    #
+  class ::Object
+    # if self is a proc call it with params, otherwise just return self
+    def call_or_value *params
+      return self.call(*params) if self.is_a? Proc
+      self
+    end
+  end
+  # .. Object .. #
+
+
+  #    Hash    #
   class ::Hash
     # delete from this hash, a list of keys
     def delete_list list
@@ -28,6 +41,7 @@ module RailsExtensions
     end
 
   end
+  # .. Hash .. #
 
 
 

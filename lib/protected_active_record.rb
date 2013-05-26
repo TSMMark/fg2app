@@ -6,20 +6,21 @@ class ProtectedActiveRecord < ActiveRecord::Base
     @@is_readable_by = true
     super
   end
+
   def self.readable_by &block
     @@is_readable_by = block
   end
-  def readable_attributes ownable
-    return @@is_readable_by.call ownable if @@is_readable_by.is_a? Proc
-    @@is_readable_by
+
+  def readable_attributes ownerable=nil
+    @@is_readable_by.call_or_value ownerable
   end
 
-  def prepare_readable_attributes (attrs, ownable)
-    attrs.filter_against(readable_attributes ownable)
+  def filter_readable_attributes (attrs, ownerable=nil)
+    attrs.filter_against(readable_attributes ownerable)
   end
 
-  def read_attributes ownable
-    self.prepare_readable_attributes(attributes, ownable)
+  def read_attributes ownerable=nil
+    self.filter_readable_attributes(attributes, ownerable)
   end
 
 end

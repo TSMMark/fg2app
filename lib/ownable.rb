@@ -1,20 +1,40 @@
+require 'active_support/concern'
 module Ownable
+  extend ActiveSupport::Concern
 
-  # REQUEST field list based on the requesting user
-  def requesting_user_type user=nil
-    return :public if(!user)
-    return :admin if user.admin?
-    return :owner if user.owner_of? self
+  included do
+    scope :disabled, where(:disabled => true)
+  end
+
+  module ClassMethods
+    def owners_are &block
+      #raise self.to_yaml
+      @@get_owners_proc = block
+      #raise @@get_owners_proc.to_yaml
+    end
+  end
+
+  #@@get_owners_proc  = Proc.new{|ownable| ownable.users}
+
+  # REQUEST field list based on the requesting ownerable
+  def ownerable_type_of ownerable=nil
+    return :public if(!ownerable)
+    return :admin if ownerable.admin?
+    return :owner if ownerable.owner_of? self
+    return :guest if ownerable.guest?
   end
 
   # DEFINE FIELD PERMISSIONS (which fields can be accessed via API)
-  def fields_for user_type
-    self.send "fields_for_#{user_type}"
+  def fields_for ownerable_type
+    self.send "fields_for_#{ownerable_type}"
   end
   def fields_for_admin
     true
   end
   def fields_for_owner
+    true
+  end
+  def fields_for_guest
     true
   end
   def fields_for_public
@@ -26,9 +46,11 @@ module Ownable
     true
   end
 
+
   # get array of owners
   def get_owners
-    self.users
+    #raise @@get_owners_proc.to_yaml
+    @@get_owners_proc.call_or_value self
   end
   # get last owner
   def get_owner
@@ -44,28 +66,28 @@ module Ownable
     self.get_owners
   end
 
-  # return true if a user is an owner of the Ownable
-  def user_is_owner? user=current_user
-    self.get_owners.include? user
+  # return true if a ownerable is an owner of the Ownable
+  def ownerable_is_owner? ownerable
+    self.get_owners.include? ownerable
   end
 
-  # returns true if a user is an OWNER or an ADMIN of the Ownable
-  def user_is_admin_or_owner? user=current_user
-    user.admin? || self.user_is_owner?(user)
+  # returns true if a ownerable is an OWNER or an ADMIN of the Ownable
+  def ownerable_is_admin_or_owner? ownerable
+    ownerable.admin? || self.ownerable_is_owner?(ownerable)
   end
 
   # CRUD permissions
-  def user_can_create? user=current_user
-    user_is_admin_or_owner? user
+  def ownerable_can_create? ownerable
+    ownerable_is_admin_or_owner? ownerable
   end
-  def user_can_read? user=current_user
-    user_is_admin_or_owner? user
+  def ownerable_can_read? ownerable
+    ownerable_is_admin_or_owner? ownerable
   end
-  def user_can_update? user=current_user
-    user_is_admin_or_owner? user
+  def ownerable_can_update? ownerable
+    ownerable_is_admin_or_owner? ownerable
   end
-  def user_can_destroy? user=current_user
-    user_is_admin_or_owner? user
+  def ownerable_can_destroy? ownerable
+    ownerable_is_admin_or_owner? ownerable
   end
 
 end

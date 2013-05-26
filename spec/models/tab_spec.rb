@@ -11,7 +11,7 @@ describe Tab do
   end
 
   it "should determine owner" do
-    @tab.user_is_owner?(User.last).should    == true
+    @tab.ownerable_is_owner?(User.last).should    == true
   end
 
   xit "should determine user editable" do

@@ -6,41 +6,43 @@ module Ownerable
   end
 
 
-  # user type relative to an object
-  def user_type obj
-    obj.requesting_user_type self
+  # ownerable type relative to an object
+  def ownerable_type ownable
+    ownable.ownerable_type_of self
   end
 
   def ownerable?
     true
   end
 
-  def is_owner_of? ownable
-    self.owner_of ownable
-  end
+  # is self an owner of an ownable?
   def owner_of? ownable
     return true unless ownable.is_a? Ownable
-    ownable.user_is_owner? self
+    ownable.ownerable_is_owner? self
+  end
+  # alias of owner_of
+  def is_owner_of? ownable
+    self.owner_of ownable
   end
 
   def can_create? ownable
     return true unless ownable.is_a? Ownable
-    ownable.user_can_create? self
+    ownable.ownerable_can_create? self
   end
 
   def can_read? ownable
     return true unless ownable.is_a? Ownable
-    ownable.user_can_read? self
+    ownable.ownerable_can_read? self
   end
 
   def can_update? ownable
     return true unless ownable.is_a? Ownable
-    ownable.user_can_update? self
+    ownable.ownerable_can_update? self
   end
 
   def can_destroy? ownable
     return true unless ownable.is_a? Ownable
-    ownable.user_can_destroy? self
+    ownable.ownerable_can_destroy? self
   end
 
 end

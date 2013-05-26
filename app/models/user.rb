@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
     !!self.admin
   end
 
+  # is guest?
+  def guest?
+    false
+  end
+
   # get all admins users
   def self.admins
     where(admin: true)
