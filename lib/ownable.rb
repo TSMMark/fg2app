@@ -12,32 +12,20 @@ module Ownable
     :public
   end
 
-  # DEFINE FIELD PERMISSIONS (which fields can be accessed via API)
-  def fields_for ownerable_type
-    self.send "fields_for_#{ownerable_type}"
-  end
-  def fields_for_admin
-    true
-  end
-  def fields_for_owner
-    true
-  end
-  def fields_for_guest
-    true
-  end
-  def fields_for_public
-    true
-  end
-
   # permission methods
   def ownable?
     true
   end
-
+  def owner
+    self.users.first
+  end
+  def owners
+    self.users
+  end
 
   # return true if a ownerable is an owner of the Ownable
   def ownerable_is_owner? ownerable
-    self.get_owners.include? ownerable
+    self.owners.include? ownerable
   end
 
   # returns true if a ownerable is an OWNER or an ADMIN of the Ownable

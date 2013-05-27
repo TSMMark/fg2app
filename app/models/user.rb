@@ -1,10 +1,25 @@
 class User < ActiveRecord::Base
   include Ownerable
   include Ownable
-  def get_owners
+
+  acts_as_api
+
+  api_accessible :name_only do |t|
+    t.add :name
+  end
+
+  def self.define_api (name, fields)
+    api_accessible name.to_sym do |t|
+      fields.each do |field|
+        t.add field
+      end
+    end
+  end
+
+  def owners
     [self]
   end
-  def get_owner
+  def owner
     self
   end
 

@@ -18,6 +18,7 @@ describe User do
     user.authentications.should have(1).items
   end
 
+
   context 'scopes' do
     xit '.facebook should return filter provider by facebook' do
       Authentication.facebook.where_values_hash[:provider].should == 'facebook'
