@@ -2,7 +2,9 @@ class Page < ProtectedActiveRecord
   include Ownable
 
   acts_as_api
-  extend DoesApi
+  include DoesApi
+  # API version
+  include Api::V1::Page
   
   def get_owners
     self.users
@@ -18,8 +20,8 @@ class Page < ProtectedActiveRecord
 
   has_many :tabs
 
-  def token u
-    self.pagetokens.where({:user_id => u})
+  def token user
+    self.pagetokens.where({:user_id => user})
   end
   
   # fetch from facebook:: list of pages belonging to a user

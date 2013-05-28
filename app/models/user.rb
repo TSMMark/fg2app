@@ -4,12 +4,8 @@ class User < ProtectedActiveRecord
 
   acts_as_api
   include DoesApi
-
-  define_api [:public, :guest], [:id]
-  define_api [:owner, :admin], [:id, :name, :email, :admin,
-                      :created_at, :updated_at,
-                      :current_sign_in_at, :last_sign_in_at,
-                      :current_sign_in_ip, :last_sign_in_ip]
+  # API version
+  include Api::V1::User
 
   def owners
     [self]

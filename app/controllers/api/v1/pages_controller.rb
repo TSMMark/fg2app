@@ -1,8 +1,11 @@
 module Api
   module V1
     class PagesController < Api::BaseController
-      set_table :page
       
+      def initialize
+        self.set_table :page
+      end
+
 
 
     end

@@ -1,18 +1,25 @@
 class Api::BaseController < ApplicationController
+  #include ActionView::Helpers::TextHelper
+  
   respond_to :json
   before_filter :find_by_id, only: [:show, :update, :destroy]
 
-  def self.set_table table
-    @@object_param  = table
-    @@table         = table.constantize
+  def set_table table
+    @object_param  = table
+    @table         = table.constantize
   end
 
   # API methods
   def index
     # use
     # key = (@@object_param == :user ? :id : :users)
-    # render_for_api @@table.where(key => current_user)
+    # @@objects = @@table.where(key => current_user)
     # respond_with @@table.all
+
+    #@@param_plural  = @@object_param.to_s.pluralize
+    #@@objects = current_user.send(@@param_plural)
+
+    api_render(@table.all)
   end
 
   def show
@@ -26,11 +33,11 @@ class Api::BaseController < ApplicationController
   end
 
   def create
-    respond_with @@table.create(params[@@object_param])
+    respond_with @table.create(params[@object_param])
   end
 
   def update
-    respond_with @object.update_attributes(params[@@object_param])
+    respond_with @object.update_attributes(params[@object_param])
     # might have to @object.save! here
   end
 
@@ -47,7 +54,7 @@ class Api::BaseController < ApplicationController
 
   def api_render(object, view=nil)
     view ||= :public
-    self.render_for_api view, json: object, root: @@object_param
+    render_for_api view, json: object, root: @object_param
   end
   # override "acts_as_api"s render_for_api method
   # def render_for_api resource, fields=nil
@@ -57,7 +64,7 @@ class Api::BaseController < ApplicationController
   # end
 
   def find_by_id
-    @object = @@table.find(params[:id])
+    @object = @table.find(params[:id])
   end
 
   def respond_with *params

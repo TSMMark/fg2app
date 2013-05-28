@@ -1,8 +1,11 @@
 module Api
   module V1
     class UsersController < Api::BaseController
-      set_table :user
       
+      def initialize
+        self.set_table :user
+      end
+
       def me
         if user_signed_in? then
           respond_with @@table.find(current_user)
