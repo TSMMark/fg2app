@@ -1,9 +1,11 @@
 class Tab < ProtectedActiveRecord
   include Ownable
-  
+
   acts_as_api
   include DoesApi
-
+  # API version
+  include Api::V1::Tab
+  
 
   attr_accessible :name, :description
   belongs_to :page

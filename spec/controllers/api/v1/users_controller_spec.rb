@@ -13,14 +13,16 @@ describe Api::V1::UsersController do
   describe "#index" do
     before do
       get :index, format: :json
-      @api_result = JSON::parse response.body
+      @api_result = JSON::parse(response.body).insensitive
     end
     
-    context 'acts_as_api' do
-      it "should have users result" do
-        @api_result.should be_has_key(:users)
-        @api_result[:users].should have_at_least(1).items
-      end
+    xit "should raise yaml result" do
+      @api_result.ryaml
+    end
+
+    it "should have users result" do
+      @api_result.should be_has_key(:users)
+      @api_result[:users].should have_at_least(1).items
     end
 
     it "should retrieve status code of 200" do

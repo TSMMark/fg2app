@@ -28,8 +28,6 @@ describe Api::V1::PagesController do
       @api_result.should be_has_key(:pages)
       @api_result[:pages].should have_at_least(1).items
     end
-
-
   end
 
 end

@@ -6,6 +6,7 @@ Fg2app::Application.routes.draw do
       match 'me'        => 'users#me', as: :me_api_path
       resources :users
       resources :pages
+      resources :tabs
     end
   end
 

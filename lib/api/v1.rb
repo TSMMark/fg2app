@@ -26,5 +26,23 @@ module Api
 
     end
 
+    module Tab
+      extend ActiveSupport::Concern
+      included do
+        define_api  [:public, :guest], [
+                      :id]
+
+        define_api  [:owner], [
+                      :id, :name, :description,
+                      :page_id,
+                      :created_at, :updated_at]
+        define_api  [:admin], [
+                      :id, :name, :description,
+                      :page_id, :fbapp_id,
+                      :created_at, :updated_at]
+      end
+
+    end
+
   end
 end

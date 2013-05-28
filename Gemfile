@@ -67,10 +67,12 @@ gem 'figaro'
 
 # authenticate
 gem 'devise'
-# authorize
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
+
+# authorize
+gem 'cancan'
 
 # facebook graph API
 gem 'fbgraph'
