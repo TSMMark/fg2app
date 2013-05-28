@@ -54,7 +54,8 @@ describe Api::V1::TabsController do
     before do
       @user.admin= true
       @user.save!
-      get :create, tab: {name: 'restful tab'}, format: :json
+      @tab_param = {name: 'restful tab'}
+      get :create, tab: @tab_param, format: :json
       @api_result = JSON::parse(response.body).insensitive
     end
     
@@ -62,8 +63,9 @@ describe Api::V1::TabsController do
       response.response_code.should == 200
     end
 
-    it "should raise yaml result" do
-      @api_result.ryaml
+    it "should have saved the name parameter" do
+      @api_result.should be_has_key(:tab)
+      @api_result[:tab][:name].should == @tab_param[:name]
     end
 
     xit "should have result" do

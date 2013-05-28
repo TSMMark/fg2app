@@ -40,30 +40,91 @@ describe Tab do
     let(:user){ nil }
 
     context "when is an admin" do
-      let(:user){ FactoryGirl.create(:admin) }
+      before do
+        @tab_owned      = FactoryGirl.create :tab
+        @tab_not_owned  = FactoryGirl.create :tab
+        @user           = @tab_owned.owner
+        @user.guest     = false
+        @user.admin     = true
+        @user.save!
+      end
+      let(:user){ @user }
 
-      it{ should be_able_to(:manage, Tab.new) }
-      it{ should be_able_to(:read, Tab.new) }
-      it{ should be_able_to(:create, Tab.new) }
-      it{ should be_able_to(:update, Tab.new) }
+      context 'when admin is owner' do
+        it{ should be_able_to(:read, @tab_owned) }
+        it{ should be_able_to(:manage, @tab_owned) }
+        it{ should be_able_to(:create, @tab_owned) }
+        it{ should be_able_to(:update, @tab_owned) }
+        it{ should be_able_to(:destroy, @tab_owned) }
+      end
+
+      context 'when admin is NOT owner' do
+        it{ should be_able_to(:read, @tab_not_owned) }
+        it{ should be_able_to(:manage, @tab_not_owned) }
+        it{ should be_able_to(:create, @tab_not_owned) }
+        it{ should be_able_to(:update, @tab_not_owned) }
+        it{ should be_able_to(:destroy, @tab_not_owned) }
+      end
+
     end
+
     context "when is a regular user" do
-      let(:user){ FactoryGirl.create(:user_default) }
+      before do
+        @tab_owned      = FactoryGirl.create :tab
+        @tab_not_owned  = FactoryGirl.create :tab
+        @user           = @tab_owned.owner
+        @user.guest     = false
+        @user.save!
+      end
+      let(:user){ @user }
 
-      it{ should_not be_able_to(:read, Tab.new) }
-      it{ should_not be_able_to(:manage, Tab.new) }
-      it{ should be_able_to(:create, Tab.new) }
-      it{ should_not be_able_to(:update, Tab.new) }
+      context 'when user is owner' do
+        it{ should be_able_to(:read, @tab_owned) }
+        it{ should be_able_to(:manage, @tab_owned) }
+        it{ should be_able_to(:create, @tab_owned) }
+        it{ should be_able_to(:update, @tab_owned) }
+        it{ should be_able_to(:destroy, @tab_owned) }
+      end
+
+      context 'when user is NOT owner' do
+        it{ should_not be_able_to(:read, @tab_not_owned) }
+        it{ should_not be_able_to(:manage, @tab_not_owned) }
+        it{ should be_able_to(:create, @tab_not_owned) }
+        it{ should_not be_able_to(:update, @tab_not_owned) }
+        it{ should_not be_able_to(:destroy, @tab_not_owned) }
+      end
+
     end
+
     context "when is a guest" do
-      before { pending }
+      before do
+        @tab_owned      = FactoryGirl.create :tab
+        @tab_not_owned  = FactoryGirl.create :tab
+        @user           = @tab_owned.owner
+        @user.guest= true
+        @user.save!
+      end
+      let(:user){ @user }
 
-      let(:user){ User.new_guest }
+      context 'when guest is owner' do
+        it{ should be_able_to(:read, @tab_owned) }
+        it{ should be_able_to(:manage, @tab_owned) }
+        it{ should be_able_to(:create, @tab_owned) }
+        it{ should be_able_to(:update, @tab_owned) }
+        it{ should be_able_to(:destroy, @tab_owned) }
+      end
 
-      it{ should be_able_to(:read, Tab.new) }
-      it{ should_not be_able_to(:manage, Tab.new) }
-      it{ should_not be_able_to(:create, Tab.new) }
-      it{ should_not be_able_to(:update, Tab.new) }
+      context 'when guest is NOT owner' do
+        it{ should_not be_able_to(:read, @tab_not_owned) }
+        it{ should_not be_able_to(:manage, @tab_not_owned) }
+        it{ should be_able_to(:create, @tab_not_owned) }
+        it{ should_not be_able_to(:update, @tab_not_owned) }
+        it{ should_not be_able_to(:destroy, @tab_not_owned) }
+      end
+
     end
+
+
+
   end
 end

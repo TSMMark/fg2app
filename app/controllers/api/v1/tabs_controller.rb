@@ -21,7 +21,8 @@ module Api
       end
 
       def create
-        respond_with Tab.create(params[:tab])
+        @tab = Tab.create(params[:tab])
+        api_render @tab, @tab.ownerable_type_of(current_user)
       end
 
       def update

@@ -19,36 +19,34 @@ class Ability
       #unless user.guest?
       #end
 
+      if_owner_or_admin = Proc.new {|object|
+        [:owner,:admin].include? object.try(:ownerable_type_of, user)
+      }
 
       #    TABS    #
       can :create, Tab
       # can update if admin or owner
-      can :read, Tab do |object|
-        [:owner,:admin].include? object.try(:ownerable_type_of, user)
-      end
-      can :update, Tab do |object|
-        [:owner,:admin].include? object.try(:ownerable_type_of, user)
-      end
+      can :manage, Tab, &if_owner_or_admin
+      # do |object|
+      #   [:owner,:admin].include? object.try(:ownerable_type_of, user)
+      # end
       # .. TABS .. #
 
 
       #    USERS    #
       # can update if admin or owner
-      can :read, User do |object|
-        [:owner,:admin].include? object.try(:ownerable_type_of, user)
-      end
-      can :update, User do |object|
-        [:owner,:admin].include? object.try(:ownerable_type_of, user)
-      end
+      can :read, User, &if_owner_or_admin
+      # do |object|
+      #   [:owner,:admin].include? object.try(:ownerable_type_of, user)
+      # end
+      can :update, User, &if_owner_or_admin
       # .. USERS .. #
 
 
 
       #    PAGES    #
       # can update if admin or owner
-      can :read, Page do |object|
-        [:owner,:admin].include? object.try(:ownerable_type_of, user)
-      end
+      can :read, Page, &if_owner_or_admin
       # .. USERS .. #
 
 
