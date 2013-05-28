@@ -73,15 +73,15 @@ gem 'oauth2'
 
 # authorize
 gem 'cancan'
+# hide attrs to certain user groups
+gem 'strong_parameters'
+gem 'cancan_strong_parameters'
 
 # facebook graph API
 gem 'fbgraph'
 
 # for sorting widget order in a tab
 gem 'acts_as_list'
-
-# hide attrs to certain user groups
-gem 'strong_parameters'
 
 # backbone.js
 gem 'backbone-on-rails'

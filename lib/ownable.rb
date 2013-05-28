@@ -5,8 +5,8 @@ module Ownable
   # REQUEST field list based on the requesting ownerable
   def ownerable_type_of ownerable=nil
     if(ownerable) then
-      return :admin if ownerable.admin?
       return :owner if ownerable.owner_of? self
+      return :admin if ownerable.admin?
       return :guest if ownerable.guest?
     end
     :public
@@ -17,7 +17,7 @@ module Ownable
     true
   end
   def owner
-    self.users.first
+    self.owners.first
   end
   def owners
     self.users

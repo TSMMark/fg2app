@@ -20,8 +20,6 @@ module DoesApi
       end
     end
 
-
-
   end
   # .. ClassMethods .. #
 

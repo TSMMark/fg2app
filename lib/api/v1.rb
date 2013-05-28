@@ -1,7 +1,7 @@
 module Api
   module V1
 
-    module Page
+    module V1Page
       extend ActiveSupport::Concern
       included do
         define_api  [:public, :guest],[
@@ -12,7 +12,7 @@ module Api
       end
     end
 
-    module User
+    module V1User
       extend ActiveSupport::Concern
       included do
         define_api  [:public, :guest], [
@@ -26,7 +26,7 @@ module Api
 
     end
 
-    module Tab
+    module V1Tab
       extend ActiveSupport::Concern
       included do
         define_api  [:public, :guest], [

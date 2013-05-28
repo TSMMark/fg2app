@@ -6,7 +6,7 @@ describe Api::V1::TabsController do
   before do
     @tab = FactoryGirl.create(:tab)
     @page = @tab.page
-    @user = @page.users.first
+    @user = @page.users.where(guest: false).first
     sign_in @user
   end
 
@@ -52,6 +52,8 @@ describe Api::V1::TabsController do
 
   describe "#create" do
     before do
+      @user.admin= true
+      @user.save!
       get :create, tab: {name: 'restful tab'}, format: :json
       @api_result = JSON::parse(response.body).insensitive
     end

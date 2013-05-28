@@ -1,7 +1,8 @@
 module Api
   module V1
     class UsersController < Api::BaseController
-      
+      load_and_authorize_resource
+
       def initialize
         self.set_table :user
       end
@@ -14,6 +15,19 @@ module Api
         end
       end
 
+      def create
+        @user = params[:user] ? User.new(params[:user]) : User.new_guest
+        if @user.save!
+          api_render @user
+        else
+          api_render {:failed}
+        end
+      end
+
+
+      def show
+        api_render @user
+      end
 
 
     end

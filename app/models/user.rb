@@ -1,22 +1,19 @@
-class User < ProtectedActiveRecord
+class User < ActiveRecord::Base
   include Ownerable
   include Ownable
 
   acts_as_api
   include DoesApi
   # API version
-  include Api::V1::User
+  include Api::V1::V1User
 
   def owners
     [self]
   end
-  def owner
-    self
-  end
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,
-          :remember_me, :name
+  # attr_accessible :email, :password, :password_confirmation,
+  #         :remember_me, :name
 
           # omniauth (no auth table) stuff
           #:provider,  
@@ -40,6 +37,10 @@ class User < ProtectedActiveRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
+
+  def self.new_guest
+    new {|u| u.guest = true}
+  end
 
   def token p
     self.pagetokens.where({:page_id => p})
@@ -74,7 +75,7 @@ class User < ProtectedActiveRecord
 
   # is guest?
   def guest?
-    false
+    !!self.guest
   end
 
   # get all admins users

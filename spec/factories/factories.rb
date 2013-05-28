@@ -15,6 +15,7 @@ FactoryGirl.define do
     email
     password  "foobar123"
     password_confirmation { "#{password}" }
+    guest false
   end
 
   factory :user_with_auth, parent: :user do

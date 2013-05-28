@@ -1,8 +1,14 @@
 class Api::BaseController < ApplicationController
   #include ActionView::Helpers::TextHelper
   
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   error = {:errors => {:name => 'Access Denied'}}
+  #   # exception.ryaml
+  #   # error = {:errors => exception.default_message}
+  #   respond_with error, :status => 422
+  # end
   respond_to :json
-  before_filter :find_by_id, only: [:show, :update, :destroy]
+  #before_filter :find_by_id, only: [:show, :update, :destroy]
 
   def set_table table
     @object_param  = table
@@ -11,39 +17,30 @@ class Api::BaseController < ApplicationController
 
   # API methods
   def index
-    # use
-    # key = (@@object_param == :user ? :id : :users)
-    # @@objects = @@table.where(key => current_user)
-    # respond_with @@table.all
-
-    #@@param_plural  = @@object_param.to_s.pluralize
-    #@@objects = current_user.send(@@param_plural)
-
     api_render(@table.all)
   end
 
-  def show
-    # default :public
-    api_render(@object, @object.ownerable_type_of(current_user))
+  # def show
+  #   api_render(@object, @object.ownerable_type_of(current_user))
 
-    # respond_with @object
-    # @user = User.find(params[:id])
-    # ages = @user.fetch_pages
-    # raise pages.to_yaml
-  end
+  #   # respond_with @object
+  #   # @user = User.find(params[:id])
+  #   # ages = @user.fetch_pages
+  #   # raise pages.to_yaml
+  # end
 
-  def create
-    respond_with @table.create(params[@object_param])
-  end
+  # def create
+  #   respond_with @table.create(params[@object_param])
+  # end
 
-  def update
-    respond_with @object.update_attributes(params[@object_param])
-    # might have to @object.save! here
-  end
+  # def update
+  #   respond_with @object.update_attributes(params[@object_param])
+  #   # might have to @object.save! here
+  # end
 
-  def destroy
-    respond_with @object.destroy
-  end
+  # def destroy
+  #   respond_with @object.destroy
+  # end
 
   # protected methods
   protected
@@ -63,9 +60,9 @@ class Api::BaseController < ApplicationController
   #   super :api_resource, :json => resource, :root => @@object_param
   # end
 
-  def find_by_id
-    @object = @table.find(params[:id])
-  end
+  # def find_by_id
+  #   @object = @table.find(params[:id])
+  # end
 
   def respond_with *params
     super *params # obj, @options

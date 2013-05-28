@@ -46,6 +46,10 @@ GEM
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.10)
+    cancan_strong_parameters (0.2.4)
+      activesupport
+      cancan
+      strong_parameters
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -243,6 +247,7 @@ DEPENDENCIES
   backbone-on-rails
   bootstrap-sass (~> 2.2.2.0)
   cancan
+  cancan_strong_parameters
   coffee-rails (~> 3.2.1)
   commands
   devise

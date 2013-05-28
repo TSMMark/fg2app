@@ -1,16 +1,13 @@
-class Page < ProtectedActiveRecord
+class Page < ActiveRecord::Base
   include Ownable
 
   acts_as_api
   include DoesApi
   # API version
-  include Api::V1::Page
+  include Api::V1::V1Page
   
-  def get_owners
-    self.users
-  end
 
-  attr_accessible :pid, :name, :category #, :access_token
+  # attr_accessible :pid, :name, :category #, :access_token
 
   # many to many with pages
   has_many :pagetokens, :dependent => :destroy
