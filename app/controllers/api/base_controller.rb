@@ -7,6 +7,7 @@ class Api::BaseController < ApplicationController
   #   # error = {:errors => exception.default_message}
   #   respond_with error, :status => 422
   # end
+  
   respond_to :json
   #before_filter :find_by_id, only: [:show, :update, :destroy]
 
