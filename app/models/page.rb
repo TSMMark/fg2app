@@ -1,5 +1,8 @@
-class Page < ActiveRecord::Base
+class Page < ProtectedActiveRecord
   include Ownable
+
+  acts_as_api
+  extend DoesApi
   
   def get_owners
     self.users

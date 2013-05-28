@@ -7,6 +7,7 @@ describe Api::V1::UsersController do
     @user1 = FactoryGirl.create(:user_default)
     @user2 = FactoryGirl.create(:user_default)
     @user3 = FactoryGirl.create(:user_default)
+    sign_in @user1
   end
 
   describe "#index" do
@@ -14,6 +15,12 @@ describe Api::V1::UsersController do
       get :index, format: :json
     end
     
+    context 'acts_as_api' do
+      it 'should do something' do
+        response.body.ryaml
+      end
+    end
+
     it "should retrieve status code of 200" do
       response.response_code.should == 200
     end
@@ -36,15 +43,6 @@ describe Api::V1::UsersController do
       response.body.should_not include @user2.email.to_json
     end
     
-  end
-
-  context 'acts_as_api' do
-    before do
-      get :index, :format => :json
-    end
-    it 'should do something' do
-      response.body.ryaml
-    end
   end
 
   describe "#show" do

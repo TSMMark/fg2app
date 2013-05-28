@@ -5,6 +5,7 @@ Fg2app::Application.routes.draw do
       match 'users/me'  => 'users#me', as: :me_api_path
       match 'me'        => 'users#me', as: :me_api_path
       resources :users
+      resources :pages
     end
   end
 
@@ -23,6 +24,8 @@ Fg2app::Application.routes.draw do
     #match 'users/sign_up' => 'dash#index', as: :new_user_registration
     #match "users/:id"     => 'users#show', as: :user
   #end
+
+  #resources :users
 
   devise_for :users,
     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

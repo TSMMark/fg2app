@@ -49,14 +49,6 @@ class ProtectedActiveRecord < ActiveRecord::Base
     # true / false check within filter_against
     attrs.filter_against(permitted_attributes, ownerable)
   end
-  # def crud_attributes_action(access, ownerable=nil)
-  #   # check access
-  #   case access
-  #   when :read
-  #     self.filter_crud_attributes(access, self.attributes, ownerable)
-  #   when :update
-  #     self.update_attributes()
-  # end
   def crud_action_read(ownerable=nil)
     self.filter_crud_attributes(:read, self.attributes, ownerable)
   end
@@ -83,16 +75,14 @@ class ProtectedActiveRecord < ActiveRecord::Base
     end
 
     # instance methods
+    # get list of fields
     define_method "#{access}able" do |ownerable|
       self.crud_check access, ownerable
     end
+    # filter out protected fields from a hash of fields: :values
     define_method "filter_#{access}able" do |attrs, ownerable=nil|
       self.filter_crud_attributes access, attrs, ownerable
     end
-    # define_method "crud_action_#{access}" do |ownerable=nil|
-    #   self.crud_attributes_action access, ownerable
-    # end
-    next
   end
 
 
@@ -101,7 +91,6 @@ class ProtectedActiveRecord < ActiveRecord::Base
 
 
   #    OWNER STUFF    #
-
   # get array of owners
   def get_owners
     #raise @@get_owners_proc.to_yaml

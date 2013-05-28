@@ -1,5 +1,10 @@
-class Tab < ActiveRecord::Base
+class Tab < ProtectedActiveRecord
   include Ownable
+  
+  acts_as_api
+  include DoesApi
+
+
   attr_accessible :name, :description
   belongs_to :page
   belongs_to :fbapp

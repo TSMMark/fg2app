@@ -1,20 +1,15 @@
-class User < ActiveRecord::Base
+class User < ProtectedActiveRecord
   include Ownerable
   include Ownable
 
   acts_as_api
+  include DoesApi
 
-  api_accessible :name_only do |t|
-    t.add :name
-  end
-
-  def self.define_api (name, fields)
-    api_accessible name.to_sym do |t|
-      fields.each do |field|
-        t.add field
-      end
-    end
-  end
+  define_api [:public, :guest], [:id]
+  define_api [:owner, :admin], [:id, :name, :email, :admin,
+                      :created_at, :updated_at,
+                      :current_sign_in_at, :last_sign_in_at,
+                      :current_sign_in_ip, :last_sign_in_ip]
 
   def owners
     [self]
