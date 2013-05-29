@@ -26,6 +26,11 @@ module RailsExtensions
     def ryaml
       raise self.to_yaml
     end
+
+    def make_array
+      return self if self.is_a? Array
+      return [self]
+    end
   end
   # .. Object .. #
 

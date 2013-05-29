@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Page do
   
-  before(:each) do
+  before :all do
     @page ||= FactoryGirl.create(:page)
   end
 

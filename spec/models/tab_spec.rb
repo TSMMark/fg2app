@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Tab do
-  before do
+  before :all do
     @tab ||= FactoryGirl.create(:tab)
     @page ||= @tab.page
     @user ||= @page.users.first
@@ -21,7 +21,7 @@ describe Tab do
   end
 
   context 'strong_parameters / permitted params' do
-    before do
+    before :all do
       raw_params = {:tab => {name: :tabname, description: :stillhere, fbapp_id: :a23f3fa}}
       @params = ActionController::Parameters.new(raw_params)
       @permitted_params ||= PermittedParams.new(@params, @user)
@@ -40,10 +40,10 @@ describe Tab do
     let(:user){ nil }
 
     context "when is an admin" do
-      before do
-        @tab_owned      = FactoryGirl.create :tab
-        @tab_not_owned  = FactoryGirl.create :tab
-        @user           = @tab_owned.owner
+      before :all do
+        @tab_owned      ||= FactoryGirl.create :tab
+        @tab_not_owned  ||= FactoryGirl.create :tab
+        @user           ||= @tab_owned.owner
         @user.guest     = false
         @user.admin     = true
         @user.save!
@@ -69,7 +69,7 @@ describe Tab do
     end
 
     context "when is a regular user" do
-      before do
+      before :all do
         @tab_owned      = FactoryGirl.create :tab
         @tab_not_owned  = FactoryGirl.create :tab
         @user           = @tab_owned.owner
@@ -97,7 +97,7 @@ describe Tab do
     end
 
     context "when is a guest" do
-      before do
+      before :all do
         @tab_owned      = FactoryGirl.create :tab
         @tab_not_owned  = FactoryGirl.create :tab
         @user           = @tab_owned.owner

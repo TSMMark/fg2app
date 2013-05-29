@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Fbapp do
-  before(:each) do
+  before :all do
     FactoryGirl.create(:fbapp)
   end
 
