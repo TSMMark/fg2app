@@ -26,7 +26,7 @@ module Api
 
 
       def show
-        api_render @user
+        api_render @user, @user.ownerable_type_of(current_user)
       end
 
 

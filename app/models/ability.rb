@@ -23,6 +23,7 @@ class Ability
         [:owner,:admin].include? object.try(:ownerable_type_of, user)
       }
 
+
       #    TABS    #
       can :create, Tab
       # can update if admin or owner
@@ -31,6 +32,7 @@ class Ability
       #   [:owner,:admin].include? object.try(:ownerable_type_of, user)
       # end
       # .. TABS .. #
+
 
 
       #    USERS    #

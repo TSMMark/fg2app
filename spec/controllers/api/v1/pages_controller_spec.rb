@@ -1,6 +1,11 @@
 require File.dirname(__FILE__) + '/../../../spec_helper'
 
 describe Api::V1::PagesController do
+  def setup
+    @controller = Api::V1::PagesController.new
+    @controller.ryaml
+  end
+
   render_views
 
   before do
@@ -11,6 +16,10 @@ describe Api::V1::PagesController do
   end
 
   describe "#index" do
+    def setup
+      @controller = Api::V1::PagesController.new
+    end
+
     before do
       get :index, format: :json
       @api_result = JSON::parse(response.body).insensitive
@@ -28,6 +37,7 @@ describe Api::V1::PagesController do
       @api_result.should be_has_key(:pages)
       @api_result[:pages].should have_at_least(1).items
     end
+
   end
 
 end
