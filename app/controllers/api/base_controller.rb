@@ -11,15 +11,15 @@ class Api::BaseController < ApplicationController
   respond_to :json
   #before_filter :find_by_id, only: [:show, :update, :destroy]
 
-  # def set_table table
-  #   @object_param  = table
-  #   @table         = table.constantize
-  # end
+  def set_table table
+    @object_param  = table
+    @table         = table.constantize
+  end
 
-  # # API methods
-  # def index
-  #   api_render(@table.all)
-  # end
+  # API methods
+  def index
+    api_render(@table.all)
+  end
 
   # def show
   #   api_render(@object, @object.ownerable_type_of(current_user))
