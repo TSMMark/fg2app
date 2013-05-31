@@ -47,7 +47,7 @@ class PermittedParams < Struct.new(:params, :user)
 
   def self.define_model_rule  (modelname, &block)
     define_method "#{modelname}_attributes" do
-      block.call @ownable, @user
+      block.call @ownable, user
     end
   end
 

@@ -26,7 +26,11 @@ module Ownable
   # return true if an Ownerable is an owner of this Ownable
   #   OR if this Ownable is not persisted, so anyone can access new Models
   def ownerable_is_owner? ownerable
-    (!self.persisted?) || (self.owners.include? ownerable)
+    # if the tab doesn't have an owner and isn't saved yet
+    # (should work fine without the persisted check)
+    (self.owners.empty? && !self.persisted?) ||
+      # OR if ownerable is listed as an owner
+      (self.owners.include? ownerable)
   end
 
   # returns true if a ownerable is an OWNER or an ADMIN of the Ownable
