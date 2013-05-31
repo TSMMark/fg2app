@@ -26,7 +26,7 @@ describe :Ownable do
     @owner.should be_ownerable
   end
 
-  it "should have an owner with create privileges" do
+  xit "should have an owner with create privileges" do
     @owner.can_create?(@tab).should == true
   end
 

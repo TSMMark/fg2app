@@ -29,6 +29,15 @@ module Api
     module V1Tab
       extend ActiveSupport::Concern
       included do
+
+        PermittedParams.define_model_rule :tab do |ownable, ownerable|
+          if ownable.try(:ownerable_is_admin_or_owner?, ownerable)
+            [:id, :name, :description, :page_id, :fbapp_id, :created_at, :updated_at]
+          else
+            false
+          end
+        end
+
         define_api  [:public, :guest], [
                       :id]
 

@@ -23,28 +23,34 @@ module Ownable
     self.users
   end
 
-  # return true if a ownerable is an owner of the Ownable
+  # return true if an Ownerable is an owner of this Ownable
+  #   OR if this Ownable is not persisted, so anyone can access new Models
   def ownerable_is_owner? ownerable
-    self.owners.include? ownerable
+    (!self.persisted?) || (self.owners.include? ownerable)
   end
 
   # returns true if a ownerable is an OWNER or an ADMIN of the Ownable
   def ownerable_is_admin_or_owner? ownerable
-    ownerable.admin? || self.ownerable_is_owner?(ownerable)
+    ownerable.try(:admin?) || self.ownerable_is_owner?(ownerable)
   end
 
-  # CRUD permissions
-  def ownerable_can_create? ownerable
-    ownerable_is_admin_or_owner? ownerable
-  end
-  def ownerable_can_read? ownerable
-    ownerable_is_admin_or_owner? ownerable
-  end
-  def ownerable_can_update? ownerable
-    ownerable_is_admin_or_owner? ownerable
-  end
-  def ownerable_can_destroy? ownerable
-    ownerable_is_admin_or_owner? ownerable
-  end
+
+
+
+  # CRUD permissions.
+  #   Not in use because we switched to CanCan
+  # 
+  # def ownerable_can_create? ownerable
+  #   ownerable_is_admin_or_owner? ownerable
+  # end
+  # def ownerable_can_read? ownerable
+  #   ownerable_is_admin_or_owner? ownerable
+  # end
+  # def ownerable_can_update? ownerable
+  #   ownerable_is_admin_or_owner? ownerable
+  # end
+  # def ownerable_can_destroy? ownerable
+  #   ownerable_is_admin_or_owner? ownerable
+  # end
 
 end

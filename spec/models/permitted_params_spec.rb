@@ -2,11 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PermittedParams do
   describe :MakeArray do
-    it 'should make object into array' do
+    it 'makes object into array' do
       'string'.make_array.should == ['string']
     end
   end
-
 
   describe Tab do
     #subject { ability }
@@ -27,6 +26,7 @@ describe PermittedParams do
     context "when is owner" do
       it 'returns all accessible fields' do
         tab_params = permitted_params.filter_for(@tab_owned)
+        tab_params.ryaml
         tab_params.should be_a Hash
         tab_params.should be_has_key(:name)
         tab_params.should be_has_key(:description)

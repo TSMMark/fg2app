@@ -38,26 +38,32 @@ class PermittedParams < Struct.new(:params, :user)
   end
 
   # get information about the user
-  def user_is_admin_or_owner
-    [:admin,:owner].include? @user_type
-  end
-  def user_is_guest
-    [:guest].include? @user_type
+  # def user_is_admin_or_owner
+  #   [:admin,:owner].include? @user_type
+  # end
+  # def user_is_guest
+  #   [:guest].include? @user_type
+  # end
+
+  def self.define_model_rule  (modelname, &block)
+    define_method "#{modelname}_attributes" do
+      block.call @ownable, @user
+    end
   end
 
 
   # ## Begin Model Accessible Attribute Definitions ## #
 
   # attrs for tabs
-  def tab_attributes ownable=@ownable
-    # if this is a new record or we're an owner or admin
-    if (ownable && !ownable.persisted?) || user_is_admin_or_owner
-      return [:id, :name, :description, :page_id, :fbapp_id, :created_at, :updated_at]
-    else
-      return false
-    end
-  end
-  
+  # def tab_attributes ownable=@ownable
+  #   # if this is a new record or we're an owner or admin
+  #   if (ownable && !ownable.persisted?) || user_is_admin_or_owner
+  #     return [:id, :name, :description, :page_id, :fbapp_id, :created_at, :updated_at]
+  #   else
+  #     return false
+  #   end
+  # end
+
   # ## End Model Accessible Attribute Definitions ## #
 
 end
