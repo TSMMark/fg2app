@@ -18,6 +18,9 @@ group :development, :test do
   # factory girl !
   gem "factory_girl_rails", "~> 4.0"
 
+  # used to clean the test database before specs
+  gem "database_cleaner", "~> 1.0.1"
+
 end
 
 
@@ -88,7 +91,6 @@ gem 'backbone-on-rails'
 
 # allow getting by symbol or string in hash
 gem 'insensitive_hash'
-
 
 # API attributes
 gem 'acts_as_api'

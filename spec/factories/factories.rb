@@ -58,14 +58,15 @@ FactoryGirl.define do
     category
 
     ignore do
-      page_count Random.new.rand(5..30)  # the number pages that should be in the list
+      page_count Random.new.rand(2..5)  # the number pages that should be in the list
     end
 
     after(:build) do |page, evaluator|
       evaluator.page_count.times do
+        #user = FactoryGirl.create(:user_default, email: FactoryGirl.generate(:email))
         FactoryGirl.create(:pagetoken, {
           page: page,
-          user: FactoryGirl.create(:user_default)
+          user: user = FactoryGirl.create(:user_default)
         })
       end
     end

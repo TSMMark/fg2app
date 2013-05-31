@@ -60,6 +60,7 @@ GEM
     coffee-script-source (1.6.2)
     commands (0.2.1)
       rails (>= 3.2.0)
+    database_cleaner (1.0.1)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -250,6 +251,7 @@ DEPENDENCIES
   cancan_strong_parameters
   coffee-rails (~> 3.2.1)
   commands
+  database_cleaner (~> 1.0.1)
   devise
   factory_girl_rails (~> 4.0)
   fbgraph

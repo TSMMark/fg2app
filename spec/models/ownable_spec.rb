@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe :Ownable do
-  before do
+  before :all do
     @tab ||= FactoryGirl.create(:tab)
     @owner ||= @tab.users.first
   end

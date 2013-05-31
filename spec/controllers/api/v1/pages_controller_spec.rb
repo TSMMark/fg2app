@@ -4,9 +4,9 @@ describe Api::V1::PagesController do
   render_views
 
   before do
-    @tab = FactoryGirl.create(:tab)
-    @page = @tab.page
-    @user = @page.users.first
+    @tab  ||= FactoryGirl.create(:tab)
+    @page ||= @tab.page
+    @user ||= @page.users.first
     sign_in @user
   end
 

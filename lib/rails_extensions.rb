@@ -10,7 +10,10 @@ module RailsExtensions
 
   #    Class    #
   class ::Class
-
+    # underscore and convert class name to symbol
+    def name_to_sym
+      self.name.underscore.to_sym
+    end
   end
   # .. Class .. #
 
@@ -20,6 +23,11 @@ module RailsExtensions
     def call_or_value *params
       return self.call(*params) if self.is_a? Proc
       self
+    end
+    
+    # class_name_to_sym
+    def class_name_to_sym
+      self.class.name.underscore.to_sym
     end
 
     # raises object to_yaml

@@ -6,12 +6,18 @@ require 'rspec/autorun'
 #require 'capybara/rspec'
 #require File.expand_path("../factories", __FILE__)
 
+# require 'rake'
+# Rake::Task["db:test:prepare"].invoke
+
+# clean db from last tests
+require 'database_cleaner'
+DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.clean
+
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-
-#require 'rake'
-#Rake::Task["db:reset"].invoke
 
 RSpec.configure do |config|
   # ## Mock Framework
@@ -29,6 +35,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -48,5 +55,3 @@ class ActionController::TestCase
 end
 
 require "mocha/setup"
-
-

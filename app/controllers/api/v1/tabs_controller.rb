@@ -26,7 +26,7 @@ module Api
       end
 
       def update
-        respond_with Tab.update_attributes(params[:tab])
+        respond_with Tab.update_attributes!(params[:tab])
         # might have to @tab.save! here
       end
 
