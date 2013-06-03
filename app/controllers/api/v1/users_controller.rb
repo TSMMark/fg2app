@@ -25,6 +25,10 @@ module Api
       end
 
 
+      def index
+        api_render @users = User.all
+      end
+
       def show
         api_render @user
       end

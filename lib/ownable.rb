@@ -16,11 +16,16 @@ module Ownable
   def ownable?
     true
   end
-  def owner
-    self.owners.first
+  # alias ownable?
+  def is_ownable?
+    ownable?
   end
+  
   def owners
     self.users
+  end
+  def owner
+    self.owners.first
   end
 
   # return true if an Ownerable is an owner of this Ownable

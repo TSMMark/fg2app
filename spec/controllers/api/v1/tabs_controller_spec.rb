@@ -4,16 +4,21 @@ describe Api::V1::TabsController do
   render_views
 
   before do
-    @tab = FactoryGirl.create(:tab)
+    @tab  = FactoryGirl.create(:tab)
     @page = @tab.page
     @user = @page.users.where(guest: false).first
     sign_in @user
+
+    # TODO: new contexts for :admin, :guest, :owner, :nonowner
+    # @user_not_owner = FactoryGirl.create :user_default
+    # sign_in @user_not_owner
   end
 
   describe "#index" do
     before do
       get :index, format: :json
-      @api_result = JSON::parse(response.body).insensitive
+      @api_result = JSON::parse(response.body)
+      @api_result = @api_result.insensitive if @api_result.is_a? Hash
     end
     
     it "should retrieve status code of 200" do
@@ -33,14 +38,15 @@ describe Api::V1::TabsController do
   describe "#show" do
     before do
       get :show, id: @tab.id, format: :json
-      @api_result = JSON::parse(response.body).insensitive
+      @api_result = JSON::parse(response.body)
+      @api_result = @api_result.insensitive if @api_result.is_a? Hash
     end
     
     it "should retrieve status code of 200" do
       response.response_code.should == 200
     end
 
-    xit "should raise yaml result" do
+    it "should raise yaml result" do
       @api_result.ryaml
     end
 
@@ -52,11 +58,13 @@ describe Api::V1::TabsController do
 
   describe "#create" do
     before do
-      @user.admin= true
+      pending
+      @user.admin = true
       @user.save!
-      @tab_param = {name: 'restful tab'}
+      @tab_param  = {name: 'restful tab'}
       get :create, tab: @tab_param, format: :json
-      @api_result = JSON::parse(response.body).insensitive
+      @api_result = JSON::parse(response.body)
+      @api_result = @api_result.insensitive if @api_result.is_a? Hash
     end
     
     it "should retrieve status code of 200" do

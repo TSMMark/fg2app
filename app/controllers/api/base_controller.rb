@@ -11,15 +11,15 @@ class Api::BaseController < ApplicationController
   respond_to :json
   #before_filter :find_by_id, only: [:show, :update, :destroy]
 
-  def set_table table
-    @object_param  = table
-    @table         = table.constantize
-  end
+  # def set_table table
+  #   @object_param  = table
+  #   @table         = table.constantize
+  # end
 
-  # API methods
-  def index
-    api_render(@table.all)
-  end
+  # # API methods
+  # def index
+  #   api_render(@table.all)
+  # end
 
   # def show
   #   api_render(@object, @object.ownerable_type_of(current_user))
@@ -43,17 +43,53 @@ class Api::BaseController < ApplicationController
   #   respond_with @object.destroy
   # end
 
-  # protected methods
-  protected
-  def decide_fields
-    fields = @object.readable current_user
-    fields = @object.attributes.keys if fields == true
+
+  # get the ActiveModel of this API page
+  def api_model
+    api_model_nane.constantize
+  end
+  # get the string name of the ActiveModel of this API page
+  def api_model_nane
+    api_table.classify
+  end
+  # get table name (likely plural) of this API page
+  def api_table
+    controller_name
   end
 
-  def api_render(object, view=nil)
-    view ||= :public
-    render_for_api view, json: object, root: @object_param
+  # protected methods
+  protected
+  # render an object or a set of objects
+  #   fields that are rendered will be dependant on the permitted_params rules
+  def api_render object
+    # contain the object(s) in
+    root  = api_table
+
+    filter_an_element = Proc.new do |object|
+      okay_params         = permitted_params.attributes_for object
+      object.attributes.filter_against okay_params
+    end
+
+    # if array, define rules for each item
+    if object.is_a? Array then
+      # define_api for the first object
+      to_output = object.map do |instance|
+        filter_an_element.call instance
+      end
+    else
+      root      = root.singularize
+      to_output = filter_an_element.call object
+    end
+
+    respond_with root => to_output
+    #self.render_for_api       :default, json: object, root: root
+    # respond_with object
   end
+
+  # def api_render(object, view=nil)
+  #   view ||= :public
+  #   render_for_api view, json: object, root: @object_param
+  # end
   # override "acts_as_api"s render_for_api method
   # def render_for_api resource, fields=nil
   #   fields ||= decide_fields

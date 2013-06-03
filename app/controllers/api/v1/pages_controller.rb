@@ -2,10 +2,9 @@ module Api
   module V1
     class PagesController < Api::BaseController
       
-      def initialize
-        self.set_table :page
+      def index
+        api_render @pages = Page.all
       end
-
 
 
     end
