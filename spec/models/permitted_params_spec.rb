@@ -32,7 +32,7 @@ describe PermittedParams do
         tab_params.should be_has_key(:fbapp_id)
       end
     end
-
+    
     context "when is NOT owner" do
       it 'returns no fields' do
         tab_params = permitted_params.filter_for @tab_not_owned

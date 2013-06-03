@@ -4,7 +4,7 @@ module Api
       # cancan
       load_and_authorize_resource # nested: :article
 
-      # cancan_strong_parameters
+      # cancan strong parameters
       # permit_params :name, :page_id
 
       # API methods
@@ -14,12 +14,11 @@ module Api
 
       def show
         api_render @tab
-        # api_render(@tab, @tab.ownerable_type_of(current_user))
       end
 
       def create
-        @tab = Tab.create(params[:tab])
-        api_render @tab, @tab.ownerable_type_of(current_user)
+        @tab = Tab.build(params[:tab])
+        api_render @tab
       end
 
       def update
@@ -30,8 +29,8 @@ module Api
         respond_with @tab.destroy
       end
 
+
+
     end
-
-
   end
 end

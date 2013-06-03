@@ -1,12 +1,12 @@
 class Api::BaseController < ApplicationController
   #include ActionView::Helpers::TextHelper
   
-  # rescue_from CanCan::AccessDenied do |exception|
-  #   error = {:errors => {:name => 'Access Denied'}}
-  #   # exception.ryaml
-  #   # error = {:errors => exception.default_message}
-  #   respond_with error, :status => 422
-  # end
+  rescue_from CanCan::AccessDenied do |exception|
+    # error = {:errors => {:name => 'Access Denied'}}
+    # exception.ryaml
+    error = {:error => exception.message}
+    respond_with error, :status => 422
+  end
   
   respond_to :json
   #before_filter :find_by_id, only: [:show, :update, :destroy]
@@ -57,28 +57,40 @@ class Api::BaseController < ApplicationController
     controller_name
   end
 
+
+
   # protected methods
   protected
+
+  # return filtered attributes of an ActiveRecord object
+  def filter_record record
+    okay_params         = permitted_params.attributes_for record
+    record.attributes.filter_against okay_params
+  end
+  # def filter_params params
+  #   okay_params         = permitted_params.attributes_for object
+  #   object.attributes.filter_against okay_params
+  # end
+
   # render an object or a set of objects
   #   fields that are rendered will be dependant on the permitted_params rules
   def api_render object
     # contain the object(s) in
     root  = api_table
 
-    filter_an_element = Proc.new do |object|
-      okay_params         = permitted_params.attributes_for object
-      object.attributes.filter_against okay_params
-    end
-
     # if array, define rules for each item
     if object.is_a? Array then
       # define_api for the first object
       to_output = object.map do |instance|
-        filter_an_element.call instance
+        filtered  = filter_record instance
+        # mark as nil to be removed if empty result
+        !filtered || filtered.empty? ? nil : filtered
       end
+      # remove nil values
+      to_output.compact!
     else
       root      = root.singularize
-      to_output = filter_an_element.call object
+      to_output = filter_record object
     end
 
     respond_with root => to_output
@@ -86,23 +98,9 @@ class Api::BaseController < ApplicationController
     # respond_with object
   end
 
-  # def api_render(object, view=nil)
-  #   view ||= :public
-  #   render_for_api view, json: object, root: @object_param
+  # # override respond_with?
+  # def respond_with *params
+  #   super *params # obj, @options
   # end
-  # override "acts_as_api"s render_for_api method
-  # def render_for_api resource, fields=nil
-  #   fields ||= decide_fields
-  #   @@table.define_api :api_resource, fields
-  #   super :api_resource, :json => resource, :root => @@object_param
-  # end
-
-  # def find_by_id
-  #   @object = @table.find(params[:id])
-  # end
-
-  def respond_with *params
-    super *params # obj, @options
-  end
 
 end

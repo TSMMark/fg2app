@@ -55,3 +55,11 @@ class ActionController::TestCase
 end
 
 require "mocha/setup"
+
+# 
+def parse_response response, format=:json
+  @api_result = JSON::parse(response.body)
+  @api_result = @api_result.insensitive if @api_result.is_a? Hash
+end
+
+

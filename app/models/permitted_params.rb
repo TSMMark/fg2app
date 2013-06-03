@@ -29,21 +29,21 @@ class PermittedParams < Struct.new(:params, :user)
   end
 
   # get a list of attributes that user can access of an ownable
-  def attributes_for ownable=@ownable
-    @ownable      = ownable
-    @user_type    = @ownable.ownerable_type_of user
-    # return #{ownable}_attributes
-    class_name    = @ownable.class_name_to_sym.to_s
-    self.send("#{class_name}_attributes")
+  def attributes_for attrs_for=@ownable
+    if attrs_for.is_a? Ownable
+      # 
+      ownable = @ownable = attrs_for
+      @ownable      = ownable
+      #@user_type    = @ownable.ownerable_type_of user
+      class_name    = @ownable.class_name_to_sym.to_s
+      self.send("#{class_name}_attributes")
+    elsif attrs_for.is_a? Class
+      # get attributes for of class name
+    else
+      # convert to symbol
+      #attrs_for = 
+    end
   end
-
-  # get information about the user
-  # def user_is_admin_or_owner
-  #   [:admin,:owner].include? @user_type
-  # end
-  # def user_is_guest
-  #   [:guest].include? @user_type
-  # end
 
   def self.define_model_rule  (modelname, &block)
     define_method "#{modelname}_attributes" do
@@ -51,19 +51,5 @@ class PermittedParams < Struct.new(:params, :user)
     end
   end
 
-
-  # ## Begin Model Accessible Attribute Definitions ## #
-
-  # attrs for tabs
-  # def tab_attributes ownable=@ownable
-  #   # if this is a new record or we're an owner or admin
-  #   if (ownable && !ownable.persisted?) || user_is_admin_or_owner
-  #     return [:id, :name, :description, :page_id, :fbapp_id, :created_at, :updated_at]
-  #   else
-  #     return false
-  #   end
-  # end
-
-  # ## End Model Accessible Attribute Definitions ## #
 
 end

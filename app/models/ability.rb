@@ -24,9 +24,9 @@ class Ability
       }
 
       #    TABS    #
-      can :create, Tab
       # can update if admin or owner
       can :manage, Tab, &if_owner_or_admin
+      can :create, Tab
       # do |object|
       #   [:owner,:admin].include? object.try(:ownerable_type_of, user)
       # end
