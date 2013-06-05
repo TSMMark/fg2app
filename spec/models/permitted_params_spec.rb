@@ -9,7 +9,7 @@ describe PermittedParams do
 
   describe Tab do
     #subject { ability }
-    before :all do
+    before do
       @tab_owned        = FactoryGirl.create(:tab)
       @owner            = @tab_owned.owner
       @tab_not_owned    = FactoryGirl.create(:tab)
@@ -24,6 +24,12 @@ describe PermittedParams do
     let(:permitted_params){ @permitted_params }
 
     context "when is owner" do
+
+      it 'returns all accessible fields' do
+        tab_params = permitted_params.filter_for(@tab_owned)
+        tab_params.ryaml
+      end
+
       it 'returns all accessible fields' do
         tab_params = permitted_params.filter_for(@tab_owned)
         tab_params.should be_a Hash
@@ -32,7 +38,7 @@ describe PermittedParams do
         tab_params.should be_has_key(:fbapp_id)
       end
     end
-    
+
     context "when is NOT owner" do
       it 'returns no fields' do
         tab_params = permitted_params.filter_for @tab_not_owned

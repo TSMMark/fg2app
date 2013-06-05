@@ -7,6 +7,11 @@ class Api::BaseController < ApplicationController
     error = {:error => exception.message}
     respond_with error, :status => 422
   end
+
+  rescue_from ActiveModel::ForbiddenAttributes do |exception|
+    error = {:error => exception.message}
+    respond_with error, :status => 422
+  end
   
   respond_to :json
   #before_filter :find_by_id, only: [:show, :update, :destroy]
@@ -80,12 +85,15 @@ class Api::BaseController < ApplicationController
 
     # if array, define rules for each item
     if object.is_a? Array then
+
       # define_api for the first object
       to_output = object.map do |instance|
         filtered  = filter_record instance
+
         # mark as nil to be removed if empty result
         !filtered || filtered.empty? ? nil : filtered
       end
+
       # remove nil values
       to_output.compact!
     else

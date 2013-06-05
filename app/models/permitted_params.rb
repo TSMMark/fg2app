@@ -9,8 +9,9 @@ class PermittedParams < Struct.new(:params, :user)
     
     # make sure params format is as follows:
     #   { ownable_class_name: {param1: :value, param2: :value} }
-    ownable_params      = params.required(class_name)
-    return {} if !ownable_params
+    params.required(class_name)
+
+    # return {} if !params || params.empty?
 
     # get a list of attributes that are allowed for this item
     #   could be true, false, or an array of allowed attributes
@@ -18,25 +19,37 @@ class PermittedParams < Struct.new(:params, :user)
 
     # decide how to handle the received attributes
     if allowed_attributes == true
+      
       # allow all
-      ownable_params    = ownable_params.permit!
+      params.permit!
+
     elsif allowed_attributes == false
+      
       # allow none
-      ownable_params    = ownable_params.permit *[]
+      params.permit *[]
+
+    else
+      
+      # filter out everything except allowed_attributes
+      params.permit *allowed_attributes
+      
+      raise params.to_yaml
     end
-    # filter out everything except allowed_attributes
-    ownable_params      = ownable_params.permit *allowed_attributes
+
   end
 
   # get a list of attributes that user can access of an ownable
   def attributes_for attrs_for=@ownable
+
     if attrs_for.is_a? Ownable
+
       # 
       ownable = @ownable = attrs_for
       @ownable      = ownable
-      #@user_type    = @ownable.ownerable_type_of user
+      # @user_type    = @ownable.ownerable_type_of user
       class_name    = @ownable.class_name_to_sym.to_s
       self.send("#{class_name}_attributes")
+
     elsif attrs_for.is_a? Class
       # get attributes for of class name
     else

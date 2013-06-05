@@ -25,24 +25,4 @@ module Ownerable
     self.owner_of ownable
   end
 
-  def can_create? ownable
-    return true unless ownable.is_a? Ownable
-    ownable.ownerable_can_create? self
-  end
-
-  def can_read? ownable
-    return true unless ownable.is_a? Ownable
-    ownable.ownerable_can_read? self
-  end
-
-  def can_update? ownable
-    return true unless ownable.is_a? Ownable
-    ownable.ownerable_can_update? self
-  end
-
-  def can_destroy? ownable
-    return true unless ownable.is_a? Ownable
-    ownable.ownerable_can_destroy? self
-  end
-
 end

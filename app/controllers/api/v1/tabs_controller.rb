@@ -17,8 +17,11 @@ module Api
       end
 
       def create
-        @tab = Tab.build(params[:tab])
-        api_render @tab
+        params.require(:tab).permit!
+        # params[:tab].ryaml
+        # @tab = Tab.build(params[:tab])
+        # api_render @tab
+        respond_with params
       end
 
       def update

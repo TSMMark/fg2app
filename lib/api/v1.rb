@@ -1,6 +1,11 @@
 module Api
   module V1
-
+    class Hash < ::Hash
+      # add 
+      def ownerable_is_admin_or_owner? *params
+        true
+      end
+    end
     module V1Page
       extend ActiveSupport::Concern
       included do
@@ -31,7 +36,7 @@ module Api
       included do
 
         define_param_rules do |ownable, ownerable|
-          if ownable.try(:ownerable_is_admin_or_owner?, ownerable)
+          if ownable.is_a?(Hash) || ownable.try(:ownerable_is_admin_or_owner?, ownerable)
             [:id, :name, :description, :page_id, :fbapp_id, :created_at, :updated_at]
           else
             false
