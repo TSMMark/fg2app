@@ -1,8 +1,6 @@
 class Page < ActiveRecord::Base
   include Ownable
 
-  acts_as_api
-  include DoesApi
   # API version
   include Api::V1::V1Page
   

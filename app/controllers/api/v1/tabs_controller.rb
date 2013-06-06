@@ -9,19 +9,20 @@ module Api
 
       # API methods
       def index
-        api_render @tabs = Tab.all
+        respond_with @tabs = Tab.all
       end
 
       def show
-        api_render @tab
+        respond_with @tab
       end
 
       def create
-        params.require(:tab).permit!
         # params[:tab].ryaml
         # @tab = Tab.build(params[:tab])
         # api_render @tab
-        respond_with params
+        @tab = Tab.new(params[:tab])
+        @tab.save!
+        respond_with @tab
       end
 
       def update

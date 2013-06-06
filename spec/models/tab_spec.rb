@@ -5,7 +5,6 @@ describe Tab do
     @tab ||= FactoryGirl.create(:tab)
     @page ||= @tab.page
     @user ||= @page.users.first
-    FactoryGirl.create(:fbapp)
   end
 
   it "should be valid" do
@@ -22,7 +21,7 @@ describe Tab do
 
   context 'strong_parameters / permitted params' do
     before :all do
-      raw_params = {:tab => {name: :tabname, description: :stillhere, fbapp_id: :a23f3fa}}
+      raw_params = {:tab => {name: :tabname, description: :stillhere}}
       @params = ActionController::Parameters.new(raw_params)
       @permitted_params ||= PermittedParams.new(@params, @user)
     end

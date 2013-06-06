@@ -1,13 +1,14 @@
 class Tab < ActiveRecord::Base
   include Ownable
-
-  # acts_as_api
-  include DoesApi
+  
   # API version
   include Api::V1::V1Tab
 
+  include DoesApi
 
-  # attr_accessible :name, :description
+
+  attr_accessible :id, :name, :description, :created_at, :updated_at, :page_id, :fbapp_id
+
   belongs_to :page
   belongs_to :fbapp
   validates_presence_of :page, :fbapp

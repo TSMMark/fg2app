@@ -35,13 +35,13 @@ module Api
       extend ActiveSupport::Concern
       included do
 
-        define_param_rules do |ownable, ownerable|
-          if ownable.is_a?(Hash) || ownable.try(:ownerable_is_admin_or_owner?, ownerable)
-            [:id, :name, :description, :page_id, :fbapp_id, :created_at, :updated_at]
-          else
-            false
-          end
-        end
+        # define_param_rules do |ownable, ownerable|
+        #   if ownable.is_a?(Hash) || ownable.try(:ownerable_is_admin_or_owner?, ownerable)
+        #     [:id, :name, :description, :page_id, :fbapp_id, :created_at, :updated_at]
+        #   else
+        #     false
+        #   end
+        # end
 
         # define_api  [:public, :guest], [
         #               :id]

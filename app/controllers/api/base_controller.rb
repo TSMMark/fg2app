@@ -49,6 +49,12 @@ class Api::BaseController < ApplicationController
   # end
 
 
+
+
+
+  # protected methods
+  protected
+
   # get the ActiveModel of this API page
   def api_model
     api_model_nane.constantize
@@ -63,52 +69,5 @@ class Api::BaseController < ApplicationController
   end
 
 
-
-  # protected methods
-  protected
-
-  # return filtered attributes of an ActiveRecord object
-  def filter_record record
-    okay_params         = permitted_params.attributes_for record
-    record.attributes.filter_against okay_params
-  end
-  # def filter_params params
-  #   okay_params         = permitted_params.attributes_for object
-  #   object.attributes.filter_against okay_params
-  # end
-
-  # render an object or a set of objects
-  #   fields that are rendered will be dependant on the permitted_params rules
-  def api_render object
-    # contain the object(s) in
-    root  = api_table
-
-    # if array, define rules for each item
-    if object.is_a? Array then
-
-      # define_api for the first object
-      to_output = object.map do |instance|
-        filtered  = filter_record instance
-
-        # mark as nil to be removed if empty result
-        !filtered || filtered.empty? ? nil : filtered
-      end
-
-      # remove nil values
-      to_output.compact!
-    else
-      root      = root.singularize
-      to_output = filter_record object
-    end
-
-    respond_with root => to_output
-    #self.render_for_api       :default, json: object, root: root
-    # respond_with object
-  end
-
-  # # override respond_with?
-  # def respond_with *params
-  #   super *params # obj, @options
-  # end
 
 end

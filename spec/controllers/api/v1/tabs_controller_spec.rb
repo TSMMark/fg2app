@@ -38,8 +38,7 @@ describe Api::V1::TabsController do
       end
 
       it "should have result" do
-        @api_result.should be_has_key(:tabs)
-        @api_result[:tabs].should have_at_least(1).items
+        @api_result.should have_at_least(1).items
       end
     end
 
@@ -54,9 +53,8 @@ describe Api::V1::TabsController do
       end
 
       it "should have result" do
-        @api_result.should be_has_key(:tab)
-        @api_result[:tab].should be_has_key(:id)
-        @api_result[:tab][:id].should == @tab.id
+        @api_result.should be_has_key(:id)
+        @api_result[:id].should == @tab.id
       end
     end
 
@@ -65,8 +63,8 @@ describe Api::V1::TabsController do
         @user.admin = true
         @user.save!
         sign_in @user
-        @tab_param  = {'name' => 'restful tab'}
-        get :create, 'tab' => @tab_param, format: :json
+        @tab_param  = {:name => 'restful tab', :page_id => @page}
+        get :create, :tab => @tab_param, format: :json
         parse_response response
       end
       
@@ -74,14 +72,12 @@ describe Api::V1::TabsController do
         @api_result.ryaml
       end
       
-      xit "should have saved the name parameter" do
-        @api_result.should be_has_key(:tab)
-        @api_result[:tab][:name].should == @tab_param[:name]
+      it "should have saved the name parameter" do
+        @api_result[:name].should == @tab_param[:name]
       end
 
-      xit "should have result" do
-        @api_result.should be_has_key(:tab)
-        @api_result[:tab].should be_has_key(:id)
+      it "should have result" do
+        @api_result.should be_has_key(:id)
       end
     end
 
@@ -96,13 +92,11 @@ describe Api::V1::TabsController do
       end
       
       it "should have saved the name parameter" do
-        @api_result.should be_has_key(:tab)
-        @api_result[:tab][:name].should == @tab_param[:name]
+        @api_result[:name].should == @tab_param[:name]
       end
 
       it "should have result" do
-        @api_result.should be_has_key(:tab)
-        @api_result[:tab].should be_has_key(:id)
+        @api_result.should be_has_key(:id)
       end
     end
   end

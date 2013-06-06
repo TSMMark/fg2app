@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   include Ownerable
   include Ownable
 
-  acts_as_api
-  include DoesApi
   # API version
   include Api::V1::V1User
 
