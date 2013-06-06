@@ -7,7 +7,10 @@ FactoryGirl.define do
   sequence(:description) { |n| "this is the #{n}th description" }
   sequence(:category) { |n| "this is the #{n}th category" }
   sequence(:page) { |n| FactoryGirl.create(:page) }
-  sequence(:fbapp) { |n| FactoryGirl.create(:fbapp) }
+  sequence(:fbapp) { |n|
+    offset = rand(Fbapp.count)
+    rand_record = Fbapp.first(:offset => offset)
+  }
   
   # users
   factory :user do
@@ -75,12 +78,6 @@ FactoryGirl.define do
         })
       end
     end
-  end
-
-  factory :fbapp do
-    namespace "myfangate_i"
-    key       "129418400529051"
-    secret    "f122af8f63887e22d7be61baed878974"
   end
 
   # tab with parent pages
