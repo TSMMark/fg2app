@@ -10,8 +10,9 @@ class Tab < ActiveRecord::Base
   attr_accessible :id, :name, :description, :created_at, :updated_at,
                   :page_id, :fbapp_id, :page, :fbapp
 
-  belongs_to :page
-  belongs_to :fbapp
+  belongs_to :page, inverse_of: :tabs
+  belongs_to :fbapp, inverse_of: :tabs
+
   validates_presence_of :page, :fbapp
 
   has_many :users, through: :page#, as: :owners

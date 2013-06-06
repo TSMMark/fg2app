@@ -10,18 +10,18 @@ class User < ActiveRecord::Base
   end
 
   # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation,
-  #         :remember_me, :name
+  attr_accessible :email, :password, :password_confirmation,
+                  :remember_me, :name
 
           # omniauth (no auth table) stuff
           #:provider,  
           #:uid        # social user id
 
-  has_many :authentications, :dependent => :destroy
+  has_many :authentications, :dependent => :destroy, inverse_of: :user
   accepts_nested_attributes_for :authentications, :allow_destroy => true
 
   # many to many with pages
-  has_many :pagetokens, :dependent => :destroy
+  has_many :pagetokens, :dependent => :destroy, inverse_of: :user
   has_many :pages, :through => :pagetokens
   accepts_nested_attributes_for :pagetokens, :allow_destroy => false
   #has_and_belongs_to_many :pages

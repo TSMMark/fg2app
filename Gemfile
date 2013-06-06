@@ -93,7 +93,8 @@ gem 'backbone-on-rails'
 gem 'insensitive_hash'
 
 # API attributes
-gem 'acts_as_api'
+# gem 'acts_as_api'
+gem 'active_model_serializers'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

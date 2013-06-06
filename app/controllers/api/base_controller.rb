@@ -31,7 +31,7 @@ class Api::BaseController < ApplicationController
 
   #   # respond_with @object
   #   # @user = User.find(params[:id])
-  #   # ages = @user.fetch_pages
+  #   # pages = @user.fetch_pages
   #   # raise pages.to_yaml
   # end
 
@@ -66,6 +66,12 @@ class Api::BaseController < ApplicationController
   # get table name (likely plural) of this API page
   def api_table
     controller_name
+  end
+
+  def default_serializer_options
+    {
+      root: false
+    }
   end
 
 

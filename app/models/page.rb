@@ -8,18 +8,19 @@ class Page < ActiveRecord::Base
   # attr_accessible :pid, :name, :category #, :access_token
 
   # many to many with pages
-  has_many :pagetokens, :dependent => :destroy
+  has_many :pagetokens, :dependent => :destroy, inverse_of: :page
   has_many :users, through: :pagetokens
   accepts_nested_attributes_for :pagetokens, :allow_destroy => false
   #has_and_belongs_to_many :users
 
-  has_many :tabs
+  has_many :tabs, inverse_of: :page
   has_many :fbapps, through: :tabs
 
   def token user
     self.pagetokens.where({:user_id => user})
   end
   
+  # get a fbapp that isn't already being used by one of this page's tabs
   def unused_fbapp
     apps = self.fbapps
     if apps.empty?

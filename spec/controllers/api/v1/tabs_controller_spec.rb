@@ -63,7 +63,8 @@ describe Api::V1::TabsController do
         @user.admin = true
         @user.save!
         sign_in @user
-        @tab_param  = {:name => 'restful tab', :page => @page}
+        # @tab_param  = {:name => 'restful tab', :page => @page}
+        @tab_param  = {:name => 'restful tab', :page_id => @page.id}
         
         @tab_count  = Tab.count
 

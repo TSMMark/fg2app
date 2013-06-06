@@ -3,7 +3,7 @@ module Api
     class PagesController < Api::BaseController
       
       def index
-        api_render @pages = Page.all
+        respond_with @pages = Page.all
       end
 
 

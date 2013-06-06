@@ -9,15 +9,12 @@ class Pagetoken < ActiveRecord::Base
   end
   
   attr_accessible :user_id, :page_id, :token, :perms
-  belongs_to :page
-  belongs_to :user
+  belongs_to :page, inverse_of: :pagetokens
+  belongs_to :user, inverse_of: :pagetokens
   
   accepts_nested_attributes_for :page
 
-  validates_presence_of :page
-  validates_presence_of :user
-  validates_presence_of :token
-  validates_presence_of :perms
+  validates_presence_of :page, :user, :token, :perms
   serialize :perms, JSON
 
 
