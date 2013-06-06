@@ -1,12 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Fbapp do
-  before :all do
-    FactoryGirl.create(:fbapp)
-  end
 
-  it "has at least 1 fbapp" do
-    Fbapp.all.should have_at_least(1).items
+  context "all the time" do
+    it "has 12 fbapp" do
+      Fbapp.count.should == 12
+    end
   end
 
 end
