@@ -51,12 +51,12 @@ ActiveRecord::Schema.define(:version => 20130528164323) do
   add_index "pagetokens", ["user_id", "page_id"], :name => "index_pagetokens_on_user_id_and_page_id", :unique => true
 
   create_table "tabs", :force => true do |t|
-    t.string   "name",        :null => false
-    t.string   "description", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "page_id",     :null => false
-    t.integer  "fbapp_id",    :null => false
+    t.string   "name",        :default => "My FanGate Tab", :null => false
+    t.string   "description"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "page_id",                                   :null => false
+    t.integer  "fbapp_id",                                  :null => false
   end
 
   add_index "tabs", ["page_id", "fbapp_id"], :name => "index_tabs_on_page_id_and_fbapp_id", :unique => true
@@ -76,8 +76,7 @@ ActiveRecord::Schema.define(:version => 20130528164323) do
     t.datetime "updated_at",                                :null => false
     t.string   "name",                   :default => "0",   :null => false
     t.boolean  "admin",                  :default => false, :null => false
-    t.datetime "last_page_fetch"
-    t.boolean  "guest"
+    t.boolean  "guest",                  :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

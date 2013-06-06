@@ -9,7 +9,7 @@ describe Page do
   it "creates a page" do
     @page.should be_persisted
   end
-  
+
   it "should be valid" do
     Page.new.should be_valid
   end
@@ -27,4 +27,10 @@ describe Page do
     @page.token(user).should have(1).items
   end
 
+  describe "when assigning Fbapps" do
+    it "gets an unused Fbapp" do
+      @page.unused_fbapp.should be_a(Fbapp)
+    end
+  end
+  
 end

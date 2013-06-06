@@ -7,7 +7,8 @@ class Tab < ActiveRecord::Base
   include DoesApi
 
 
-  attr_accessible :id, :name, :description, :created_at, :updated_at, :page_id, :fbapp_id
+  attr_accessible :id, :name, :description, :created_at, :updated_at,
+                  :page_id, :fbapp_id, :page, :fbapp
 
   belongs_to :page
   belongs_to :fbapp
@@ -18,6 +19,12 @@ class Tab < ActiveRecord::Base
 
   # owners_are {|ownable| ownable.page.users }
   # owners_are {|| raise self.page.to_yaml }
+
+  before_validation :default_values
+
+  def default_values
+    self.fbapp ||= self.page.unused_fbapp unless self.page.nil?
+  end
 
   def owners
     page    = self.page

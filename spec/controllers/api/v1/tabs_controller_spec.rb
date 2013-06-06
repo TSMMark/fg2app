@@ -63,7 +63,10 @@ describe Api::V1::TabsController do
         @user.admin = true
         @user.save!
         sign_in @user
-        @tab_param  = {:name => 'restful tab', :page_id => @page}
+        @tab_param  = {:name => 'restful tab', :page => @page}
+        
+        @tab_count  = Tab.count
+
         get :create, :tab => @tab_param, format: :json
         parse_response response
       end
@@ -78,6 +81,10 @@ describe Api::V1::TabsController do
 
       it "should have result" do
         @api_result.should be_has_key(:id)
+      end
+
+      it "increases tab count" do
+        Tab.count.should == @tab_count+1
       end
     end
 

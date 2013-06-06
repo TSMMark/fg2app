@@ -14,11 +14,21 @@ class Page < ActiveRecord::Base
   #has_and_belongs_to_many :users
 
   has_many :tabs
+  has_many :fbapps, through: :tabs
 
   def token user
     self.pagetokens.where({:user_id => user})
   end
   
+  def unused_fbapp
+    apps = self.fbapps
+    if apps.empty?
+      Fbapp.first
+    else
+      Fbapp.where('id not in (?)', apps).first
+    end
+  end
+
   # fetch from facebook:: list of pages belonging to a user
   def self.fetch_user_pages user=@user
     @user = user
