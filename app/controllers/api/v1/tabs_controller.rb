@@ -1,6 +1,11 @@
 module Api
   module V1
     class TabsController < Api::BaseController #Api::BaseController
+
+      rescue_from Exceptions::TabLimitException do |exception|
+        respond_with_error exception.message
+      end
+      
       # cancan
       load_and_authorize_resource # nested: :article
 
@@ -21,8 +26,12 @@ module Api
         # @tab = Tab.build(params[:tab])
         # api_render @tab
         @tab = Tab.new(params[:tab])
-        @tab.save!
-        respond_with @tab
+        if @tab.save!
+          respond_with @tab
+        else
+          respond_with_error @tab.errors.full_messages
+        end
+        # @tab.save!
       end
 
       def update

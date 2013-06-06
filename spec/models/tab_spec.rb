@@ -19,15 +19,28 @@ describe Tab do
     @tab.fbapp.should be_persisted
   end
 
-  context 'strong_parameters / permitted params' do
-    before :all do
-      raw_params = {:tab => {name: :tabname, description: :stillhere}}
-      @params = ActionController::Parameters.new(raw_params)
-      @permitted_params ||= PermittedParams.new(@params, @user)
+  context "when tab limit exceeded" do
+    before do
+      # FactoryGirl.create(:tab, page: @page)
     end
 
-    xit "should return permitted params" do
-      @permitted_params.tab.ryaml
+    it 'gets a different tab app' do
+
+    end
+
+    it 'raises error' do
+      13.times do
+        if(@page.tabs.count >= 12)
+          lambda { Tab.create(page: @page) }.should raise_exception
+        else
+          Tab.create(page: @page)
+        end
+      end
+    end
+
+    it 'page has multiple tabs' do
+      Tab.create(page: @page)
+      @page.tabs.count.should > 1
     end
 
   end
@@ -123,6 +136,20 @@ describe Tab do
 
     end
 
+
+  context 'strong_parameters / permitted params' do
+    before :all do
+      pending
+      raw_params = {:tab => {name: :tabname, description: :stillhere}}
+      @params = ActionController::Parameters.new(raw_params)
+      @permitted_params ||= PermittedParams.new(@params, @user)
+    end
+
+    it "should return permitted params" do
+      @permitted_params.tab.ryaml
+    end
+
+  end
 
 
   end

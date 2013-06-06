@@ -7,10 +7,10 @@ FactoryGirl.define do
   sequence(:description) { |n| "this is the #{n}th description" }
   sequence(:category) { |n| "this is the #{n}th category" }
   sequence(:page) { |n| FactoryGirl.create(:page) }
-  sequence(:fbapp) { |n|
-    offset = rand(Fbapp.count)
-    rand_record = Fbapp.first(:offset => offset)
-  }
+  # sequence(:fbapp) { |n|
+  #   offset = rand(Fbapp.count)
+  #   rand_record = Fbapp.first(:offset => offset)
+  # }
   
   # users
   factory :user do
@@ -83,7 +83,7 @@ FactoryGirl.define do
   # tab with parent pages
   factory :tab do
     page
-    fbapp
+    # fbapp { page.unused_fbapp }
     name
     description
   end

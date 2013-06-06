@@ -22,14 +22,16 @@ class Tab < ActiveRecord::Base
   # owners_are {|| raise self.page.to_yaml }
 
   before_validation :default_values
+  after_initialize  :default_values
 
   def default_values
     self.fbapp ||= self.page.unused_fbapp unless self.page.nil?
+    # puts "self.fbapp"
+    # puts self.fbapp.to_yaml
   end
 
   def owners
-    page    = self.page
-    owners  = page ? page.owners : []
+    self.users
   end
   
 end

@@ -22,12 +22,22 @@ class Page < ActiveRecord::Base
   
   # get a fbapp that isn't already being used by one of this page's tabs
   def unused_fbapp
-    apps = self.fbapps
+    # make sure our record is up to date
+    self.reload
+
+    # get all used Fbapps
+    apps  = self.fbapps
+    
     if apps.empty?
-      Fbapp.first
+      app = Fbapp.first
     else
-      Fbapp.where('id not in (?)', apps).first
+      # get the first app that isn't in apps
+      app = Fbapp.where('id not in (?)', apps).first
+
+      # if we couldn't find one, raise exception
+      raise Exceptions::TabLimitException if !app
     end
+    app
   end
 
   # fetch from facebook:: list of pages belonging to a user

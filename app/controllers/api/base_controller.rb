@@ -2,17 +2,14 @@ class Api::BaseController < ApplicationController
   #include ActionView::Helpers::TextHelper
   
   rescue_from CanCan::AccessDenied do |exception|
-    # error = {:errors => {:name => 'Access Denied'}}
-    # exception.ryaml
-    error = {:error => exception.message}
-    respond_with error, :status => 422
+    respond_with_error exception.message
   end
 
   rescue_from ActiveModel::ForbiddenAttributes do |exception|
-    error = {:error => exception.message}
-    respond_with error, :status => 422
+    respond_with_error exception.message
   end
   
+
   respond_to :json
   #before_filter :find_by_id, only: [:show, :update, :destroy]
 
@@ -54,6 +51,15 @@ class Api::BaseController < ApplicationController
 
   # protected methods
   protected
+
+  def respond_with_error message="There was an error", status=422
+    error = {:error => message}
+    render json: error, :status => status
+  end
+
+
+
+  ### Get Data about this model ###
 
   # get the ActiveModel of this API page
   def api_model
