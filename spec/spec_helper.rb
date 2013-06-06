@@ -54,6 +54,8 @@ class ActionController::TestCase
   include Devise::TestHelpers
 end
 
+load "#{Rails.root}/db/seeds.rb"
+
 require "mocha/setup"
 
 # 
