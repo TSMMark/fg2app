@@ -22,16 +22,12 @@ module Api
       end
 
       def create
-        # params[:tab].ryaml
-        # @tab = Tab.build(params[:tab])
-        # api_render @tab
         @tab = Tab.new(params[:tab])
         if @tab.save!
           respond_with @tab
         else
           respond_with_error @tab.errors.full_messages
         end
-        # @tab.save!
       end
 
       def update

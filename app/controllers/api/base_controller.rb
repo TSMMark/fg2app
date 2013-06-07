@@ -8,6 +8,10 @@ class Api::BaseController < ApplicationController
   rescue_from ActiveModel::ForbiddenAttributes do |exception|
     respond_with_error exception.message
   end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    respond_with_error exception.message, 404
+  end
   
 
   respond_to :json

@@ -33,9 +33,10 @@ module Ownable
   def ownerable_is_owner? ownerable
     # if the tab doesn't have an owner and isn't saved yet
     # (should work fine without the persisted check)
+    # ownerable.ryaml
     (self.owners.empty? && !self.persisted?) ||
       # OR if ownerable is listed as an owner
-      (self.owners.include? ownerable)
+      (self.owners.make_array.detect {|o| o == ownerable})
   end
 
   # returns true if a ownerable is an OWNER or an ADMIN of the Ownable
