@@ -33,7 +33,7 @@ describe Api::V1::TabsController do
         parse_response response
       end
       
-      it "should raise yaml result" do
+      xit "should raise yaml result" do
         @api_result.ryaml
       end
 
@@ -48,7 +48,7 @@ describe Api::V1::TabsController do
         parse_response response
       end
 
-      it "should raise yaml result" do
+      xit "should raise yaml result" do
         @api_result.ryaml
       end
 
@@ -60,19 +60,14 @@ describe Api::V1::TabsController do
 
     describe "#create" do
       before :each do
-        @user.admin = true
-        @user.save!
         sign_in @user
-        # @tab_param  = {:name => 'restful tab', :page => @page}
         @tab_param  = {:name => 'restful tab', :page_id => @page.id}
-        
         @tab_count  = Tab.count
-
         get :create, :tab => @tab_param, format: :json
         parse_response response
       end
       
-      it "should raise yaml result" do
+      xit "should raise yaml result" do
         @api_result.ryaml
       end
       
@@ -118,6 +113,13 @@ describe Api::V1::TabsController do
       sign_in @not_owner
     end
 
+    describe 'verify ownership' do
+      it 'should be accurate' do
+        @tab.ownerable_is_owner?(@user).should      be_true
+        @tab.ownerable_is_owner?(@not_owner).should be_false
+      end
+    end
+
     describe "#show" do
       before do
         get :show, id: @tab.id, format: :json
@@ -137,7 +139,32 @@ describe Api::V1::TabsController do
       end
 
     end
+
+    describe "#create" do
+      before :each do
+        sign_in @not_owner
+        @tab_param  = {:name => 'restful tab', :page_id => @page.id}
+        @tab_count  = Tab.count
+        get :create, :tab => @tab_param, format: :json
+        parse_response response
+      end
+      
+      xit "should raise yaml result" do
+        @api_result.ryaml
+      end
+      
+      it "should have error" do
+        @api_result.should be_has_key(:error)
+      end
+
+      it "does not increase tab count" do
+        Tab.count.should == @tab_count
+      end
+    end
+
+
   end
+
 
 
 end

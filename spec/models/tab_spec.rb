@@ -45,7 +45,6 @@ describe Tab do
 
   end
 
-  require "cancan/matchers"
   describe "abilities" do
     subject { ability }
     let(:ability){ Ability.new(user) }
@@ -101,7 +100,7 @@ describe Tab do
       context 'when user is NOT owner' do
         it{ should_not be_able_to(:read, @tab_not_owned) }
         it{ should_not be_able_to(:manage, @tab_not_owned) }
-        it{ should be_able_to(:create, @tab_not_owned) }
+        it{ should_not be_able_to(:create, @tab_not_owned) }
         it{ should_not be_able_to(:update, @tab_not_owned) }
         it{ should_not be_able_to(:destroy, @tab_not_owned) }
       end
@@ -129,7 +128,7 @@ describe Tab do
       context 'when guest is NOT owner' do
         it{ should_not be_able_to(:read, @tab_not_owned) }
         it{ should_not be_able_to(:manage, @tab_not_owned) }
-        it{ should be_able_to(:create, @tab_not_owned) }
+        it{ should_not be_able_to(:create, @tab_not_owned) }
         it{ should_not be_able_to(:update, @tab_not_owned) }
         it{ should_not be_able_to(:destroy, @tab_not_owned) }
       end

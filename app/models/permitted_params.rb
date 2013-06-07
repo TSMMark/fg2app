@@ -2,6 +2,21 @@
 #   params, current_user
 class PermittedParams < Struct.new(:params, :user)
 
+  # This should be moved to cancan
+  # raise error if user is not an owner
+  # admins will pass test if admin==true
+  # def verify_ownership ownable, admin=true
+  #   unless ownable.ownerable_is_owner? user, admin
+  #     raise CanCan::AccessDenied.new
+  #   end
+  #   true
+  # end
+
+  # raise if can't
+  def raise_if_cant &block
+    raise block.call user
+  end
+
   # return a filtered version of the params
   def filter_for ownable
     # get the class name of the ownable

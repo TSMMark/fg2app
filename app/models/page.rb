@@ -5,7 +5,8 @@ class Page < ActiveRecord::Base
   include Api::V1::V1Page
   
 
-  # attr_accessible :pid, :name, :category #, :access_token
+  attr_accessible :id, :pid, :name, :category,
+                  :created_at, :updated_at
 
   # many to many with pages
   has_many :pagetokens, :dependent => :destroy, inverse_of: :page

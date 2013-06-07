@@ -57,6 +57,7 @@ end
 load "#{Rails.root}/db/seeds.rb"
 
 require "mocha/setup"
+require "cancan/matchers"
 
 # 
 def parse_response response, format=:json

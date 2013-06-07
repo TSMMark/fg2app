@@ -1,6 +1,7 @@
 class Api::BaseController < ApplicationController
   #include ActionView::Helpers::TextHelper
   
+  # uncomment these
   rescue_from CanCan::AccessDenied do |exception|
     respond_with_error exception.message
   end
@@ -11,6 +12,10 @@ class Api::BaseController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
     respond_with_error exception.message, 404
+  end
+
+  rescue_from ActiveRecord::RecordInvalid do |exception|
+    respond_with_error exception.message
   end
   
 
@@ -76,6 +81,11 @@ class Api::BaseController < ApplicationController
   # get table name (likely plural) of this API page
   def api_table
     controller_name
+  end
+
+  # 
+  def get_by_id id=params[:id]
+    api_model.find(id)
   end
 
   def default_serializer_options
