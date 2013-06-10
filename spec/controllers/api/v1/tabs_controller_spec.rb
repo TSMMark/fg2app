@@ -100,6 +100,7 @@ describe Api::V1::TabsController do
           @api_result[:name].should == @tab_param[:name]
         end
       end
+
       context 'when invalid params' do
         before do
           @tab_param  = {name: 'updated tab', blargons: :jam}
@@ -126,8 +127,58 @@ describe Api::V1::TabsController do
         end
 
       end
+    end
+
+
+    describe "#destroy" do
+
+      context 'when valid id' do
+        before :each do
+          @delete_tab = FactoryGirl.create(:tab)
+          sign_in @delete_tab.users.first
+          @tab_count  = Tab.count
+          get :destroy, id: @delete_tab.id, format: :json
+          parse_response response
+        end
+        
+        xit "raises yaml result" do
+          @api_result.ryaml
+        end
+        
+        it "responds with a success message" do
+          @api_result.should be_has_key(:message)
+        end
+
+        it "can't find tab" do
+          expect { Tab.find(@delete_tab.id) }.to raise_error
+        end
+
+        it "decreases tab count" do
+          Tab.count.should == @tab_count-1
+        end
+      end
+
+      context 'when invalid id' do
+        before :each do
+          sign_in @user
+          @tab_count  = Tab.count
+          get :destroy, id: Tab.last.id+99, format: :json
+          parse_response response
+        end
+        
+        it "responds with error" do
+          @api_result.should be_has_key :error
+        end
+
+        it "doesn't alter tab count" do
+          Tab.count.should == @tab_count
+        end
+      end
+
 
     end
+
+
   end
 
 

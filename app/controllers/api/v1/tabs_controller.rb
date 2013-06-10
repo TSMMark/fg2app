@@ -39,7 +39,11 @@ module Api
       end
 
       def destroy
-        respond_with @tab.destroy
+        if @tab.destroy
+          respond_with_success "deleted tab with id: #{@tab.id}"
+        else
+          respond_with_error @tab.errors.full_messages
+        end
       end
 
 

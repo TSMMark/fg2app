@@ -73,7 +73,10 @@ class Api::BaseController < ApplicationController
     render json: error, :status => status
   end
 
-
+  def respond_with_success action
+    response = {message: "Successfully #{action}"}
+    render json: response
+  end
 
   ### Get Data about this model ###
 
