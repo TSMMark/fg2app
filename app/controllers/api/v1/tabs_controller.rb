@@ -31,7 +31,11 @@ module Api
       end
 
       def update
-        respond_with Tab.update_attributes!(params[:tab])
+        if @tab.update_attributes!(params[:tab])
+          respond_with @tab
+        else
+          respond_with_error @tab.errors.full_messages
+        end
       end
 
       def destroy

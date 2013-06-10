@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   include Api::V1::V1Page
   
 
-  attr_accessible :id, :pid, :name, :category,
+  attr_accessible :pid, :name, :category,
                   :created_at, :updated_at
 
   # many to many with pages

@@ -1,6 +1,9 @@
 class Api::BaseController < ApplicationController
   #include ActionView::Helpers::TextHelper
   
+  # skip csrf verification check
+  skip_before_filter :verify_authenticity_token
+
   # uncomment these
   rescue_from CanCan::AccessDenied do |exception|
     respond_with_error exception.message
@@ -17,7 +20,11 @@ class Api::BaseController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid do |exception|
     respond_with_error exception.message
   end
-  
+
+  rescue_from ActiveModel::MassAssignmentSecurity::Error do |exception|
+    respond_with_error exception.message
+  end
+
 
   respond_to :json
   #before_filter :find_by_id, only: [:show, :update, :destroy]

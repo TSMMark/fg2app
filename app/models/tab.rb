@@ -7,7 +7,7 @@ class Tab < ActiveRecord::Base
   include DoesApi
 
 
-  attr_accessible :id, :name, :description, :created_at, :updated_at,
+  attr_accessible :name, :description, :created_at, :updated_at,
                   :page_id, :fbapp_id, :page, :fbapp
 
   belongs_to :page, inverse_of: :tabs

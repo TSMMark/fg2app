@@ -85,22 +85,48 @@ describe Api::V1::TabsController do
     end
 
     describe "#update" do
-      before do
-        pending
-        # @user.admin = true
-        # @user.save!
-        @tab_param  = {name: 'updated tab'}
-        get :update, tab: @tab_param, format: :json
-        parse_response response
+      context 'when valid params' do
+        before do
+          @tab_param  = {name: 'updated tab'}
+          get :update, id: @tab.id, tab: @tab_param, format: :json
+          parse_response response
+        end
+        
+        it "should have result" do
+          @api_result.should be_has_key(:id)
+        end
+
+        it "should have saved the name parameter" do
+          @api_result[:name].should == @tab_param[:name]
+        end
       end
-      
-      it "should have saved the name parameter" do
-        @api_result[:name].should == @tab_param[:name]
+      context 'when invalid params' do
+        before do
+          @tab_param  = {name: 'updated tab', blargons: :jam}
+          get :update, id: @tab.id, tab: @tab_param, format: :json
+          parse_response response
+        end
+        
+        it "should raise error" do
+          @api_result.should be_has_key(:error)
+        end
+
       end
 
-      it "should have result" do
-        @api_result.should be_has_key(:id)
+      context 'when updating id' do
+        before do
+          @tab_param  = {id: 0}
+          get :update, id: @tab.id, tab: @tab_param, format: :json
+          parse_response response
+        end
+        
+        it "should not update id" do
+          @api_result.should be_has_key(:id)
+          @api_result[:id].should == @tab.id
+        end
+
       end
+
     end
   end
 
