@@ -1,8 +1,6 @@
+
 class Api::BaseController < ApplicationController
-  #include ActionView::Helpers::TextHelper
-  
-  # skip csrf verification check
-  skip_before_filter :verify_authenticity_token
+
 
   # uncomment these
   rescue_from CanCan::AccessDenied do |exception|
@@ -14,7 +12,8 @@ class Api::BaseController < ApplicationController
   end
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
-    respond_with_error exception.message, 404
+    # respond_with_error exception.message, 404
+    respond_with_error 'Resource not found', 404
   end
 
   rescue_from ActiveRecord::RecordInvalid do |exception|
@@ -24,6 +23,28 @@ class Api::BaseController < ApplicationController
   rescue_from ActiveModel::MassAssignmentSecurity::Error do |exception|
     respond_with_error exception.message
   end
+
+
+  # skip csrf verification check
+  skip_before_filter :verify_authenticity_token
+
+  # get all objects in index
+  before_filter :assign_all, only: :index
+
+  # named_scope :owned_by, do |ownerable|
+  #   { :user_id
+  # end
+
+
+  # attr_reader :object
+  # attr_writer :object
+  # attr_reader :objects
+  # attr_writer :objects
+
+  def assign_all
+    @objects = api_model.all
+  end
+
 
 
   respond_to :json
@@ -67,6 +88,10 @@ class Api::BaseController < ApplicationController
 
   # protected methods
   protected
+
+  def must_be_signed_in
+    raise NotSignedInException unless signed_in?
+  end
 
   def respond_with_error message="There was an error", status=422
     error = {:error => message}

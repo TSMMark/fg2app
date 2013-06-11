@@ -96,6 +96,8 @@ gem 'insensitive_hash'
 # gem 'acts_as_api'
 gem 'active_model_serializers'
 
+gem 'squeel'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -26,31 +26,38 @@ class Ability
 
       if_owner_or_admin = Proc.new { |ownable|
         cannn = ownable.try(:ownerable_is_admin_or_owner?, @user)
-        # [:owner,:admin].include? ownable.try(:ownerable_type_of, @user)
       }
 
       #    TABS    #
       # can update if admin or owner
-      can :manage, Tab, &if_owner_or_admin
-      can :create, Tab, &if_owner_or_admin
+      # can :manage, Tab, user: { id: user.id }
+      can :manage, Tab, users: { id: user.id }
+      can :create, Tab, users: { id: user.id }
+      # can :read, Tab, &if_owner_or_admin
+      # can :create, Tab, &if_owner_or_admin
       # .. TABS .. #
 
 
       #    USERS    #
       # can update if admin or owner
-      can :read, User, &if_owner_or_admin
-      # do |object|
-      #   [:owner,:admin].include? object.try(:ownerable_type_of, @user)
-      # end
-      can :update, User, &if_owner_or_admin
+      can :manage, User, id: user.id
+      # can :read, User, &if_owner_or_admin
+      # can :update, User, &if_owner_or_admin
       # .. USERS .. #
 
 
 
       #    PAGES    #
       # can update if admin or owner
-      can :read, Page, &if_owner_or_admin
-      # .. USERS .. #
+      can :manage, Page, users: { id: user.id }
+      # can :read, Page, &if_owner_or_admin
+      # .. PAGES .. #
+
+
+
+      #    PAGETOKENS    #
+      can :manage, Pagetoken, user: { id: user.id }
+      # .. PAGETOKENS .. #
 
 
     end

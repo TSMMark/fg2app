@@ -46,8 +46,11 @@ describe Tab do
   end
 
   describe "abilities" do
+    before do
+      @ability = Ability.new(@user)
+    end
     subject { ability }
-    let(:ability){ Ability.new(user) }
+    let(:ability){ @ability }
     let(:user){ nil }
 
     context "when is an admin" do
@@ -88,6 +91,19 @@ describe Tab do
         @user.save!
       end
       let(:user){ @user }
+
+      context 'accessible_by' do
+        xit 'raises' do
+          Tab.accessible_by(@ability).all.ryaml
+        end
+
+        it 'returns array which includes an owned tab' do
+          Tab.accessible_by(@ability).all.should be_include(@user.tabs.last)
+        end
+        it 'returns array which does not include an un-owned tab' do
+          Tab.accessible_by(@ability).all.should_not be_include(@tab)
+        end
+      end
 
       context 'when user is owner' do
         it{ should be_able_to(:read, @tab_owned) }

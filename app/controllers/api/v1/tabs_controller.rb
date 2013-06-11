@@ -7,14 +7,21 @@ module Api
       end
       
       # cancan
-      load_and_authorize_resource # nested: :article
+      # load_and_authorize_resource :page
+      # load_and_authorize_resource :tab, :through => :page
+
+      # load_and_authorize_resource :pagetoken, through: :current_user
+      # load_and_authorize_resource :page, through: :pagetoken
+      # load_and_authorize_resource :tab, through: :page
+
+      load_and_authorize_resource :tab, through: :current_user, except: :create
 
       # cancan strong parameters
       # permit_params :name, :page_id
 
       # API methods
       def index
-        respond_with @tabs = Tab.all
+        respond_with @tabs
       end
 
       def show
@@ -23,6 +30,7 @@ module Api
 
       def create
         @tab = Tab.new(params[:tab])
+        authorize! :create, @tab
         if @tab.save!
           respond_with @tab
         else
@@ -45,7 +53,6 @@ module Api
           respond_with_error @tab.errors.full_messages
         end
       end
-
 
 
     end

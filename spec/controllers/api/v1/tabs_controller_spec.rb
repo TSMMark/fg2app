@@ -33,13 +33,21 @@ describe Api::V1::TabsController do
         parse_response response
       end
       
-      xit "should raise yaml result" do
+      xit "raises yaml result" do
         @api_result.ryaml
       end
 
-      it "should have result" do
+      it "has results" do
         @api_result.should have_at_least(1).items
       end
+      
+      it "only shows owner's tabs" do
+        @api_result.each do |t|
+          t = t.insensitive
+          Tab.find(t[:id]).owners.should be_include(@user)
+        end
+      end
+
     end
 
     describe "#show" do
@@ -48,11 +56,11 @@ describe Api::V1::TabsController do
         parse_response response
       end
 
-      xit "should raise yaml result" do
+      xit "raises yaml result" do
         @api_result.ryaml
       end
 
-      it "should have result" do
+      it "has result" do
         @api_result.should be_has_key(:id)
         @api_result[:id].should == @tab.id
       end
@@ -67,15 +75,15 @@ describe Api::V1::TabsController do
         parse_response response
       end
       
-      xit "should raise yaml result" do
+      xit "raises yaml result" do
         @api_result.ryaml
       end
       
-      it "should have saved the name parameter" do
+      it "saves the name parameter" do
         @api_result[:name].should == @tab_param[:name]
       end
 
-      it "should have result" do
+      it "has result" do
         @api_result.should be_has_key(:id)
       end
 
@@ -92,11 +100,11 @@ describe Api::V1::TabsController do
           parse_response response
         end
         
-        it "should have result" do
+        it "has result" do
           @api_result.should be_has_key(:id)
         end
 
-        it "should have saved the name parameter" do
+        it "saves the name parameter" do
           @api_result[:name].should == @tab_param[:name]
         end
       end
@@ -108,7 +116,7 @@ describe Api::V1::TabsController do
           parse_response response
         end
         
-        it "should raise error" do
+        it "raises error" do
           @api_result.should be_has_key(:error)
         end
 
@@ -121,7 +129,7 @@ describe Api::V1::TabsController do
           parse_response response
         end
         
-        it "should not update id" do
+        it "doesn't update id" do
           @api_result.should be_has_key(:id)
           @api_result[:id].should == @tab.id
         end
@@ -191,7 +199,7 @@ describe Api::V1::TabsController do
     end
 
     describe 'verify ownership' do
-      it 'should be accurate' do
+      it 'is accurate' do
         @tab.ownerable_is_owner?(@user).should      be_true
         @tab.ownerable_is_owner?(@not_owner).should be_false
       end
@@ -203,15 +211,15 @@ describe Api::V1::TabsController do
         parse_response response
       end
 
-      xit "should raise yaml result" do
+      xit "raises yaml result" do
         @api_result.ryaml
       end
       
-      it "should respond with code 422" do
-        response.response_code.should == 422
+      it "is not found" do
+        response.response_code.should == 404
       end
       
-      it "should return access error" do
+      it "returns error" do
         @api_result.should be_has_key(:error)
       end
 
@@ -226,11 +234,11 @@ describe Api::V1::TabsController do
         parse_response response
       end
       
-      xit "should raise yaml result" do
+      it "raises yaml result" do
         @api_result.ryaml
       end
       
-      it "should have error" do
+      it "has error" do
         @api_result.should be_has_key(:error)
       end
 

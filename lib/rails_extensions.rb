@@ -1,4 +1,9 @@
 module RailsExtensions
+
+  # CanCan::ControllerResource.define_singleton_method :instname do
+  #   instance_name
+  # end
+
   class ::Symbol
     def constantize camel=true
       s = self.to_s

@@ -5,7 +5,9 @@ module DoesApi
   extend ActiveSupport::Concern
   included do
     scope :disabled, where(:disabled => true)
+    # scope :owned_by, ->(ownerable) {where(:user => ownerable)}
   end
+  
   #    ClassMethods    #
   module ClassMethods
     def define_param_rules &rules
