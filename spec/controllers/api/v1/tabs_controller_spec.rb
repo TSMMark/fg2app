@@ -139,7 +139,6 @@ describe Api::V1::TabsController do
 
 
     describe "#destroy" do
-
       context 'when valid id' do
         before :each do
           @delete_tab = FactoryGirl.create(:tab)
@@ -182,8 +181,6 @@ describe Api::V1::TabsController do
           Tab.count.should == @tab_count
         end
       end
-
-
     end
 
 
@@ -193,7 +190,7 @@ describe Api::V1::TabsController do
 
 
 
-  context 'when user is not owner' do
+  context 'when user has no tabs' do
     before do
       sign_in @not_owner
     end
@@ -203,6 +200,23 @@ describe Api::V1::TabsController do
         @tab.ownerable_is_owner?(@user).should      be_true
         @tab.ownerable_is_owner?(@not_owner).should be_false
       end
+    end
+
+    describe "#index" do
+      before do
+        get :index, format: :json
+        parse_response response
+      end
+      
+      xit "raises yaml result" do
+        @api_result.ryaml
+      end
+
+      it "returns empty array" do
+        @api_result.should be_a(Array)
+        @api_result.should be_empty
+      end
+      
     end
 
     describe "#show" do
@@ -222,19 +236,17 @@ describe Api::V1::TabsController do
       it "returns error" do
         @api_result.should be_has_key(:error)
       end
-
     end
 
     describe "#create" do
       before :each do
-        sign_in @not_owner
         @tab_param  = {:name => 'restful tab', :page_id => @page.id}
         @tab_count  = Tab.count
         get :create, :tab => @tab_param, format: :json
         parse_response response
       end
       
-      it "raises yaml result" do
+      xit "raises yaml result" do
         @api_result.ryaml
       end
       
@@ -246,6 +258,47 @@ describe Api::V1::TabsController do
         Tab.count.should == @tab_count
       end
     end
+
+
+    describe "#update" do
+      before do
+        @tab_param  = {name: 'does not stick'}
+        get :update, id: @tab.id, tab: @tab_param, format: :json
+        parse_response response
+      end
+      
+      it "returns error" do
+        @api_result.should be_has_key(:error)
+      end
+
+      it "doesn't save the name attribute" do
+        @tab.reload.name.should_not == @tab_param[:name]
+      end
+    end
+
+
+
+    describe "#destroy" do
+      before :each do
+        @tab_count  = Tab.count
+        get :destroy, id: @tab.id, format: :json
+        parse_response response
+      end
+      
+      xit "raises yaml result" do
+        @api_result.ryaml
+      end
+      
+      it "responds with an error message" do
+        @api_result.should be_has_key(:error)
+      end
+
+      it "doesn't alter tab count" do
+        Tab.count.should == @tab_count
+      end
+
+    end
+
 
 
   end
