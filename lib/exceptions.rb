@@ -9,7 +9,7 @@ module Exceptions
   # throw when user must be signed in to do something
   class NotSignedInException < StandardError
     def message
-      "You have to be signed in to do that"
+      "You can only do this when signed in"
     end
   end
 
