@@ -30,9 +30,9 @@ class Ability
 
       #    TABS    #
       # can update if admin or owner
-      # can :manage, Tab, user: { id: user.id }
-      can :manage, Tab, users: { id: user.id }
-      can :create, Tab, users: { id: user.id }
+      # can :manage, Tab, user: { id: @user.id }
+      can :manage, Tab, users: { id: @user.id }
+      can :create, Tab, users: { id: @user.id }
       # can :read, Tab, &if_owner_or_admin
       # can :create, Tab, &if_owner_or_admin
       # .. TABS .. #
@@ -40,7 +40,7 @@ class Ability
 
       #    USERS    #
       # can update if admin or owner
-      can :manage, User, id: user.id
+      can :manage, User, id: @user.id
       # can :read, User, &if_owner_or_admin
       # can :update, User, &if_owner_or_admin
       # .. USERS .. #
@@ -49,14 +49,14 @@ class Ability
 
       #    PAGES    #
       # can update if admin or owner
-      can :manage, Page, users: { id: user.id }
+      can :manage, Page, users: { id: @user.id }
       # can :read, Page, &if_owner_or_admin
       # .. PAGES .. #
 
 
 
       #    PAGETOKENS    #
-      can :manage, Pagetoken, user: { id: user.id }
+      can :manage, Pagetoken, user: { id: @user.id }
       # .. PAGETOKENS .. #
 
 

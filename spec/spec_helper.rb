@@ -3,7 +3,12 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-#require 'capybara/rspec'
+
+# require 'capybara/rspec'
+
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 #require File.expand_path("../factories", __FILE__)
 
 # require 'rake'
@@ -29,7 +34,7 @@ RSpec.configure do |config|
   # config.mock_with :rr
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -47,6 +52,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.include MailerMacros
+  config.before(:each) { reset_email }
 end
 
 # devise helper
@@ -56,7 +64,7 @@ end
 
 load "#{Rails.root}/db/seeds.rb"
 
-require "mocha/setup"
+#require "mocha/setup"
 require "cancan/matchers"
 
 # 

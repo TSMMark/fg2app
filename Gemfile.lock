@@ -48,6 +48,14 @@ GEM
       activesupport
       cancan
       strong_parameters
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -72,6 +80,7 @@ GEM
     eco-source (1.1.0.rc.1)
     ejs (1.1.1)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -81,6 +90,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    faye-websocket (0.4.7)
+      eventmachine (>= 0.12.0)
     fbgraph (1.10.0)
       activesupport
       faraday (>= 0.7.5)
@@ -107,6 +118,7 @@ GEM
       rspec (~> 2.13)
     hashie (2.0.4)
     hike (1.2.2)
+    http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.1)
     insensitive_hash (0.3.2)
@@ -127,14 +139,12 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.23)
-    mocha (0.13.3)
-      metaclass (~> 0.0.1)
     multi_json (1.7.3)
     multipart-post (1.2.0)
     nifty-generators (0.4.6)
+    nokogiri (1.5.9)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -151,6 +161,10 @@ GEM
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
     pg (0.15.1)
+    poltergeist (1.3.0)
+      capybara (~> 2.1.0)
+      faye-websocket (>= 0.4.4, < 0.5.0)
+      http_parser.rb (~> 0.5.3)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -205,11 +219,17 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    rubyzip (0.9.9)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    selenium-webdriver (2.33.0)
+      childprocess (>= 0.2.5)
+      multi_json (~> 1.0)
+      rubyzip
+      websocket (~> 1.0.4)
     slim (1.0.1)
       temple (~> 0.3.0)
       tilt (~> 1.2)
@@ -242,6 +262,9 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
+    websocket (1.0.7)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -253,6 +276,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.2.2.0)
   cancan
   cancan_strong_parameters
+  capybara
   coffee-rails (~> 3.2.1)
   commands
   database_cleaner (~> 1.0.1)
@@ -265,15 +289,16 @@ DEPENDENCIES
   insensitive_hash
   jquery-rails
   launchy
-  mocha
   nifty-generators
   oauth2
   omniauth
   omniauth-facebook
   pg
+  poltergeist
   rails (= 3.2.13)
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
+  selenium-webdriver
   slim
   sqlite3
   squeel

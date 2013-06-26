@@ -15,8 +15,6 @@ group :development, :test do
 
   # rspec testing suite
   gem 'rspec-rails', '~> 2.0'
-  # factory girl !
-  gem "factory_girl_rails", "~> 4.0"
 
   # used to clean the test database before specs
   gem "database_cleaner", "~> 1.0.1"
@@ -25,11 +23,22 @@ end
 
 
 group :test do
-  #gem 'faker'
-  #gem 'capybara'
+  # factory girl !
+  gem "factory_girl_rails", "~> 4.0"
+
+  # gem 'faker'
+  gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
-  gem "mocha", :require => false
+
+  gem 'selenium-webdriver'
+  
+  gem 'poltergeist'
+  
+  # install in mac osx
+  # gem install rb-fsevent
+
+  # gem "mocha", :require => false
 end
 
 
