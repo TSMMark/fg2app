@@ -127,6 +127,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    json2-rails (0.0.2)
     jwt (0.1.8)
       multi_json (>= 1.5)
     launchy (2.3.0)
@@ -288,6 +289,7 @@ DEPENDENCIES
   guard-rspec
   insensitive_hash
   jquery-rails
+  json2-rails
   launchy
   nifty-generators
   oauth2

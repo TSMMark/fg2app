@@ -16,9 +16,11 @@ Capybara.javascript_driver = :poltergeist
 
 # clean db from last tests
 require 'database_cleaner'
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.clean
-
+def clean_db
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.clean
+end
+clean_db
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -39,7 +41,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
 
   # If true, the base class of anonymous controllers will be inferred

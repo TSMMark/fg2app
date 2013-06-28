@@ -38,11 +38,6 @@ describe Tab do
       end
     end
 
-    it 'page has multiple tabs' do
-      Tab.create(page: @page)
-      @page.tabs.count.should > 1
-    end
-
   end
 
   describe "abilities" do

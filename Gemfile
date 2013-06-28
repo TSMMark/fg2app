@@ -69,6 +69,9 @@ gem 'font-awesome-rails'
 
 gem 'jquery-rails'
 
+# JSON2
+# gem 'json2-rails'
+
 gem "strip_attributes", "~> 1.2"
 
 # Slim, html slimmifier

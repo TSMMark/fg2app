@@ -123,11 +123,12 @@ class Api::BaseController < ApplicationController
     api_model.find(id)
   end
 
-  def default_serializer_options
-    {
-      root: false
-    }
-  end
+  # moved to initializer
+  # def default_serializer_options
+  #   {
+  #     root: false
+  #   }
+  # end
 
 
 
