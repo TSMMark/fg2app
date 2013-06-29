@@ -7,6 +7,8 @@ Fg2app::Application.routes.draw do
       resources :users
       resources :pages
       resources :tabs
+      resources :layouts
+      # nest some stugg
     end
   end
 

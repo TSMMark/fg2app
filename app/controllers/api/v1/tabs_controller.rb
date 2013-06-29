@@ -5,15 +5,11 @@ module Api
       rescue_from Exceptions::TabLimitException do |exception|
         respond_with_error exception.message
       end
-      
+
+      # this whole model should be interialized
+      #   does not need API
+
       # cancan
-      # load_and_authorize_resource :page
-      # load_and_authorize_resource :tab, :through => :page
-
-      # load_and_authorize_resource :pagetoken, through: :current_user
-      # load_and_authorize_resource :page, through: :pagetoken
-      # load_and_authorize_resource :tab, through: :page
-
       load_and_authorize_resource :tab, through: :current_user, except: :create
 
       # cancan strong parameters

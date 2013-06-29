@@ -21,15 +21,20 @@ class Ability
       # can :read, :all
       can :manage, :all
     else 
-      #unless @user.guest?
-      #end
+      # unless @user.guest?
+      # end
 
-      if_owner_or_admin = Proc.new { |ownable|
-        cannn = ownable.try(:ownerable_is_admin_or_owner?, @user)
-      }
+      # if_owner_or_admin = Proc.new { |ownable|
+      #   cannn = ownable.try(:ownerable_is_admin_or_owner?, @user)
+      # }
+
+
+      #    LAYOUTS    #
+      can :manage, Layout, users: { id: @user.id }
+      # .. LAYOUTS .. #
+
 
       #    TABS    #
-      # can update if admin or owner
       # can :manage, Tab, user: { id: @user.id }
       can :manage, Tab, users: { id: @user.id }
       can :create, Tab, users: { id: @user.id }

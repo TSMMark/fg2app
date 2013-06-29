@@ -29,6 +29,13 @@ class User < ActiveRecord::Base
   # 
   has_many :tabs, through: :pages
 
+  # 
+  # has_many :layouts, through: :layout_editor
+  # has_many :created_layouts, inverse_of: :creator
+  # has_many :layouts, inverse_of: :user
+  has_many :layouts, through: :layout_editors
+  has_many :layout_editors, inverse_of: :user
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

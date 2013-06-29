@@ -15,7 +15,10 @@ class Tab < ActiveRecord::Base
 
   validates_presence_of :page, :fbapp
 
+  # just being an admin of a page doesn't make user an owner
   has_many :users, through: :page#, as: :owners
+
+  belongs_to :layout, inverse_of: :tabs
 
 
   # owners_are {|ownable| ownable.page.users }

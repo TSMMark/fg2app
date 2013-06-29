@@ -7,6 +7,7 @@ FactoryGirl.define do
   sequence(:description) { |n| "this is the #{n}th description" }
   sequence(:category) { |n| "this is the #{n}th category" }
   sequence(:page) { |n| FactoryGirl.create(:page) }
+
   # sequence(:fbapp) { |n|
   #   offset = rand(Fbapp.count)
   #   rand_record = Fbapp.first(:offset => offset)
@@ -30,6 +31,10 @@ FactoryGirl.define do
 
   factory :user_default, parent: :user_with_auth do
     # the default user factory used everywhere
+  end
+
+  factory :creator, parent: :user_default do
+    # alias user
   end
 
   factory :admin, parent: :user_default do
@@ -86,6 +91,34 @@ FactoryGirl.define do
     # fbapp { page.unused_fbapp }
     name
     description
+  end
+
+  # pagetokens
+  factory :layout_editor do
+    user
+    layout
+  end
+  
+  # layout
+  factory :layout do
+    name
+    description
+
+    ignore do
+      user_count Random.new.rand(1..1)  # the number pages that should be in the list
+    end
+
+    after(:build) do |layout, evaluator|
+      evaluator.user_count.times do
+        FactoryGirl.create(:layout_editor,{
+          layout: layout,
+          user: user = FactoryGirl.create(:user_default)
+        })
+      end
+    end
+  end
+
+  factory :layout_default, parent: :layout do
   end
 
 end
