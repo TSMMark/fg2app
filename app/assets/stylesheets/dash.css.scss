@@ -6,6 +6,8 @@
 //@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
 @import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
 
+@import 'mixins/mixins';
+
 // import the app-customized bootstrap CSS
 @import 'customized_bootstrap';
 
@@ -15,3 +17,4 @@
 // CSS that makes "facebook-esque" sidebars work
 @import 'enable_sidebar';
 @import 'sidebar_overrides';
+

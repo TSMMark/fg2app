@@ -20,7 +20,7 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
 
   renderMainContent: =>
     pane  = new Fg2app.Views.Dashboard.Main()
-    container = @$('#main-content')
+    container = @$('#main-content-container')
     @renderChildInto pane, container
 
   renderSidebar: =>
@@ -31,4 +31,4 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
   renderTopbar: =>
     pane  = new Fg2app.Views.Topbar()
     container = @$('#top-bar')
-    @renderChildInto pane, container
+    @renderChildAs pane, container

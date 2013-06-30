@@ -1,13 +1,83 @@
 
-$topbarHeight: 42px;
+@import 'mixins/mixins';
 
-.navbar{
-  margin-bottom:0;
+$topbarHeight: 42px;
+$sidebarWidth: 200px;
+
+// for desktops, always show side nav and don't push everything else offscreen
+@media (min-width: 980px) {
+  .frame{
+    width:100%;
+    .view{
+      width:auto;
+      position:absolute;
+      top: 0;
+      bottom: 0;
+      left: $sidebarWidth;
+      right: 0;
+    }
+  }
 }
-.frame .view #main-content{
-    margin: 0;
-    margin-top: $topbarHeight;
-}
+
 #app-content{
   height:100%;
+
+
+  .navbar{
+    margin-bottom:0;
+  }
+  #main-content-container{
+    margin: 0;
+    position: absolute;
+    top: $topbarHeight;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    // overflow-y: scroll;
+    #main-content{
+      margin: 0;
+    }
+  }
+  
+  #menu{
+    background-color: rgb(231, 243, 247);
+
+    .collapse-inner{
+      width:$sidebarWidth;
+
+      .nav.nav-stacked{
+        li{
+          display:table;
+          width:100%;
+          >a{
+            display: table-cell;
+            height: 80px;
+            vertical-align: middle;
+            cursor:pointer;
+            text-align:center;
+            min-height:80px;
+            color:#999;
+            font-size:20px;
+            border-radius: 0;
+            background-color:none;
+            @include transition(color);
+            &:hover{
+              background-color:transparent;
+              color:#666;
+
+            }
+
+            i{
+              display:block;
+              font-size:48px;
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+
 }

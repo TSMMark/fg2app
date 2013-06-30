@@ -1,0 +1,26 @@
+.scrolling{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+/* make circle with huge border-radius */
+.rounded-circle{
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+}
+
+$defaultTransitionTime: 0.2s;
+$defaultTransitionEasing: ease-in-out;
+// @include transition(background-color, .2s, $method);
+@mixin transition($transition-property, $transition-time:$defaultTransitionTime, $method:$defaultTransitionEasing) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}

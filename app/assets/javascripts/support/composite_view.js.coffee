@@ -19,7 +19,7 @@ class Support.CompositeView extends Backbone.View
   unbindFromAll: ->
     @bindings.each (binding)->
       binding.source.unbind(binding.event, binding.callback)
-    @bindings = _([])
+    @bindings = _ []
     @
 
   renderChild: (view)->
@@ -31,6 +31,13 @@ class Support.CompositeView extends Backbone.View
   renderChildInto: (view, container)->
     @renderChild view
     $(container).empty().append view.el
+    @
+      
+  renderChildAs: (view, container)->
+    c = $(container)
+    c.empty()
+    view.setElement c
+    @renderChild view
     @
       
   appendChild: (view)->
