@@ -20,6 +20,7 @@
 //= require backbone
 //= require fg2app
 //
+//= require_tree ./support
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

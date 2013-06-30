@@ -1,4 +1,5 @@
-window.Fg2app =
+window.Support  = {}
+window.Fg2app   =
   $:{}
   Models: {}
   Collections: {}
@@ -11,7 +12,7 @@ window.Fg2app =
     #   so that it is checked LAST
     new Fg2app.Routers.Index()
     new Fg2app.Routers.Users()
-    new Fg2app.Routers.Tabs()
+    # new Fg2app.Routers.Tabs()
     Backbone.history.start( pushState: true )
 
 $(document).ready ->

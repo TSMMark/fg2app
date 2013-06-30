@@ -1,6 +1,9 @@
 class DashController < ApplicationController
 
   def index
+    # make new guest if not signed in
+    # => make cron to delete unused guests
+    
     if user_signed_in? then
       @pages = current_user.pages
       @current_user = current_user.as_json

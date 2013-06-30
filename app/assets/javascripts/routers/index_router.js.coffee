@@ -1,11 +1,13 @@
-class Fg2app.Routers.Index extends Backbone.Router
+class Fg2app.Routers.Index extends Support.SwappingRouter
 
   routes:
     '(/)'            : 'index'
     '*notFound'      : 'notFound'
   
   index: ->
-    alert "main router index"
+    dash    = new Fg2app.Views.Dashboard
+      el: Fg2app.$.container
+    dash.render()
 
   notFound: ->
-    Backbone.history.navigate('')
+    Backbone.history.navigate ''
