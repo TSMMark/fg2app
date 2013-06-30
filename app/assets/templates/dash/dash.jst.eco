@@ -1,3 +1,10 @@
-<nav id="side-bar"></nav>
-<nav id="top-bar"></nav>
-<div id="main-content"></div>
+<div id="menu" class="menu nav-collapse collapse width"></div>
+
+
+<div class="view">
+
+  <div id="top-bar"></div>
+
+  <div id="main-content"></div>
+
+</div>

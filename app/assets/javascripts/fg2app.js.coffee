@@ -9,7 +9,7 @@ window.Fg2app   =
   Routers: {}
   Dispatcher: {}
   initialize: ->
-    @$.container = $("#container")
+    @$.container = $("#app-content")
     # Index Router must be initialized FIRST
     #   so that it is checked LAST
     new Fg2app.Routers.Index()

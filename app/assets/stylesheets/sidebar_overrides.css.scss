@@ -1,0 +1,13 @@
+
+$topbarHeight: 42px;
+
+.navbar{
+  margin-bottom:0;
+}
+.frame .view #main-content{
+    margin: 0;
+    margin-top: $topbarHeight;
+}
+#app-content{
+  height:100%;
+}

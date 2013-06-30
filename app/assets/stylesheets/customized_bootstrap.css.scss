@@ -1,0 +1,25 @@
+//    bootstrap
+// define bootstrap vars
+$linkColor:                     #0685A6;
+
+$btnPrimaryBackground:          #2C95B1;
+$btnPrimaryBackgroundHighlight: #126C83;
+
+// $placeholderText:              'Oswald', sans-serif;
+// $baseFontFamily:               $placeholderText;
+// $serifFontFamily:              $placeholderText;
+
+$navbarBackgroundHighlight:     #333;
+$navbarBackground:              black;
+$navbarText:                    whitesmoke;
+$navbarLinkColor:               whitesmoke;
+$navbarLinkColorHover:          white;
+$navbarLinkColorActive:         #CCC;
+
+// import bootstrap
+@import 'bootstrap';
+body{
+  //padding-top:40px;
+}
+@import 'bootstrap-responsive';
+// .. bootstrap ..

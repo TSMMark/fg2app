@@ -6,33 +6,12 @@
 //@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
 @import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
 
-//    bootstrap
-// define bootstrap vars
-$linkColor:											#0685A6;
+// import the app-customized bootstrap CSS
+@import 'customized_bootstrap';
 
-$btnPrimaryBackground:					#2C95B1;
-$btnPrimaryBackgroundHighlight:	#126C83;
-
-$placeholderText:								'Oswald', sans-serif;
-$baseFontFamily:								$placeholderText;
-$serifFontFamily:								$placeholderText;
-
-$navbarBackgroundHighlight:			#333;
-$navbarBackground:							black;
-$navbarText:										whitesmoke;
-$navbarLinkColor:								whitesmoke;
-$navbarLinkColorHover:					white;
-$navbarLinkColorActive:					#CCC;
-
-// import bootstrap
-@import 'bootstrap';
-body{
-	padding-top:40px;
-}
-@import 'bootstrap-responsive';
-// .. bootstrap ..
-
-
-
-// font-awesome
+// font-awesome: "it's fonting awesome!"
 @import 'font-awesome';
+
+// CSS that makes "facebook-esque" sidebars work
+@import 'enable_sidebar';
+@import 'sidebar_overrides';
