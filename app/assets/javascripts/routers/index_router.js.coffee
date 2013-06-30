@@ -5,7 +5,7 @@ class Fg2app.Routers.Index extends Support.SwappingRouter
     '*notFound'      : 'notFound'
   
   index: ->
-    dash    = new Fg2app.Views.Dashboard
+    dash    = new Fg2app.Views.Dashboard.Fullpage
       el: Fg2app.$.container
     dash.render()
 

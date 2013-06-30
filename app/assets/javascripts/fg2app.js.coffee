@@ -3,7 +3,9 @@ window.Fg2app   =
   $:{}
   Models: {}
   Collections: {}
-  Views: {}
+  Views:
+    Dashboard:{}
+    
   Routers: {}
   Dispatcher: {}
   initialize: ->
