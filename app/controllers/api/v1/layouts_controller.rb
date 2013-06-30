@@ -20,7 +20,15 @@ module Api
       def create
         @layout = Layout.new(params[:layout])
         authorize! :create, @layout
+
         if @layout.save
+          # make current_user an editor of this layout
+          # TODO set editor types
+          current_user.become_editor_of @layout do |le|
+            le.active = true
+            le.save!
+          end
+          
           respond_with @layout
         else
           # respond_with_error @layout.errors.full_messages

@@ -31,6 +31,7 @@ class Ability
 
       #    LAYOUTS    #
       can :manage, Layout, users: { id: @user.id }
+      can :create, Layout
       # .. LAYOUTS .. #
 
 

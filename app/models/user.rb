@@ -43,6 +43,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  def become_editor_of layout, &block
+    le = LayoutEditor.new
+    le.user   = self
+    le.layout = layout
+    block && block.call(le)
+    le
+  end
+
   def self.new_guest
     new {|u| u.guest = true}
   end
