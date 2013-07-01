@@ -8,9 +8,6 @@ html, body{
   overflow: hidden;
 }
 
-$topbarHeight: 42px;
-$sidebarWidth: 160px;
-
 // for desktops, always show side nav and don't push everything else offscreen
 @media (min-width: 980px) {
   .frame{
@@ -32,6 +29,10 @@ $sidebarWidth: 160px;
 
   .navbar{
     margin-bottom:0;
+    
+    .btn-navbar{
+      @extend .hidden-desktop;
+    }
   }
   #main-content-container{
     margin: 0;
@@ -46,14 +47,27 @@ $sidebarWidth: 160px;
       margin: 0;
     }
   }
-  
+
+  .nav-collapse.width.collapse{
+    width:$sidebarWidth;
+    margin-left: -$sidebarWidth;
+    @include transition-property(width, margin-left);
+    @include transition-duration($default-transition-duration);
+
+    &.in{
+      // width:$sidebarWidth;
+      margin-left: 0;
+      @include transition-property(width, margin-left);
+      @include transition-duration($slow-transition-duration);
+    }
+  }
+
   .menu{
 
     // COMPASS MIXIN
-    // -webkit-user-select: none;
     @include user-select(none);
 
-    background-color: rgb(231, 243, 247);
+    background-color: $sideNavBackground;
 
     .collapse-inner{
       width:$sidebarWidth;
@@ -62,6 +76,7 @@ $sidebarWidth: 160px;
         li{
           display:table;
           width:100%;
+          background-color: $sideNavBackground;
           >a{
             display: table-cell;
             height: 80px;
@@ -72,16 +87,19 @@ $sidebarWidth: 160px;
             color:#999;
             font-size:20px;
             border-radius: 0;
-            background-color:none;
+            background-color:transparent;
+
             // COMPASS MIXIN
-            @include multi_transition(color 0.2s, background-color 0.2s);
+            @include transition-property(color, background-color);
+            @include transition-duration($default-transition-duration);
             &:hover, &:active{
               background-color:transparent;
               color:#666;
             }
             &:active{
               // COMPASS MIXIN
-              @include transition(background-color, 50ms);
+              @include transition-property(color, background-color);
+              @include transition-duration($fast-transition-duration);
               background-color:white;
             }
 

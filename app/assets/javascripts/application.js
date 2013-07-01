@@ -16,6 +16,8 @@
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //
+//= require modernizr
+//
 //= require underscore
 //= require backbone
 //= require fg2app
@@ -26,4 +28,5 @@
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
+//= require_tree ./helpers
 //= require_tree .

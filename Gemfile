@@ -67,6 +67,8 @@ gem 'sass-rails',   '~> 3.2.3'
 gem 'compass-rails'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 
+# https://github.com/russfrisch/modernizr-rails
+gem 'modernizr-rails'
 
 gem 'font-awesome-rails'
 

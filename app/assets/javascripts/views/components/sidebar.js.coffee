@@ -11,3 +11,6 @@ class Fg2app.Views.Sidebar extends Support.CompositeView
 
   render:->
     @$el.html @template
+
+  collapse: (method="toggle")->
+    alert method

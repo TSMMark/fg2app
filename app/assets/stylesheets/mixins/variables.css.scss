@@ -1,0 +1,31 @@
+
+/* transition speeds */
+$fast-transition-duration     : 50ms;
+$normal-transition-duration   : 0.2s;
+$slow-transition-duration     : 0.35s;
+
+
+/* For Use With Compass */
+$default-transition-property  : all;
+$default-transition-duration  : $normal-transition-duration;
+$default-transition-function  : ease-in-out;
+$default-transition-delay     : false;
+
+
+
+
+/* Element Sizes */
+$topbarHeight: 42px;
+$sidebarWidth: 160px;
+
+
+/* Colors */
+
+// light blue
+$sideNavBackground: rgb(231, 243, 247);
+
+// white
+$bodyBackground: white;
+
+
+
