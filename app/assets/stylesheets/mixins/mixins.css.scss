@@ -15,5 +15,71 @@
   border-radius: 50em;
 }
 
+/*
+  media query
+  if $only == true, only @content on the device
+  if $only == false, only @content on everything BUT the device
+*/
+@mixin qif($device, $only:true) {
+  @if $device == desktop {
+    @if $only == true {
+      @media (min-width: 980px) { @content; }
+    } @else {
+      @media (max-width: 979px) { @content; }
+    }
+  }
+  @else if $device == tablet {
+    @if $only == true {
+      @media (min-width: 768px) and (max-width: 979px) { @content; }
+    } @else {
+      @media (max-width: 767px) , (min-width: 980px) { @content; }
+    }
+  }
+  @else if $device == phone {
+    @if $only == true {
+      @media (max-width: 767px) { @content; }
+    } @else {
+      @media (min-width: 768px) { @content; }
+    }
+  }
+  @else if $device == tiny {
+    @if $only == true {
+      @media (max-width: 480px) { @content; }
+    } @else {
+      @media (min-width: 481px) { @content; }
+    }
+  }
+}
 
+/* ====================
+      SLIDE FOR SIDEBAR SLIDE MIXINS
+   ==================== */
+// helper
+@mixin _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration){
+  #{$prefix}left:$sidebar-width;
+  @if $include-right != false{
+    #{$prefix}right:-$sidebar-width;
+  }
+  @if $transition-duration != false{
+    @include transition-duration($transition-duration);
+  }
+}
 
+// shift over for the sidebar
+// can do margin or left / right
+// $prefix:     "margin-" to adjust margin-left instead of left
+// $conditions: true => check for .sidebar-in or 980px
+@mixin shift-for-sidebar($initial-left:0, $initial-right:0, $include-right:false, $prefix:null, $sidebar-width:$sidebar-width, $transition-duration-in:$navbar-slide-in-duration, $transition-duration-out:$navbar-slide-out-duration, $conditions:true){
+
+  @if $conditions != false{
+    @include transition-duration($transition-duration-out);
+    &.sidebar-in, .sidebar-in &{
+      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
+    }
+    @media (min-width: 980px) {
+      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
+    }
+  } @else {
+    @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
+  }
+}

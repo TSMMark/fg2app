@@ -6,11 +6,40 @@
 // @import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
 // @import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
 
+// keyframes(expand-height){
+//   0%{
+//     height: 0;
+//   }
+//   100% {
+//     height:auto;
+//   }
+// }
+
 .dash-fanbux{
-  position:absolute;
-  display:block;
-  top:0;
-  right:7px;
-  z-index:1050; 
-  height:$navbar-height;
+
+}
+// @include qif(phone, true){
+@include qif(tiny, true){
+  #app-content{
+
+    // make room for footer
+    #main-content-container{
+      bottom: $footer-height-mobile;
+    }
+
+    .dash-fanbux{
+      position: fixed;
+      display: block;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1050;
+      height: $footer-height-mobile;
+      background: $highlight-green;
+      text-align: center;
+      color: $white;
+      @include shift-for-sidebar($include-right:true);
+    }
+
+  }
 }

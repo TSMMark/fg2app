@@ -1,10 +1,10 @@
 
 
 @mixin navbar-slide-in-duration(){
-  @include transition-duration($slow-transition-duration);
+  @include transition-duration($navbar-slide-in-duration);
 }
 @mixin navbar-slide-out-duration(){
-  @include transition-duration($default-transition-duration);
+  @include transition-duration($navbar-slide-out-duration);
 }
 
 html, body{
@@ -45,6 +45,8 @@ html, body{
   height:100%;
 
   #main-content-container{
+    @include transition-property(margin, top, bottom, left, right);
+    @include navbar-slide-out-duration;
     margin: 0;
     position: absolute;
     top: $navbar-height;
@@ -84,7 +86,7 @@ html, body{
       font-size: 18px;
 
       .btn-navbar{
-        @extend .hidden-desktop;
+        overflow:hidden;
         margin: 0;
         // margin-left: 7px;
         // margin-top: 7px;
@@ -100,14 +102,16 @@ html, body{
           margin:0;
         }
       }
-      ul.navbar-right{
+      .navbar-right{
+        display:block;
         margin:0;
         padding:0;
         @extend .pull-right;
         list-style:none;
-        li{
+        > *{
           margin:0;
           padding:0;
+          text-indent:0;
         }
       }
     }
@@ -120,29 +124,13 @@ html, body{
 
   // sidebar
   .menu.nav-collapse.collapse.width{
+    display:block;
 
     // COMPASS MIXIN
     @include user-select(none);
 
     background-color: $side-nav-background;
-
-    // width:$sidebar-width;
-    // margin-left: -$sidebar-width;
-    // @include transition-property(width, margin-left);
-    // @include navbar-slide-out-duration;
-
-    // &.in{
-    //   margin-left: 0;
-    //   @include transition-property(width, margin-left);
-    //   @include navbar-slide-in-duration;
-    // }
-
-    // always show on desktop
-    @media (min-width: 980px) {
-      display:block;
-      width:$sidebar-width;
-      margin-left: 0;
-    }
+    width:$sidebar-width;
 
     .collapse-inner{
       width:$sidebar-width;
@@ -174,8 +162,8 @@ html, body{
             &:active{
               // COMPASS MIXIN
               @include transition-property(color, background-color);
-              @include transition-duration($fast-transition-duration);
-              background-color:white;
+              @include transition-duration($button-press-duration);
+              background-color:$white;
             }
 
             i{
@@ -192,7 +180,6 @@ html, body{
   // ..sidebar
 
 
-
   /* ====================
         NAVBAR MIXINS
      ==================== */
@@ -206,21 +193,20 @@ html, body{
   }
   /* NAVBAR IN */
   @mixin navbar-when-sidebar-in(){
-    left:$sidebar-width;
-    @include navbar-slide-in-duration;
+    // left:$sidebar-width;
+    // @include navbar-slide-in-duration;
+    @include shift-for-sidebar($conditions:false);
   }
 
   /* SIDEBAR OUT */
   @mixin sidebar-when-sidebar-out(){
     display:block;
-    width:$sidebar-width;
     margin-left: -$sidebar-width;
     @include transition-property(width, margin-left);
     @include navbar-slide-out-duration;
   }
   /* SIDEBAR IN */
   @mixin sidebar-when-sidebar-in(){
-    width:$sidebar-width;
     margin-left: 0;
     @include navbar-slide-in-duration;
   }
@@ -243,19 +229,21 @@ html, body{
     }
   }
   /*    desktop    */
-  @media (min-width: 980px) {
-
+  @include qif(desktop, true){
     .menu.nav-collapse.collapse.width{
       @include sidebar-when-sidebar-in;
     }
     .navbar{
       @include navbar-when-sidebar-in;
+      .navbar-inner .btn-navbar{
+        display:none !important;
+      }
     }
   }
   /* .. desktop    */
 
   /* when the screen is big enough, don't extend the bar off-screen */
-  @media (min-width: 768px){
+  @include qif(phone, false){
     .navbar{
       right:0 !important;
     }

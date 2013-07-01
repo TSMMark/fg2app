@@ -1,9 +1,16 @@
 
 /* transition speeds */
-$fast-transition-duration     : 50ms;
+$instant-transition-duration  : 50ms;
+$fast-transition-duration     : 0.1s;
 $normal-transition-duration   : 0.2s;
 $slow-transition-duration     : 0.35s;
 
+/* side nav bar slide duration */
+$navbar-slide-in-duration:$slow-transition-duration;
+$navbar-slide-out-duration:$fast-transition-duration;
+
+/* misc durations */
+$button-press-duration: $instant-transition-duration;
 
 /* For Use With Compass */
 $default-transition-property  : all;
@@ -17,6 +24,8 @@ $default-transition-delay     : false;
 /* Element Sizes */
 $navbar-height: 54px;
 $sidebar-width: 160px;
+
+$footer-height-mobile: 28px;
 
 
 
