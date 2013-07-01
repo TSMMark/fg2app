@@ -73,13 +73,15 @@ $sidebarWidth: 160px;
             font-size:20px;
             border-radius: 0;
             background-color:none;
+            // COMPASS MIXIN
             @include multi_transition(color 0.2s, background-color 0.2s);
             &:hover, &:active{
               background-color:transparent;
               color:#666;
             }
             &:active{
-              @include transition(background-color, 0);
+              // COMPASS MIXIN
+              @include transition(background-color, 50ms);
               background-color:white;
             }
 
