@@ -24,3 +24,13 @@ $defaultTransitionEasing: ease-in-out;
   -o-transition: $transition-property $transition-time $method;
   transition: $transition-property $transition-time $method;
 }
+@mixin multi_transition($transition-properties...) {
+  -webkit-transition: $transition-properties;
+  -moz-transition: $transition-properties;
+  -ms-transition: $transition-properties;
+  -o-transition: $transition-properties;
+  transition: $transition-properties;
+}
+
+
+

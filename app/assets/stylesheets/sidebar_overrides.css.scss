@@ -1,8 +1,7 @@
 
-@import 'mixins/mixins';
 
 $topbarHeight: 42px;
-$sidebarWidth: 200px;
+$sidebarWidth: 160px;
 
 // for desktops, always show side nav and don't push everything else offscreen
 @media (min-width: 980px) {
@@ -40,7 +39,12 @@ $sidebarWidth: 200px;
     }
   }
   
-  #menu{
+  .menu{
+
+    // COMPASS MIXIN
+    // -webkit-user-select: none;
+    @include user-select(none);
+
     background-color: rgb(231, 243, 247);
 
     .collapse-inner{
@@ -61,11 +65,14 @@ $sidebarWidth: 200px;
             font-size:20px;
             border-radius: 0;
             background-color:none;
-            @include transition(color);
-            &:hover{
+            @include multi_transition(color 0.2s, background-color 0.2s);
+            &:hover, &:active{
               background-color:transparent;
               color:#666;
-
+            }
+            &:active{
+              @include transition(background-color, 0);
+              background-color:white;
             }
 
             i{
