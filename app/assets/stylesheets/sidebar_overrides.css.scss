@@ -12,14 +12,23 @@ html, body{
 @media (min-width: 980px) {
   .frame{
     width:100%;
+    @include transition-property(width);
     .view{
       width:auto;
-      position:absolute;
-      top: 0;
-      bottom: 0;
-      left: $sidebarWidth;
-      right: 0;
+      // position:absolute;
+      // top: 0;
+      // bottom: 0;
+      // right: 0;
+      // left: $sidebarWidth;
+      @include transition-property(left);
     }
+  }
+}
+.frame{
+  @include transition-property(width);
+  .view{
+    position:relative;
+    @include transition-property(left);
   }
 }
 
@@ -60,6 +69,14 @@ html, body{
       @include transition-property(width, margin-left);
       @include transition-duration($slow-transition-duration);
     }
+
+    // always show on desktop
+    @media (min-width: 980px) {
+      display:block;
+      width:$sidebarWidth;
+      margin-left: 0;
+    }
+
   }
 
   .menu{
@@ -116,3 +133,14 @@ html, body{
   }
 
 }
+
+// large screen
+
+@media (min-width: 1200px) {
+  #app-content{
+  }
+}
+
+
+
+
