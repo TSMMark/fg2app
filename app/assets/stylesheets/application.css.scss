@@ -1,5 +1,6 @@
 @import "compass";
 @import "compass/css3/user-interface";
+// @import "compass/css3/gradient";
 
 @import "mixins/variables";
 @import "mixins/mixins";
@@ -14,3 +15,5 @@
 @import "enable_sidebar";
 @import "sidebar_overrides";
 
+/* pages */
+@import "dash";

@@ -15,17 +15,43 @@ $default-transition-delay     : false;
 
 
 /* Element Sizes */
-$topbarHeight: 42px;
-$sidebarWidth: 160px;
+$navbar-height: 54px;
+$sidebar-width: 160px;
+
+
 
 
 /* Colors */
 
-// light blue
-$sideNavBackground: rgb(231, 243, 247);
+// normal palette
+$normal-blue:     rgb(51  , 155 , 200);
+$normal-grey:     rgb(188 , 190 , 192);
+  // alias normal colors
+  $blue:  $normal-blue;
+  $grey:  $normal-grey;
+
+
+// highlights
+$highlight-green: rgb(0   , 211 , 112);
+$highlight-red:   rgb(255 , 80  , 73);
+$highlight-blue:  rgb(45  , 145 , 192);
+
+// faint
+$faint-blue:      rgb(231 , 243 , 247);
+$faint-grey:      rgb(241 , 241 , 241);
 
 // white
-$bodyBackground: white;
+$white:           white;
+$off-white:       whitesmoke;
+
+
+
+// side navigation bar color
+$side-nav-background: $faint-blue;
+
+// background of body and pseudo-transparent
+$body-background: $white;
+
 
 
 

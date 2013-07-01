@@ -11,6 +11,8 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     @$el.html @template
 
   clickExpandSidebar: (e)->
+    $("#app-content").toggleClass("sidebar-in")
+
     if Browser.can("csstransitions")
       # use CSS3 Transitions instead
       e.stopImmediatePropagation()

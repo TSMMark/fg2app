@@ -5,3 +5,12 @@
 // arvo
 // @import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
 // @import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
+
+.dash-fanbux{
+  position:absolute;
+  display:block;
+  top:0;
+  right:7px;
+  z-index:1050; 
+  height:$navbar-height;
+}

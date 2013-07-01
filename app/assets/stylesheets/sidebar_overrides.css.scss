@@ -1,4 +1,12 @@
 
+
+@mixin navbar-slide-in-duration(){
+  @include transition-duration($slow-transition-duration);
+}
+@mixin navbar-slide-out-duration(){
+  @include transition-duration($default-transition-duration);
+}
+
 html, body{
   position: absolute;
   width: 100%;
@@ -8,22 +16,9 @@ html, body{
   overflow: hidden;
 }
 
-// for desktops, always show side nav and don't push everything else offscreen
-@media (min-width: 980px) {
-  .frame{
-    width:100%;
-    @include transition-property(width);
-    .view{
-      width:auto;
-      // position:absolute;
-      // top: 0;
-      // bottom: 0;
-      // right: 0;
-      // left: $sidebarWidth;
-      @include transition-property(left);
-    }
-  }
-}
+
+
+
 .frame{
   @include transition-property(width);
   .view{
@@ -31,22 +26,28 @@ html, body{
     @include transition-property(left);
   }
 }
+// for desktops, always show side nav and don't push everything else offscreen
+@media (min-width: 980px) {
+  .frame{
+    width:100%;
+    .view{
+      width:auto;
+      // position:absolute;
+      // top: 0;
+      // bottom: 0;
+      // right: 0;
+      // left: $sidebarWidth;
+    }
+  }
+}
 
 #app-content{
   height:100%;
 
-
-  .navbar{
-    margin-bottom:0;
-    
-    .btn-navbar{
-      @extend .hidden-desktop;
-    }
-  }
   #main-content-container{
     margin: 0;
     position: absolute;
-    top: $topbarHeight;
+    top: $navbar-height;
     bottom: 0;
     left: 0;
     right: 0;
@@ -57,43 +58,100 @@ html, body{
     }
   }
 
-  .nav-collapse.width.collapse{
-    width:$sidebarWidth;
-    margin-left: -$sidebarWidth;
-    @include transition-property(width, margin-left);
-    @include transition-duration($default-transition-duration);
 
-    &.in{
-      // width:$sidebarWidth;
-      margin-left: 0;
-      @include transition-property(width, margin-left);
-      @include transition-duration($slow-transition-duration);
+  .navbar{
+    margin-bottom:0;
+    // width:100%;
+    // min-width:100%;
+
+    position:fixed;
+    right: 0;
+    left: 0;
+    // width:100%;
+
+    .navbar-inner{
+      @include background(linear-gradient(top, $off-white, darken($off-white, 5%)));
+
+      // min-width:200%;
+      width:auto;
+      min-width:auto;
+
+      $padding: 13;
+      min-height: $navbar-height - ($padding * 2);
+      height:     $navbar-height - ($padding * 2);
+      padding:#{$padding}px;
+      border-width:0;
+      font-size: 18px;
+
+      .btn-navbar{
+        @extend .hidden-desktop;
+        margin: 0;
+        // margin-left: 7px;
+        // margin-top: 7px;
+        padding: 2px 7px 5px 7px;
+        border-radius: 3px;
+        font-size: 18px;
+        @include background($blue);
+
+        i.icon-minus{
+          display:block;
+          padding:0;
+          line-height:0;
+          margin:0;
+        }
+      }
+      ul.navbar-right{
+        margin:0;
+        padding:0;
+        @extend .pull-right;
+        list-style:none;
+        li{
+          margin:0;
+          padding:0;
+        }
+      }
     }
-
-    // always show on desktop
-    @media (min-width: 980px) {
-      display:block;
-      width:$sidebarWidth;
-      margin-left: 0;
-    }
-
+    // ..navbar-inner
   }
+  // ..navbar
 
-  .menu{
+
+  // ..sidebar
+
+  // sidebar
+  .menu.nav-collapse.collapse.width{
 
     // COMPASS MIXIN
     @include user-select(none);
 
-    background-color: $sideNavBackground;
+    background-color: $side-nav-background;
+
+    // width:$sidebar-width;
+    // margin-left: -$sidebar-width;
+    // @include transition-property(width, margin-left);
+    // @include navbar-slide-out-duration;
+
+    // &.in{
+    //   margin-left: 0;
+    //   @include transition-property(width, margin-left);
+    //   @include navbar-slide-in-duration;
+    // }
+
+    // always show on desktop
+    @media (min-width: 980px) {
+      display:block;
+      width:$sidebar-width;
+      margin-left: 0;
+    }
 
     .collapse-inner{
-      width:$sidebarWidth;
+      width:$sidebar-width;
 
       .nav.nav-stacked{
         li{
           display:table;
           width:100%;
-          background-color: $sideNavBackground;
+          background-color: $side-nav-background;
           >a{
             display: table-cell;
             height: 80px;
@@ -131,15 +189,91 @@ html, body{
     }
 
   }
+  // ..sidebar
+
+
+
+  /* ====================
+        NAVBAR MIXINS
+     ==================== */
+  // toggle sidemenu in and out for certain screen sizes
+  // we need to use mixins because these properties will be
+  //  assigned in a media query AND in a class selector
+  /* NAVBAR OUT */
+  @mixin navbar-when-sidebar-out(){
+    @include transition-property(left, right);
+    @include navbar-slide-out-duration;
+  }
+  /* NAVBAR IN */
+  @mixin navbar-when-sidebar-in(){
+    left:$sidebar-width;
+    @include navbar-slide-in-duration;
+  }
+
+  /* SIDEBAR OUT */
+  @mixin sidebar-when-sidebar-out(){
+    display:block;
+    width:$sidebar-width;
+    margin-left: -$sidebar-width;
+    @include transition-property(width, margin-left);
+    @include navbar-slide-out-duration;
+  }
+  /* SIDEBAR IN */
+  @mixin sidebar-when-sidebar-in(){
+    width:$sidebar-width;
+    margin-left: 0;
+    @include navbar-slide-in-duration;
+  }
+
+  .menu.nav-collapse.collapse.width{
+    @include sidebar-when-sidebar-out;
+  }
+  .navbar{
+    @include navbar-when-sidebar-out;
+  }
+
+  &.sidebar-in, .sidebar-in &{
+    .menu.nav-collapse.collapse.width{
+      @include sidebar-when-sidebar-in;
+    }
+    .navbar{
+      @include navbar-when-sidebar-in;
+      /* only push whole navbar right on smaller screens */
+      right:-$sidebar-width;
+    }
+  }
+  /*    desktop    */
+  @media (min-width: 980px) {
+
+    .menu.nav-collapse.collapse.width{
+      @include sidebar-when-sidebar-in;
+    }
+    .navbar{
+      @include navbar-when-sidebar-in;
+    }
+  }
+  /* .. desktop    */
+
+  /* when the screen is big enough, don't extend the bar off-screen */
+  @media (min-width: 768px){
+    .navbar{
+      right:0 !important;
+    }
+  }
+
+
 
 }
+// ..app-container
+
 
 // large screen
-
 @media (min-width: 1200px) {
   #app-content{
   }
 }
+
+
 
 
 

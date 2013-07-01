@@ -1,7 +1,18 @@
-<div class="navbar navbar-inverse" style="position:fixed;width:100%;">
+<div class="navbar">
   <div class="navbar-inner">
+
     <a class="btn btn-navbar" data-toggle="collapse" data-target="#menu">
-      <i class="icon-ellipsis-horizontal"></i>
+      <i class="icon-minus"></i>
+      <i class="icon-minus"></i>
+      <i class="icon-minus"></i>
     </a>
+
+    <ul class="navbar-right">
+    </ul>
+
+  </div>
+
+  <div class="dash-fanbux">
+    300 Fanbux
   </div>
 </div>
