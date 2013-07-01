@@ -56,8 +56,6 @@ group :assets do
 
   #gem 'bootstrap-sass', '~> 2.2.2.0'
 
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'compass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -65,6 +63,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'sass-rails',   '~> 3.2.3'
+gem 'compass-rails'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 
 
