@@ -158,16 +158,30 @@ html, body{
 
             // COMPASS MIXIN
             @include transition-property(color, background-color);
-            @include transition-duration($default-transition-duration);
+            @include transition-duration($button-hover-duration);
+            
             &:hover, &:active{
               background-color:transparent;
               color:#666;
+
+              .self-portrait{
+                @include transition-property(opacity);
+                @include transition-duration($button-hover-duration);
+                opacity: 1;
+              }
+
             }
             &:active{
               // COMPASS MIXIN
               @include transition-property(color, background-color);
               @include transition-duration($button-press-duration);
               background-color:$white;
+
+              .self-portrait{
+                @include transition-property(opacity);
+                @include transition-duration($button-press-duration);
+                opacity: 1;
+              }
             }
 
             i{
@@ -176,28 +190,38 @@ html, body{
             }
           }
 
+          $sidebar-icon-size-phone:26px;
+          $sidebar-font-size-phone:16px;
           // make side nave smaller for short screen heights
           @include qif($device:phone){
             >a{
               height: auto;
-              font-size:16px;
+              font-size:$sidebar-font-size-phone;
               text-align:left;
-              line-height: 26px;
+              line-height: $sidebar-icon-size-phone;
               position:relative;
               padding-top: 8px;
               padding-bottom: 8px;
+
+              .self-portrait{
+                width: $sidebar-icon-size-phone;
+                height: $sidebar-icon-size-phone;
+                margin: 0;
+                position: absolute;
+                border-radius: 3px;
+              }
 
               .nav-option-inner{
                 i{
                   display: block;
                   position: absolute;
                   font-size: 23px;
-                  width: 26px;
+                  width: $sidebar-icon-size-phone;
                   text-align: center;
                 }
                 div{
                   text-indent: 32px;
-                  line-height: 25px;
+                  line-height: $sidebar-icon-size-phone - 1;
                 }
               }
             }

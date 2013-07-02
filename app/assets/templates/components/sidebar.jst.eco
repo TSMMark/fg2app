@@ -1,10 +1,11 @@
 <!-- <div id="menu" class="menu nav-collapse collapse width"> -->
   <!-- <div class="collapse-inner"> -->
-<ul class="nav nav-stacked">
+<ul class="nav nav-stacked" id="side-nav-list">
 
   <li><a class="nav-option">
     <div class="nav-option-inner">
-      <div>Your Face</div>
+      <div class="self-portrait image-round"></div>
+      <div>Jeff Folker</div>
     </div>
   </a></li>
 

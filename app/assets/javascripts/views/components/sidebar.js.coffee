@@ -11,6 +11,7 @@ class Fg2app.Views.Sidebar extends Support.CompositeView
 
   render:->
     @$el.html @template
+    @$(".self-portrait").css("background-image", "url(//graph.facebook.com/jeffrey.folker/picture?width=120&height=120)")
 
   collapse: (method="toggle")->
     alert method
