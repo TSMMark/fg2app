@@ -17,8 +17,8 @@ body{
         border-radius:0;
         padding-left:5px;
         height:40px;
-        min-width:100%;
-        width:100%;
+        min-width:auto;
+        width:auto;
         }
     .frame .menu{
         height:100%;
