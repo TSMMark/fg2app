@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//  require jquery-ui
+//  
+//  jquery-ui-rails
+//= require jquery.ui.all
 //
 // Loads all Bootstrap javascripts
 //= require bootstrap
