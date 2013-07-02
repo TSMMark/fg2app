@@ -5,10 +5,10 @@ window.Browser   =
       # $("body").css "padding-bottom", "1px"
       setTimeout((->
         $("html").css (
-          "height": "105%"
+          "height": "115%"
           "overflow-y": "scroll"
         )
-        window.scrollTo 0, 1
+        window.scrollTo 0, 50
         alert $(window).scrollTop()
       ), 5)
     )
