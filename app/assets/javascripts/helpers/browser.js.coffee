@@ -2,11 +2,15 @@ window.Browser   =
   hideAddressBar: ->
     # Hide mobile browser's address bar
     window.addEventListener("load", ->
-      $("body").css "padding-bottom", "1px"
+      # $("body").css "padding-bottom", "1px"
       setTimeout((->
+        $("html").css (
+          "height": "105%"
+          "overflow-y": "scroll"
+        )
         window.scrollTo 0, 1
         alert $(window).scrollTop()
-      ), 350)
+      ), 5)
     )
 
   can: (property)->
