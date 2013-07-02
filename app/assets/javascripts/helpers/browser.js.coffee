@@ -13,13 +13,17 @@ window.Browser   =
       window.setTimeout((->
         if (window.pageYOffset == 0)
           window.scrollTo(0, 0)
-        html.style.height = "100%" # window.innerHeight + "px"
+        html.style.height = window.innerHeight + "px"
       ), 1)
 
     # make sure not in fullscreen safari
-    # if(Browser.appleStandalone == false)
+    if(Browser.appleStandalone == false)
       # listen for content loaded
-      document.addEventListener("DOMContentLoaded", adjustHeight, false)
+      if instant
+        adjustHeight()
+        $(window).resize adjustHeight
+      else
+        document.addEventListener("DOMContentLoaded", adjustHeight, false)
 
   appleStandalone: window.navigator.standalone
 

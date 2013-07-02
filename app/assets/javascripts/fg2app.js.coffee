@@ -20,7 +20,5 @@ window.Fg2app   =
 $(document).ready ->
   Fg2app.initialize()
   document.addEventListener "touchstart", (->), true
-  # $(window).resize ->
-  #   Browser.hideAddressBar();
 
 Browser.hideAddressBar();
