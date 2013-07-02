@@ -1,20 +1,3 @@
-.scrolling{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-
-/* make circle with huge border-radius */
-.rounded-circle{
-  -webkit-border-radius: 50em;
-  -moz-border-radius: 50em;
-  border-radius: 50em;
-}
-
 /*
   media query
   if $only == true, only @content on the device
@@ -51,6 +34,14 @@
   }
 }
 
+
+@mixin scroll-on-hover($d:y){
+  overflow-#{$d}:hidden;
+  &:hover{
+    overflow-#{$d}:auto;
+  }
+}
+
 /* ====================
       SLIDE FOR SIDEBAR SLIDE MIXINS
    ==================== */
@@ -83,3 +74,29 @@
     @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
   }
 }
+
+
+
+
+
+
+
+/* 
+  classes
+*/
+.scrolling{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include scroll-on-hover(y);
+}
+
+/* make circle with huge border-radius */
+.rounded-circle{
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+}
+

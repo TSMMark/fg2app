@@ -134,6 +134,7 @@ html, body{
 
     .collapse-inner{
       width:$sidebar-width;
+      @include scroll-on-hover(y);
 
       .nav.nav-stacked{
         li{
