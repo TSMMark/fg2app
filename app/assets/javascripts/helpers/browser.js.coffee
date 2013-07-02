@@ -5,7 +5,8 @@ window.Browser   =
     # 2 scroll the page down to hide the addressbar
     #   - this sets window.innerHeight to the full browser height excluding the addressbar
     # 3 set html height to 100% # window.innerHeight
-    # TODO: verify window rotation
+    # 4 refire on window resize
+    #   - only if height changed
     lastHeight = null
     adjustHeight = ->
       html = document.documentElement
@@ -17,14 +18,14 @@ window.Browser   =
         if (window.pageYOffset == 0)
           window.scrollTo(0, 0)
         html.style.height = window.innerHeight + "px"
-        console.log "resize", window.innerHeight
       ), 1)
 
     # make sure not in fullscreen safari
     if(Browser.appleStandalone == false)
       # listen for content loaded
       document.addEventListener("DOMContentLoaded", (->$(window).resize(adjustHeight).resize()), false)
-
+  
+  
   appleStandalone: window.navigator.standalone
 
   can: (property)->
