@@ -1,12 +1,48 @@
 <!-- <div id="menu" class="menu nav-collapse collapse width"> -->
   <!-- <div class="collapse-inner"> -->
 <ul class="nav nav-stacked">
-  <li><a class="link-destination">Your Face</a></li>
-  <li><a class="link-destination"><i class="icon-home"></i>Home</a></li>
-  <li><a class="link-destination"><i class="icon-money"></i>Earn Fanbux</a></li>
-  <li><a class="link-destination"><i class="icon-film"></i>Tutorials</a></li>
-  <li><a class="link-destination"><i class="icon-cloud"></i>Tag Cloud</a></li>
-  <li><a class="link-destination"><i class="icon-gear"></i>Settings</a></li>
+
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <div>Your Face</div>
+    </div>
+  </a></li>
+
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <i class="icon-home"></i>
+      <div>Home</div>
+    </div>
+  </a></li>
+
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <i class="icon-money"></i>
+      <div>Earn Fanbux</div>
+    </div>
+  </a></li>
+
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <i class="icon-film"></i>
+      <div>Tutorials</div>
+    </div>
+  </a></li>
+
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <i class="icon-cloud"></i>
+      <div>Tag Cloud</div>
+    </div>
+  </a></li>
+
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <i class="icon-gear"></i>
+      <div>Settings</div>
+    </div>
+  </a></li>
+
   <!-- <li><a class="link-destination">Futurama</a></li>
   <li><a class="link-destination">Star Wars</a></li>
   <li class="dropdown active">
@@ -18,27 +54,7 @@
       <li><a class="link-destination" href="#">Golf Course Finder</a></li>
       <li><a class="link-destination" href="#">Traffic</a></li>
     </ul>
-  </li>
-  <li><a class="link-destination">Doctor Who</a></li>
-  <li><a class="link-destination">Futurama</a></li>
-  <li><a class="link-destination">Star Wars</a></li>
-  <li><a class="link-destination">Doctor Who</a></li>
-  <li><a class="link-destination">Futurama</a></li>
-  <li><a class="link-destination">Star Wars</a></li>
-  <li><a class="link-destination">Doctor Who</a></li>
-  <li><a class="link-destination">Futurama</a></li>
-  <li><a class="link-destination">Star Wars</a></li>
-  <li><a class="link-destination">Doctor Who</a></li>
-  <li><a class="link-destination">Doctor Who</a></li>
-  <li><a class="link-destination">Futurama</a></li>
-  <li><a class="link-destination">Star Wars</a></li>
-  <li><a class="link-destination">Doctor Who</a></li>
-  <li><a class="link-destination">Futurama</a></li>
-  <li><a class="link-destination">Star Wars</a></li>
-  <li><a class="link-destination">Doctor Who</a></li>
-  <li><a class="link-destination">Futurama</a></li>
-  <li><a class="link-destination">Star Wars</a></li>
-  <li><a class="link-destination">Doctor Who</a></li> -->
+  </li> -->
 </ul>
   <!-- </div> -->
 <!-- </div> -->

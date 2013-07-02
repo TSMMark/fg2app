@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//  require jquery-ui
 //
 // Loads all Bootstrap javascripts
 //= require bootstrap
@@ -21,6 +22,11 @@
 //= require underscore
 //= require backbone
 //= require_tree ./helpers
+//
+//  slimScroll jquery scrollbar plugin
+//= require jquery.slimscroll.min
+//
+//  Backbone app
 //= require fg2app
 //
 //= require_tree ./support

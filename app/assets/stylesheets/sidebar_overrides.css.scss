@@ -143,15 +143,18 @@ html, body{
           background-color: $side-nav-background;
           >a{
             display: table-cell;
-            height: 80px;
             vertical-align: middle;
             cursor:pointer;
             text-align:center;
-            min-height:80px;
+            height:75px;
             color:#999;
             font-size:20px;
             border-radius: 0;
             background-color:transparent;
+
+            .nav-option-inner{
+              position:relative;
+            }
 
             // COMPASS MIXIN
             @include transition-property(color, background-color);
@@ -172,6 +175,36 @@ html, body{
               font-size:48px;
             }
           }
+
+          // make side nave smaller for short screen heights
+          @include qif($device:phone){
+            >a{
+              height: auto;
+              font-size:16px;
+              text-align:left;
+              line-height: 26px;
+              position:relative;
+              padding-top: 8px;
+              padding-bottom: 8px;
+
+              .nav-option-inner{
+                i{
+                  display: block;
+                  position: absolute;
+                  font-size: 23px;
+                  width: 26px;
+                  text-align: center;
+                }
+                div{
+                  text-indent: 32px;
+                  line-height: 25px;
+                }
+              }
+            }
+          }
+
+
+
         }
       }
 

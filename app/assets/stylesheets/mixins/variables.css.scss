@@ -7,7 +7,7 @@ $slow-transition-duration     : 0.35s;
 
 /* side nav bar slide duration */
 $navbar-slide-in-duration:$slow-transition-duration;
-$navbar-slide-out-duration:$fast-transition-duration;
+$navbar-slide-out-duration:$normal-transition-duration;
 
 /* misc durations */
 $button-press-duration: $instant-transition-duration;

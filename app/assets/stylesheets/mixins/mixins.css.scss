@@ -3,33 +3,37 @@
   if $only == true, only @content on the device
   if $only == false, only @content on everything BUT the device
 */
-@mixin qif($device, $only:true) {
+@mixin qif($device, $only:true, $dim:width) {
+  /* size reference (not necessarily real device sizes):
+      iPhone:(320,480) or (320,568)
+      iPad:(768,980px)
+  */
   @if $device == desktop {
     @if $only == true {
-      @media (min-width: 980px) { @content; }
+      @media (min-#{$dim}: 980px) { @content; }
     } @else {
-      @media (max-width: 979px) { @content; }
+      @media (max-#{$dim}: 979px) { @content; }
     }
   }
   @else if $device == tablet {
     @if $only == true {
-      @media (min-width: 768px) and (max-width: 979px) { @content; }
+      @media (min-#{$dim}: 768px) and (max-#{$dim}: 979px) { @content; }
     } @else {
-      @media (max-width: 767px) , (min-width: 980px) { @content; }
+      @media (max-#{$dim}: 767px) , (min-#{$dim}: 980px) { @content; }
     }
   }
   @else if $device == phone {
     @if $only == true {
-      @media (max-width: 767px) { @content; }
+      @media (max-#{$dim}: 767px) { @content; }
     } @else {
-      @media (min-width: 768px) { @content; }
+      @media (min-#{$dim}: 768px) { @content; }
     }
   }
   @else if $device == tiny {
     @if $only == true {
-      @media (max-width: 480px) { @content; }
+      @media (max-#{$dim}: 568px) { @content; }
     } @else {
-      @media (min-width: 481px) { @content; }
+      @media (min-#{$dim}: 569px) { @content; }
     }
   }
 }

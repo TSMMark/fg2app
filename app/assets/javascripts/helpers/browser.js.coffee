@@ -1,5 +1,11 @@
 window.Browser   = 
-  hideAddressBar: ->
+  # hide mobile safari's addressbar on load.
+  hideAddressBar: (instant=false)->
+    # 1 double html height
+    # 2 scroll the page down to hide the addressbar
+    #   - this sets window.innerHeight to the full browser height excluding the addressbar
+    # 3 set html height to 100% # window.innerHeight
+    # TODO: verify window rotation
     adjustHeight = ->
       html = document.documentElement
       size = window.innerHeight
@@ -7,9 +13,12 @@ window.Browser   =
       window.setTimeout((->
         if (window.pageYOffset == 0)
           window.scrollTo(0, 0)
-        html.style.height = window.innerHeight + "px"
+        html.style.height = "100%" # window.innerHeight + "px"
       ), 1)
-    if(Browser.appleStandalone == false)
+
+    # make sure not in fullscreen safari
+    # if(Browser.appleStandalone == false)
+      # listen for content loaded
       document.addEventListener("DOMContentLoaded", adjustHeight, false)
 
   appleStandalone: window.navigator.standalone
