@@ -16,4 +16,4 @@ class Fg2app.Views.LayoutsList extends Backbone.View
   renderOne: (layout)=>
     view = new Fg2app.Views.LayoutListItem(model: layout)
     @$el.append view.render().el
-    view
+    @

@@ -1,0 +1,4 @@
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
+window.Paths = window.Paths || {
+  omniauth_facebook : "<%= user_omniauth_authorize_path(:facebook) %>"
+}

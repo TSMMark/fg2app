@@ -36,7 +36,8 @@ Fg2app::Application.routes.draw do
     #:path => 'users',
     #:skip => [:sessions],
 
-  match '*route', to: 'dash#index'
+  # catch all
+  # match '*route', to: 'dash#index'
 
   #as :user do
     # sessions
