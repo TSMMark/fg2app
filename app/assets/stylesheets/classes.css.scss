@@ -31,30 +31,17 @@
   @include transition-duration($button-hover-duration);
 }
 
+.loading:before{
+  content:"loading..."
+}
 
-.stack{
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  width: 2em;
-  height: 2em;
-  line-height: 2em;
-  vertical-align: -35%;
-  background-image: none;
-  background-position: 0% 0%;
-  background-repeat: repeat;
-  margin-top: 0;
-  > *{
-    position:absolute;
-    z-index:1;
-    text-indent: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    line-height: 48px;
-    &[class*="base"], &[class^="base"]{
-      z-index:0;
-    }
+.list-no-margin{
+  margin:0;
+  padding:0;
+  list-style:none;
+  li{
+    margin:0;
+    padding:0;
+    list-style:none;
   }
 }

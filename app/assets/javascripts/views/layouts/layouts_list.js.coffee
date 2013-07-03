@@ -1,19 +1,28 @@
-class Fg2app.Views.LayoutsList extends Backbone.View
+class Fg2app.Views.LayoutsList extends Support.CompositeView
+
+  template: JST['layouts/list']
 
   initialize: (options)->
     @collection = options.collection
+    @bindTo @collection, "reset", (data)=>
+      # alert @collection.length
+      @renderList()
+    @collection.fetch reset: true
 
-  render: ->
-    @renderList()
+  render: =>
+    @renderBody().
+      renderList()
+
+  renderBody: =>
+    @$el.html @template()
     @
 
   renderList: =>
-    @$el.empty()
-    @collection.each (layout)->
-      renderOne(layout)
+    list  = @$(".layouts-list")
+    list.empty()
+    @collection.each (layout)=>
+      @appendChildTo @layoutView(layout), list
     @
 
-  renderOne: (layout)=>
-    view = new Fg2app.Views.LayoutListItem(model: layout)
-    @$el.append view.render().el
-    @
+  layoutView: (layout)=>
+    new Fg2app.Views.LayoutListItem model: layout

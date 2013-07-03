@@ -7,11 +7,7 @@
       <i class="icon-minus"></i>
     </a>
 
-    <div class="navbar-right">
-      <!-- <div class="dash-fanbux">
-        300 Fanbux
-      </div> -->
-    </div>
+    <div class="navbar-right"></div>
 
   </div>
 
