@@ -44,6 +44,14 @@
     </div>
   </a></li>
 
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <div>
+        <span class="fanbux-count">400</span> Fanbux
+      </div>
+    </div>
+  </a></li>
+
   <!-- <li><a class="link-destination">Futurama</a></li>
   <li><a class="link-destination">Star Wars</a></li>
   <li class="dropdown active">
