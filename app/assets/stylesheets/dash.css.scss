@@ -54,7 +54,7 @@
       @extend .zero-edge;
       .layouts-list-search{
         @extend .zero-edge;
-        @include wmw(75%);
+        @include wmw;
         border: 0;
         border-radius: 0;
         box-shadow: none;
@@ -62,7 +62,8 @@
         height: $list-header-height;
         font-size: 33px;
         line-height: initial;
-        text-indent: 63px;
+        left: 63px;
+        right:25%;
         @include base-font;
         @include input-placeholder{
           color:$offer-white;
@@ -102,6 +103,10 @@
     min-width: 100px;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  i.promo-indicator{
+    font-size:60px;
+    color: rgba($highlight-blue, 0.25);
   }
 }
 

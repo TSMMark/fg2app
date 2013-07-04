@@ -24,12 +24,12 @@
 //= require underscore
 //= require backbone
 //
-//  unneeded because we're using jst/ejs not _.template
-//  require underscore.template-helpers
-//
 //= require ./helpers/helper_definer
 //= require ./helpers/fun_jst
 //= require_tree ./helpers
+//
+//  http://timeago.yarp.com/
+//= require jquery.timeago
 //
 //  slimScroll jquery scrollbar plugin
 //= require jquery.slimscroll.min
