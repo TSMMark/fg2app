@@ -24,7 +24,7 @@
 
     // make room for footer
     #main-content-container{
-      bottom: $footer-height-mobile;
+      bottom: $footer-height-phone;
     }
 
     .dash-fanbux{
@@ -34,7 +34,7 @@
       right: 0;
       left: 0;
       z-index: 1050;
-      height: $footer-height-mobile;
+      height: $footer-height-phone;
       background: $highlight-green;
       text-align: center;
       color: $white;
@@ -45,9 +45,67 @@
 }
 
 /*  */
+.layouts-list-container{
+  .list-header{
+    position:relative;
+    height: $list-header-height;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    .searchbar-container{
+      @extend .zero-edge;
+      .layouts-list-search{
+        @extend .zero-edge;
+        @include wmw(75%);
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        @include no-margin;
+        height: $list-header-height;
+        font-size: 33px;
+        line-height: initial;
+        text-indent: 63px;
+        @include base-font;
+        @include input-placeholder{
+          color:$offer-white;
+        }
+        &:before{
+          content: "<i class='icon-search'></i>"
+        }
+      }
+      i{
+        position: absolute;
+        font-size: 36px;
+        left: 25px;
+        top: 7px;
+        color: $offer-white;
+      }
+    }
+  }
+  .layouts-list-scroller{
+    @extend .scrolling;
+    top:$list-header-height;
+  }
+}
 .layouts-list{
-  @extend .list-no-margin
+  @include list-no-margin;
+  display:table;
+  width:100%;
 }
 .layout-list-item{
+  display:table-row;
+  height:100px;
 
+  .list-item-column{
+    display:table-cell;
+    vertical-align: middle;
+    text-align:center;
+    padding:0 2%;
+    min-width: 100px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
+
+
+
+
+

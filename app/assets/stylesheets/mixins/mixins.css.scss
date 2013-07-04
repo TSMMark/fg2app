@@ -39,6 +39,19 @@
 }
 
 
+// michaelsacca/Compass-Placeholder-Text-Mixin
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; } 
+}
+
+@mixin base-font{
+  font-family: $base-font, sans-serif;
+}
+
 @mixin scroll-on-hover($d:y){
   overflow-#{$d}:hidden;
   &:hover{
@@ -80,8 +93,24 @@
 }
 
 
+@mixin no-margin {
+  margin:0;
+  padding:0;
+}
 
+@mixin list-no-margin {
+  @include no-margin;
+  list-style:none;
+  li{
+    @include no-margin;
+    list-style:none;
+  }
+}
 
-
+// width and minimum width
+@mixin wmw($width:auto){
+  width:$width;
+  min-width:$width;
+}
 
 

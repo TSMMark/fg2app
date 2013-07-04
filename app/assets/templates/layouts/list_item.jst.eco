@@ -1,1 +1,6 @@
-this is a list item
+<div class="list-item-column"><%= @model.escape("created_at") %> / <%= @model.escape("updated_at") %></div>
+<div class="list-item-column"><i class="icon-trophy"></i></div>
+<div class="list-item-column">placeholder img</div>
+<div class="list-item-column"><%= @model.escape("name") %> / <%= @model.escape("description") %></div>
+<div class="list-item-column">tags</div>
+<div class="list-item-column"><i class="icon-chevron-sign-down"></i></div>

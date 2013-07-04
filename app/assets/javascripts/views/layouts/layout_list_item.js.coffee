@@ -1,6 +1,6 @@
 class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
-  template: JST['layouts/list_item']
+  template: FunJST('layouts/list_item')
 
   tagName:      "li"
   # idAttribute:  ""
@@ -10,5 +10,5 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
     @model = options.model
 
   render: =>
-    @$el.html @template()
+    @$el.html @template( model: @model )
     @

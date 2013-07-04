@@ -35,13 +35,10 @@
   content:"loading..."
 }
 
-.list-no-margin{
-  margin:0;
-  padding:0;
-  list-style:none;
-  li{
-    margin:0;
-    padding:0;
-    list-style:none;
-  }
+.zero-edge{
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
 }

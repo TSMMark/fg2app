@@ -20,4 +20,4 @@ class Fg2app.Views.Dashboard.Main extends Support.CompositeView
     view  = new Fg2app.Views.LayoutsList collection: collection
 
     container = @$(".layouts-list-container")
-    @renderChildInto view, container
+    @renderChildAs view, container

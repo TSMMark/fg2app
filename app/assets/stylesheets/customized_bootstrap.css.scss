@@ -5,6 +5,34 @@ $linkColor:                     #0685A6;
 $btnPrimaryBackground:          #2C95B1;
 $btnPrimaryBackgroundHighlight: #126C83;
 
+// $placeholderText: 
+// $inputBackground: 
+// $inputBorder: 
+// $inputBorderRadius: 
+// $inputDisabledBackground: 
+// $formActionsBackground: 
+// $btnPrimaryBackground:  
+// $btnPrimaryBackgroundHighlight: 
+
+// navbar search (apparently this only works when in the navbar...)
+// $navbarSearchBackground:  black;
+// $navbarSearchBackgroundFocus: whitesmoke;
+// $navbarSearchBorder:  red;
+// $navbarSearchPlaceholderColor:  
+
+
+
+$sansFontFamily:  $base-font-family;
+// $serifFontFamily: 
+// $monoFontFamily:  
+// $baseFontSize:  
+$baseFontFamily:  $base-font-family;
+// $baseLineHeight:  
+// $altFontFamily: 
+// $headingsFontFamily:  
+// $headingsFontWeight:  
+
+
 // $placeholderText:              'Oswald', sans-serif;
 // $baseFontFamily:               $placeholderText;
 // $serifFontFamily:              $placeholderText;

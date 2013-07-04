@@ -26,5 +26,5 @@
 @import "dash";
 
 body{
-  font-family: Montserrat, sans-serif;
+  @include base-font;
 }

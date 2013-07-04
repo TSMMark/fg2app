@@ -23,6 +23,12 @@
 //
 //= require underscore
 //= require backbone
+//
+//  unneeded because we're using jst/ejs not _.template
+//  require underscore.template-helpers
+//
+//= require ./helpers/helper_definer
+//= require ./helpers/fun_jst
 //= require_tree ./helpers
 //
 //  slimScroll jquery scrollbar plugin

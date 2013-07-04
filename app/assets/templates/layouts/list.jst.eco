@@ -1,5 +1,12 @@
-<h1>list</h1>
-<ul class="layouts-list scrolling"><div class="loading"></div></ul>
+<div class="list-header">
+  <div class="searchbar-container">
+    <input type="text" class="layouts-list-search" placeholder="Search"/>
+    <i class="icon-search"></i>
+  </div>
+</div>
+<div class="layouts-list-scroller">
+  <ul class="layouts-list"><div class="loading"></div></ul>
+</div>
 
 
 

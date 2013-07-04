@@ -28,8 +28,8 @@ $navbar-height: 54px;
 $sidebar-width: 160px;
 
 
-// $footer-height-mobile: 18px;
-$footer-height-mobile: 0;
+// $footer-height-phone: 18px;
+$footer-height-phone: 0;
 
 
 
@@ -77,6 +77,19 @@ $side-nav-color-active:       $white;
 
 // background of body and pseudo-transparent
 $body-background: $white;
+
+$base-font: Monstercat;
+$base-font-family:  $base-font, sans-serif;
+
+
+/*  ====================
+       PAGE SPECIFIC
+    ====================  */
+
+// dashboard
+$list-header-height: 52px;
+$list-header-height-phone: 26px;
+
 
 
 
