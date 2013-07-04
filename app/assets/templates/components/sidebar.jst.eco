@@ -36,11 +36,19 @@
       <div>Tag Cloud</div>
     </div>
   </a></li>
-
-  <li><a class="nav-option">
+  
+  <li><a class="nav-option link-settings" href="<%= Paths.omniauth_facebook %>" >
     <div class="nav-option-inner">
       <i class="icon-gear"></i>
       <div>Settings</div>
+    </div>
+  </a></li>
+
+  <li><a class="nav-option">
+    <div class="nav-option-inner">
+      <div>
+        <span class="fanbux-count">400</span> Fanbux
+      </div>
     </div>
   </a></li>
 

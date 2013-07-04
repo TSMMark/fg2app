@@ -130,6 +130,9 @@ class Api::BaseController < ApplicationController
   #   }
   # end
 
+  def respond_with *params
+    super :api, *params
+  end
 
 
 end

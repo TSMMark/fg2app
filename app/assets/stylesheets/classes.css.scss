@@ -25,8 +25,20 @@
   border-radius: 999px;
   display: inline-block;
   margin: 6px 8px;
-  opacity: 0.75;
+  opacity: 0.85;
   
   @include transition-property(opacity);
   @include transition-duration($button-hover-duration);
+}
+
+.loading:before{
+  content:"loading..."
+}
+
+.zero-edge{
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
 }

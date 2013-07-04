@@ -1,6 +1,6 @@
 module Api
   module V1
-    class LayoutsController < Api::BaseController #Api::BaseController
+    class LayoutsController < Api::V1::BaseController #Api::BaseController
 
       # cancan
       load_and_authorize_resource :layout, through: :current_user, except: :create

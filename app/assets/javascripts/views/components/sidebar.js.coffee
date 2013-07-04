@@ -1,6 +1,6 @@
 class Fg2app.Views.Sidebar extends Support.CompositeView
 
-  template: JST['components/sidebar']
+  template: FunJST('components/sidebar')
 
   className: 'collapse-inner'
   # id: 'menu'
@@ -10,8 +10,12 @@ class Fg2app.Views.Sidebar extends Support.CompositeView
 
 
   render:->
-    @$el.html @template
-    @$(".self-portrait").css("background-image", "url(//graph.facebook.com/jeffrey.folker/picture?width=120&height=120)")
+    @$el.html @template(something:"thing!")
+    # @$(".self-portrait").css("background-image", "url(//graph.facebook.com/jeffrey.folker/picture?width=120&height=120)")
+    @applyLinks()
+
+  applyLinks: =>
+    # @$(".link-settings").attr("href", Paths.omniauth_facebook)
 
   collapse: (method="toggle")->
     alert method

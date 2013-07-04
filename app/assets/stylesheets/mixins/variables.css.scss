@@ -21,6 +21,9 @@ $default-transition-function  : ease-in-out;
 $default-transition-delay     : false;
 
 
+$default-box-shadow-color: rgba(#333333, 0.6);
+
+
 
 
 /* Element Sizes */
@@ -28,7 +31,8 @@ $navbar-height: 54px;
 $sidebar-width: 160px;
 
 
-$footer-height-mobile: 18px;
+// $footer-height-phone: 18px;
+$footer-height-phone: 0;
 
 
 
@@ -36,8 +40,12 @@ $footer-height-mobile: 18px;
 /* Colors */
 
 // normal palette
-$normal-blue:     rgb(51  , 155 , 200);
-$normal-grey:     rgb(188 , 190 , 192);
+// $normal-blue:       rgb(64  , 154 , 204);
+// $normal-blue-dark:  rgb(60  , 143 , 197);
+
+$normal-blue:       rgb(65  , 145 , 204); 
+$normal-blue-dark:  rgb(60  , 143 , 197);
+$normal-grey:       rgb(188 , 190 , 192);
   // alias normal colors
   $blue:  $normal-blue;
   $grey:  $normal-grey;
@@ -46,7 +54,7 @@ $normal-grey:     rgb(188 , 190 , 192);
 // highlights
 $highlight-green: rgb(0   , 211 , 112);
 $highlight-red:   rgb(255 , 80  , 73);
-$highlight-blue:  rgb(45  , 145 , 192);
+$highlight-blue:  rgb(121 , 186 , 215);
 
 // faint
 $faint-blue:      rgb(231 , 243 , 247);
@@ -54,15 +62,38 @@ $faint-grey:      rgb(241 , 241 , 241);
 
 // white
 $white:           white;
-$off-white:       whitesmoke;
+$off-white:       #F5F5F5; //whitesmoke
+$offer-white:     #E9E9E9; 
 
 
 
 // side navigation bar color
-$side-nav-background: $faint-blue;
+$side-nav-under-background:   $normal-blue;
+$side-nav-background:         $normal-blue-dark;
+$side-nav-background-hover:   $normal-blue-dark;
+$side-nav-background-active:  $highlight-blue;
+
+$side-nav-color:              $offer-white;
+$side-nav-color-hover:        $white;
+$side-nav-color-active:       $white;
+
 
 // background of body and pseudo-transparent
 $body-background: $white;
+
+$base-font: Monstercat;
+$base-font-family:  $base-font, sans-serif;
+
+
+/*  ====================
+       PAGE SPECIFIC
+    ====================  */
+
+// dashboard
+$list-header-height: 52px;
+$list-header-height-phone: 26px;
+$list-item-header-size:24px;
+
 
 
 

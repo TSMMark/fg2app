@@ -1,6 +1,6 @@
 module Api
   module V1
-    class TabsController < Api::BaseController #Api::BaseController
+    class TabsController < Api::V1::BaseController #Api::BaseController
 
       rescue_from Exceptions::TabLimitException do |exception|
         respond_with_error exception.message

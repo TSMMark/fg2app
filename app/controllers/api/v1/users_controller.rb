@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersController < Api::BaseController
+    class UsersController < Api::V1::BaseController
       
       load_and_authorize_resource except: [:me]
 

@@ -90,7 +90,7 @@ html, body{
         margin: 0;
         // margin-left: 7px;
         // margin-top: 7px;
-        padding: 2px 7px 5px 7px;
+        padding: 2px 7px 2px 7px;
         border-radius: 3px;
         font-size: 18px;
         @include background($blue);
@@ -131,26 +131,41 @@ html, body{
 
     background-color: $side-nav-background;
     width:$sidebar-width;
+    // @include single-box-shadow(1px 1px 3px black);
 
     .collapse-inner{
       width:$sidebar-width;
       @include scroll-on-hover(y);
+      background:$side-nav-under-background;
 
       .nav.nav-stacked{
+        margin:0;
         li{
-          display:table;
+          display:block;
           width:100%;
-          background-color: $side-nav-background;
-          >a{
-            display: table-cell;
-            vertical-align: middle;
+
+          .nav-option{
+            background:$side-nav-background;
+          }
+          &:last-child .nav-option{
+            background:transparent;
+            border-bottom:none;
+          }
+          &:first-child .nav-option{
+            background:transparent;
+            border-top:none;
+          }
+          .nav-option{
+            display: block;
+            margin:0;
             cursor:pointer;
             text-align:center;
-            height:75px;
-            color:#999;
-            font-size:20px;
+            min-height:75px;
+            color: $side-nav-color;
             border-radius: 0;
-            background-color:transparent;
+            font-size:20px;
+            font-weight: 100;
+            // text-transform: uppercase;
 
             .nav-option-inner{
               position:relative;
@@ -161,8 +176,8 @@ html, body{
             @include transition-duration($button-hover-duration);
             
             &:hover, &:active{
-              background-color:transparent;
-              color:#666;
+              // background:$side-nav-background-hover;
+              color:$side-nav-color-hover;
 
               .self-portrait{
                 @include transition-property(opacity);
@@ -171,11 +186,13 @@ html, body{
               }
 
             }
+
+
             &:active{
               // COMPASS MIXIN
               @include transition-property(color, background-color);
               @include transition-duration($button-press-duration);
-              background-color:$white;
+              background:$side-nav-background-active;
 
               .self-portrait{
                 @include transition-property(opacity);
@@ -188,14 +205,14 @@ html, body{
               display:block;
               font-size:48px;
             }
-          }
+          } // .. nav-option
 
           $sidebar-icon-size-phone:26px;
           $sidebar-font-size-phone:16px;
           // make side nave smaller for short screen heights
           @include qif($device:phone){
-            >a{
-              height: auto;
+            .nav-option{
+              min-height: 24px;
               font-size:$sidebar-font-size-phone;
               text-align:left;
               line-height: $sidebar-icon-size-phone;

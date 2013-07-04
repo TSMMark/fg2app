@@ -1,6 +1,6 @@
 module Api
   module V1
-    class PagesController < Api::BaseController
+    class PagesController < Api::V1::BaseController
       
       load_and_authorize_resource
 

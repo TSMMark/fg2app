@@ -23,7 +23,13 @@
 //
 //= require underscore
 //= require backbone
+//
+//= require ./helpers/helper_definer
+//= require ./helpers/fun_jst
 //= require_tree ./helpers
+//
+//  http://timeago.yarp.com/
+//= require jquery.timeago
 //
 //  slimScroll jquery scrollbar plugin
 //= require jquery.slimscroll.min
