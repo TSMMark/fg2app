@@ -21,6 +21,9 @@ $default-transition-function  : ease-in-out;
 $default-transition-delay     : false;
 
 
+$default-box-shadow-color: rgba(#333333, 0.6);
+
+
 
 
 /* Element Sizes */
@@ -89,6 +92,7 @@ $base-font-family:  $base-font, sans-serif;
 // dashboard
 $list-header-height: 52px;
 $list-header-height-phone: 26px;
+$list-item-header-size:24px;
 
 
 

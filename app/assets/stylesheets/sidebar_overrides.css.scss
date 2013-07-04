@@ -131,6 +131,7 @@ html, body{
 
     background-color: $side-nav-background;
     width:$sidebar-width;
+    // @include single-box-shadow(1px 1px 3px black);
 
     .collapse-inner{
       width:$sidebar-width;

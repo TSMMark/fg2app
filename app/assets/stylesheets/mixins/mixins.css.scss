@@ -114,3 +114,12 @@
 }
 
 
+
+@mixin icon-size($size:14px){
+  width:$size;
+  height:$size;
+  line-height:$size;
+  font-size:$size;
+  background-position:$size, $size;
+}
+

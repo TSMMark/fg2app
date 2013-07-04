@@ -4,6 +4,10 @@
 @import "compass/css3/user-interface";
 // @import "compass/css3/gradient";
 
+// font-awesome: "it's fonting awesome!"
+@import "font-awesome";
+
+
 @import "mixins/variables";
 @import "mixins/mixins";
 
@@ -14,9 +18,6 @@
 
 // import the app-customized bootstrap CSS
 @import "customized_bootstrap";
-
-// font-awesome: "it's fonting awesome!"
-@import "font-awesome";
 
 // CSS that makes "facebook-esque" sidebars work
 @import "enable_sidebar";

@@ -65,16 +65,14 @@
         left: 63px;
         right:25%;
         @include base-font;
+        color:$grey;
         @include input-placeholder{
           color:$offer-white;
-        }
-        &:before{
-          content: "<i class='icon-search'></i>"
         }
       }
       i{
         position: absolute;
-        font-size: 36px;
+        @include icon-size(36px);
         left: 25px;
         top: 7px;
         color: $offer-white;
@@ -99,14 +97,19 @@
     display:table-cell;
     vertical-align: middle;
     text-align:center;
+    cursor:pointer;
     padding:0 2%;
     min-width: 100px;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  i.promo-indicator{
-    font-size:60px;
-    color: rgba($highlight-blue, 0.25);
+  i{
+    @include icon-size($list-item-header-size);
+    &.promo-indicator{
+      font-size:60px;
+      @include icon-size(60px);
+      color: rgba($highlight-blue, 0.25);
+    }
   }
 }
 
