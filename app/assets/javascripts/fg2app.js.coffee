@@ -19,7 +19,6 @@ window.Fg2app   =
       pushState: "pushState" in window.history
 
 $(document).ready ->
-  alert "init"
   Fg2app.initialize()
   document.addEventListener "touchstart", (->), true
 
