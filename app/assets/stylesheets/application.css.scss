@@ -1,0 +1,31 @@
+@import url("http://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+@import "compass";
+@import "compass/css3/user-interface";
+// @import "compass/css3/gradient";
+
+@import "mixins/variables";
+@import "mixins/mixins";
+
+@import "jquery.ui.all";
+
+// predefined classes
+@import "classes";
+
+// import the app-customized bootstrap CSS
+@import "customized_bootstrap";
+
+// font-awesome: "it's fonting awesome!"
+// MUST come after bootstrap to override their icon styles
+@import "font-awesome";
+
+// CSS that makes "facebook-esque" sidebars work
+@import "enable_sidebar";
+@import "sidebar_overrides";
+
+/* pages */
+@import "dash";
+
+body{
+  @include base-font;
+}

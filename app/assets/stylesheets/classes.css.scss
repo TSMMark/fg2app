@@ -1,0 +1,44 @@
+/* 
+  classes
+*/
+.scrolling{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include scroll-on-hover(y);
+}
+
+/* make circle with huge border-radius */
+.rounded-circle, .image-round{
+  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  border-radius: 99em;
+}
+
+.self-portrait{
+  background-image: url(http://graph.facebook.com/jeffrey.folker/picture?width=120&height=120);
+  width: 120px;
+  height: 120px;
+  background-size: contain;
+  border-radius: 999px;
+  display: inline-block;
+  margin: 6px 8px;
+  opacity: 0.85;
+  
+  @include transition-property(opacity);
+  @include transition-duration($button-hover-duration);
+}
+
+.loading:before{
+  content:"loading..."
+}
+
+.zero-edge{
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+}

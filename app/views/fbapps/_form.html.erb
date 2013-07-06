@@ -1,0 +1,16 @@
+<%= form_for @fbapp do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :namespace %><br />
+    <%= f.text_field :namespace %>
+  </p>
+  <p>
+    <%= f.label :key %><br />
+    <%= f.number_field :key %>
+  </p>
+  <p>
+    <%= f.label :secret %><br />
+    <%= f.text_field :secret %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

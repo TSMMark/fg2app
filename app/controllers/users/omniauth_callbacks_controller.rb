@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_filter :authenticate_user!
   def facebook
-    return handle_auth
+    handle_auth
   end
 
   def twitter
@@ -25,14 +25,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     session["devise.provider_data"] = @omni['info']
     if @auth and @auth.persisted? then
-      # user has account, sign them in
-      sign_in_and_redirect @auth.user, :event => :authentication
+      # user has account
+      # update token in database
+      if @auth.token != @omni['credentials'].token then
+        @auth.token = @omni['credentials'].token
+        @auth.save
+      end
+      # sign them in
+      sign_in_user @auth.user
       set_flash_message(:notice, :success, :kind => @omni['provider']) if is_navigational_format?
     elsif current_user
       # user signed in, wants to add an auth provider
       attach_provider
       flash[:notice] = "Successfully added your #{@omni[:provider]} account."
-      sign_in_and_redirect current_user, :event => :authentication
+      sign_in_user current_user
     else
       # no user signed in, no auth exists, create new user and auth
       #raise @omni.to_yaml
@@ -40,10 +46,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = user_from_omni
       @user.save!
       @user = attach_provider @user
-      sign_in_and_redirect @user, :event => :authentication
+      sign_in_user @user
       #redirect_to new_user_registration_path
     end
 
+  end
+
+  # sign in the user and fetch their admin'd pages from FB
+  def sign_in_user user
+    user.fetch_pages
+    sign_in_and_redirect user, :event => :authentication
+    user
   end
 
   # create new user from omni data
@@ -61,10 +74,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user.authentications.create!(
       :provider => @omni['provider'],
       :uid => @omni['uid'],
-      :token => @omni['credentials'].token,
-      :token_secret => @omni['credentials'].secret
+      :token => @omni['credentials'].token
     )
     return user
   end
+
 
 end

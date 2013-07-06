@@ -1,11 +1,59 @@
 Fg2app::Application.routes.draw do
 
-  devise_for :users,
-    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      match 'users/me'  => 'users#me', as: :me_api_path
+      match 'me'        => 'users#me', as: :me_api_path
+      resources :users
+      resources :pages
+      resources :tabs
+      resources :layouts
+      # nest some stuff
+    end
+  end
+
+  resources :fbapps
+
+  resources :tabs
+
+  root :to => "dash#index"
 
   get 'dash' => "dash#index"
 
-  root :to => "dash#index"
+  resources :pages
+
+  #devise_scope :user do
+    #match 'users/sign_in' => 'dash#index', as: :new_user_session
+    #match 'users/sign_up' => 'dash#index', as: :new_user_registration
+    #match "users/:id"     => 'users#show', as: :user
+  #end
+
+  #resources :users
+
+  devise_for :users,
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+    #:path => 'users',
+    #:skip => [:sessions],
+
+  # catch all
+  # match '*route', to: 'dash#index'
+
+  #as :user do
+    # sessions
+    #post 'signin' => 'devise/sessions#create', :as => :user_session
+    #match 'signin' => 'dash#index', :as => :new_user_session
+    #match 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+      #:via => Devise.mappings[:user].sign_out_via
+  #end
+    
+
+  #devise_scope "user" do
+  #  get 'login' => 'users/auth/facebook', :as => :new_user_session
+  #  post 'signin' => 'devise/sessions#create', :as => :user_session
+  #  delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  #end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

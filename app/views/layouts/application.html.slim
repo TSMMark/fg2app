@@ -7,21 +7,30 @@ html
 	  = csrf_meta_tags
 	  meta[ name="viewport"
 	  			content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no"]
+	  meta[ name="apple-mobile-web-app-capable" content="yes"]
+
 
 	body
-		= render "layouts/navbar"
 
-		#page-content.container-fluid
-			- # fill with some example flashes
-			- # flash = flash.nil? ? [] : flash
-			- # flash.push( ["alert","Link deleted (sample flash notif)"] )
-			- unless flash.nil? || flash.empty?
-				.container-fluid
-					.alerts
-					- flash.each do |name, msg|
-						.row-fluid
-							div[class="span10 offset1"]
-								div[class="alert alert-#{name}"]
-									= msg
-			
+		.frame
 			== yield
+
+		/ still need to handle flash notifs in some way 
+		/   send them to javascript variable
+
+		/ = render "layouts/navbar"
+
+		/ #page-content.container-fluid
+			/ - # fill with some example flashes
+			/ - # flash = flash.nil? ? [] : flash
+			/ - # flash.push( ["alert","Link deleted (sample flash notif)"] )
+			/ - unless flash.nil? || flash.empty?
+				/ .container-fluid
+				/ 	.alerts
+					/ - flash.each do |name, msg|
+						/ .row-fluid
+						/ 	div[class="span10 offset1"]
+						/ 		div[class="alert alert-#{name}"]
+									/ # = msg
+			
+			/ == yield

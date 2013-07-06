@@ -1,0 +1,125 @@
+/*
+  media query
+  if $only == true, only @content on the device
+  if $only == false, only @content on everything BUT the device
+*/
+@mixin qif($device, $only:true, $dim:width) {
+  /* size reference (not necessarily real device sizes):
+      iPhone:(320,480) or (320,568)
+      iPad:(768,980px)
+  */
+  @if $device == desktop {
+    @if $only == true {
+      @media (min-#{$dim}: 980px) { @content; }
+    } @else {
+      @media (max-#{$dim}: 979px) { @content; }
+    }
+  }
+  @else if $device == tablet {
+    @if $only == true {
+      @media (min-#{$dim}: 768px) and (max-#{$dim}: 979px) { @content; }
+    } @else {
+      @media (max-#{$dim}: 767px) , (min-#{$dim}: 980px) { @content; }
+    }
+  }
+  @else if $device == phone {
+    @if $only == true {
+      @media (max-#{$dim}: 767px) { @content; }
+    } @else {
+      @media (min-#{$dim}: 768px) { @content; }
+    }
+  }
+  @else if $device == tiny {
+    @if $only == true {
+      @media (max-#{$dim}: 568px) { @content; }
+    } @else {
+      @media (min-#{$dim}: 569px) { @content; }
+    }
+  }
+}
+
+
+// michaelsacca/Compass-Placeholder-Text-Mixin
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; } 
+}
+
+@mixin base-font{
+  font-family: $base-font, sans-serif;
+}
+
+@mixin scroll-on-hover($d:y){
+  overflow-#{$d}:hidden;
+  &:hover{
+    overflow-#{$d}:auto;
+  }
+}
+
+/* ====================
+      SLIDE FOR SIDEBAR SLIDE MIXINS
+   ==================== */
+// helper
+@mixin _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration){
+  #{$prefix}left:$sidebar-width;
+  @if $include-right != false{
+    #{$prefix}right:-$sidebar-width;
+  }
+  @if $transition-duration != false{
+    @include transition-duration($transition-duration);
+  }
+}
+
+// shift over for the sidebar
+// can do margin or left / right
+// $prefix:     "margin-" to adjust margin-left instead of left
+// $conditions: true => check for .sidebar-in or 980px
+@mixin shift-for-sidebar($initial-left:0, $initial-right:0, $include-right:false, $prefix:null, $sidebar-width:$sidebar-width, $transition-duration-in:$navbar-slide-in-duration, $transition-duration-out:$navbar-slide-out-duration, $conditions:true){
+
+  @if $conditions != false{
+    @include transition-duration($transition-duration-out);
+    &.sidebar-in, .sidebar-in &{
+      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
+    }
+    @media (min-width: 980px) {
+      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
+    }
+  } @else {
+    @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
+  }
+}
+
+
+@mixin no-margin {
+  margin:0;
+  padding:0;
+}
+
+@mixin list-no-margin {
+  @include no-margin;
+  list-style:none;
+  li{
+    @include no-margin;
+    list-style:none;
+  }
+}
+
+// width and minimum width
+@mixin wmw($width:auto){
+  width:$width;
+  min-width:$width;
+}
+
+
+
+@mixin icon-size($size:14px){
+  width:$size;
+  height:$size;
+  line-height:$size;
+  font-size:$size;
+  background-position:$size, $size;
+}
+

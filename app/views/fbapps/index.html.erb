@@ -1,0 +1,21 @@
+<% title "Fbapps" %>
+
+<table>
+  <tr>
+    <th>App</th>
+    <th>Namespace</th>
+    <th>Secret</th>
+  </tr>
+  <% for fbapp in @fbapps %>
+    <tr>
+      <td><%= fbapp.key %></td>
+      <td><%= fbapp.namespace %></td>
+      <td><%= fbapp.secret %></td>
+      <td><%= link_to "Show", fbapp %></td>
+      <td><%= link_to "Edit", edit_fbapp_path(fbapp) %></td>
+      <td><%= link_to "Destroy", fbapp, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Fbapp", new_fbapp_path %></p>

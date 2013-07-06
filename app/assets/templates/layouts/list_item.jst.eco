@@ -1,0 +1,28 @@
+<div class="list-item-column">
+  <div class="list-item-inner-row">
+    <div class="list-item-label-top">
+      updated:
+    </div>
+    <div class="timeago-value">
+     <%= $.timeago(@model.escape("created_at")) %>
+    </div>
+  </div>
+
+  <div class="list-item-inner-row">
+    <div class="list-item-label-top">
+      created:
+    </div>
+    <div class="timeago-value">
+      <%= $.timeago(@model.escape("updated_at")) %>
+
+    </div>
+  </div>
+</div>
+<div class="list-item-column"><i class="promo-indicator icon-trophy"></i></div>
+<div class="list-item-column">placeholder img</div>
+<div class="list-item-column"><%= @model.escape("name") %> / <%= @model.escape("description") %></div>
+<div class="list-item-column">tags</div>
+<div class="list-item-column">
+  <i class="icon-lock"></i>
+  <i class="icon-chevron-sign-down"></i>
+</div>

@@ -1,0 +1,20 @@
+<% title "Fbapp" %>
+
+<p>
+  <strong>Namespace:</strong>
+  <%= @fbapp.namespace %>
+</p>
+<p>
+  <strong>Key:</strong>
+  <%= @fbapp.key %>
+</p>
+<p>
+  <strong>Secret:</strong>
+  <%= @fbapp.secret %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_fbapp_path(@fbapp) %> |
+  <%= link_to "Destroy", @fbapp, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", fbapps_path %>
+</p>

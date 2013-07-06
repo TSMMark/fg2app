@@ -1,0 +1,56 @@
+//    bootstrap
+// define bootstrap vars
+$linkColor:                     #0685A6;
+
+$btnPrimaryBackground:          #2C95B1;
+$btnPrimaryBackgroundHighlight: #126C83;
+
+// $placeholderText: 
+// $inputBackground: 
+// $inputBorder: 
+// $inputBorderRadius: 
+// $inputDisabledBackground: 
+// $formActionsBackground: 
+// $btnPrimaryBackground:  
+// $btnPrimaryBackgroundHighlight: 
+
+// navbar search (apparently this only works when in the navbar...)
+// $navbarSearchBackground:  black;
+// $navbarSearchBackgroundFocus: whitesmoke;
+// $navbarSearchBorder:  red;
+// $navbarSearchPlaceholderColor:  
+
+
+
+$sansFontFamily:  $base-font-family;
+// $serifFontFamily: 
+// $monoFontFamily:  
+// $baseFontSize:  
+$baseFontFamily:  $base-font-family;
+// $baseLineHeight:  
+// $altFontFamily: 
+// $headingsFontFamily:  
+// $headingsFontWeight:  
+
+
+// $placeholderText:              'Oswald', sans-serif;
+// $baseFontFamily:               $placeholderText;
+// $serifFontFamily:              $placeholderText;
+
+$navbarBackgroundHighlight:     #333;
+$navbarBackground:              black;
+$navbarText:                    whitesmoke;
+$navbarLinkColor:               whitesmoke;
+$navbarLinkColorHover:          white;
+$navbarLinkColorActive:         #CCC;
+
+// import bootstrap
+@import 'bootstrap';
+body{
+  //padding-top:40px;
+}
+@import 'bootstrap-responsive';
+// .. bootstrap ..
+body * {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

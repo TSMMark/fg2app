@@ -1,2 +1,16 @@
-h1 Dash#index
-p Find me in app/views/dash/index.html.erb
+/h1 Your pages
+/table
+/  tr
+/    th Pid
+/    th Name
+/    th Category
+/  -for page in @pages
+/    tr
+/      td =page.pid
+/      td =page.name
+/      td =page.category
+
+javascript:
+  window.current_user = #{@current_user.to_json.html_safe}
+
+#app-content

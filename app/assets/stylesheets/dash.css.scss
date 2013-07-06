@@ -3,36 +3,117 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // arvo
-//@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
-@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
+// @import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
+// @import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
 
-//    bootstrap
-// define bootstrap vars
-$linkColor:											#0685A6;
+// keyframes(expand-height){
+//   0%{
+//     height: 0;
+//   }
+//   100% {
+//     height:auto;
+//   }
+// }
 
-$btnPrimaryBackground:					#2C95B1;
-$btnPrimaryBackgroundHighlight:	#126C83;
+.dash-fanbux{
 
-$placeholderText:								'Oswald', sans-serif;
-$baseFontFamily:								$placeholderText;
-$serifFontFamily:								$placeholderText;
-
-$navbarBackgroundHighlight:			#333;
-$navbarBackground:							black;
-$navbarText:										whitesmoke;
-$navbarLinkColor:								whitesmoke;
-$navbarLinkColorHover:					white;
-$navbarLinkColorActive:					#CCC;
-
-// import bootstrap
-@import 'bootstrap';
-body{
-	padding-top:40px;
 }
-@import 'bootstrap-responsive';
-// .. bootstrap ..
+// @include qif(phone, true){
+@include qif(tiny, true){
+  #app-content{
+
+    // make room for footer
+    #main-content-container{
+      bottom: $footer-height-phone;
+    }
+
+    .dash-fanbux{
+      position: fixed;
+      display: block;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1050;
+      height: $footer-height-phone;
+      background: $highlight-green;
+      text-align: center;
+      color: $white;
+      @include shift-for-sidebar($include-right:true);
+    }
+
+  }
+}
+
+/*  */
+.layouts-list-container{
+  .list-header{
+    position:relative;
+    height: $list-header-height;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    .searchbar-container{
+      @extend .zero-edge;
+      .layouts-list-search{
+        @extend .zero-edge;
+        @include wmw;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        @include no-margin;
+        height: $list-header-height;
+        font-size: 33px;
+        line-height: initial;
+        left: 63px;
+        right:25%;
+        @include base-font;
+        color:$grey;
+        @include input-placeholder{
+          color:$offer-white;
+        }
+      }
+      i{
+        position: absolute;
+        @include icon-size(36px);
+        left: 25px;
+        top: 7px;
+        color: $offer-white;
+      }
+    }
+  }
+  .layouts-list-scroller{
+    @extend .scrolling;
+    top:$list-header-height;
+  }
+}
+.layouts-list{
+  @include list-no-margin;
+  display:table;
+  width:100%;
+}
+.layout-list-item{
+  display:table-row;
+  height:100px;
+
+  .list-item-column{
+    display:table-cell;
+    vertical-align: middle;
+    text-align:center;
+    cursor:pointer;
+    padding:0 2%;
+    min-width: 100px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  i{
+    @include icon-size($list-item-header-size);
+    &.promo-indicator{
+      font-size:60px;
+      @include icon-size(60px);
+      color: rgba($highlight-blue, 0.25);
+    }
+  }
+}
 
 
 
-// font-awesome
-@import 'font-awesome';
+
+

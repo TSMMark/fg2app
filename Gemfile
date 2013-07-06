@@ -1,14 +1,48 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :development do
+  gem "nifty-generators"
+end
+
 group :development, :test do
 	gem 'sqlite3'
 	gem 'commands'
+
+  # rspec testing suite
+  gem 'rspec-rails', '~> 2.0'
+
+  # used to clean the test database before specs
+  gem "database_cleaner", "~> 1.0.1"
+
 end
+
+
+group :test do
+  # factory girl !
+  gem "factory_girl_rails", "~> 4.0"
+
+  # gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+
+  gem 'selenium-webdriver'
+  
+  gem 'poltergeist'
+  
+  # install in mac osx
+  # gem install rb-fsevent
+
+  # gem "mocha", :require => false
+end
+
 
 group :production do
 	gem 'pg'
@@ -20,8 +54,8 @@ end
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
-  #gem 'sass-rails',   '~> 3.2.3'
   #gem 'bootstrap-sass', '~> 2.2.2.0'
+
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -30,12 +64,19 @@ group :assets do
 end
 
 gem 'sass-rails',   '~> 3.2.3'
+gem 'compass-rails'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 
-
-gem 'font-awesome-rails'
+# https://github.com/russfrisch/modernizr-rails
+gem 'modernizr-rails'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+# JSON2
+# gem 'json2-rails'
+
+gem 'font-awesome-rails'
 
 gem "strip_attributes", "~> 1.2"
 
@@ -47,12 +88,33 @@ gem 'figaro'
 
 # authenticate
 gem 'devise'
-# authorize
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 
+# authorize
+gem 'cancan'
+# hide attrs to certain user groups
+gem 'strong_parameters'
+gem 'cancan_strong_parameters'
 
+# facebook graph API
+gem 'fbgraph'
+
+# for sorting widget order in a tab
+gem 'acts_as_list'
+
+# backbone.js
+gem 'backbone-on-rails'
+
+# allow getting by symbol or string in hash
+gem 'insensitive_hash'
+
+# API attributes
+# gem 'acts_as_api'
+gem 'active_model_serializers'
+
+gem 'squeel'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -68,3 +130,4 @@ gem 'oauth2'
 
 # To use debugger
 # gem 'debugger'
+

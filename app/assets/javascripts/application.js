@@ -12,9 +12,35 @@
 //
 //= require jquery
 //= require jquery_ujs
+//  
+//  jquery-ui-rails
+//= require jquery.ui.all
 //
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //
-//= require_tree .
+//= require modernizr
 //
+//= require underscore
+//= require backbone
+//
+//= require ./helpers/helper_definer
+//= require ./helpers/fun_jst
+//= require_tree ./helpers
+//
+//  http://timeago.yarp.com/
+//= require jquery.timeago
+//
+//  slimScroll jquery scrollbar plugin
+//= require jquery.slimscroll.min
+//
+//  Backbone app
+//= require fg2app
+//
+//= require_tree ./support
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
+//= require_tree .

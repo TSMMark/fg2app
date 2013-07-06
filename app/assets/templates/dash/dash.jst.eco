@@ -1,0 +1,10 @@
+<div id="menu" class="menu nav-collapse collapse width"></div>
+
+
+<div class="view">
+
+  <div id="top-bar"></div>
+
+  <div id="main-content-container"></div>
+
+</div>

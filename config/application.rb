@@ -16,7 +16,7 @@ module Fg2app
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/extras #{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -37,7 +37,7 @@ module Fg2app
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -52,12 +52,28 @@ module Fg2app
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
+    # config.active_record.whitelist_attributes = false
 
     # Enable the asset pipeline
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.generators do |g|
+        g.template_engine :slim
+
+        # testing
+        g.test_framework :rspec,
+            :fixtures => false,
+            :view_specs => false,
+            :helper_specs => false,
+            :routing_specs => false,
+            :controller_specs => true,
+            :request_specs => true
+        g.factory_girl true
+        g.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
 
     #Rails 4
     #Due to a change in Rails that prevents images from being compiled in vendor and lib, you'll need to add the following line to your application.rb:

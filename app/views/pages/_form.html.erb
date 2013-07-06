@@ -1,0 +1,16 @@
+<%= form_for @page do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :pid %><br />
+    <%= f.text_field :pid, disabled: true %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, disabled: true %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category, disabled: true %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

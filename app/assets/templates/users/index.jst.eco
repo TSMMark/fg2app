@@ -1,0 +1,4 @@
+<h1>fg2</h1>
+<% for @user in @users.models: %>
+  <li><%=@user.get('name')%></li>
+<% end %>
