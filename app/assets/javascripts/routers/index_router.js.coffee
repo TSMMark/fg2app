@@ -1,7 +1,7 @@
 class Fg2app.Routers.Index extends Support.SwappingRouter
 
   routes:
-    '(/)'            : 'index'
+    '([/#_])'            : 'index'
     '*notFound'      : 'notFound'
   
   index: ->
@@ -10,4 +10,4 @@ class Fg2app.Routers.Index extends Support.SwappingRouter
     dash.render()
 
   notFound: ->
-    Backbone.history.navigate ''
+    Backbone.history.navigate '', trigger:true

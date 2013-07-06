@@ -15,9 +15,11 @@ window.Fg2app   =
     new Fg2app.Routers.Index()
     new Fg2app.Routers.Users()
     # new Fg2app.Routers.Tabs()
-    Backbone.history.start( pushState: true )
+    Backbone.history.start
+      pushState: "pushState" in window.history
 
 $(document).ready ->
+  alert "init"
   Fg2app.initialize()
   document.addEventListener "touchstart", (->), true
 

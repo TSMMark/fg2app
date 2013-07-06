@@ -14,16 +14,14 @@
 ActiveRecord::Schema.define(:version => 20130628194030) do
 
   create_table "authentications", :force => true do |t|
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.string   "provider",   :default => "0", :null => false
-    t.string   "uid",        :default => "0", :null => false
-    t.string   "token",      :default => "0", :null => false
-    t.string   "user_id",    :default => "0", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "token_secret"
+    t.integer  "user_id"
   end
-
-  add_index "authentications", ["uid"], :name => "index_authentications_on_uid"
-  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "fbapps", :force => true do |t|
     t.string   "namespace",  :null => false
@@ -91,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20130628194030) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
-    t.string   "name",                   :default => "0",   :null => false
+    t.string   "name"
     t.boolean  "admin",                  :default => false, :null => false
     t.boolean  "guest",                  :default => false, :null => false
   end

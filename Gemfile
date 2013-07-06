@@ -70,13 +70,13 @@ gem 'bootstrap-sass', '~> 2.2.2.0'
 # https://github.com/russfrisch/modernizr-rails
 gem 'modernizr-rails'
 
-gem 'font-awesome-rails'
-
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 # JSON2
 # gem 'json2-rails'
+
+gem 'font-awesome-rails'
 
 gem "strip_attributes", "~> 1.2"
 
