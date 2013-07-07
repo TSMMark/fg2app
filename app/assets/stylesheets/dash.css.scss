@@ -61,6 +61,7 @@
         box-shadow: none;
         @include no-margin;
         height: $list-header-height;
+        // TODO $list-header-height-phone
         font-size: 33px;
         line-height: initial;
         left: 63px;
@@ -114,11 +115,16 @@
   width:100%;
 }
 .layout-list-item{
+  position:relative;
   display:table-row;
   height:$list-item-height;
   background:$list-item-background;
   &:hover{
     background:$list-item-background-hover;
+  }
+  @include qif(tiny){
+    display: block;
+    height: $list-item-height-phone;
   }
 }
 
@@ -206,14 +212,27 @@
     display:none;
   }
 }
+
 .thumb-column{
   width:8%;
   max-width: ($list-item-height * 1.5);
+  @include qif(tiny){
+    @include zero-edge;
+    left:$thumb-column-margin-phone;
+    right:auto;
+    width: $thumb-column-width-phone;
+    // bottom:0;
+    // height:$row-height-phone;
+  }
 }
 .title-column{
   width:15%;
   text-align: left;
+  left:$list-header-search-width;
   @include qif(tiny){
+    @include zero-edge;
+    left: ($thumb-column-width-phone + ($thumb-column-margin-phone * 2));
+    right: $status-column-width-phone;
   }
 }
 .tag-column{
@@ -225,6 +244,10 @@
 .status-column{
   width: 6%;
   min-width: 40px;
+  @include qif(tiny){
+    @include zero-edge;
+    left:auto;
+  }
 }
 
 

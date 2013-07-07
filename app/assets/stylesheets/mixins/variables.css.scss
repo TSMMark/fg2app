@@ -94,10 +94,17 @@ $base-font-family:  $base-font, sans-serif;
 
 $large-icon-size:60px;
 
+$thumb-width-standard:  111px;
+$thumb-height-standard: 74px;
+
 $list-item-background: $white;
 $list-item-background-hover: $almost-white;
 $list-item-height:88px;
-$list-item-height-phone:66px;
+$list-item-height-phone:$thumb-height-standard;
+
+$thumb-column-width-phone:  $thumb-width-standard;
+$thumb-column-margin-phone:    2px;
+$status-column-width-phone:    40px;
 
 
 /*  ====================

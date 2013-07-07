@@ -36,11 +36,24 @@
 }
 
 .zero-edge{
+  display: block;
   position:absolute;
+  width:auto;
+  height:auto;
   top:0;
   bottom:0;
   right:0;
   left:0;
+}
+@mixin zero-edge($top:0, $right:0, $bottom:0, $left:0){
+  display: block;
+  position:absolute;
+  width:auto;
+  height:auto;
+  top:$top;
+  right:$right;
+  left:$left;
+  bottom:$bottom;
 }
 
 .icon-expander:before{
