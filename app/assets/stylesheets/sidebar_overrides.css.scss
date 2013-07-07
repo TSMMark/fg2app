@@ -72,7 +72,7 @@ html, body{
     // width:100%;
 
     .navbar-inner{
-      @include background(linear-gradient(top, $off-white, darken($off-white, 5%)));
+      @include background(linear-gradient(top, $almost-white, darken($off-white, 5%)));
 
       // min-width:200%;
       width:auto;

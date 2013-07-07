@@ -91,29 +91,113 @@
 }
 .layout-list-item{
   display:table-row;
-  height:100px;
-
-  .list-item-column{
-    display:table-cell;
-    vertical-align: middle;
-    text-align:center;
-    cursor:pointer;
-    padding:0 2%;
-    min-width: 100px;
-
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height:$list-item-height;
+  background:$list-item-background;
+  &:hover{
+    background:$list-item-background-hover;
   }
+}
+
+.list-item-column{
+  display:table-cell;
+  vertical-align: middle;
+  text-align:center;
+  cursor:pointer;
+  padding:0 5px;
+  // min-width: 100px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  li:first-child &{
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  li:last-child &{
+    border-bottom: none;
+  }
+
+}
+.list-item-thumb{
+  display: block;
+  margin:0 auto;
+
+  // fb tab app image dimensions
+  height: $list-item-height;
+  width: ($list-item-height * 1.5);
+
+  background: url(https://fbcdn-photos-d-a.akamaihd.net/hphotos-ak-prn1/851560_10151727615332495_132929428_n.jpg) no-repeat center center;
+  background-size: cover;
+}
+.promo-indicator{
+  color: rgba($highlight-blue, 0.25);
+}
+
+.status-column{
+  min-width:auto;
+  font-size: $status-icon-size;
   i{
-    @include icon-size($list-item-header-size);
-    &.promo-indicator{
-      font-size:60px;
-      @include icon-size(60px);
-      color: rgba($highlight-blue, 0.25);
+    margin-right:8px;
+    &:last-child{
+      // margin-right:0;
     }
   }
 }
 
+.timestamp-column{
+  font-size: 10px;
+  line-height:10px;
+  margin: 6px 0;
 
+  color:$normal-blue;
+  label{
+    margin:0;
+    padding:0;
+    display:block;
+    font-size: 10px;
+    line-height:10px;
+    color: $textColor;
+  }
 
+}
+
+.promo-column, .large-icon-column{
+  min-width:$large-icon-size;
+  i{
+    @include icon-size($large-icon-size);
+  }
+
+}
+
+//  SPECIFIC COLUMNS
+.timestamp-column{
+  width:8%;
+  @include qif(tiny){
+    display:none;
+  }
+}
+.promo-column{
+  width:5%;
+  @include qif(tiny){
+    display:none;
+  }
+}
+.thumb-column{
+  width:8%;
+  max-width: 100px;
+}
+.title-column{
+  width:15%;
+  @include qif(tiny){
+    text-align: left;
+  }
+}
+.tag-column{
+  width:10%;
+  @include qif(tiny){
+    display:none;
+  }
+}
+.status-column{
+  width: 6%;
+  min-width: 35px;
+}
 
 

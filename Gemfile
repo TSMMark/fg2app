@@ -21,6 +21,9 @@ group :development, :test do
   # used to clean the test database before specs
   gem "database_cleaner", "~> 1.0.1"
 
+  # fake records
+  gem "faker", "~> 1.1.2"
+
 end
 
 
@@ -115,6 +118,7 @@ gem 'insensitive_hash'
 gem 'active_model_serializers'
 
 gem 'squeel'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

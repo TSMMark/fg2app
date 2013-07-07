@@ -42,3 +42,9 @@
   right:0;
   left:0;
 }
+
+.icon-expander:before{
+  @include qif(tiny){
+    @include rotate(270deg);
+  }
+}
