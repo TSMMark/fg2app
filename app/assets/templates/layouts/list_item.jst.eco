@@ -36,6 +36,8 @@
 <div class="list-item-column tag-column">tags</div>
 
 <div class="list-item-column status-column">
-  <i class="icon-lock"></i>
-  <i class="icon-chevron-sign-down icon-expander"></i>
+  <div class="status-icon-container">
+    <i class="icon-lock"></i>
+    <i class="icon-chevron-sign-down icon-expander"></i>
+  </div>
 </div>
