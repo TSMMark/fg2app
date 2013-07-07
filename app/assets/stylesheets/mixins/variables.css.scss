@@ -45,8 +45,13 @@ $textColor: #333;
 // $normal-blue:       rgb(64  , 154 , 204);
 // $normal-blue-dark:  rgb(60  , 143 , 197);
 
-$normal-blue:       rgb(65  , 145 , 204); 
-$normal-blue-dark:  rgb(60  , 143 , 197);
+$normal-blue:         rgb(48  , 134 , 195); 
+$normal-blue-dark:    darken($normal-blue, 5%);
+$normal-blue-darker:  darken($normal-blue, 10%);
+$normal-blue-light:   lighten($normal-blue, 5%);
+$normal-blue-lighter: lighten($normal-blue, 10%);
+// $normal-blue-dark:  rgb(45  , 122 , 187);
+
 $normal-grey:       rgb(188 , 190 , 192);
   // alias normal colors
   $blue:  $normal-blue;
@@ -74,7 +79,7 @@ $offer-white:     #E9E9E9;
 $side-nav-under-background:   $normal-blue;
 $side-nav-background:         $normal-blue-dark;
 $side-nav-background-hover:   $normal-blue-dark;
-$side-nav-background-active:  $highlight-blue;
+$side-nav-background-active:  $normal-blue-light;
 
 $side-nav-color:              $offer-white;
 $side-nav-color-hover:        $white;
@@ -104,7 +109,27 @@ $list-header-height: 52px;
 $list-header-height-phone: 26px;
 $list-item-header-size:24px;
 
+$list-header-search-width:75%;
+
 $status-icon-size:20px;
 
+
+
+// topbar
+
+$topbar-color-top:$white;
+$topbar-color-bottom:$off-white;
+$topbar-gradient:linear-gradient(top, $topbar-color-top, $topbar-color-bottom);
+
+
+$button-gradient:         linear-gradient(top, color-stops($normal-blue 0%, $normal-blue 50%, $normal-blue-dark 51%, $normal-blue-dark 100%));
+$button-gradient-hover:   linear-gradient(top, color-stops($normal-blue-dark 0%, $normal-blue-dark 50%, $normal-blue-darker 51%, $normal-blue-darker 100%));
+$button-default-opacity:  1;
+$button-hover-opacity:    0.9;
+$button-active-opacity:   0.8;
+
+
+$light-border-bottom: 1px solid rgba(0  , 0   , 0 , 0.1);
+$light-border-top:    1px solid rgba(255, 255, 255, 0.1);
 
 

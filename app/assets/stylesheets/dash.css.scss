@@ -48,8 +48,9 @@
 .layouts-list-container{
   .list-header{
     position:relative;
+    z-index: 50;
     height: $list-header-height;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: $light-border-bottom;
     .searchbar-container{
       @extend .zero-edge;
       .layouts-list-search{
@@ -63,7 +64,7 @@
         font-size: 33px;
         line-height: initial;
         left: 63px;
-        right:25%;
+        right:(100 - $list-header-search-width);
         @include base-font;
         color:$grey;
         @include input-placeholder{
@@ -82,6 +83,7 @@
   .layouts-list-scroller{
     @extend .scrolling;
     top:$list-header-height;
+    z-index: 25;
   }
 }
 .layouts-list{
@@ -106,9 +108,11 @@
   padding:0 5px;
   // min-width: 100px;
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: $light-border-top;
+  border-bottom: $light-border-bottom;
   li:first-child &{
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    // border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
   }
   li:last-child &{
     border-bottom: none;
@@ -185,8 +189,8 @@
 }
 .title-column{
   width:15%;
+  text-align: left;
   @include qif(tiny){
-    text-align: left;
   }
 }
 .tag-column{
@@ -197,7 +201,29 @@
 }
 .status-column{
   width: 6%;
-  min-width: 35px;
+  min-width: 40px;
 }
+.btn-new-layout{
+  display: block;
+  position:absolute;
+  @extend .zero-edge;
+  left:$list-header-search-width;
+  text-align: center;
+
+  @include button-gradient;
+  color:$white;
+  font-size: 26px;
+  line-height: $list-header-height;
+}
+
+
+
+
+
+
+
+
+
+
 
 
