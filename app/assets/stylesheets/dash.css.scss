@@ -48,12 +48,15 @@
 .layouts-list-container{
   .list-header{
     position:relative;
+    border:none;
     z-index: 50;
     height: $list-header-height;
     @include qif(tiny){
       height: $list-header-height-phone;
     }
-    border-bottom: $light-border-bottom;
+    @include shadow-bottom;
+
+    // border-bottom: $light-border-bottom;
     .searchbar-container{
       @extend .zero-edge;
       .layouts-list-search{
@@ -82,15 +85,19 @@
           color:$offer-white;
         }
       }
+
+      // list header icon
       i{
         position: absolute;
-        @include icon-size(36px);
+        @include icon-size($list-header-icon-size);
         left: 25px;
-        top: 7px;
+        // top: 7px;
+        top: ($list-header-height - $list-header-icon-size) / 2;
         @include qif(tiny){
-          @include icon-size(28px);
+          @include icon-size($list-header-icon-size-phone);
           left: 8px;
-          top: 4px;
+          top: ($list-header-height-phone - $list-header-icon-size-phone) / 2;
+
         }
         color: $offer-white;
       }
@@ -143,6 +150,7 @@
 }
 
 .list-item-column{
+  position:relative;
   display:table-cell;
   vertical-align: middle;
   text-align:center;
@@ -182,12 +190,17 @@
 
 .status-column{
   min-width:auto;
-  font-size: $status-icon-size;
-  i{
-    margin-right:8px;
-    @include qif(phone){
-      margin-right: 0;
-      display: block;
+  @include font-line-size($status-icon-size);
+  .status-icon-container{
+    @include qif(tiny){
+      @include v-center($list-item-height-phone, $status-icon-size*2);
+    }
+    i{
+      margin-right:8px;
+      @include qif(phone){
+        margin-right: 0;
+        display: block;
+      }
     }
   }
 }
@@ -236,6 +249,7 @@
   max-width: ($list-item-height * 1.5);
   @include qif(tiny){
     @include zero-edge;
+    @include no-margin;
     right:auto;
     // left: $thumb-column-margin-phone;
     width: $thumb-column-width-phone;
@@ -246,10 +260,9 @@
 .title-column{
   width:15%;
   text-align: left;
-  left:$list-header-search-width;
   @include qif(tiny){
     @include zero-edge;
-    left: ($thumb-column-width-phone + ($thumb-column-margin-phone * 2));
+    left: ($thumb-column-width-phone + ($thumb-column-margin-phone));
     right: $status-column-width-phone;
   }
 }

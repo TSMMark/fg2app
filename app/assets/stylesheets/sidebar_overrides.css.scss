@@ -50,6 +50,9 @@ html, body{
     margin: 0;
     position: absolute;
     top: $navbar-height;
+    @include qif(tiny){
+      top:$navbar-height-phone;
+    }
     bottom: 0;
     left: 0;
     right: 0;
@@ -72,16 +75,21 @@ html, body{
     // width:100%;
 
     .navbar-inner{
-      @include topbar-gradient();
+      @include topbar-gradient;
 
       // min-width:200%;
       width:auto;
       min-width:auto;
 
-      $padding: 13;
-      min-height: $navbar-height - ($padding * 2);
-      height:     $navbar-height - ($padding * 2);
-      padding:#{$padding}px;
+      padding:    $navbar-padding;
+      min-height: $navbar-height - ($navbar-padding * 2);
+      height:     $navbar-height - ($navbar-padding * 2);
+
+      @include qif(tiny){
+        padding:    $navbar-padding-phone;
+        min-height: $navbar-height-phone - ($navbar-padding-phone * 2);
+        height:     $navbar-height-phone - ($navbar-padding-phone * 2);
+      }
       border-width:0;
       font-size: 18px;
 

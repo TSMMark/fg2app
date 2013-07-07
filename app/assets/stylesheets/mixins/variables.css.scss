@@ -28,6 +28,11 @@ $default-box-shadow-color: rgba(#333333, 0.6);
 
 /* Element Sizes */
 $navbar-height: 54px;
+$navbar-height-phone: 40px;
+
+$navbar-padding: 13px;
+$navbar-padding-phone: 7px;
+
 $sidebar-width: 160px;
 
 
@@ -113,13 +118,16 @@ $status-column-width-phone:    40px;
 
 // dashboard
 $list-header-height: 52px;
-$list-header-height-phone: 34px;
+$list-header-height-phone: 44px;
+$list-header-icon-size: 36px;
+$list-header-icon-size-phone: 28px;
+
 $list-item-header-size:24px;
 
-$list-header-search-width:75%;
+$list-header-search-width:65%;
 $list-header-search-width-phone:85%;
 
-$status-icon-size:20px;
+$status-icon-size:22px;
 
 
 
