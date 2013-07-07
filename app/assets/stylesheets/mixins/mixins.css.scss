@@ -55,7 +55,7 @@
 @mixin scroll-on-hover($d:y){
   overflow-#{$d}:hidden;
   &:hover{
-    overflow-#{$d}:auto;
+    overflow-#{$d}:scroll;
   }
 }
 

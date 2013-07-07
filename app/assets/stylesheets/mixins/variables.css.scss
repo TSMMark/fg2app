@@ -39,6 +39,8 @@ $footer-height-phone: 0;
 
 /* Colors */
 
+$textColor: #333;
+
 // normal palette
 // $normal-blue:       rgb(64  , 154 , 204);
 // $normal-blue-dark:  rgb(60  , 143 , 197);
@@ -62,6 +64,7 @@ $faint-grey:      rgb(241 , 241 , 241);
 
 // white
 $white:           white;
+$almost-white:    #FAFAFA;
 $off-white:       #F5F5F5; //whitesmoke
 $offer-white:     #E9E9E9; 
 
@@ -84,6 +87,13 @@ $body-background: $white;
 $base-font: Monstercat;
 $base-font-family:  $base-font, sans-serif;
 
+$large-icon-size:60px;
+
+$list-item-background: $white;
+$list-item-background-hover: $almost-white;
+$list-item-height:88px;
+$list-item-height-phone:66px;
+
 
 /*  ====================
        PAGE SPECIFIC
@@ -94,7 +104,7 @@ $list-header-height: 52px;
 $list-header-height-phone: 26px;
 $list-item-header-size:24px;
 
-
+$status-icon-size:20px;
 
 
 
