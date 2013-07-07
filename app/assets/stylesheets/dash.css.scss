@@ -65,6 +65,10 @@
         line-height: initial;
         left: 63px;
         right:(100 - $list-header-search-width);
+        @include qif(tiny){
+          left: 38px;
+          right:(100 - $list-header-search-width-phone);
+        }
         @include base-font;
         color:$grey;
         @include input-placeholder{
@@ -76,6 +80,9 @@
         @include icon-size(36px);
         left: 25px;
         top: 7px;
+        @include qif(tiny){
+          left: 4px;
+        }
         color: $offer-white;
       }
     }
@@ -85,6 +92,21 @@
     top:$list-header-height;
     z-index: 25;
   }
+}
+.btn-new-layout{
+  display: block;
+  position:absolute;
+  @extend .zero-edge;
+  left:$list-header-search-width;
+  @include qif(tiny){
+    left:$list-header-search-width-phone;
+  }
+  text-align: center;
+
+  @include button-gradient;
+  color:$white;
+  font-size: 26px;
+  line-height: $list-header-height;
 }
 .layouts-list{
   @include list-no-margin;
@@ -128,7 +150,7 @@
   width: ($list-item-height * 1.5);
 
   background: url(https://fbcdn-photos-d-a.akamaihd.net/hphotos-ak-prn1/851560_10151727615332495_132929428_n.jpg) no-repeat center center;
-  background-size: cover;
+  background-size: contain;
 }
 .promo-indicator{
   color: rgba($highlight-blue, 0.25);
@@ -139,8 +161,9 @@
   font-size: $status-icon-size;
   i{
     margin-right:8px;
-    &:last-child{
-      // margin-right:0;
+    @include qif(phone){
+      margin-right: 0;
+      display: block;
     }
   }
 }
@@ -185,7 +208,7 @@
 }
 .thumb-column{
   width:8%;
-  max-width: 100px;
+  max-width: ($list-item-height * 1.5);
 }
 .title-column{
   width:15%;
@@ -202,18 +225,6 @@
 .status-column{
   width: 6%;
   min-width: 40px;
-}
-.btn-new-layout{
-  display: block;
-  position:absolute;
-  @extend .zero-edge;
-  left:$list-header-search-width;
-  text-align: center;
-
-  @include button-gradient;
-  color:$white;
-  font-size: 26px;
-  line-height: $list-header-height;
 }
 
 
