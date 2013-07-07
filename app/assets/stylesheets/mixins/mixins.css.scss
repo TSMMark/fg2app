@@ -115,11 +115,40 @@
 
 
 
+@mixin font-line-size($size:14px){
+  line-height:$size;
+  font-size:$size;
+  // background-position:$size, $size;
+}
 @mixin icon-size($size:14px){
   width:$size;
   height:$size;
-  line-height:$size;
-  font-size:$size;
-  background-position:$size, $size;
+  @include font-line-size($size);
+  // background-position:$size, $size;
+}
+
+
+@mixin topbar-gradient($is_button:true){
+  @include background($topbar-gradient);
+}
+@mixin button-gradient($is_button:true){
+  @include background($button-gradient);
+
+  @if $is_button == true{
+    @include transition-property(opacity);
+    @include transition-duration($button-hover-duration);
+    opacity: $button-default-opacity;
+    color:$white;
+    &:hover{
+      @include transition-property(opacity);
+      @include transition-duration($button-hover-duration);
+      opacity: $button-hover-opacity;
+    }
+    &:active{
+      @include transition-property(opacity);
+      @include transition-duration($button-press-duration);
+      opacity: $button-active-opacity;
+    }
+  }
 }
 
