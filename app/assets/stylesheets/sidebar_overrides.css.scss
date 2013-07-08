@@ -27,14 +27,16 @@ html, body{
     height:100%;
     overflow:hidden;
     z-index:15;
-    @include transition-property(left);
+    @include transition-property(left, width);
   }
 }
 // for desktops, always show side nav and don't push everything else offscreen
 @include qif(desktop){
   .frame{
+    @include transition-property(width);
     width:100%;
     .view{
+      @include transition-property(left, width);
       width:auto;
     }
   }
@@ -99,7 +101,7 @@ html, body{
           .nav-option{
             background:$side-nav-background;
           }
-          
+
           @include first-last-no-border('&', '.nav-option'){
             background:transparent;
           };
