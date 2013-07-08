@@ -20,8 +20,10 @@
 @import "font-awesome";
 
 // CSS that makes "facebook-esque" sidebars work
-@import "enable_sidebar";
-@import "sidebar_overrides";
+// @import "enable_sidebar";
+@import "sidebar";
+
+@import "topbar";
 
 /* pages */
 @import "dash";

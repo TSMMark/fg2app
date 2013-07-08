@@ -5,7 +5,23 @@
       <i class="icon-reorder"></i>
     </a>
 
-    <div class="navbar-right"></div>
+
+<!-- 
+    <div class="navbar-options">
+
+      <div class="navbar-option" data-action="active-layouts">
+        <i class="icon-time"></i>
+        <span>Active Layouts</span>
+      </div>
+
+      <div class="navbar-option" data-action="active-layouts">
+        <i class="icon-time"></i>
+        <span>Active Layouts</span>
+      </div>
+
+    </div>
+ -->
+
 
   </div>
 

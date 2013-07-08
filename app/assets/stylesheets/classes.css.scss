@@ -19,10 +19,11 @@
 
 .self-portrait{
   background-image: url(http://graph.facebook.com/jeffrey.folker/picture?width=120&height=120);
-  width: 120px;
-  height: 120px;
+  width: $side-nav-portrait-size;
+  height: $side-nav-portrait-size;
   background-size: contain;
-  border-radius: 999px;
+  // border-radius: 999px;
+  @extend .image-round;
   display: inline-block;
   margin: 6px 8px;
   opacity: 0.85;
@@ -57,7 +58,7 @@
 }
 
 .icon-expander:before{
-  @include qif(tiny){
+  @include phone{
     @include rotate(270deg);
   }
 }

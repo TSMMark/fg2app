@@ -25,6 +25,9 @@ $default-box-shadow-color: rgba(#333333, 0.6);
 
 
 
+$phone-cutoff-size: tiny;
+$mobile-cutoff-size: phone;
+
 
 /* Element Sizes */
 $navbar-height: 54px;
@@ -33,7 +36,7 @@ $navbar-height-phone: 40px;
 $navbar-padding: 13px;
 $navbar-padding-phone: 7px;
 
-$sidebar-width: 160px;
+
 
 
 // $footer-height-phone: 18px;
@@ -77,8 +80,11 @@ $white:           white;
 $almost-white:    #FAFAFA;
 $off-white:       #F5F5F5; //whitesmoke
 $offer-white:     #E9E9E9; 
+$offest-white:    #E0E0E0; 
 
 
+
+$side-nav-width: 160px;
 
 // side navigation bar color
 $side-nav-under-background:   $normal-blue;
@@ -90,6 +96,9 @@ $side-nav-color:              $offer-white;
 $side-nav-color-hover:        $white;
 $side-nav-color-active:       $white;
 
+$side-nav-portrait-size: 80px;
+$sidebar-icon-size-phone:26px;
+$sidebar-font-size-phone:16px;
 
 // background of body and pseudo-transparent
 $body-background: $white;
