@@ -1,11 +1,5 @@
 
 
-@mixin navbar-slide-in-duration(){
-  @include transition-duration($navbar-slide-in-duration);
-}
-@mixin navbar-slide-out-duration(){
-  @include transition-duration($navbar-slide-out-duration);
-}
 
 html, body{
   position: absolute;
@@ -32,11 +26,6 @@ html, body{
     width:100%;
     .view{
       width:auto;
-      // position:absolute;
-      // top: 0;
-      // bottom: 0;
-      // right: 0;
-      // left: $sidebarWidth;
     }
   }
 }
@@ -45,13 +34,13 @@ html, body{
   height:100%;
 
   #main-content-container{
-    @include transition-property(margin, top, bottom, left, right);
+    @include transition-property(margin, bottom, left, right);
     @include navbar-slide-out-duration;
     margin: 0;
     position: absolute;
     top: $navbar-height;
     @include qif(tiny){
-      @include navbar-slide-out-duration;
+      // @include navbar-slide-out-duration;
       top:$navbar-height-phone;
     }
     bottom: 0;
@@ -82,15 +71,15 @@ html, body{
       width:auto;
       min-width:auto;
 
-      @include transition-property(padding, min-height, height);
-      @include navbar-slide-out-duration;
+      // @include transition-property(padding, min-height, height);
+      // @include navbar-slide-out-duration;
       padding:    $navbar-padding;
       min-height: $navbar-height - ($navbar-padding * 2);
       height:     $navbar-height - ($navbar-padding * 2);
 
       @include qif(tiny){
-        @include transition-property(padding, min-height, height);
-        @include navbar-slide-out-duration;
+        // @include transition-property(padding, min-height, height);
+        // @include navbar-slide-out-duration;
         padding:    $navbar-padding-phone;
         min-height: $navbar-height-phone - ($navbar-padding-phone * 2);
         height:     $navbar-height-phone - ($navbar-padding-phone * 2);
@@ -132,8 +121,6 @@ html, body{
   }
   // ..navbar
 
-
-  // ..sidebar
 
   // sidebar
   .menu.nav-collapse.collapse.width{
