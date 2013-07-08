@@ -164,13 +164,9 @@
 
   border-top: $light-border-top;
   border-bottom: $light-border-bottom;
-  @include first-last-no-border(li, '&');
-  // li:first-child &{
-  //   border-top: none;
-  // }
-  // li:last-child &{
-  //   border-bottom: none;
-  // }
+  // 
+  @include first-last-no-border(li, '&', vertical);
+
   @include qif(tiny){
     border: none;
   }

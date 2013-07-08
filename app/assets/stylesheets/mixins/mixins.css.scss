@@ -81,10 +81,7 @@
 
   @if $conditions != false{
     @include transition-duration($transition-duration-out);
-    &.sidebar-in, .sidebar-in &{
-      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
-    }
-    @media (min-width: 980px) {
+    @include when-sidebar-in(){
       @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
     }
   } @else {
@@ -135,9 +132,9 @@
 @mixin topbar-gradient($is_button:true){
   @include background($topbar-gradient);
 }
+
 @mixin button-gradient($is_button:true){
   @include background($button-gradient);
-
   @if $is_button == true{
     @include transition-property(opacity);
     @include transition-duration($button-hover-duration);
@@ -162,6 +159,16 @@
 }
 
 
+@mixin when-sidebar-in(){
+  // toggled in
+  &.sidebar-in, .sidebar-in &{
+    @content;
+  }
+  // desktop size
+  @include qif(desktop, true){
+    @content;
+  }
+}
 
 
 @mixin navbar-slide-in-duration(){
@@ -171,11 +178,20 @@
   @include transition-duration($navbar-slide-out-duration);
 }
 
-@mixin first-last-no-border($parent:'&', $child:null){
+// makes the first and last element lose their respective borders
+@mixin first-last-no-border($parent:'&', $child:null, $axis:vertical){
+  $dir-first:top;
+  $dir-last:bottom;
+  @if($axis==horizontal){
+    $dir-first:left;
+    $dir-last:right;
+  }
   #{unquote($parent)}:first-child #{unquote($child)} {
-    border-top:none;
+    border-#{$dir-first}:none;
+    @content;
   }
   #{unquote($parent)}:last-child #{unquote($child)} {
-    border-bottom:none;
+    border-#{$dir-last}:none;
+    @content;
   }
 }

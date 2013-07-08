@@ -1,14 +1,5 @@
 
 
-/* NAVBAR OUT */
-@mixin navbar-when-sidebar-out(){
-  @include transition-property(left, right);
-  @include navbar-slide-out-duration;
-}
-/* NAVBAR IN */
-@mixin navbar-when-sidebar-in(){
-  @include shift-for-sidebar($conditions:false);
-}
 
 
 .navbar{
@@ -49,6 +40,10 @@
       border-radius: 3px;
       font-size: 18px;
       @include background($blue);
+
+      @include qif(desktop, true){
+        display: none !important;
+      }
     }
 
     .navbar-right{
@@ -67,20 +62,14 @@
   // ..navbar-inner
 
 
-  @include navbar-when-sidebar-out;
-  /*    ALWAYS IN    */
-  //    desktop
-  @include qif(desktop, true){
-    @include navbar-when-sidebar-in;
-    .navbar-inner .btn-navbar{
-      display:none !important;
+  @include transition-property(left, right);
+  @include navbar-slide-out-duration;
+
+  @include when-sidebar-in(){
+    @include shift-for-sidebar($conditions:false);
+    @include qif(desktop, false){
+      right:-$sidebar-width;
     }
-  }
-  // .. desktop
-  &.sidebar-in, .sidebar-in &{
-    @include navbar-when-sidebar-in;
-    // only push whole navbar right on smaller screens
-    right:-$sidebar-width;
   }
   /*    ALWAYS IN    */
 

@@ -99,14 +99,11 @@ html, body{
           .nav-option{
             background:$side-nav-background;
           }
-          &:last-child .nav-option{
+          
+          @include first-last-no-border('&', '.nav-option'){
             background:transparent;
-            border-bottom:none;
-          }
-          &:first-child .nav-option{
-            background:transparent;
-            border-top:none;
-          }
+          };
+
           .nav-option{
             display: block;
             margin:0;
@@ -248,30 +245,21 @@ html, body{
   // .navbar{
   //   @include navbar-when-sidebar-out;
   // }
-
-  &.sidebar-in, .sidebar-in &{
-    .menu.nav-collapse.collapse.width{
+  .menu.nav-collapse.collapse.width{
+    @include when-sidebar-in(){
       @include sidebar-when-sidebar-in;
     }
-    // .navbar{
-    //   @include navbar-when-sidebar-in;
-    //   only push whole navbar right on smaller screens
-    //   right:-$sidebar-width;
-    // }
   }
-  /*    desktop    */
-  @include qif(desktop, true){
-    .menu.nav-collapse.collapse.width{
-      @include sidebar-when-sidebar-in;
-    }
-    // .navbar{
-    //   @include navbar-when-sidebar-in;
-    //   .navbar-inner .btn-navbar{
-    //     display:none !important;
-    //   }
-    // }
-  }
-  /* .. desktop    */
+  // &.sidebar-in, .sidebar-in &{
+  //   .menu.nav-collapse.collapse.width{
+  //     @include sidebar-when-sidebar-in;
+  //   }
+  // }
+  // @include qif(desktop, true){
+  //   .menu.nav-collapse.collapse.width{
+  //     @include sidebar-when-sidebar-in;
+  //   }
+  // }
 
   /* when the screen is big enough, don't extend the bar off-screen */
   // @include qif(phone, false){
