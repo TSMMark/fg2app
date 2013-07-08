@@ -20,23 +20,23 @@ html, body{
   top:0;
   bottom:0;
   left:0;
-  @include transition-property(width);
+  @include transition-property(width, max-width);
   .view{
     position:relative;
     width:50%;
     height:100%;
     overflow:hidden;
     z-index:15;
-    @include transition-property(left, width);
+    @include transition-property(left, width, max-width);
   }
 }
 // for desktops, always show side nav and don't push everything else offscreen
 @include qif(desktop){
   .frame{
-    @include transition-property(width);
+    @include transition-property(width, max-width);
     width:100%;
     .view{
-      @include transition-property(left, width);
+      @include transition-property(left, width, max-width);
       width:auto;
     }
   }
@@ -67,7 +67,7 @@ html, body{
 
 
 
-  // sidebar
+  // side-nav
   .menu.nav-collapse.collapse.width{
     float:left;
     height:100% !important;
@@ -81,13 +81,13 @@ html, body{
     @include user-select(none);
 
     background-color: $side-nav-background;
-    width:$sidebar-width;
+    width:$side-nav-width;
     // @include single-box-shadow(1px 1px 3px black);
 
     .collapse-inner{
       position:relative;
       height:100%;
-      width:$sidebar-width;
+      width:$side-nav-width;
       @include scroll-on-hover(y);
       background:$side-nav-under-background;
 
@@ -231,7 +231,7 @@ html, body{
   /* SIDEBAR OUT */
   @mixin sidebar-when-sidebar-out(){
     display:block;
-    margin-left: -$sidebar-width;
+    margin-left: -$side-nav-width;
     @include transition-property(width, margin-left);
     @include navbar-slide-out-duration;
   }
@@ -244,33 +244,12 @@ html, body{
   .menu.nav-collapse.collapse.width{
     @include sidebar-when-sidebar-out;
   }
-  // .navbar{
-  //   @include navbar-when-sidebar-out;
-  // }
+  
   .menu.nav-collapse.collapse.width{
     @include when-sidebar-in(){
       @include sidebar-when-sidebar-in;
     }
   }
-  // &.sidebar-in, .sidebar-in &{
-  //   .menu.nav-collapse.collapse.width{
-  //     @include sidebar-when-sidebar-in;
-  //   }
-  // }
-  // @include qif(desktop, true){
-  //   .menu.nav-collapse.collapse.width{
-  //     @include sidebar-when-sidebar-in;
-  //   }
-  // }
-
-  /* when the screen is big enough, don't extend the bar off-screen */
-  // @include qif(phone, false){
-  //   .navbar{
-  //     right:0 !important;
-  //   }
-  // }
-
-
 
 }
 // ..app-container

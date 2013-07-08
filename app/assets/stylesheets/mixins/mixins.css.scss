@@ -77,7 +77,7 @@
 // can do margin or left / right
 // $prefix:     "margin-" to adjust margin-left instead of left
 // $conditions: true => check for .sidebar-in or 980px
-@mixin shift-for-sidebar($initial-left:0, $initial-right:0, $include-right:false, $prefix:null, $sidebar-width:$sidebar-width, $transition-duration-in:$navbar-slide-in-duration, $transition-duration-out:$navbar-slide-out-duration, $conditions:true){
+@mixin shift-for-sidebar($initial-left:0, $initial-right:0, $include-right:false, $prefix:null, $sidebar-width:$side-nav-width, $transition-duration-in:$navbar-slide-in-duration, $transition-duration-out:$navbar-slide-out-duration, $conditions:true){
 
   @if $conditions != false{
     @include transition-duration($transition-duration-out);

@@ -68,7 +68,7 @@
   @include when-sidebar-in(){
     @include shift-for-sidebar($conditions:false);
     @include qif(desktop, false){
-      right:-$sidebar-width;
+      right:-$side-nav-width;
     }
   }
   /*    ALWAYS IN    */
