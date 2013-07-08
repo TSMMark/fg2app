@@ -23,7 +23,7 @@
     padding:    $navbar-padding;
     min-height: $navbar-height - ($navbar-padding * 2);
     // height:     $navbar-height - ($navbar-padding * 2);
-    @include qif(tiny){
+    @include phone{
       padding:    $navbar-padding-phone;
       min-height: $navbar-height-phone - ($navbar-padding-phone * 2);
       // height:     $navbar-height-phone - ($navbar-padding-phone * 2);
@@ -73,7 +73,7 @@
   }
   /*    ALWAYS IN    */
 
-  @include qif(phone, false){
+  @include mobile(false){
     right:0 !important;
   }
 }

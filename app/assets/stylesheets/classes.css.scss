@@ -58,7 +58,7 @@
 }
 
 .icon-expander:before{
-  @include qif(tiny){
+  @include phone{
     @include rotate(270deg);
   }
 }
