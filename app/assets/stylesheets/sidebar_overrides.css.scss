@@ -14,14 +14,24 @@ html, body{
 
 
 .frame{
+  position:absolute;
+  width:200%;
+  height:100%;
+  top:0;
+  bottom:0;
+  left:0;
   @include transition-property(width);
   .view{
     position:relative;
+    width:50%;
+    height:100%;
+    overflow:hidden;
+    z-index:15;
     @include transition-property(left);
   }
 }
 // for desktops, always show side nav and don't push everything else offscreen
-@media (min-width: 980px) {
+@include qif(desktop){
   .frame{
     width:100%;
     .view{
@@ -54,76 +64,15 @@ html, body{
   }
 
 
-  .navbar{
-    margin-bottom:0;
-    // width:100%;
-    // min-width:100%;
-
-    position:fixed;
-    right: 0;
-    left: 0;
-    // width:100%;
-
-    .navbar-inner{
-      @include topbar-gradient;
-
-      // min-width:200%;
-      width:auto;
-      min-width:auto;
-
-      // @include transition-property(padding, min-height, height);
-      // @include navbar-slide-out-duration;
-      padding:    $navbar-padding;
-      min-height: $navbar-height - ($navbar-padding * 2);
-      height:     $navbar-height - ($navbar-padding * 2);
-
-      @include qif(tiny){
-        // @include transition-property(padding, min-height, height);
-        // @include navbar-slide-out-duration;
-        padding:    $navbar-padding-phone;
-        min-height: $navbar-height-phone - ($navbar-padding-phone * 2);
-        height:     $navbar-height-phone - ($navbar-padding-phone * 2);
-      }
-      border-width:0;
-      font-size: 18px;
-
-      .btn-navbar{
-        overflow:hidden;
-        margin: 0;
-        // margin-left: 7px;
-        // margin-top: 7px;
-        padding: 2px 7px 2px 7px;
-        border-radius: 3px;
-        font-size: 18px;
-        @include background($blue);
-
-        i.icon-minus{
-          display:block;
-          padding:0;
-          line-height:0;
-          margin:0;
-        }
-      }
-      .navbar-right{
-        display:block;
-        margin:0;
-        padding:0;
-        @extend .pull-right;
-        list-style:none;
-        > *{
-          margin:0;
-          padding:0;
-          text-indent:0;
-        }
-      }
-    }
-    // ..navbar-inner
-  }
-  // ..navbar
-
 
   // sidebar
   .menu.nav-collapse.collapse.width{
+    float:left;
+    height:100% !important;
+    width:auto;
+    position:relative;
+    overflow:hidden !important;
+
     display:block;
 
     // COMPASS MIXIN
@@ -134,11 +83,14 @@ html, body{
     // @include single-box-shadow(1px 1px 3px black);
 
     .collapse-inner{
+      position:relative;
+      height:100%;
       width:$sidebar-width;
       @include scroll-on-hover(y);
       background:$side-nav-under-background;
 
       .nav.nav-stacked{
+        position:relative;
         margin:0;
         li{
           display:block;
@@ -158,13 +110,19 @@ html, body{
           .nav-option{
             display: block;
             margin:0;
-            cursor:pointer;
-            text-align:center;
+            padding:10px;
+
             min-height:75px;
+
             color: $side-nav-color;
-            border-radius: 0;
             font-size:20px;
             font-weight: 100;
+
+            cursor:pointer;
+            text-align:center;
+            border-top:$light-border-top;
+            border-bottom:$light-border-bottom;
+            border-radius: 0;
             // text-transform: uppercase;
 
             .nav-option-inner{
@@ -262,16 +220,14 @@ html, body{
   // we need to use mixins because these properties will be
   //  assigned in a media query AND in a class selector
   /* NAVBAR OUT */
-  @mixin navbar-when-sidebar-out(){
-    @include transition-property(left, right);
-    @include navbar-slide-out-duration;
-  }
+  // @mixin navbar-when-sidebar-out(){
+  //   @include transition-property(left, right);
+  //   @include navbar-slide-out-duration;
+  // }
   /* NAVBAR IN */
-  @mixin navbar-when-sidebar-in(){
-    // left:$sidebar-width;
-    // @include navbar-slide-in-duration;
-    @include shift-for-sidebar($conditions:false);
-  }
+  // @mixin navbar-when-sidebar-in(){
+  //   @include shift-for-sidebar($conditions:false);
+  // }
 
   /* SIDEBAR OUT */
   @mixin sidebar-when-sidebar-out(){
@@ -289,53 +245,45 @@ html, body{
   .menu.nav-collapse.collapse.width{
     @include sidebar-when-sidebar-out;
   }
-  .navbar{
-    @include navbar-when-sidebar-out;
-  }
+  // .navbar{
+  //   @include navbar-when-sidebar-out;
+  // }
 
   &.sidebar-in, .sidebar-in &{
     .menu.nav-collapse.collapse.width{
       @include sidebar-when-sidebar-in;
     }
-    .navbar{
-      @include navbar-when-sidebar-in;
-      /* only push whole navbar right on smaller screens */
-      right:-$sidebar-width;
-    }
+    // .navbar{
+    //   @include navbar-when-sidebar-in;
+    //   only push whole navbar right on smaller screens
+    //   right:-$sidebar-width;
+    // }
   }
   /*    desktop    */
   @include qif(desktop, true){
     .menu.nav-collapse.collapse.width{
       @include sidebar-when-sidebar-in;
     }
-    .navbar{
-      @include navbar-when-sidebar-in;
-      .navbar-inner .btn-navbar{
-        display:none !important;
-      }
-    }
+    // .navbar{
+    //   @include navbar-when-sidebar-in;
+    //   .navbar-inner .btn-navbar{
+    //     display:none !important;
+    //   }
+    // }
   }
   /* .. desktop    */
 
   /* when the screen is big enough, don't extend the bar off-screen */
-  @include qif(phone, false){
-    .navbar{
-      right:0 !important;
-    }
-  }
+  // @include qif(phone, false){
+  //   .navbar{
+  //     right:0 !important;
+  //   }
+  // }
 
 
 
 }
 // ..app-container
-
-
-// large screen
-@media (min-width: 1200px) {
-  #app-content{
-  }
-}
-
 
 
 
