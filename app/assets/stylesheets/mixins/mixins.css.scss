@@ -170,3 +170,12 @@
 @mixin navbar-slide-out-duration(){
   @include transition-duration($navbar-slide-out-duration);
 }
+
+@mixin first-last-no-border($parent:'&', $child:null){
+  #{unquote($parent)}:first-child #{unquote($child)} {
+    border-top:none;
+  }
+  #{unquote($parent)}:last-child #{unquote($child)} {
+    border-bottom:none;
+  }
+}

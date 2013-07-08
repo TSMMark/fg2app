@@ -144,12 +144,15 @@
   &:hover{
     background:$list-item-background-hover;
   }
+
   @include qif(tiny){
     display: block;
     height: $list-item-height-phone;
+    border-top: $light-border-top;
+    border-bottom: $light-border-bottom;
+    @include first-last-no-border('&');
   }
 }
-
 .list-item-column{
   position:relative;
   display:table-cell;
@@ -161,13 +164,16 @@
 
   border-top: $light-border-top;
   border-bottom: $light-border-bottom;
-  li:first-child &{
-    border-top: none;
+  @include first-last-no-border(li, '&');
+  // li:first-child &{
+  //   border-top: none;
+  // }
+  // li:last-child &{
+  //   border-bottom: none;
+  // }
+  @include qif(tiny){
+    border: none;
   }
-  li:last-child &{
-    border-bottom: none;
-  }
-
 }
 .list-item-thumb{
   display: block;
