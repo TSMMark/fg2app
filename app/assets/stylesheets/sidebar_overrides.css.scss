@@ -47,8 +47,7 @@ html, body{
     margin: 0;
     position: absolute;
     top: $navbar-height;
-    @include qif(tiny){
-      // @include navbar-slide-out-duration;
+    @include phone{
       top:$navbar-height-phone;
     }
     bottom: 0;
@@ -107,24 +106,22 @@ html, body{
     display:block;
     width:100%;
 
-    .nav-option{
-      background:$side-nav-background;
-    }
-
     @include first-last-no-border('&', '.nav-option'){
       background:transparent;
-    };
+      &:hover{
+        background:transparent;
+      }
+    }
 
     .nav-option{
       display: block;
       margin:0;
-      padding:10px;
 
-      min-height:75px;
-
+      @include transition-property(color, background-color);
+      @include transition-duration($button-hover-duration);
+      
+      background:$side-nav-background;
       color: $side-nav-color;
-      font-size:20px;
-      font-weight: 100;
 
       cursor:pointer;
       text-align:center;
@@ -133,14 +130,55 @@ html, body{
       border-radius: 0;
       // text-transform: uppercase;
 
-      .nav-option-inner{
+      // desktop
+      @include mobile(false){
+        padding:10px;
+        min-height:75px;
+        font-size:20px;
+        font-weight: 100;
+      }
+      // phone
+      @include mobile{
+        min-height: 24px;
+        font-size:$sidebar-font-size-phone;
+        text-align:left;
+        line-height: $sidebar-icon-size-phone;
         position:relative;
+        padding:8px;
       }
 
-      // COMPASS MIXIN
-      @include transition-property(color, background-color);
-      @include transition-duration($button-hover-duration);
-      
+      .nav-option-inner{
+        position:relative;
+
+        i{
+          display:block;
+          font-size:48px;
+          @include mobile{
+            position: absolute;
+            font-size: 23px;
+            width: $sidebar-icon-size-phone;
+            text-align: center;
+          }
+        }
+
+        div{
+          @include mobile{
+            text-indent: 32px;
+            line-height: $sidebar-icon-size-phone - 1;
+          }
+        }
+      }
+
+      .self-portrait{
+        @include mobile{
+          width: $sidebar-icon-size-phone;
+          height: $sidebar-icon-size-phone;
+          margin: 0;
+          position: absolute;
+          border-radius: 3px;
+        }
+      }
+
       &:hover, &:active{
         background:$side-nav-background;
         color:$side-nav-color-hover;
@@ -153,97 +191,22 @@ html, body{
 
       }
 
-
       &:active{
-        // COMPASS MIXIN
         @include transition-duration($button-press-duration);
         background:$side-nav-background-active;
 
         .self-portrait{
-          @include transition-property(opacity);
           @include transition-duration($button-press-duration);
-          opacity: 1;
         }
       }
 
-      i{
-        display:block;
-        font-size:48px;
-      }
     } // .. nav-option
-
-    $sidebar-icon-size-phone:26px;
-    $sidebar-font-size-phone:16px;
-    // make side nave smaller for short screen heights
-    @include qif($device:phone){
-      .nav-option{
-        min-height: 24px;
-        font-size:$sidebar-font-size-phone;
-        text-align:left;
-        line-height: $sidebar-icon-size-phone;
-        position:relative;
-        padding-top: 8px;
-        padding-bottom: 8px;
-
-        .self-portrait{
-          width: $sidebar-icon-size-phone;
-          height: $sidebar-icon-size-phone;
-          margin: 0;
-          position: absolute;
-          border-radius: 3px;
-        }
-
-        .nav-option-inner{
-          i{
-            display: block;
-            position: absolute;
-            font-size: 23px;
-            width: $sidebar-icon-size-phone;
-            text-align: center;
-          }
-          div{
-            text-indent: 32px;
-            line-height: $sidebar-icon-size-phone - 1;
-          }
-        }
-      }
-    }
 
 
 
   }
 }
 // ..nav-stacked
-
-
-/* ====================
-      NAVBAR MIXINS
-   ==================== */
-// toggle sidemenu in and out for certain screen sizes
-// we need to use mixins because these properties will be
-//  assigned in a media query AND in a class selector
-/* NAVBAR OUT */
-// @mixin navbar-when-sidebar-out(){
-//   @include transition-property(left, right);
-//   @include navbar-slide-out-duration;
-// }
-/* NAVBAR IN */
-// @mixin navbar-when-sidebar-in(){
-//   @include shift-for-sidebar($conditions:false);
-// }
-
-// .menu.nav-collapse.collapse.width{
-//   display:block;
-//   margin-left: -$side-nav-width;
-//   @include transition-property(width, margin-left);
-//   @include navbar-slide-out-duration;
-
-//   @include when-sidebar-in(){
-//     margin-left: 0;
-//     @include transition-property(width, margin-left);
-//     @include navbar-slide-in-duration;
-//   }
-// }
 
 
 

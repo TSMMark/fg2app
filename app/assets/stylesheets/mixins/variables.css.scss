@@ -25,6 +25,9 @@ $default-box-shadow-color: rgba(#333333, 0.6);
 
 
 
+$phone-cutoff-size: tiny;
+$mobile-cutoff-size: phone;
+
 
 /* Element Sizes */
 $navbar-height: 54px;
@@ -94,6 +97,8 @@ $side-nav-color-hover:        $white;
 $side-nav-color-active:       $white;
 
 $side-nav-portrait-size: 80px;
+$sidebar-icon-size-phone:26px;
+$sidebar-font-size-phone:16px;
 
 // background of body and pseudo-transparent
 $body-background: $white;

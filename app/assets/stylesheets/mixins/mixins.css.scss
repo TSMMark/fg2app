@@ -38,6 +38,16 @@
   }
 }
 
+@mixin phone($is_below:true){
+  @include qif($phone-cutoff-size, $is_below){
+    @content;
+  }
+}
+@mixin mobile($is_below:true){
+  @include qif($mobile-cutoff-size, $is_below){
+    @content;
+  }
+}
 
 // michaelsacca/Compass-Placeholder-Text-Mixin
 @mixin input-placeholder {
