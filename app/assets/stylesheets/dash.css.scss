@@ -50,6 +50,7 @@
     position:relative;
     border:none;
     z-index: 50;
+
     height: $list-header-height;
     @include qif(tiny){
       height: $list-header-height-phone;
@@ -89,22 +90,23 @@
       // list header icon
       i{
         position: absolute;
+
         @include icon-size($list-header-icon-size);
         left: 25px;
-        // top: 7px;
         top: ($list-header-height - $list-header-icon-size) / 2;
         @include qif(tiny){
           @include icon-size($list-header-icon-size-phone);
           left: 8px;
           top: ($list-header-height-phone - $list-header-icon-size-phone) / 2;
-
         }
+        
         color: $offer-white;
       }
     }
   }
   .layouts-list-scroller{
     @extend .scrolling;
+
     top:$list-header-height;
     @include qif(tiny){
       top: $list-header-height-phone;
@@ -116,19 +118,18 @@
   display: block;
   position:absolute;
   @extend .zero-edge;
+  text-align: center;
+
   left:$list-header-search-width;
+  line-height: $list-header-height;
   @include qif(tiny){
     left:$list-header-search-width-phone;
+    line-height: $list-header-height-phone;
   }
-  text-align: center;
 
   @include button-gradient;
   color:$white;
   font-size: 26px;
-  line-height: $list-header-height;
-  @include qif(tiny){
-    line-height: $list-header-height-phone;
-  }
 }
 .layouts-list{
   @include list-no-margin;
@@ -161,7 +162,6 @@
   border-top: $light-border-top;
   border-bottom: $light-border-bottom;
   li:first-child &{
-    // border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-top: none;
   }
   li:last-child &{

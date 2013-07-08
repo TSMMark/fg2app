@@ -51,6 +51,7 @@ html, body{
     position: absolute;
     top: $navbar-height;
     @include qif(tiny){
+      @include navbar-slide-out-duration;
       top:$navbar-height-phone;
     }
     bottom: 0;
@@ -81,11 +82,15 @@ html, body{
       width:auto;
       min-width:auto;
 
+      @include transition-property(padding, min-height, height);
+      @include navbar-slide-out-duration;
       padding:    $navbar-padding;
       min-height: $navbar-height - ($navbar-padding * 2);
       height:     $navbar-height - ($navbar-padding * 2);
 
       @include qif(tiny){
+        @include transition-property(padding, min-height, height);
+        @include navbar-slide-out-duration;
         padding:    $navbar-padding-phone;
         min-height: $navbar-height-phone - ($navbar-padding-phone * 2);
         height:     $navbar-height-phone - ($navbar-padding-phone * 2);
