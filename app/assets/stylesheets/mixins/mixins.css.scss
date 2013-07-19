@@ -38,6 +38,16 @@
   }
 }
 
+@mixin phone($is_below:true){
+  @include qif($phone-cutoff-size, $is_below){
+    @content;
+  }
+}
+@mixin mobile($is_below:true){
+  @include qif($mobile-cutoff-size, $is_below){
+    @content;
+  }
+}
 
 // michaelsacca/Compass-Placeholder-Text-Mixin
 @mixin input-placeholder {
@@ -77,14 +87,11 @@
 // can do margin or left / right
 // $prefix:     "margin-" to adjust margin-left instead of left
 // $conditions: true => check for .sidebar-in or 980px
-@mixin shift-for-sidebar($initial-left:0, $initial-right:0, $include-right:false, $prefix:null, $sidebar-width:$sidebar-width, $transition-duration-in:$navbar-slide-in-duration, $transition-duration-out:$navbar-slide-out-duration, $conditions:true){
+@mixin shift-for-sidebar($initial-left:0, $initial-right:0, $include-right:false, $prefix:null, $sidebar-width:$side-nav-width, $transition-duration-in:$navbar-slide-in-duration, $transition-duration-out:$navbar-slide-out-duration, $conditions:true){
 
   @if $conditions != false{
     @include transition-duration($transition-duration-out);
-    &.sidebar-in, .sidebar-in &{
-      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
-    }
-    @media (min-width: 980px) {
+    @include when-sidebar-in(){
       @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
     }
   } @else {
@@ -135,9 +142,9 @@
 @mixin topbar-gradient($is_button:true){
   @include background($topbar-gradient);
 }
+
 @mixin button-gradient($is_button:true){
   @include background($button-gradient);
-
   @if $is_button == true{
     @include transition-property(opacity);
     @include transition-duration($button-hover-duration);
@@ -159,4 +166,42 @@
 
 @mixin shadow-bottom(){
   @include single-box-shadow(rgba(#333, 0.7), 0px, 0px, 6px);
+}
+
+
+@mixin when-sidebar-in(){
+  // toggled in
+  &.sidebar-in, .sidebar-in &{
+    @content;
+  }
+  // desktop size
+  @include qif(desktop, true){
+    @content;
+  }
+}
+
+
+@mixin navbar-slide-in-duration(){
+  @include transition-duration($navbar-slide-in-duration);
+}
+@mixin navbar-slide-out-duration(){
+  @include transition-duration($navbar-slide-out-duration);
+}
+
+// makes the first and last element lose their respective borders
+@mixin first-last-no-border($parent:'&', $child:null, $axis:vertical){
+  $dir-first:top;
+  $dir-last:bottom;
+  @if($axis==horizontal){
+    $dir-first:left;
+    $dir-last:right;
+  }
+  #{unquote($parent)}:first-child #{unquote($child)} {
+    border-#{$dir-first}:none;
+    @content;
+  }
+  #{unquote($parent)}:last-child #{unquote($child)} {
+    border-#{$dir-last}:none;
+    @content;
+  }
 }
