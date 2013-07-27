@@ -16,39 +16,49 @@
 
 
   /*    ALWAYS IN    */
-  @include when-sidebar-in(){
+  @include when-sidebar-in() {
     @include shift-for-sidebar($conditions:false);
-    @include qif(desktop, false){
+    @include qif(desktop, false) {
       right:-$side-nav-width;
     }
   }
 
-  @include mobile(false){
+  @include mobile(false) {
     right:0 !important;
   }
 
 
   .navbar-inner{
     $inner-height : $navbar-height - ($navbar-padding * 2);
+    $inner-height-phone : $navbar-height-phone - ($navbar-padding-phone * 2);
 
     @include topbar-gradient;
 
     @include wmw(auto);
 
+    position: relative;
     text-align:center;
     font-size: 18px;
+    border:none;
+    border-radius: 0;
 
+    border-bottom: $light-border-dark;
+  
+    // remove padding - set height
     padding:    $navbar-padding;
-    min-height: $inner-height;
+    // min-height: $inner-height;
     line-height: $inner-height;
+    min-height: 0;
 
-    @include phone{
+    @include phone {
       padding:    $navbar-padding-phone;
-      min-height: $inner-height;
+      // min-height: $inner-height-phone;
+      line-height: $inner-height-phone;
     }
 
-    border-width:0;
 
+
+    $btn-navbar-width: 31px;
     .btn-navbar{
       float:left;
       overflow:hidden;
@@ -59,12 +69,12 @@
 
       @include background($blue);
 
-      @include qif(desktop, true){
+      @include qif(desktop, true) {
         display: none !important;
       }
 
       margin-right:   $navbar-padding/2;
-      @include phone{
+      @include phone {
         margin-right:   $navbar-padding-phone/2;
       }
     }
@@ -82,18 +92,55 @@
       }
     }
 
-    .navbar-options{
-      display: block;
-      width: auto;
+    .navbar-options {
+      @include full-page;
+      left: $btn-navbar-width + ($navbar-padding * 2);
+      @include phone {
+        left: $btn-navbar-width + ($navbar-padding-phone * 2);
+      }
+      @include desktop {
+        left: 0;
+      }
     }
-    .navbar-option{
+    $navbar-options-count:5;
+    .navbar-option {
       display: block;
       float:left;
-      padding: 0 $navbar-padding/2;
+      overflow: hidden;
+      cursor: pointer;
+
+      @include hlh($navbar-height);
+
+      @include percent-for-n($navbar-options-count);
+
+      // padding: 0 $navbar-padding/2;
+      padding: 0;
+
       border-left: $light-border-light;
-      border-right: $light-border-light;
-      @include phone{
-        padding: 0 $navbar-padding-phone/2;
+      border-right: $light-border-dark;
+      &:first-child {
+        border-left: $light-border-dark;
+      }
+      @include phone {
+        @include hlh($navbar-height-phone);
+        // padding: 0 $navbar-padding-phone/2;
+      }
+
+      // the icon
+      i {
+        font-size: 26px;
+        position: relative;
+        top: 2px;
+        @include phone {
+          font-size: 36px;
+        }
+      }
+
+      // the text
+      span {
+        @include phone {
+          display: none;
+        }
       }
     }
   }

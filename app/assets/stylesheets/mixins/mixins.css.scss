@@ -1,3 +1,27 @@
+@mixin full-page($padding:0){
+  display   : block;
+  position  : absolute;
+  padding   : 0;
+  margin    : 0;
+  top:$padding;
+  right:$padding;
+  bottom:$padding;
+  left:$padding;
+}
+
+.zero-edge{
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+}
+
+@mixin percent-for-n($n:1) {
+  $w:((1/$n) - .01);
+  width: percentage($w) ;
+}
+
 /*
   media query
   if $only == true, only @content on the device
@@ -45,6 +69,11 @@
 }
 @mixin mobile($is_below:true){
   @include qif($mobile-cutoff-size, $is_below){
+    @content;
+  }
+}
+@mixin desktop($is_below:true){
+  @include qif(desktop, $is_below){
     @content;
   }
 }
@@ -118,6 +147,12 @@
 @mixin wmw($width:auto){
   width:$width;
   min-width:$width;
+}
+
+// height and line-height
+@mixin hlh($h:auto){
+  height:$h;
+  line-height:$h;
 }
 
 

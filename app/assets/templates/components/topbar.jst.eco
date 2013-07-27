@@ -9,14 +9,29 @@
 
     <div class="navbar-options">
 
-      <div class="navbar-option" data-action="active-layouts">
+      <div class="navbar-option" data-action="active">
         <i class="icon-time"></i>
-        <span>Active Layouts</span>
+        <span>Active</span>
       </div>
 
-      <div class="navbar-option" data-action="active-layouts">
-        <i class="icon-time"></i>
-        <span>Active Layouts</span>
+      <div class="navbar-option" data-action="expired">
+        <i class="icon-exclamation-sign"></i>
+        <span>Expired</span>
+      </div>
+
+      <div class="navbar-option" data-action="complete">
+        <i class="icon-ok"></i>
+        <span>Complete</span>
+      </div>
+
+      <div class="navbar-option" data-action="tags">
+        <i class="icon-cloud"></i>
+        <span>Tags</span>
+      </div>
+
+      <div class="navbar-option" data-action="archived">
+        <i class="icon-inbox"></i>
+        <span>Archived</span>
       </div>
 
     </div>
