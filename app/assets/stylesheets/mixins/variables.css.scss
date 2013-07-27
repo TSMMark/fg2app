@@ -154,7 +154,9 @@ $button-hover-opacity:    0.9;
 $button-active-opacity:   0.8;
 
 
-$light-border-bottom: 1px solid rgba(0  , 0   , 0 , 0.1);
-$light-border-top:    1px solid rgba(255, 255, 255, 0.1);
+$light-border-light:  1px solid rgba(255, 255, 255, 0.1);
+$light-border-dark:   1px solid rgba(0  , 0   , 0 , 0.1);
+$light-border-top:    $light-border-light;
+$light-border-bottom: $light-border-dark;
 
 
