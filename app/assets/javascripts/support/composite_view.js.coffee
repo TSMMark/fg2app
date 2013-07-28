@@ -50,12 +50,12 @@ class Support.CompositeView extends Backbone.View
     $(container).append view.el
     @
 
-  appendChild: (view)->
+  prependChild: (view)->
     @renderChild view
     $(@el).prepend view.el
     @
 
-  appendChildTo: (view, container)->
+  prependChildTo: (view, container)->
     @renderChild view
     $(container).prepend view.el
     @

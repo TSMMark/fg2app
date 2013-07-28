@@ -5,37 +5,9 @@
       <i class="icon-reorder"></i>
     </a>
 
-
-
-    <div class="navbar-options">
-
-      <div class="navbar-option-active" data-action="active">
-        <i class="icon-time"></i>
-        <span>Active</span>
-      </div>
-
-      <div class="navbar-option-expired active" data-action="expired">
-        <i class="icon-exclamation-sign"></i>
-        <span>Expired</span>
-      </div>
-
-      <div class="navbar-option-complete" data-action="complete">
-        <i class="icon-ok"></i>
-        <span>Complete</span>
-      </div>
-
-      <div class="navbar-option-tags" data-action="tags">
-        <i class="icon-cloud"></i>
-        <span>Tags</span>
-      </div>
-
-      <div class="navbar-option-archived" data-action="archived">
-        <i class="icon-inbox"></i>
-        <span>Archived</span>
-      </div>
+    <div class="navbar-options count-<%= @view.topbar_options.length %>">
 
     </div>
-
 
 
   </div>

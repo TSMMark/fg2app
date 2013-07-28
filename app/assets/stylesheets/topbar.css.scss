@@ -103,59 +103,6 @@
         left: 0;
       }
     }
-    $navbar-options-count:5;
-    [class*=navbar-option-] {
-      display: block;
-      float:left;
-      overflow: hidden;
-      cursor: pointer;
-      color: $grey;
-      font-size: 12px;
-      @include hlh($navbar-height);
-
-      @include percent-for-n($navbar-options-count);
-
-      // padding: 0 $navbar-padding/2;
-      padding: 0;
-
-      border-left: $light-border-light;
-      border-right: $light-border-dark;
-      &:first-child {
-        border-left: $light-border-dark;
-      }
-      @include phone {
-        @include hlh($navbar-height-phone);
-        // padding: 0 $navbar-padding-phone/2;
-      }
-
-      // the icon
-      i {
-        font-size: 26px;
-        position: relative;
-        top: 5px;
-        @include phone {
-          font-size: 36px;
-          top: 2px;
-        }
-      }
-
-      // the text
-      span {
-        margin-left: 3%;
-        @include phone {
-          display: none;
-        }
-      }
-
-      // active (selected)
-      &.active {
-        background: $white;
-        height:$navbar-height + 1;
-        @include phone {
-          height:$navbar-height-phone + 1;
-        }
-      }
-    }
   }
   // ..navbar-inner
 
@@ -165,6 +112,58 @@
 
 
 
+[class*=navbar-option-] {
+  display: block;
+  float:left;
+  overflow: hidden;
+  cursor: pointer;
+  color: $grey;
+  font-size: 12px;
+  @include hlh($navbar-height);
+
+  @include percent-for-all;
+
+  // padding: 0 $navbar-padding/2;
+  padding: 0;
+
+  border-left: $light-border-light;
+  border-right: $light-border-dark;
+  &:first-child {
+    border-left: $light-border-dark;
+  }
+  @include phone {
+    @include hlh($navbar-height-phone);
+    // padding: 0 $navbar-padding-phone/2;
+  }
+
+  // the icon
+  i {
+    font-size: 26px;
+    position: relative;
+    top: 5px;
+    @include phone {
+      font-size: 36px;
+      top: 2px;
+    }
+  }
+
+  // the text
+  span {
+    margin-left: 3%;
+    @include phone {
+      display: none;
+    }
+  }
+
+  // active (selected)
+  &.active {
+    background: $white;
+    height:$navbar-height + 1;
+    @include phone {
+      height:$navbar-height-phone + 1;
+    }
+  }
+}
 
 .navbar-option-active{
   i{

@@ -21,6 +21,26 @@
   $w:((1/$n) - .01);
   width: percentage($w) ;
 }
+@mixin percent-for-all(){
+  .count-1 &{
+    @include percent-for-n(1);
+  }
+  .count-2 &{
+    @include percent-for-n(2);
+  }
+  .count-3 &{
+    @include percent-for-n(3);
+  }
+  .count-4 &{
+    @include percent-for-n(4);
+  }
+  .count-5 &{
+    @include percent-for-n(5);
+  }
+  .count-6 &{
+    @include percent-for-n(6);
+  }
+}
 
 /*
   media query
