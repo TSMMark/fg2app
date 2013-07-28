@@ -16,7 +16,7 @@ window.Fg2app   =
     new Fg2app.Routers.Users()
     # new Fg2app.Routers.Tabs()
     Backbone.history.start
-      pushState: "pushState" in window.history
+      pushState: typeof window.history.pushState is not 'undefined'
 
 $(document).ready ->
   Fg2app.initialize()
