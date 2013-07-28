@@ -31,6 +31,7 @@ $mobile-cutoff-size: phone;
 
 /* Element Sizes */
 $navbar-height: 54px;
+$navbar-border-width: 1px;
 $navbar-height-phone: 40px;
 
 $navbar-padding: 13px;
@@ -66,7 +67,7 @@ $normal-grey:       rgb(188 , 190 , 192);
   $grey:  $normal-grey;
 
 
-// highlights
+// highlights 
 $highlight-green: rgb(0   , 211 , 112);
 $highlight-red:   rgb(255 , 80  , 73);
 $highlight-blue:  rgb(121 , 186 , 215);
@@ -80,7 +81,9 @@ $white:           white;
 $almost-white:    #FAFAFA;
 $off-white:       #F5F5F5; //whitesmoke
 $offer-white:     #E9E9E9; 
-$offest-white:    #E0E0E0; 
+$offest-white:    #E0E0E0;
+
+$grey:            rgb(189 , 190 , 194);
 
 
 
@@ -142,8 +145,8 @@ $status-icon-size:22px;
 
 // topbar
 
-$topbar-color-top:$white;
-$topbar-color-bottom:$off-white;
+$topbar-color-top:$off-white;
+$topbar-color-bottom:darken($off-white,2%);
 $topbar-gradient:linear-gradient(top, $topbar-color-top, $topbar-color-bottom);
 
 
