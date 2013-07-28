@@ -32,8 +32,6 @@ class Fg2app.Views.Topbar extends Support.CompositeView
           label: 'Archive'
         }]
 
-    console.log @topbar_options
-
   render:->
     @renderBody()
     @renderOptions()
@@ -46,6 +44,9 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     _.each @topbar_options, (option)=>
       pane  = new Fg2app.Views.TopbarOption(option)
       @appendChildTo pane, container
+    # make one active at random
+    active_option = _.first _.shuffle(@topbar_options)
+    @$(".navbar-option-#{active_option.action}").addClass('active')
 
 
   # events
