@@ -38,6 +38,7 @@ Fg2app::Application.routes.draw do
 
   # catch all
   # match '*route', to: 'dash#index'
+  get 'layouts(/:id)' => 'dash#index'
 
   #as :user do
     # sessions

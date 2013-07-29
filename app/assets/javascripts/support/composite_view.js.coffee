@@ -3,6 +3,11 @@ class Support.CompositeView extends Backbone.View
   children: _ []
   bindings: _ []
 
+  initialize: (params)->
+    @model      = params.model        if params.model       isnt undefined
+    @view       = params.view         if params.view        isnt undefined
+    @collection = params.collection   if params.collection  isnt undefined
+
   leave: ->
     @unbind()
     @unbindFromAll()
@@ -14,6 +19,12 @@ class Support.CompositeView extends Backbone.View
   bindTo: (source, event, callback)->
     source.bind event, callback, @
     @bindings.push(source: source, event: event, callback: callback)
+    @
+
+  renderOnChange: (source, callback=null)->
+    @bindTo source, 'change', (e)=>
+      @render()
+      callback && callback(e)
     @
 
   unbindFromAll: ->

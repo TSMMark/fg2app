@@ -61,11 +61,7 @@ $normal-blue-light:   lighten($normal-blue, 5%);
 $normal-blue-lighter: lighten($normal-blue, 10%);
 // $normal-blue-dark:  rgb(45  , 122 , 187);
 
-$normal-grey:       rgb(188 , 190 , 192);
-  // alias normal colors
-  $blue:  $normal-blue;
-  $grey:  $normal-grey;
-
+$blue:  $normal-blue;
 
 // highlights 
 $highlight-green: rgb(0   , 211 , 112);
@@ -83,7 +79,18 @@ $off-white:       #F5F5F5; //whitesmoke
 $offer-white:     #E9E9E9; 
 $offest-white:    #E0E0E0;
 
-$grey:            rgb(189 , 190 , 194);
+// black
+$black:           black;
+$almost-black:    #050505;
+$off-black:       #0A0A0A;
+
+// grey
+$normal-grey:     rgb(189 , 190 , 194);
+$grey:            $normal-grey;
+$dark-grey:       darken($grey, 5%);
+$darker-grey:     darken($grey, 10%);
+$light-grey:      lighten($grey, 5%);
+$lighter-grey:    lighten($grey, 10%);
 
 
 
@@ -157,8 +164,8 @@ $button-hover-opacity:    0.9;
 $button-active-opacity:   0.8;
 
 
-$light-border-light:  1px solid rgba(255, 255, 255, 0.1);
-$light-border-dark:   1px solid rgba(0  , 0   , 0 , 0.1);
+$light-border-light:  1px solid rgba($white, 0.1);
+$light-border-dark:   1px solid rgba($black, 0.1);
 $light-border-top:    $light-border-light;
 $light-border-bottom: $light-border-dark;
 
