@@ -48,7 +48,6 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
     view = new Fg2app.Views.LayoutListItemOptions
       model       : @model
     @appendChild view #, @$('.list-item-expander')
-    console.log view.$el.html()
 
 
 

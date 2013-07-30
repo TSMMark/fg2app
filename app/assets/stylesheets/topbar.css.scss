@@ -154,16 +154,18 @@
     }
   }
 
-  @include hover-transition-durations(background-color);
+
+  color: $light-text;
+  @include hover-transition-durations(background-color color);
   &:hover {
     background-color: $off-white;
+    color: $light-text-hover;
   }
 
   // active (selected)
-  color: $grey;
   &.active {
     background-color: $white;
-    color: $darker-grey;
+    color: $light-text-active;
     // height:$navbar-height + 1;
     @include phone {
       // height:$navbar-height-phone + 1;

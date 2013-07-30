@@ -74,31 +74,35 @@ $highlight-red:   rgb(255 , 80  , 73);
 $highlight-blue:  rgb(121 , 186 , 215);
 
 // faint
-$faint-blue:      rgb(231 , 243 , 247);
-$faint-grey:      rgb(241 , 241 , 241);
+$faint-blue:        rgb(231 , 243 , 247);
+$faint-grey:        rgb(241 , 241 , 241);
 
 // white
-$white:           white;
-$almost-white:    #FAFAFA;
-$off-white:       #F5F5F5; //whitesmoke
-$offer-white:     #E9E9E9; 
-$offest-white:    #E0E0E0;
+$white:             white;
+$almost-white:      #FAFAFA;
+$off-white:         #F5F5F5; //whitesmoke
+$offer-white:       #E9E9E9; 
+$offest-white:      #E0E0E0;
 
 // black
-$black:           black;
-$almost-black:    #050505;
-$off-black:       #0A0A0A;
+$black:             black;
+$almost-black:      #050505;
+$off-black:         #0A0A0A;
 
 // grey
-$normal-grey:     rgb(189 , 190 , 194);
-$grey:            $normal-grey;
-$dark-grey:       darken($grey, 5%);
-$darker-grey:     darken($grey, 10%);
-$darkest-grey:    darken($grey, 20%);
-$light-grey:      lighten($grey, 5%);
-$lighter-grey:    lighten($grey, 10%);
-$lightest-grey:   lighten($grey, 20%);
+$normal-grey:       rgb(189 , 190 , 194);
+$grey:              $normal-grey;
+$dark-grey:         darken($grey, 5%);
+$darker-grey:       darken($grey, 10%);
+$darkest-grey:      darken($grey, 20%);
+$light-grey:        lighten($grey, 5%);
+$lighter-grey:      lighten($grey, 10%);
+$lightest-grey:     lighten($grey, 20%);
 
+
+$light-text:        $darkest-grey;
+$light-text-hover:  darken($darkest-grey, 20%);
+$light-text-active: darken($darkest-grey, 30%);
 
 
 $side-nav-width: 160px;
@@ -129,7 +133,7 @@ $thumb-width-standard:  111px;
 $thumb-height-standard: 74px;
 
 $list-item-background: $white;
-$list-item-background-hover: $almost-white;
+$list-item-background-hover: $off-white;
 $list-item-height:88px;
 $list-item-height-phone:$thumb-height-standard;
 

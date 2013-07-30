@@ -159,28 +159,20 @@
   // overlay
   .overlay {
     @include full-page();
-    background: $off-white;
-    // display: none;
-    opacity: 0;
-    z-index: -9;
-    @include transition-property(opacity);
-    @include transition-duration($default-slide-out-duration);
+    background: rgba($offer-white,0.6);
+    display: none;
+    z-index: 1;
+    cursor: pointer;
+    @include animation(fade-out-block $default-slide-out-duration);
   }
   .one-is-expanded & {
     .overlay {
-      @include transition-property(opacity);
-      @include transition-duration($default-slide-in-duration);
-      // display: block;
-      opacity: 0.7;
-      z-index: 5;
-      cursor: pointer;
+      display: block;
+      @include animation(fade-in-block $default-slide-out-duration);
     }
     &.expanded .overlay {
-      @include transition-property(opacity);
-      @include transition-duration($default-slide-out-duration);
-      // display: none;
-      z-index: -9;
-      opacity: 0;
+      display: none;
+      @include animation(fade-out-block $default-slide-out-duration);
     }
   }
 
@@ -193,9 +185,10 @@
     // show the expander
     .list-item-expander {
       @include full-page;
-      top: $list-item-height;
+      // + 1 px for the border
+      top: $list-item-height + 1px;
       @include phone {
-        top: $list-item-height-phone;
+        top: $list-item-height-phone + 1px;
       }
     }
   }

@@ -68,6 +68,8 @@ end
 
 gem 'sass-rails',   '~> 3.2.3'
 gem 'compass-rails'
+gem 'animation'
+
 gem 'bootstrap-sass', '~> 2.2.2.0'
 
 # https://github.com/russfrisch/modernizr-rails

@@ -2,10 +2,19 @@
 
 @import "compass";
 @import "compass/css3/user-interface";
+@import "animation";
+
+
 // @import "compass/css3/gradient";
+
 
 @import "mixins/variables";
 @import "mixins/mixins";
+
+// predefined animations
+@import "animation/animate";
+// our defined animations
+@import "mixins/animations";
 
 @import "jquery.ui.all";
 

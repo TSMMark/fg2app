@@ -3,16 +3,25 @@
 // $list-item-expand-height
 .list-item-expander {
   [class*=expander-option-] {
+    @include user-select(none);
     @include percent-for-n(5, 0);
+    cursor: pointer;
     float: left;
     text-align: center;
     @include hlh($list-item-expand-height);
-    color: $darkest-grey;
 
     font-size: 12px;
-    
+
+    color: $light-text;
+    @include transition-property(background-color, color);
+    @include transition-duration($button-hover-duration);
+    &:hover {
+      color: $light-text-hover;
+      background-color: $offer-white;
+    }
+
     i {
-      font-size: 26px;
+      font-size: 28px;
       position: relative;
       top:4px;
     }
