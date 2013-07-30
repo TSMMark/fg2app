@@ -1,0 +1,25 @@
+<div class="expander-option-embed">
+  <i class="icon-code"></i>
+  <span>Embed Code</span>
+</div>
+
+<div class="expander-option-analytics">
+  <i class="icon-bar-chart"></i>
+  <span>Analytics</span>
+</div>
+
+<div class="expander-option-entries">
+  <i class="icon-trophy"></i>
+  <span>Entries</span>
+</div>
+
+<div class="expander-option-archive">
+  <i class="icon-inbox"></i>
+  <span>Archive</span>
+</div>
+
+<div class="expander-option-edit">
+  <i class="icon-edit"></i>
+  <span>Edit</span>
+</div>
+

@@ -135,6 +135,71 @@
   display:table;
   width:100%;
 }
+.layout-list-item-container {
+  position: relative;
+  // border-top: $light-border-top;
+  border-bottom: $light-border-bottom;
+  @include first-last-no-border;
+  padding: 1px 0;
+
+  @include transition-property(height);
+  @include transition-duration($default-slide-out-duration);
+
+  height: $list-item-height;
+  &.expanded {
+    @include transition-duration($default-slide-in-duration);
+    height: $list-item-height + $list-item-expand-height;
+    background:$list-item-background-hover;
+  }
+  @include phone {
+    @include transition-property(none);
+    height: $list-item-height-phone;
+  }
+
+  // overlay
+  .overlay {
+    @include full-page();
+    background: $off-white;
+    // display: none;
+    opacity: 0;
+    z-index: -9;
+    @include transition-property(opacity);
+    @include transition-duration($default-slide-out-duration);
+  }
+  .one-is-expanded & {
+    .overlay {
+      @include transition-property(opacity);
+      @include transition-duration($default-slide-in-duration);
+      // display: block;
+      opacity: 0.7;
+      z-index: 5;
+      cursor: pointer;
+    }
+    &.expanded .overlay {
+      @include transition-property(opacity);
+      @include transition-duration($default-slide-out-duration);
+      // display: none;
+      z-index: -9;
+      opacity: 0;
+    }
+  }
+
+
+  // hide the expander
+  .list-item-expander {
+    display: none;
+  }
+  &.expanded {
+    // show the expander
+    .list-item-expander {
+      @include full-page;
+      top: $list-item-height;
+      @include phone {
+        top: $list-item-height-phone;
+      }
+    }
+  }
+}
 .layout-list-item{
   position:relative;
   display:table-row;
@@ -143,32 +208,15 @@
   &:hover{
     background:$list-item-background-hover;
   }
+  .expanded & {
+    background:transparent;
+  }
 
   @include phone {
     display: block;
     height: $list-item-height-phone;
   }
 
-  // hide the expander
-  .list-item-expander {
-    @include full-page;
-    color: red;
-    display: none;
-  }
-}
-.layout-list-item-container {
-  // border-top: $light-border-top;
-  border-bottom: $light-border-bottom;
-  @include first-last-no-border;
-  padding: 1px 0;
-
-  height: $list-item-height;
-  &.expanded {
-    height: $list-item-height + $list-item-expand-height
-  }
-  @include phone {
-    height: $list-item-height-phone;
-  }
 }
 .list-item-column{
   position:relative;

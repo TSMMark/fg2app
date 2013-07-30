@@ -22,8 +22,12 @@ class Support.CompositeView extends Backbone.View
     @
 
   renderOnChange: (source, callback=null)->
+    @onChange source, 'render', callback
+    @
+
+  onChange: (source, method_name, callback=null)->
     @bindTo source, 'change', (e)=>
-      @render()
+      @[method_name].apply()
       callback && callback(e)
     @
 
@@ -85,4 +89,24 @@ class Support.CompositeView extends Backbone.View
     @children.splice index, 1
     @
 
-    
+
+  # set once to bool and return old value
+  onceSet: (method_name, bool=true)=>
+    @onces    ||= {}
+    p           = "_#{method_name}_is_done"
+    former      = @onces[p]
+    @onces[p]   = bool
+    former
+
+  # perform an action on self only if the action hasn't been already performed
+  doOnce: (method_name, params=null)=>
+    # return if it's already been done
+    return undefined if @onceSet(method_name, true)
+    # call method
+    if typeof params is 'array'
+      @[method_name].apply(@, params)
+    else
+      @[method_name](params)
+
+  onceAgain: (method_name)=>
+    @onceSet(method_name, false)

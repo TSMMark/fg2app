@@ -7,16 +7,18 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
   className:    "layout-list-item-container"
 
   events: 
-    'click'   : 'clickItem'
+    'click li, .overlay'   : 'clickItem'
 
   initialize: (params)->
     # @model
 
   render: =>
+    @onceAgain 'renderExpander'
     @unbindFromAll()
     @renderBody()
       .bindEvents()
     @renderOnChange @model
+    # @onChange @model, 'renderBody'
     @
 
   renderBody: =>
@@ -29,14 +31,24 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
   clickItem: =>
     @model.trigger 'expand', model: @model
-    # @expandItem()
 
 
   expandItem: =>
     @$el.addClass 'expanded'
-    @model.set 'name', 'expand'
+    # @model.set 'name', 'expand'
+    @doOnce 'renderExpander'
+    # @renderExpander()
 
   collapseItem: =>
     @$el.removeClass 'expanded'
-    @model.set 'name', 'collapse'
+    # @model.set 'name', 'collapse'
+
+
+  renderExpander: =>
+    view = new Fg2app.Views.LayoutListItemOptions
+      model       : @model
+    @appendChild view #, @$('.list-item-expander')
+    console.log view.$el.html()
+
+
 

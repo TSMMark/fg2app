@@ -17,28 +17,28 @@
   left:0;
 }
 
-@mixin percent-for-n($n:1) {
-  $w:((1/$n) - .01);
+@mixin percent-for-n($n:1, $padding:0.01) {
+  $w:((1/$n) - $padding);
   width: percentage($w) ;
 }
-@mixin percent-for-all(){
+@mixin percent-for-all($padding:0.01){
   .count-1 &{
-    @include percent-for-n(1);
+    @include percent-for-n(1, $padding);
   }
   .count-2 &{
-    @include percent-for-n(2);
+    @include percent-for-n(2, $padding);
   }
   .count-3 &{
-    @include percent-for-n(3);
+    @include percent-for-n(3, $padding);
   }
   .count-4 &{
-    @include percent-for-n(4);
+    @include percent-for-n(4, $padding);
   }
   .count-5 &{
-    @include percent-for-n(5);
+    @include percent-for-n(5, $padding);
   }
   .count-6 &{
-    @include percent-for-n(6);
+    @include percent-for-n(6, $padding);
   }
 }
 

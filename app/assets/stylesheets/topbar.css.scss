@@ -120,7 +120,7 @@
   font-size: 12px;
   @include hlh($navbar-height);
 
-  @include percent-for-all;
+  @include percent-for-all();
 
   // padding: 0 $navbar-padding/2;
   padding: 0;

@@ -5,9 +5,14 @@ $fast-transition-duration     : 0.1s;
 $normal-transition-duration   : 0.2s;
 $slow-transition-duration     : 0.35s;
 
+// slide durations
+$default-slide-in-duration:   $slow-transition-duration;
+$default-slide-out-duration:  $normal-transition-duration;
+
 /* side nav bar slide duration */
-$navbar-slide-in-duration:$slow-transition-duration;
-$navbar-slide-out-duration:$normal-transition-duration;
+$navbar-slide-in-duration:    $default-slide-in-duration;
+$navbar-slide-out-duration:   $default-slide-out-duration;
+
 
 /* button durations */
 $button-press-duration: $instant-transition-duration;
@@ -89,8 +94,10 @@ $normal-grey:     rgb(189 , 190 , 194);
 $grey:            $normal-grey;
 $dark-grey:       darken($grey, 5%);
 $darker-grey:     darken($grey, 10%);
+$darkest-grey:    darken($grey, 20%);
 $light-grey:      lighten($grey, 5%);
 $lighter-grey:    lighten($grey, 10%);
+$lightest-grey:   lighten($grey, 20%);
 
 
 

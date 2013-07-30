@@ -1,0 +1,24 @@
+// $list-item-height
+// $list-item-height-phone
+// $list-item-expand-height
+.list-item-expander {
+  [class*=expander-option-] {
+    @include percent-for-n(5, 0);
+    float: left;
+    text-align: center;
+    @include hlh($list-item-expand-height);
+    color: $darkest-grey;
+
+    font-size: 12px;
+    
+    i {
+      font-size: 26px;
+      position: relative;
+      top:4px;
+    }
+    span {
+      margin-left: 3%;
+    }
+  }
+
+}
