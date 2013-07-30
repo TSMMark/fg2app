@@ -76,6 +76,8 @@ gem 'modernizr-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+# gem 'jquery-slimscroll-rails'
+
 # JSON2
 # gem 'json2-rails'
 
