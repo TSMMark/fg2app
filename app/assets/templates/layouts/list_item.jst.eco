@@ -1,43 +1,47 @@
-<div class="list-item-column timestamp-column">
-  <div class="list-item-inner-row timestamp-row">
-    <label class="list-item-label-top">
-      updated:
-    </label>
-    <div class="timeago-value">
-     <%= $.timeago(@model.escape("created_at")) %>
+<li class="layout-list-item">
+  <div class="list-item-column timestamp-column">
+    <div class="list-item-inner-row timestamp-row">
+      <label class="list-item-label-top">
+        updated:
+      </label>
+      <div class="timeago-value">
+       <%= $.timeago(@model.escape("created_at")) %>
+      </div>
+    </div>
+
+    <div class="list-item-inner-row timestamp-row">
+      <label class="list-item-label-top">
+        created:
+      </label>
+      <div class="timeago-value">
+        <%= $.timeago(@model.escape("updated_at")) %>
+      </div>
     </div>
   </div>
 
-  <div class="list-item-inner-row timestamp-row">
-    <label class="list-item-label-top">
-      created:
-    </label>
-    <div class="timeago-value">
-      <%= $.timeago(@model.escape("updated_at")) %>
+  <div class="list-item-column promo-column"><i class="promo-indicator icon-trophy"></i></div>
+
+  <div class="list-item-column thumb-column">
+    <div class="list-item-thumb"></div>
+  </div>
+
+  <div class="list-item-column title-column">
+    <div class="list-title">
+      <%= @model.escape("name") %>
+    </div>
+    <div class="list-description">
+      <%= @model.escape("description") %>
     </div>
   </div>
-</div>
 
-<div class="list-item-column promo-column"><i class="promo-indicator icon-trophy"></i></div>
+  <div class="list-item-column tag-column">tags</div>
 
-<div class="list-item-column thumb-column">
-  <div class="list-item-thumb"></div>
-</div>
-
-<div class="list-item-column title-column">
-  <div class="list-title">
-    <%= @model.escape("name") %>
+  <div class="list-item-column status-column">
+    <div class="status-icon-container">
+      <i class="icon-lock"></i>
+      <i class="icon-chevron-sign-down icon-expander"></i>
+    </div>
   </div>
-  <div class="list-description">
-    <%= @model.escape("description") %>
-  </div>
-</div>
-
-<div class="list-item-column tag-column">tags</div>
-
-<div class="list-item-column status-column">
-  <div class="status-icon-container">
-    <i class="icon-lock"></i>
-    <i class="icon-chevron-sign-down icon-expander"></i>
-  </div>
+</li>
+<div class="overlay">
 </div>

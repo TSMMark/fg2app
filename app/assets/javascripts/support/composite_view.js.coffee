@@ -3,6 +3,11 @@ class Support.CompositeView extends Backbone.View
   children: _ []
   bindings: _ []
 
+  initialize: (params)->
+    @model      = params.model        if params.model       isnt undefined
+    @view       = params.view         if params.view        isnt undefined
+    @collection = params.collection   if params.collection  isnt undefined
+
   leave: ->
     @unbind()
     @unbindFromAll()
@@ -14,6 +19,16 @@ class Support.CompositeView extends Backbone.View
   bindTo: (source, event, callback)->
     source.bind event, callback, @
     @bindings.push(source: source, event: event, callback: callback)
+    @
+
+  renderOnChange: (source, callback=null)->
+    @onChange source, 'render', callback
+    @
+
+  onChange: (source, method_name, callback=null)->
+    @bindTo source, 'change', (e)=>
+      @[method_name].apply()
+      callback && callback(e)
     @
 
   unbindFromAll: ->
@@ -50,12 +65,12 @@ class Support.CompositeView extends Backbone.View
     $(container).append view.el
     @
 
-  appendChild: (view)->
+  prependChild: (view)->
     @renderChild view
     $(@el).prepend view.el
     @
 
-  appendChildTo: (view, container)->
+  prependChildTo: (view, container)->
     @renderChild view
     $(container).prepend view.el
     @
@@ -74,4 +89,24 @@ class Support.CompositeView extends Backbone.View
     @children.splice index, 1
     @
 
-    
+
+  # set once to bool and return old value
+  onceSet: (method_name, bool=true)=>
+    @onces    ||= {}
+    p           = "_#{method_name}_is_done"
+    former      = @onces[p]
+    @onces[p]   = bool
+    former
+
+  # perform an action on self only if the action hasn't been already performed
+  doOnce: (method_name, params=null)=>
+    # return if it's already been done
+    return undefined if @onceSet(method_name, true)
+    # call method
+    if typeof params is 'array'
+      @[method_name].apply(@, params)
+    else
+      @[method_name](params)
+
+  onceAgain: (method_name)=>
+    @onceSet(method_name, false)

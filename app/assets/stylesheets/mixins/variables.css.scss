@@ -5,9 +5,14 @@ $fast-transition-duration     : 0.1s;
 $normal-transition-duration   : 0.2s;
 $slow-transition-duration     : 0.35s;
 
+// slide durations
+$default-slide-in-duration:   $slow-transition-duration;
+$default-slide-out-duration:  $normal-transition-duration;
+
 /* side nav bar slide duration */
-$navbar-slide-in-duration:$slow-transition-duration;
-$navbar-slide-out-duration:$normal-transition-duration;
+$navbar-slide-in-duration:    $default-slide-in-duration;
+$navbar-slide-out-duration:   $default-slide-out-duration;
+
 
 /* button durations */
 $button-press-duration: $instant-transition-duration;
@@ -31,6 +36,7 @@ $mobile-cutoff-size: phone;
 
 /* Element Sizes */
 $navbar-height: 54px;
+$navbar-border-width: 1px;
 $navbar-height-phone: 40px;
 
 $navbar-padding: 13px;
@@ -60,28 +66,43 @@ $normal-blue-light:   lighten($normal-blue, 5%);
 $normal-blue-lighter: lighten($normal-blue, 10%);
 // $normal-blue-dark:  rgb(45  , 122 , 187);
 
-$normal-grey:       rgb(188 , 190 , 192);
-  // alias normal colors
-  $blue:  $normal-blue;
-  $grey:  $normal-grey;
+$blue:  $normal-blue;
 
-
-// highlights
+// highlights 
 $highlight-green: rgb(0   , 211 , 112);
 $highlight-red:   rgb(255 , 80  , 73);
 $highlight-blue:  rgb(121 , 186 , 215);
 
 // faint
-$faint-blue:      rgb(231 , 243 , 247);
-$faint-grey:      rgb(241 , 241 , 241);
+$faint-blue:        rgb(231 , 243 , 247);
+$faint-grey:        rgb(241 , 241 , 241);
 
 // white
-$white:           white;
-$almost-white:    #FAFAFA;
-$off-white:       #F5F5F5; //whitesmoke
-$offer-white:     #E9E9E9; 
-$offest-white:    #E0E0E0; 
+$white:             white;
+$almost-white:      #FAFAFA;
+$off-white:         #F5F5F5; //whitesmoke
+$offer-white:       #E9E9E9; 
+$offest-white:      #E0E0E0;
 
+// black
+$black:             black;
+$almost-black:      #050505;
+$off-black:         #0A0A0A;
+
+// grey
+$normal-grey:       rgb(189 , 190 , 194);
+$grey:              $normal-grey;
+$dark-grey:         darken($grey, 5%);
+$darker-grey:       darken($grey, 10%);
+$darkest-grey:      darken($grey, 20%);
+$light-grey:        lighten($grey, 5%);
+$lighter-grey:      lighten($grey, 10%);
+$lightest-grey:     lighten($grey, 20%);
+
+
+$light-text:        $darkest-grey;
+$light-text-hover:  darken($darkest-grey, 20%);
+$light-text-active: darken($darkest-grey, 30%);
 
 
 $side-nav-width: 160px;
@@ -112,9 +133,12 @@ $thumb-width-standard:  111px;
 $thumb-height-standard: 74px;
 
 $list-item-background: $white;
-$list-item-background-hover: $almost-white;
+$list-item-background-hover: $off-white;
 $list-item-height:88px;
 $list-item-height-phone:$thumb-height-standard;
+
+$list-item-column-padding: 5px;
+$list-item-expand-height:75px;
 
 $thumb-column-width-phone:  $thumb-width-standard;
 $thumb-column-margin-phone:    4px;
@@ -142,8 +166,8 @@ $status-icon-size:22px;
 
 // topbar
 
-$topbar-color-top:$white;
-$topbar-color-bottom:$off-white;
+$topbar-color-top:$off-white;
+$topbar-color-bottom:darken($off-white,2%);
 $topbar-gradient:linear-gradient(top, $topbar-color-top, $topbar-color-bottom);
 
 
@@ -154,7 +178,9 @@ $button-hover-opacity:    0.9;
 $button-active-opacity:   0.8;
 
 
-$light-border-bottom: 1px solid rgba(0  , 0   , 0 , 0.1);
-$light-border-top:    1px solid rgba(255, 255, 255, 0.1);
+$light-border-light:  1px solid rgba($white, 0.1);
+$light-border-dark:   1px solid rgba($black, 0.1);
+$light-border-top:    $light-border-light;
+$light-border-bottom: $light-border-dark;
 
 

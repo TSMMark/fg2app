@@ -11,27 +11,50 @@
   right: 0;
   left: 0;
 
+  @include transition-property(left, right);
+  @include navbar-slide-out-duration;
+
+
+  /*    ALWAYS IN    */
+  @include when-sidebar-in() {
+    @include shift-for-sidebar($conditions:false);
+    @include qif(desktop, false) {
+      right:-$side-nav-width;
+    }
+  }
+
+  @include mobile(false) {
+    right:0;
+  }
+
+
   .navbar-inner{
+    $inner-height : $navbar-height - ($navbar-padding * 2);
+    $inner-height-phone : $navbar-height-phone - ($navbar-padding-phone * 2);
+
     @include topbar-gradient;
 
     @include wmw(auto);
 
+    position: relative;
     text-align:center;
-    font-size:1.2em;
-    line-height:38px;
+    font-size: 18px;
+    border:none;
+    border-radius: 0;
 
-    padding:    $navbar-padding;
-    min-height: $navbar-height - ($navbar-padding * 2);
-    // height:     $navbar-height - ($navbar-padding * 2);
-    @include phone{
-      padding:    $navbar-padding-phone;
-      min-height: $navbar-height-phone - ($navbar-padding-phone * 2);
-      // height:     $navbar-height-phone - ($navbar-padding-phone * 2);
+    border-bottom: $light-border-dark;
+    border-width: $navbar-border-width;
+    
+    padding: 0;
+    @include hlh($navbar-height - $navbar-border-width);
+
+    @include phone {
+      @include hlh($navbar-height-phone - $navbar-border-width);
     }
 
-    border-width:0;
-    font-size: 18px;
 
+
+    $btn-navbar-width: 31px;
     .btn-navbar{
       float:left;
       overflow:hidden;
@@ -39,10 +62,21 @@
       padding: 2px 7px 2px 7px;
       border-radius: 3px;
       font-size: 18px;
+      position: relative;
+
       @include background($blue);
 
-      @include qif(desktop, true){
+      @include desktop {
         display: none !important;
+      }
+
+      top: $navbar-padding;
+      left: $navbar-padding;
+      margin-right:   $navbar-padding/2;
+      @include phone {
+        top: $navbar-padding-phone;
+        left: $navbar-padding-phone;
+        margin-right:   $navbar-padding-phone/2;
       }
     }
 
@@ -58,37 +92,102 @@
         text-indent:0;
       }
     }
+
+    .navbar-options {
+      @include full-page;
+      left: $btn-navbar-width + ($navbar-padding * 2);
+      @include phone {
+        left: $btn-navbar-width + ($navbar-padding-phone * 2);
+      }
+      @include desktop {
+        left: 0;
+      }
+    }
   }
   // ..navbar-inner
 
 
-  @include transition-property(left, right);
-  @include navbar-slide-out-duration;
-
-  @include when-sidebar-in(){
-    @include shift-for-sidebar($conditions:false);
-    @include qif(desktop, false){
-      right:-$side-nav-width;
-    }
-  }
-  /*    ALWAYS IN    */
-
-  @include mobile(false){
-    right:0 !important;
-  }
 }
 // ..navbar
 
 
-.navbar-options{
-  display: table;
+
+[class*=navbar-option-] {
+  display: block;
+  float:left;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 12px;
+  @include hlh($navbar-height);
+
+  @include percent-for-all();
+
+  // padding: 0 $navbar-padding/2;
+  padding: 0;
+
+  border-left: $light-border-light;
+  border-right: $light-border-dark;
+  &:first-child {
+    border-left: $light-border-dark;
+  }
+  @include phone {
+    @include hlh($navbar-height-phone);
+    // padding: 0 $navbar-padding-phone/2;
+  }
+
+  // the icon
+  i {
+    font-size: 26px;
+    position: relative;
+    top: 5px;
+    @include phone {
+      font-size: 36px;
+      top: 2px;
+    }
+  }
+
+  // the text
+  span {
+    margin-left: 3%;
+    @include phone {
+      display: none;
+    }
+  }
+
+
+  color: $light-text;
+  @include hover-transition-durations(background-color color);
+  &:hover {
+    background-color: $off-white;
+    color: $light-text-hover;
+  }
+
+  // active (selected)
+  &.active {
+    background-color: $white;
+    color: $light-text-active;
+    // height:$navbar-height + 1;
+    @include phone {
+      // height:$navbar-height-phone + 1;
+    }
+  }
 }
-.navbar-option{
-  display: table-cell;
+
+.navbar-option-active{
+  i{
+    color: $blue;
+  }
 }
-
-
-
+.navbar-option-expired{
+  i{
+    color: $highlight-red;
+  }
+}
+.navbar-option-complete{
+  i{
+    color: $highlight-green;
+  }
+}
 
 
 

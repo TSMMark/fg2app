@@ -1,3 +1,47 @@
+@mixin full-page($padding:0){
+  display   : block;
+  position  : absolute;
+  padding   : 0;
+  margin    : 0;
+  top:$padding;
+  right:$padding;
+  bottom:$padding;
+  left:$padding;
+}
+
+.zero-edge{
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+}
+
+@mixin percent-for-n($n:1, $padding:0.01) {
+  $w:((1/$n) - $padding);
+  width: percentage($w) ;
+}
+@mixin percent-for-all($padding:0.01){
+  .count-1 &{
+    @include percent-for-n(1, $padding);
+  }
+  .count-2 &{
+    @include percent-for-n(2, $padding);
+  }
+  .count-3 &{
+    @include percent-for-n(3, $padding);
+  }
+  .count-4 &{
+    @include percent-for-n(4, $padding);
+  }
+  .count-5 &{
+    @include percent-for-n(5, $padding);
+  }
+  .count-6 &{
+    @include percent-for-n(6, $padding);
+  }
+}
+
 /*
   media query
   if $only == true, only @content on the device
@@ -45,6 +89,11 @@
 }
 @mixin mobile($is_below:true){
   @include qif($mobile-cutoff-size, $is_below){
+    @content;
+  }
+}
+@mixin desktop($is_below:true){
+  @include qif(desktop, $is_below){
     @content;
   }
 }
@@ -120,6 +169,12 @@
   min-width:$width;
 }
 
+// height and line-height
+@mixin hlh($h:auto){
+  height:$h;
+  line-height:$h;
+}
+
 
 
 @mixin font-line-size($size:14px){
@@ -163,6 +218,24 @@
   }
 }
 
+@mixin hover-transition-durations($property:false){
+  @if $property != false {
+    @include transition-property($property);
+  }
+  @include transition-duration($button-hover-duration);
+  &:hover{
+    @if $property != false {
+      @include transition-property($property);
+    }
+    @include transition-duration($button-hover-duration);
+  }
+  &:active{
+    @if $property != false {
+      @include transition-property($property);
+    }
+    @include transition-duration($button-press-duration);
+  }
+}
 
 @mixin shadow-bottom(){
   @include single-box-shadow(rgba(#333, 0.7), 0px, 0px, 6px);

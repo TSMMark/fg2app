@@ -29,6 +29,6 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
     @renderChildInto pane, container
 
   renderTopbar: =>
-    pane  = new Fg2app.Views.Topbar()
+    pane  = new Fg2app.Views.Topbar( route: 'dash')
     container = @$('#top-bar')
     @renderChildAs pane, container

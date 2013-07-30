@@ -18,7 +18,7 @@
 .dash-fanbux{
 
 }
-@include phone{
+@include phone {
   #app-content{
 
     // make room for footer
@@ -51,7 +51,7 @@
     z-index: 50;
 
     height: $list-header-height;
-    @include phone{
+    @include phone {
       height: $list-header-height-phone;
     }
     @include shadow-bottom;
@@ -73,7 +73,7 @@
         line-height: initial;
         left: 63px;
         right:(100 - $list-header-search-width);
-        @include phone{
+        @include phone {
           left: 38px;
           font-size: 28px;
           right:(100 - $list-header-search-width-phone);
@@ -81,7 +81,7 @@
         }
         @include base-font;
         color:$grey;
-        @include input-placeholder{
+        @include input-placeholder {
           color:$offer-white;
         }
       }
@@ -93,7 +93,7 @@
         @include icon-size($list-header-icon-size);
         left: 25px;
         top: ($list-header-height - $list-header-icon-size) / 2;
-        @include phone{
+        @include phone {
           @include icon-size($list-header-icon-size-phone);
           left: 8px;
           top: ($list-header-height-phone - $list-header-icon-size-phone) / 2;
@@ -107,7 +107,7 @@
     @extend .scrolling;
 
     top:$list-header-height;
-    @include phone{
+    @include phone {
       top: $list-header-height-phone;
     }
     z-index: 25;
@@ -121,7 +121,7 @@
 
   left:$list-header-search-width;
   line-height: $list-header-height;
-  @include phone{
+  @include phone {
     left:$list-header-search-width-phone;
     line-height: $list-header-height-phone;
   }
@@ -135,6 +135,64 @@
   display:table;
   width:100%;
 }
+.layout-list-item-container {
+  position: relative;
+  // border-top: $light-border-top;
+  border-bottom: $light-border-bottom;
+  @include first-last-no-border;
+  padding: 1px 0;
+
+  @include transition-property(height);
+  @include transition-duration($default-slide-out-duration);
+
+  height: $list-item-height;
+  &.expanded {
+    @include transition-duration($default-slide-in-duration);
+    height: $list-item-height + $list-item-expand-height;
+    background:$list-item-background-hover;
+  }
+  @include phone {
+    @include transition-property(none);
+    height: $list-item-height-phone;
+  }
+
+  // overlay
+  .overlay {
+    @include full-page();
+    background: rgba($offer-white,0.6);
+    display: none;
+    z-index: 1;
+    cursor: pointer;
+    @include animation(fade-out-block $default-slide-out-duration);
+  }
+  .one-is-expanded & {
+    .overlay {
+      display: block;
+      @include animation(fade-in-block $default-slide-out-duration);
+    }
+    &.expanded .overlay {
+      display: none;
+      @include animation(fade-out-block $default-slide-out-duration);
+    }
+  }
+
+
+  // hide the expander
+  .list-item-expander {
+    display: none;
+  }
+  &.expanded {
+    // show the expander
+    .list-item-expander {
+      @include full-page;
+      // + 1 px for the border
+      top: $list-item-height + 1px;
+      @include phone {
+        top: $list-item-height-phone + 1px;
+      }
+    }
+  }
+}
 .layout-list-item{
   position:relative;
   display:table-row;
@@ -143,14 +201,15 @@
   &:hover{
     background:$list-item-background-hover;
   }
+  .expanded & {
+    background:transparent;
+  }
 
-  @include phone{
+  @include phone {
     display: block;
     height: $list-item-height-phone;
-    border-top: $light-border-top;
-    border-bottom: $light-border-bottom;
-    @include first-last-no-border('&');
   }
+
 }
 .list-item-column{
   position:relative;
@@ -158,17 +217,7 @@
   vertical-align: middle;
   text-align:center;
   cursor:pointer;
-  padding:0 5px;
-  // min-width: 100px;
-
-  border-top: $light-border-top;
-  border-bottom: $light-border-bottom;
-  // 
-  @include first-last-no-border(li, '&', vertical);
-
-  @include phone{
-    border: none;
-  }
+  padding:0 $list-item-column-padding;
 }
 .list-item-thumb{
   display: block;
@@ -177,7 +226,7 @@
   // fb tab app image dimensions
   height: $list-item-height;
   width: ($list-item-height * 1.5);
-  @include phone{
+  @include phone {
     height: 100%;
     width: 100%;
   }
@@ -193,12 +242,12 @@
   min-width:auto;
   @include font-line-size($status-icon-size);
   .status-icon-container{
-    @include phone{
+    @include phone {
       @include v-center($list-item-height-phone, $status-icon-size*2);
     }
     i{
       margin-right:8px;
-      @include mobile{
+      @include mobile {
         margin-right: 0;
         display: block;
       }
@@ -234,13 +283,13 @@
 //  SPECIFIC COLUMNS
 .timestamp-column{
   width:8%;
-  @include phone{
+  @include phone {
     display:none;
   }
 }
 .promo-column{
   width:5%;
-  @include phone{
+  @include phone {
     display:none;
   }
 }
@@ -248,7 +297,7 @@
 .thumb-column{
   width:8%;
   max-width: ($list-item-height * 1.5);
-  @include phone{
+  @include phone {
     @include zero-edge;
     @include no-margin;
     right:auto;
@@ -258,7 +307,7 @@
 .title-column{
   width:15%;
   text-align: left;
-  @include phone{
+  @include phone {
     @include zero-edge;
     left: ($thumb-column-width-phone + ($thumb-column-margin-phone));
     right: $status-column-width-phone;
@@ -266,14 +315,14 @@
 }
 .tag-column{
   width:10%;
-  @include phone{
+  @include phone {
     display:none;
   }
 }
 .status-column{
   width: 6%;
   min-width: 40px;
-  @include phone{
+  @include phone {
     @include zero-edge;
     left:auto;
   }

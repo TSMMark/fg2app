@@ -1,0 +1,21 @@
+@include keyframes(fade-in-block) {
+  from  { display: none !important; }
+  to    { display: block !important; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(fade-out-block) {
+  from  { display: block !important; }
+  to    { display: none !important; }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

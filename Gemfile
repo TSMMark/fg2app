@@ -68,6 +68,8 @@ end
 
 gem 'sass-rails',   '~> 3.2.3'
 gem 'compass-rails'
+gem 'animation'
+
 gem 'bootstrap-sass', '~> 2.2.2.0'
 
 # https://github.com/russfrisch/modernizr-rails
@@ -75,6 +77,8 @@ gem 'modernizr-rails'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+# gem 'jquery-slimscroll-rails'
 
 # JSON2
 # gem 'json2-rails'
