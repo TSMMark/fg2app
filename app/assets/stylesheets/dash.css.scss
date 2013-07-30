@@ -147,9 +147,9 @@
   @include phone{
     display: block;
     height: $list-item-height-phone;
-    border-top: $light-border-top;
-    border-bottom: $light-border-bottom;
-    @include first-last-no-border('&');
+    // border-top: $light-border-top;
+    // border-bottom: $light-border-bottom;
+    // @include first-last-no-border('&');
   }
 
   // hide the expander
@@ -166,6 +166,20 @@
   }
 
 }
+.layout-list-item-container {
+  // border-top: $light-border-top;
+  border-bottom: $light-border-bottom;
+  @include first-last-no-border;
+  padding: 1px 0;
+
+  height: $list-item-height;
+  &.expanded {
+    height: $list-item-height + $list-item-expand-height
+  }
+  @include phone {
+    height: $list-item-height-phone;
+  }
+}
 .list-item-column{
   position:relative;
   display:table-cell;
@@ -175,17 +189,12 @@
   padding:0 $list-item-column-padding;
   // min-width: 100px;
 
-  border-top: $light-border-top;
-  border-bottom: $light-border-bottom;
-  // 
-  @include first-last-no-border(li, '&', vertical);
-
-  @include phone {
-    border: none;
-  }
-  .expanded & {
-    padding-bottom: $list-item-expand-height + $list-item-column-padding;
-  }
+  // @include phone {
+  //   border: none;
+  // }
+  // .expanded & {
+  //   padding-bottom: $list-item-expand-height + $list-item-column-padding;
+  // }
 }
 .list-item-thumb{
   display: block;

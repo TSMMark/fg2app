@@ -2,9 +2,9 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
   template: FunJST('layouts/list_item')
 
-  tagName:      "li"
   # idAttribute:  ""
-  className:    "layout-list-item"
+  # tagName:      "li"
+  className:    "layout-list-item-container"
 
   events: 
     'click'   : 'clickItem'
