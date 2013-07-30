@@ -142,9 +142,15 @@
   @include first-last-no-border;
   padding: 1px 0;
 
-  @include transition-property(height);
+
+
+  @include transition-property(height, background);
   @include transition-duration($default-slide-out-duration);
 
+  background:$list-item-background;
+  &:hover{
+    background:$list-item-background-hover;
+  }
   height: $list-item-height;
   &.expanded {
     @include transition-duration($default-slide-in-duration);
@@ -197,13 +203,8 @@
   position:relative;
   display:table-row;
   height:$list-item-height;
-  background:$list-item-background;
-  &:hover{
-    background:$list-item-background-hover;
-  }
-  .expanded & {
-    background:transparent;
-  }
+
+  background:transparent;
 
   @include phone {
     display: block;
