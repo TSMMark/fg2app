@@ -41,3 +41,8 @@
     <i class="icon-chevron-sign-down icon-expander"></i>
   </div>
 </div>
+
+
+<div class="list-item-expander">
+  <div>expand</div>
+</div>

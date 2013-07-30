@@ -45,7 +45,7 @@ html, body{
     margin: 0;
     position: absolute;
     top: $navbar-height;
-    @include phone{
+    @include phone {
       top:$navbar-height-phone;
     }
     bottom: 0;

@@ -58,6 +58,9 @@
 }
 
 .icon-expander:before{
+  .expanded & {
+    @include rotate(180deg);
+  }
   @include phone{
     @include rotate(270deg);
   }

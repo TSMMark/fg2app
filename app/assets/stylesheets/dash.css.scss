@@ -151,6 +151,20 @@
     border-bottom: $light-border-bottom;
     @include first-last-no-border('&');
   }
+
+  // hide the expander
+  .list-item-expander {
+    @include full-page;
+    color: red;
+    display: none;
+  }
+  // when expanded for extra details
+  &.expanded {
+    .list-item-expander {
+      // display: block;
+    }
+  }
+
 }
 .list-item-column{
   position:relative;
@@ -158,7 +172,7 @@
   vertical-align: middle;
   text-align:center;
   cursor:pointer;
-  padding:0 5px;
+  padding:0 $list-item-column-padding;
   // min-width: 100px;
 
   border-top: $light-border-top;
@@ -166,8 +180,11 @@
   // 
   @include first-last-no-border(li, '&', vertical);
 
-  @include phone{
+  @include phone {
     border: none;
+  }
+  .expanded & {
+    padding-bottom: $list-item-expand-height + $list-item-column-padding;
   }
 }
 .list-item-thumb{

@@ -20,17 +20,21 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   renderList: =>
     list  = @$('.layouts-list')
     list.empty()
-    @open_item  = null
+    @expanded_item  = null
     @collection.each (model)=>
       @appendChildTo @layoutView(model), list
 
-    @bindTo @collection, 'expand', (params)=>
-      @open_item && @open_item.trigger 'collapse'
-      console.log 'params model', params.model
-      console.log 'open item', @open_item
-      @open_item = params.model
-      # @open_item && @open_item.trigger 'expand'
-      # @collapseItems(params.model) if params && params.model
+    # when one model expands, collapse the previously expanded one
+    @bindTo @collection, 'expand', (params={})=>
+      # collapse the currently expanded model
+      @expanded_item && @expanded_item.trigger 'collapse'
+      if params.model isnt @expanded_item
+        # store the currently expanded model
+        @expanded_item = params.model
+      else
+        # if we just collapsed the one we had expanded, there is no expanded_item
+        @expanded_item = null
+
 
     @
 
