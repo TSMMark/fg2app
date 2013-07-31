@@ -63,6 +63,8 @@ $normal-blue:         rgb(48  , 134 , 195);
 $normal-blue-dark:    darken($normal-blue, 5%);
 $normal-blue-darker:  darken($normal-blue, 10%);
 $normal-blue-light:   lighten($normal-blue, 5%);
+$light-blue:          $normal-blue-light;
+
 $normal-blue-lighter: lighten($normal-blue, 10%);
 // $normal-blue-dark:  rgb(45  , 122 , 187);
 
