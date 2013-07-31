@@ -5,5 +5,4 @@ class Fg2app.Models.Layout extends Backbone.Model
   validate: ->
 
   isComplete: =>
-    console.log 'isComplete?', @get('description')
-    !!@get('description').match /description/
+    !!@get('description').match(/description/i)

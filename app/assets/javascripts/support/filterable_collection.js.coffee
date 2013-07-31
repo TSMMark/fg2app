@@ -4,6 +4,7 @@
 Support.FilterableCollectionMixin = 
   filtered: (criteria=true) ->
     criteria = (-> criteria) if typeof criteria isnt 'function'
+    console.log 'criteria', criteria
     sourceCollection = this
     filteredCollection = new @constructor
 
@@ -22,13 +23,21 @@ Support.FilterableCollectionMixin =
       else
         removeFromFiltered model, collection
 
+    resetFiltered = (collection)->
+      console.log 'reset', collection
+      filteredCollection.reset collection
+
+    @bind "reset",  resetFiltered
+    @bind "sync",   resetFiltered
     @bind "change", changeFiltered
-    @bind "add", addToFiltered
+    @bind "add",    addToFiltered
     @bind "remove", removeFromFiltered
 
     filteredCollection.teardown = ->
+      sourceCollection.unbind "reset",  resetFiltered
+      sourceCollection.unbind "sync",   resetFiltered
       sourceCollection.unbind "change", changeFiltered
-      sourceCollection.unbind "add", addToFiltered
+      sourceCollection.unbind "add",    addToFiltered
       sourceCollection.unbind "remove", removeFromFiltered
 
     filteredCollection.refilter = (newCriteria) ->

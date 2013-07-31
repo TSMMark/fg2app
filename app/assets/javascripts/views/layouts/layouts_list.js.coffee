@@ -21,6 +21,7 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     list  = @$('.layouts-list')
     list.empty()
     @expanded_item  = null
+    # @collection = @collection.areComplete() if @collection.length
     @collection.each (model)=>
       @appendChildTo @layoutView(model), list
 
@@ -39,6 +40,7 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
       @expanded_item = null
 
     @$el.toggleClass 'one-is-expanded', !!@expanded_item
+    
 
   layoutView: (model)=>
     view = new Fg2app.Views.LayoutListItem
