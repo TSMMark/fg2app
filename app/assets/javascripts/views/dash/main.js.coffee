@@ -17,6 +17,7 @@ class Fg2app.Views.Dashboard.Main extends Support.CompositeView
 
   renderLayouts: =>
     collection  = new Fg2app.Collections.Layouts()
+    
     view        = new Fg2app.Views.LayoutsList collection: collection
 
     container   = @$(".layouts-list-container")
