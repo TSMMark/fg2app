@@ -38,9 +38,10 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     else
       # if we just collapsed the one we had expanded, there is no expanded_item
       @expanded_item = null
+      # @collection = @collection.areComplete()
+      # @render()
 
     @$el.toggleClass 'one-is-expanded', !!@expanded_item
-    
 
   layoutView: (model)=>
     view = new Fg2app.Views.LayoutListItem

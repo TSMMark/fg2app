@@ -141,6 +141,7 @@
   border-bottom: $light-border-bottom;
   @include first-last-no-border;
   padding: 1px 0;
+  overflow: hidden;
 
 
 
