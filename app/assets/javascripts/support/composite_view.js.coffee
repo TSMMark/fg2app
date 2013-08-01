@@ -11,26 +11,27 @@ class Support.CompositeView extends Backbone.View
   leave: ->
     @unbind()
     @unbindFromAll()
+    @stopListening()
     @remove()
     @_leaveChildren()
     @_removeFromParent()
     @
 
   bindTo: (source, event, callback)->
-    source.bind event, callback, @
+    source.on event, callback, @
     @bindings.push(source: source, event: event, callback: callback)
     @
 
   unbindFromAll: ->
     @bindings.each (binding)->
-      binding.source.unbind(binding.event, binding.callback)
+      binding.source.off binding.event, binding.callback
     @bindings = _ []
     @
 
   renderChild: (view)->
-    view.render()
-    @children.push view
     view.parent = @
+    @children.push view
+    view.render()
     @
 
   renderChildInto: (view, container)->
@@ -116,3 +117,6 @@ class Support.CompositeView extends Backbone.View
 
   onceAgain: (method_name)=>
     @onceSet(method_name, false)
+
+
+_.extend Support.CompositeView.prototype, Support.Mixin.ScopedStorage

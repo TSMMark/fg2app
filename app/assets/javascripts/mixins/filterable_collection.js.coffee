@@ -1,7 +1,7 @@
 # usage
 # _.extend Fg2app.Collections.Layouts.prototype, Support.FilterableCollectionMixin
 
-Support.FilterableCollectionMixin = 
+Support.Mixin.FilterableCollection = 
   filtered: (criteria=true) ->
     criteria = (-> criteria) if typeof criteria isnt 'function'
     console.log 'criteria', criteria

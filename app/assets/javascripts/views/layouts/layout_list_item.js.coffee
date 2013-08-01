@@ -30,6 +30,7 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
     @bindTo @model, 'collapse', @collapseItem
 
   clickItem: =>
+    console.log 'clickItem'
     @model.trigger 'expand', model: @model
 
 

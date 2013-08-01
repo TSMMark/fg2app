@@ -16,13 +16,24 @@
 //  jquery-ui-rails
 //= require jquery.ui.all
 //
-// Loads all Bootstrap javascripts
+//  Loads all Bootstrap javascripts
 //= require bootstrap
 //
 //= require modernizr
 //
 //= require underscore
 //= require backbone
+//
+//  quick touch events on mobile devices
+//= require /assets/javascripts/backbone.touch
+//
+//  dot seperated events
+//    https://github.com/holt/backbone-structured-events
+//= require /assets/javascripts/backbone-structured-events
+//
+//  event-broker
+//    https://github.com/efeminella/backbone-eventbroker
+//= require /assets/javascripts/backbone-eventbroker
 //
 //= require ./helpers/helper_definer
 //= require ./helpers/fun_jst
@@ -37,6 +48,7 @@
 //  Backbone app
 //= require fg2app
 //
+//= require_tree ./mixins
 //= require_tree ./support
 //= require_tree ../templates
 //= require_tree ./models

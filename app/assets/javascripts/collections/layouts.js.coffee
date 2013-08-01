@@ -11,4 +11,4 @@ class Fg2app.Collections.Layouts extends Backbone.Collection
   #   matcher = (-> matcher) if typeof matcher isnt 'function'
   #   new @constructor  @select(matcher)
 
-_.extend Fg2app.Collections.Layouts.prototype, Support.FilterableCollectionMixin
+_.extend Fg2app.Collections.Layouts.prototype, Support.Mixin.FilterableCollection

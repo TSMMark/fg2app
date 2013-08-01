@@ -5,32 +5,21 @@ class Fg2app.Views.Topbar extends Support.CompositeView
   events: 
     'click .btn.btn-navbar[data-target]': 'clickExpandSidebar'
 
+  topbar_options: {}
+
   initialize: (params)->
-    @route = params.route
-    @topbar_options = 
-    switch @route
-      when 'dash'
-        [{
-          action: 'active'
-          icon: 'time'
-          label: 'Active'
-        },{
-          action: 'expired'
-          icon: 'exclamation-sign'
-          label: 'Expired'
-        },{
-          action: 'complete'
-          icon: 'ok'
-          label: 'Complete'
-        },{
-          action: 'tags'
-          icon: 'cloud'
-          label: 'Tags'
-        },{
-          action: 'archive'
-          icon: 'inbox'
-          label: 'Archive'
-        }]
+    if typeof params.topbar_options is 'object'
+      @topbar_options = _.extend @topbar_options, params.topbar_options
+
+  setCurrentOption: (name)->
+    alert @_name_of_class()
+    @stave 'current_option', name
+    Global.set 'topbar_option', name
+    # trigger event-broker event
+    console.log '# # # # # setCurrentOption # # # # #'
+    console.log "Global.get 'topbar_option'", Global.get 'topbar_option'
+    console.log "@stave 'current_option'", @stave 'current_option'
+    @
 
   render:->
     @renderBody()

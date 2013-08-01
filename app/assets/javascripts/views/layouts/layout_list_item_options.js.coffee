@@ -19,5 +19,3 @@ class Fg2app.Views.LayoutListItemOptions extends Support.CompositeView
     @$el.html @template( model: @model )
     @
 
-
-
