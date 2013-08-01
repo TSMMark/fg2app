@@ -21,16 +21,6 @@ class Support.CompositeView extends Backbone.View
     @bindings.push(source: source, event: event, callback: callback)
     @
 
-  renderOnChange: (source, callback=null)->
-    @onChange source, 'render', callback
-    @
-
-  onChange: (source, method_name, callback=null)->
-    @bindTo source, 'change', (e)=>
-      @[method_name].apply()
-      callback && callback(e)
-    @
-
   unbindFromAll: ->
     @bindings.each (binding)->
       binding.source.unbind(binding.event, binding.callback)
@@ -89,6 +79,22 @@ class Support.CompositeView extends Backbone.View
     @children.splice index, 1
     @
 
+
+# # # # # SPECIFIC EVENTS # # # # #
+
+  onChange: (source, method_name, callback=null)->
+    @bindTo source, 'change', (e)=>
+      @[method_name].apply()
+      callback && callback(e)
+    @
+
+  # @render on source:change
+  renderOnChange: (source, callback=null)->
+    @onChange source, 'render', callback
+    @
+
+
+# # # # # DO STUFF ONCE # # # # #
 
   # set once to bool and return old value
   onceSet: (method_name, bool=true)=>
