@@ -1,8 +1,5 @@
 <div class="list-header">
-  <div class="searchbar-container">
-    <input type="text" class="layouts-list-search" placeholder="Search"/>
-    <i class="icon-search"></i>
-  </div>
+  <div class="searchbar-container"></div>
   <div class="btn-new-layout">
     <i class="icon-plus"></i>
     New Layout

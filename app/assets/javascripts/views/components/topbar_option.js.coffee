@@ -20,9 +20,10 @@ class Fg2app.Views.TopbarOption extends Support.CompositeView
     @$el.html @template(view: @)
     @
 
+  isActive: false
   setOption: (option_name=null)=>
-    @$el.toggleClass 'active', option_name == @action
+    @isActive = option_name == @action
+    @$el.toggleClass 'active', @isActive
 
   click:  =>
-    # Dispatch.trigger "nav.top.#{@action}"
-    @broker.trigger 'setOption', @action
+    @broker.trigger 'setOption', @action unless @isActive

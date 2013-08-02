@@ -13,7 +13,6 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
     @renderTopbar()
     @
 
-
   renderBody: =>
     @$el.html @templates.body
 

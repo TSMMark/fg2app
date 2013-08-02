@@ -2,7 +2,6 @@ class Fg2app.Views.DashTopbar extends Fg2app.Views.Topbar
 
   initialize: ->
     super
-    # @stave ''
 
   default_option: 'complete'
   topbar_options:

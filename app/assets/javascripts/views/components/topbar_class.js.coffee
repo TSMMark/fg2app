@@ -18,11 +18,6 @@ class Fg2app.Views.Topbar extends Support.CompositeView
   setCurrentOption: (name)->
     @stave 'current_option', name
     Global.set 'topbar_option', name
-    # trigger event-broker event
-    
-    console.log '# # # # # setCurrentOption # # # # #'
-    console.log "Global.get 'topbar_option'", Global.get 'topbar_option'
-    console.log "@stave 'current_option'", @stave 'current_option'
     @
 
   render:->
@@ -31,16 +26,18 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
     current_option = @stave('current_option') || @default_option
     @broker.trigger 'setOption', current_option
-    # @setCurrentOption current_option
+    @
 
   renderBody: ->
     @$el.html @template(view: @)
+    @
 
   renderOptions:->
     container = @$('.navbar-options').empty()
     _.each @topbar_options, (option)=>
       pane  = new Fg2app.Views.TopbarOption(option)
       @appendChildTo pane, container
+    @
 
 
   # events

@@ -24,6 +24,7 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
   renderBody: =>
     @$el.html @template( model: @model )
+    @applyImage()
     @
 
   bindEvents: =>
@@ -31,25 +32,24 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
     @bindTo @model, 'collapse', @collapseItem
 
   clickItem: =>
-    console.log 'clickItem'
     @model.trigger 'expand', model: @model
 
 
   expandItem: =>
     @$el.addClass 'expanded'
-    # @model.set 'name', 'expand'
     @doOnce 'renderExpander'
-    # @renderExpander()
 
   collapseItem: =>
     @$el.removeClass 'expanded'
-    # @model.set 'name', 'collapse'
 
 
   renderExpander: =>
     view = new Fg2app.Views.LayoutListItemOptions
       model       : @model
-    @appendChild view #, @$('.list-item-expander')
+    @appendChild view
 
 
+  applyImage: =>
+    @$('.list-item-thumb').css
+      'background-image': "url(#{ @model.get('thumb') })"
 
