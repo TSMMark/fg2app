@@ -3,7 +3,7 @@ class Fg2app.Views.DashTopbar extends Fg2app.Views.Topbar
   initialize: ->
     super
 
-  default_option: 'complete'
+  default_option: 'active'
   topbar_options:
     [{
       action: 'active'
@@ -22,7 +22,7 @@ class Fg2app.Views.DashTopbar extends Fg2app.Views.Topbar
       icon: 'cloud'
       label: 'Tags'
     },{
-      action: 'archive'
+      action: 'archived'
       icon: 'inbox'
-      label: 'Archive'
+      label: 'Archived'
     }]

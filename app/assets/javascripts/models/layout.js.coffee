@@ -7,15 +7,27 @@ class Fg2app.Models.Layout extends Backbone.Model
 
   validate: ->
 
-  isComplete: =>
-    !!@get('description').match(/description/i)
-
   matchesTerms: (terms)=>
     regexp = new RegExp(terms, "i")
     match = @get('description').match(regexp) || 
             @get('name').match(regexp)
     !!match
 
+
+  isActive: =>
+    seconds_passed = new Date().getTime() - new Date(@get('created_at')).getTime() 
+    seconds_passed <= 604800
+
+  isExpired: =>
+    seconds_passed = new Date().getTime() - new Date(@get('created_at')).getTime() 
+    seconds_passed > 604800
+
+  isComplete: =>
+    !!@get('description').match(/description/i)
+
+  isArchived: =>
+    # !!@get('description').match(/description/i)
+    false
 
   _randomImage: =>
     imgs = _ [

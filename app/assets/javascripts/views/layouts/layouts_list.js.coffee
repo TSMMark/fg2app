@@ -23,15 +23,27 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   filterBy: (criteria=null)=>
     @broker.trigger 'search.reset'
     fn = switch criteria
+      when 'active'   then @filterActive
+      when 'expired'  then @filterExpired
       when 'complete' then @filterComplete
+      when 'archived' then @filterArchived
       else @resetFilter
     fn()
 
   resetFilter:=>
     @filter @baseCollection.filtered(true), true
 
+  filterActive: =>
+    @filter @baseCollection.areActive(), true
+
+  filterExpired: =>
+    @filter @baseCollection.areExpired(), true
+
   filterComplete: =>
     @filter @baseCollection.areComplete(), true
+
+  filterArchived: =>
+    @filter @baseCollection.areArchived(), true
 
   filterSearch: (terms)=>
     @filter @categoryCollection.search(terms), false
