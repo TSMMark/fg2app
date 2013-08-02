@@ -162,7 +162,7 @@
     }
   }
   @include phone {
-    @include transition-property(none);
+    // @include transition-property(none);
     height: $list-item-height-phone;
   }
 
@@ -236,8 +236,13 @@
     width: 100%;
   }
 
-  background: url(https://fbcdn-photos-d-a.akamaihd.net/hphotos-ak-prn1/851560_10151727615332495_132929428_n.jpg) no-repeat center center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
+  
+  border:       none;
+  border-left:  $light-border-dark;
+  border-right: $light-border-dark;
 }
 .promo-indicator{
   color: rgba($highlight-blue, 0.5);

@@ -26,15 +26,18 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
     current_option = @stave('current_option') || @default_option
     @broker.trigger 'setOption', current_option
+    @
 
   renderBody: ->
     @$el.html @template(view: @)
+    @
 
   renderOptions:->
     container = @$('.navbar-options').empty()
     _.each @topbar_options, (option)=>
       pane  = new Fg2app.Views.TopbarOption(option)
       @appendChildTo pane, container
+    @
 
 
   # events

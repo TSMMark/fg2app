@@ -2,7 +2,10 @@
 # _.extend Fg2app.Collections.Layouts.prototype, Support.FilterableCollectionMixin
 
 Support.Mixin.FilterableCollection = 
-  filtered: (criteria=true) ->
+  # stackFilter: (criteria)->
+  #   @collection
+
+  filtered: (criteria=true)->
     criteria = (-> criteria) if typeof criteria isnt 'function'
     console.log 'criteria', criteria
     sourceCollection = this

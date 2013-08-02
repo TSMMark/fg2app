@@ -4,13 +4,15 @@ window.Support  =
 window.Global ||= {}
 window.Dispatch = _.extend {}, Backbone.Events
 window.Fg2app   =
-  $:{}
-  Models: {}
-  Collections: {}
+  $:            {}
+  Routers:      {}
+  Models:       {}
+  Collections:  {}
+  
   Views:
-    Dashboard:{}
+    Elements:   {}
+    Dashboard:  {}
     
-  Routers: {}
 
   initialize: ->
     @$.container  = $("#app-content")

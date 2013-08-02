@@ -7,6 +7,10 @@ class Fg2app.Collections.Layouts extends Backbone.Collection
     @filtered (model)->
       model.isComplete()
 
+  search: (terms)=>
+    @filtered (model)->
+      model.matchesTerms(terms)
+
   # filtered: (matcher=true)=>
   #   matcher = (-> matcher) if typeof matcher isnt 'function'
   #   new @constructor  @select(matcher)

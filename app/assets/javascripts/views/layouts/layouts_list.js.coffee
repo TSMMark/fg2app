@@ -1,6 +1,7 @@
 class Fg2app.Views.LayoutsList extends Support.CompositeView
 
   topbarBroker: Backbone.EventBroker.get('topbar')
+  broker:       Backbone.EventBroker.get('layouts')
   
   template: JST['layouts/list']
 
@@ -8,10 +9,16 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     super
     # @bindTo @collection, 'reset', @filter
 
-    @baseCollection   = @collection
-    @collection       = @baseCollection.filtered(true)
+    @baseCollection     = @collection
+    @collection         = @collection.filtered(true)
+    @categoryCollection = @collection.filtered(true)
 
-    @listenTo @topbarBroker, 'setOption', @filterBy
+    @topbarBroker.register
+      'setOption' : 'filterBy'
+      ,@
+    @broker.register
+      'search'    : 'filterSearch'
+      ,@
 
   filterBy: (criteria=null)=>
     fn = switch criteria
@@ -20,23 +27,40 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     fn()
 
   resetFilter:=>
-    @filter @baseCollection.filtered(true)
+    @filter @baseCollection.filtered(true), true
 
   filterComplete: =>
-    @filter @baseCollection.areComplete()
+    @filter @baseCollection.areComplete(), true
 
-  filter: (new_collection)=>
+  filterSearch: (terms)=>
+    @filter @categoryCollection.search(terms), false
+
+  # new_collection is the filtered collection to render
+  # if is_category is false, it won't overwrite the Category Collection
+  filter: (new_collection, is_category=true)=>
     @collection.teardown()
-    @collection = new_collection
+    @collection         = new_collection
+    @categoryCollection = new_collection if is_category
     @renderList()
 
   render: =>
     @renderBody()
+    @renderSearchBar()
     #@renderList() # don't render list until we know the filter
     @
 
   renderBody: =>
     @$el.html @template()
+    @
+
+  renderSearchBar: =>
+    html = new Fg2app.Views.Elements.SearchField
+      className:    'layouts-list-search'
+      placeholder:  'Search'
+      broker:       @broker
+      eventName:    'search'
+
+    @renderChildAs html, @$('.searchbar-container')
     @
 
   renderList: =>

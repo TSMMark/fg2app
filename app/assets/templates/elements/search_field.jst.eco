@@ -1,0 +1,4 @@
+<input type="text" class="<%= @view.className %>" placeholder="<%= @view.placeholder %>"/>
+<i class="icon-search"></i>
+
+<!-- <input type="text" class="layouts-list-search" placeholder="Search"/> -->
