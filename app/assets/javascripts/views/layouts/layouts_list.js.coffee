@@ -21,6 +21,7 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
       ,@
 
   filterBy: (criteria=null)=>
+    @broker.trigger 'search.reset'
     fn = switch criteria
       when 'complete' then @filterComplete
       else @resetFilter

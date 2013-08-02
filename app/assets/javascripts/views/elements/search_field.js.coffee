@@ -21,7 +21,11 @@ class Fg2app.Views.Elements.SearchField extends Support.CompositeView
 
     @broker       = Backbone.EventBroker.broker params.broker
     @eventName    = params.eventName
-      
+    
+    @broker.register 
+      'search.reset'  : 'reset'
+      ,@
+
 
   render:=>
     @$el.html @template(view: @)
@@ -32,3 +36,6 @@ class Fg2app.Views.Elements.SearchField extends Support.CompositeView
     return if @last_val == (val = @input.val())
     @last_val = val
     @broker.trigger(@eventName, val) if @broker
+
+  reset: =>
+    @input.val('')
