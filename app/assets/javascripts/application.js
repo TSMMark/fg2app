@@ -25,15 +25,15 @@
 //= require backbone
 //
 //  quick touch events on mobile devices
-//= require /assets/javascripts/backbone.touch
+//= require backbone.touch.min
 //
 //  dot seperated events
 //    https://github.com/holt/backbone-structured-events
-//= require /assets/javascripts/backbone-structured-events
+//= require backbone-structured-events
 //
 //  event-broker
 //    https://github.com/efeminella/backbone-eventbroker
-//= require /assets/javascripts/backbone-eventbroker
+//= require backbone-eventbroker
 //
 //= require ./helpers/helper_definer
 //= require ./helpers/fun_jst
