@@ -18,11 +18,6 @@ class Fg2app.Views.Topbar extends Support.CompositeView
   setCurrentOption: (name)->
     @stave 'current_option', name
     Global.set 'topbar_option', name
-    # trigger event-broker event
-    
-    console.log '# # # # # setCurrentOption # # # # #'
-    console.log "Global.get 'topbar_option'", Global.get 'topbar_option'
-    console.log "@stave 'current_option'", @stave 'current_option'
     @
 
   render:->
