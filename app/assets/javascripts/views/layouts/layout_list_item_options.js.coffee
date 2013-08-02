@@ -7,6 +7,7 @@ class Fg2app.Views.LayoutListItemOptions extends Support.CompositeView
   className: 'list-item-expander'
 
   initialize: (params)->
+    super
     # @model
 
   render: =>
@@ -18,6 +19,4 @@ class Fg2app.Views.LayoutListItemOptions extends Support.CompositeView
   renderBody: =>
     @$el.html @template( model: @model )
     @
-
-
 

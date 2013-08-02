@@ -30,15 +30,15 @@ class Ability
 
 
       #    LAYOUTS    #
-      can :manage, Layout, users: { id: @user.id }
-      can :create, Layout
+      can :manage,  Layout, users: { id: @user.id }
+      can :create,  Layout
       # .. LAYOUTS .. #
 
 
       #    TABS    #
       # can :manage, Tab, user: { id: @user.id }
-      can :manage, Tab, users: { id: @user.id }
-      can :create, Tab, users: { id: @user.id }
+      can :manage,  Tab, users: { id: @user.id }
+      can :create,  Tab, users: { id: @user.id }
       # can :read, Tab, &if_owner_or_admin
       # can :create, Tab, &if_owner_or_admin
       # .. TABS .. #
@@ -46,7 +46,7 @@ class Ability
 
       #    USERS    #
       # can update if admin or owner
-      can :manage, User, id: @user.id
+      can :manage,  User, id: @user.id
       # can :read, User, &if_owner_or_admin
       # can :update, User, &if_owner_or_admin
       # .. USERS .. #

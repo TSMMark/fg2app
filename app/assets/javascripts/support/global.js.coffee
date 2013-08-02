@@ -1,0 +1,1 @@
+window.Global = _.extend {}, Support.Mixin.HasAttrs

@@ -4,43 +4,36 @@ class Support.CompositeView extends Backbone.View
   bindings: _ []
 
   initialize: (params)->
-    @model      = params.model        if params.model       isnt undefined
-    @view       = params.view         if params.view        isnt undefined
-    @collection = params.collection   if params.collection  isnt undefined
+    super
+    if params
+      @model      = params.model        if params.model       isnt undefined
+      @view       = params.view         if params.view        isnt undefined
+      @collection = params.collection   if params.collection  isnt undefined
 
   leave: ->
     @unbind()
     @unbindFromAll()
+    @stopListening()
     @remove()
     @_leaveChildren()
     @_removeFromParent()
     @
 
   bindTo: (source, event, callback)->
-    source.bind event, callback, @
+    source.on event, callback, @
     @bindings.push(source: source, event: event, callback: callback)
-    @
-
-  renderOnChange: (source, callback=null)->
-    @onChange source, 'render', callback
-    @
-
-  onChange: (source, method_name, callback=null)->
-    @bindTo source, 'change', (e)=>
-      @[method_name].apply()
-      callback && callback(e)
     @
 
   unbindFromAll: ->
     @bindings.each (binding)->
-      binding.source.unbind(binding.event, binding.callback)
+      binding.source.off binding.event, binding.callback
     @bindings = _ []
     @
 
   renderChild: (view)->
-    view.render()
-    @children.push view
     view.parent = @
+    @children.push view
+    view.render()
     @
 
   renderChildInto: (view, container)->
@@ -90,6 +83,22 @@ class Support.CompositeView extends Backbone.View
     @
 
 
+# # # # # SPECIFIC EVENTS # # # # #
+
+  onChange: (source, method_name, callback=null)->
+    @bindTo source, 'change', (e)=>
+      @[method_name].apply()
+      callback && callback(e)
+    @
+
+  # @render on source:change
+  renderOnChange: (source, callback=null)->
+    @onChange source, 'render', callback
+    @
+
+
+# # # # # DO STUFF ONCE # # # # #
+
   # set once to bool and return old value
   onceSet: (method_name, bool=true)=>
     @onces    ||= {}
@@ -110,3 +119,6 @@ class Support.CompositeView extends Backbone.View
 
   onceAgain: (method_name)=>
     @onceSet(method_name, false)
+
+
+_.extend Support.CompositeView.prototype, Support.Mixin.ScopedStorage

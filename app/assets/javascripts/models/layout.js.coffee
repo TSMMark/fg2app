@@ -3,4 +3,6 @@ class Fg2app.Models.Layout extends Backbone.Model
   urlRoot:  '/api/v1/layouts'
   
   validate: ->
-    # console.log(arg, @)
+
+  isComplete: =>
+    !!@get('description').match(/description/i)

@@ -1,4 +1,8 @@
-window.Support  = {}
+window.Support  = 
+  Mixin: {}
+  
+window.Global ||= {}
+window.Dispatch = _.extend {}, Backbone.Events
 window.Fg2app   =
   $:{}
   Models: {}
@@ -7,9 +11,9 @@ window.Fg2app   =
     Dashboard:{}
     
   Routers: {}
-  Dispatcher: {}
+
   initialize: ->
-    @$.container = $("#app-content")
+    @$.container  = $("#app-content")
     # Index Router must be initialized FIRST
     #   so that it is checked LAST
     new Fg2app.Routers.Index()

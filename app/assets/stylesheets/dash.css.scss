@@ -141,6 +141,7 @@
   border-bottom: $light-border-bottom;
   @include first-last-no-border;
   padding: 1px 0;
+  overflow: hidden;
 
 
 
@@ -154,8 +155,11 @@
   height: $list-item-height;
   &.expanded {
     @include transition-duration($default-slide-in-duration);
-    height: $list-item-height + $list-item-expand-height;
     background:$list-item-background-hover;
+    height: $list-item-height + $list-item-expand-height;
+    @include phone {
+      height: $list-item-height-phone + $list-item-expand-height;
+    }
   }
   @include phone {
     @include transition-property(none);
@@ -236,7 +240,7 @@
   background-size: contain;
 }
 .promo-indicator{
-  color: rgba($highlight-blue, 0.25);
+  color: rgba($highlight-blue, 0.5);
 }
 
 .status-column{
