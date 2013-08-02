@@ -10,6 +10,7 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
     'click li, .overlay'   : 'clickItem'
 
   initialize: (params)->
+    super
     # @model
 
   render: =>

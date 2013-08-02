@@ -7,6 +7,7 @@ class Fg2app.Views.Sidebar extends Support.CompositeView
   # className: 'menu nav-collapse collapse width'
 
   initialize: ->
+    super
 
 
   render:->

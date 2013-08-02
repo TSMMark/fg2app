@@ -3,6 +3,7 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   template: JST['layouts/list']
 
   initialize: (params)->
+    super
     # @bindTo @collection, 'reset', @filter
 
     @baseCollection   = @collection

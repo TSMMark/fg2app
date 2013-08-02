@@ -1,8 +1,7 @@
 class Fg2app.Views.DashTopbar extends Fg2app.Views.Topbar
 
   initialize: ->
-    current_option = @stave('current_option') || @default_option
-    @setCurrentOption current_option
+    super
     # @stave ''
 
   default_option: 'complete'

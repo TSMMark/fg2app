@@ -4,9 +4,11 @@ class Support.CompositeView extends Backbone.View
   bindings: _ []
 
   initialize: (params)->
-    @model      = params.model        if params.model       isnt undefined
-    @view       = params.view         if params.view        isnt undefined
-    @collection = params.collection   if params.collection  isnt undefined
+    super
+    if params
+      @model      = params.model        if params.model       isnt undefined
+      @view       = params.view         if params.view        isnt undefined
+      @collection = params.collection   if params.collection  isnt undefined
 
   leave: ->
     @unbind()

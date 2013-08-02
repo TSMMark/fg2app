@@ -1,14 +1,13 @@
 class DashController < ApplicationController
 
+  # load_and_authorize_resource :layout, through: :current_user, only: :index
   def index
     # make new guest if not signed in
     # => make cron to delete unused guests
     if user_signed_in? then
-      @pages = current_user.pages
-      @current_user = current_user.as_json
-      # @route = params[:route].present? ? 
-      #           params[:route].downcase.gsub(/[^0-9a-z\/]/, '') :
-      #           ''
+      @layouts    = current_user.layouts
+      authorize_collection!  :show, @layouts
+
     else
       # redirect to signin path
       #   TODO: better logic for this

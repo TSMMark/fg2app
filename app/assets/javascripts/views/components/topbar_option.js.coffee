@@ -6,6 +6,7 @@ class Fg2app.Views.TopbarOption extends Support.CompositeView
     'click' : 'click'
 
   initialize: (params)->
+    super
     @action = params.action
     @label  = params.label
     @icon   = params.icon

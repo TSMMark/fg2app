@@ -8,11 +8,14 @@ class Fg2app.Views.Topbar extends Support.CompositeView
   topbar_options: {}
 
   initialize: (params)->
+    super
+    current_option = @stave('current_option') || @default_option
+    @setCurrentOption current_option
+    
     if typeof params.topbar_options is 'object'
       @topbar_options = _.extend @topbar_options, params.topbar_options
 
   setCurrentOption: (name)->
-    alert @_name_of_class()
     @stave 'current_option', name
     Global.set 'topbar_option', name
     # trigger event-broker event

@@ -1,0 +1,1 @@
+window.Bootstrapper = _.extend {}, Support.Mixin.HasAttrs

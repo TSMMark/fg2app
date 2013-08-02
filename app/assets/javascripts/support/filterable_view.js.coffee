@@ -4,6 +4,7 @@ class Support.FilterableView extends Support.CompositeView
     'reset'   : 'onReset'
 
   initialize  : (params)->
+    super
     @baseCollection   = @collection
     @collection       = @baseCollection.filtered (-> false)
 
