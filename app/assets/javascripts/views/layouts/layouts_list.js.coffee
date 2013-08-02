@@ -11,11 +11,9 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     @baseCollection   = @collection
     @collection       = @baseCollection.filtered(true)
 
-    # @listenTo Dispatch, 'nav.top.complete', @filterComplete
     @listenTo @topbarBroker, 'setOption', @filterBy
 
   filterBy: (criteria=null)=>
-    console.log 'filterBy', criteria
     fn = switch criteria
       when 'complete' then @filterComplete
       else @resetFilter
@@ -34,7 +32,7 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
 
   render: =>
     @renderBody()
-    #@renderList()
+    #@renderList() # don't render list until we know the filter
     @
 
   renderBody: =>
@@ -42,7 +40,6 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     @
 
   renderList: =>
-    console.log 'renderList', @collection.length
     list  = @$('.layouts-list')
     list.empty()
     @expanded_item  = null
@@ -71,8 +68,6 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     else
       # there is no expanded_item
       @expanded_item = null
-      # @collection = @collection.areComplete()
-      # @render()
 
     @expanded !!@expanded_item
 

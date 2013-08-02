@@ -26,7 +26,6 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
     current_option = @stave('current_option') || @default_option
     @broker.trigger 'setOption', current_option
-    # @setCurrentOption current_option
 
   renderBody: ->
     @$el.html @template(view: @)
