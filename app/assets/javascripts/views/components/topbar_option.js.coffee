@@ -1,5 +1,7 @@
 class Fg2app.Views.TopbarOption extends Support.CompositeView
 
+  broker: Backbone.EventBroker.get('topbar')
+
   template: JST['components/topbar_option']
 
   events:
@@ -18,4 +20,5 @@ class Fg2app.Views.TopbarOption extends Support.CompositeView
     @
 
   click:  =>
-    Dispatch.trigger "nav.top.#{@action}"
+    # Dispatch.trigger "nav.top.#{@action}"
+    @broker.trigger 'setOption', @action

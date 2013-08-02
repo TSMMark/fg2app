@@ -1,5 +1,7 @@
 class Fg2app.Views.LayoutsList extends Support.CompositeView
 
+  topbarBroker: Backbone.EventBroker.get('topbar')
+  
   template: JST['layouts/list']
 
   initialize: (params)->
@@ -7,11 +9,22 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     # @bindTo @collection, 'reset', @filter
 
     @baseCollection   = @collection
-    @collection       = @baseCollection.filtered(false)
+    @collection       = @baseCollection.filtered(true)
 
-    @listenTo Dispatch, 'nav.top.complete', @filterComplete
+    # @listenTo Dispatch, 'nav.top.complete', @filterComplete
+    @listenTo @topbarBroker, 'setOption', @filterBy
 
-  filterComplete: (e=null)=>
+  filterBy: (criteria=null)=>
+    console.log 'filterBy', criteria
+    fn = switch criteria
+      when 'complete' then @filterComplete
+      else @resetFilter
+    fn()
+
+  resetFilter:=>
+    @filter @baseCollection.filtered(true)
+
+  filterComplete: =>
     @filter @baseCollection.areComplete()
 
   filter: (new_collection)=>

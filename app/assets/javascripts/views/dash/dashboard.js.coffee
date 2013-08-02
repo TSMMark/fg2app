@@ -8,9 +8,9 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
 
   render: =>
     @renderBody()
+    @renderMainContent()
     @renderSidebar()
     @renderTopbar()
-    @renderMainContent()
     @
 
 
