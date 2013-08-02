@@ -6,6 +6,7 @@
   position:fixed;
   z-index:99;
 
+  @include user-select(none);
   margin-bottom:0;
 
   right: 0;
