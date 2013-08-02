@@ -3,6 +3,9 @@ class Support.CompositeView extends Backbone.View
   children: _ []
   bindings: _ []
 
+  siblings: _ []
+  parent:   null
+
   initialize: (params)->
     super
     if params
@@ -30,41 +33,42 @@ class Support.CompositeView extends Backbone.View
     @bindings = _ []
     @
 
-  renderChild: (view)->
+  renderChild: (view, siblings=null)->
+    view.siblings = _([]).extend siblings if typeof siblings is 'array'
     view.parent = @
     @children.push view
     view.render()
     @
 
-  renderChildInto: (view, container)->
-    @renderChild view
+  renderChildInto: (view, container, siblings=null)->
+    @renderChild view, siblings
     $(container).empty().append view.el
     @
       
-  renderChildAs: (view, container)->
+  renderChildAs: (view, container, siblings=null)->
     c = $(container)
     c.empty()
     view.setElement c
-    @renderChild view
+    @renderChild view, siblings
     @
       
-  appendChild: (view)->
-    @renderChild view
+  appendChild: (view, siblings=null)->
+    @renderChild view, siblings
     $(@el).append view.el
     @
 
-  appendChildTo: (view, container)->
-    @renderChild view
+  appendChildTo: (view, container, siblings=null)->
+    @renderChild view, siblings
     $(container).append view.el
     @
 
-  prependChild: (view)->
-    @renderChild view
+  prependChild: (view, siblings=null)->
+    @renderChild view, siblings
     $(@el).prepend view.el
     @
 
-  prependChildTo: (view, container)->
-    @renderChild view
+  prependChildTo: (view, container, siblings=null)->
+    @renderChild view, siblings
     $(container).prepend view.el
     @
 
