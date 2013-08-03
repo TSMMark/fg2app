@@ -7,7 +7,6 @@ Support.Mixin.FilterableCollection =
 
   filtered: (criteria=true)->
     criteria = (-> criteria) if typeof criteria isnt 'function'
-    console.log 'criteria', criteria
     sourceCollection = this
     filteredCollection = new @constructor
 
@@ -27,7 +26,6 @@ Support.Mixin.FilterableCollection =
         removeFromFiltered model, collection
 
     resetFiltered = (collection)->
-      console.log 'reset', collection
       filteredCollection.reset collection
 
     @bind "reset",  resetFiltered

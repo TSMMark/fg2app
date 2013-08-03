@@ -94,7 +94,6 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     @$el.toggleClass 'one-is-expanded', !!bool
 
   expandOneItem: (params={})=>
-    console.log 'expandOneItem'
     # collapse the currently expanded model
     @expanded_item && @expanded_item.trigger 'collapse'
 

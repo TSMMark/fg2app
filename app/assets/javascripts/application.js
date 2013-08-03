@@ -51,6 +51,8 @@
 //
 //  Backbone app
 //= require fg2app
+//  include environment
+//= require rails
 //
 //= require_tree ./mixins
 //= require_tree ./support
