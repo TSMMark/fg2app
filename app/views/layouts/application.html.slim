@@ -10,7 +10,7 @@ html
 	  meta[ name="apple-mobile-web-app-capable" content="yes"]
 
 
-	body
+	body [data-env="#{Rails.env}"]
 
 		.frame
 			== yield

@@ -1,15 +1,3 @@
-/h1 Your pages
-/table
-/  tr
-/    th Pid
-/    th Name
-/    th Category
-/  -for page in @pages
-/    tr
-/      td =page.pid
-/      td =page.name
-/      td =page.category
-
 javascript:
   window.current_user = #{current_user.to_json.html_safe}
   Bootstrapper.set('layouts', #{@layouts.to_json.html_safe})

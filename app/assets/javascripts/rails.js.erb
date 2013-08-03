@@ -1,0 +1,6 @@
+window.Fg2app.environment = "<%= Rails.env %>"
+
+// return true if Rails.env is included in arguments
+window.Fg2app.env = function(/* any number of strings */){
+  return _(arguments).indexOf(window.Fg2app.environment) !== -1
+}

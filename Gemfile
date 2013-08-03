@@ -78,6 +78,8 @@ gem 'modernizr-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'datejs-rails'
+
 # gem 'jquery-slimscroll-rails'
 
 # JSON2

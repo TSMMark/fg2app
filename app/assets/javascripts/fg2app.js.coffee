@@ -4,6 +4,7 @@ window.Support  =
 window.Global ||= {}
 window.Dispatch = _.extend {}, Backbone.Events
 window.Fg2app   =
+  env:          null
   $:            {}
   Routers:      {}
   Models:       {}

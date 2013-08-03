@@ -77,6 +77,8 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     database_cleaner (1.0.1)
+    datejs-rails (2.0.1)
+      railties (>= 3.1)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -301,6 +303,7 @@ DEPENDENCIES
   commands
   compass-rails
   database_cleaner (~> 1.0.1)
+  datejs-rails
   devise
   factory_girl_rails (~> 4.0)
   faker (~> 1.1.2)

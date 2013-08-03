@@ -3,13 +3,25 @@ class Fg2app.Collections.Layouts extends Backbone.Collection
 
   model: Fg2app.Models.Layout
 
+  search: (terms)=>
+    @filtered (model)->
+      model.matchesTerms(terms)
+
+  areActive: =>
+    @filtered (model)->
+      model.isActive()
+
+  areExpired: =>
+    @filtered (model)->
+      model.isExpired()
+
   areComplete: =>
     @filtered (model)->
       model.isComplete()
 
-  search: (terms)=>
+  areArchived: =>
     @filtered (model)->
-      model.matchesTerms(terms)
+      model.isArchived()
 
   # filtered: (matcher=true)=>
   #   matcher = (-> matcher) if typeof matcher isnt 'function'

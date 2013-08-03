@@ -41,3 +41,14 @@ window.console ||=
   info:   (->)
   warn:   (->)
   error:  (->)
+
+# console.log that doesn't fire in production
+window.LOG  = ->
+  return if Fg2app.env('production')
+  window.console.log.apply window.console, arguments
+
+
+
+
+
+

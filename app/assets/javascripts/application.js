@@ -45,8 +45,14 @@
 //  slimScroll jquery scrollbar plugin
 //= require jquery.slimscroll.min
 //
+//  DateJS
+//    https://github.com/derekprior/datejs-rails
+//= require date
+//
 //  Backbone app
 //= require fg2app
+//  include environment
+//= require rails
 //
 //= require_tree ./mixins
 //= require_tree ./support
