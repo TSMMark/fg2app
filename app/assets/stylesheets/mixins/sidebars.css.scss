@@ -1,0 +1,71 @@
+
+/* ====================
+      Mixins having to do with sidebar in and outness
+   ==================== */
+// SLIDE FOR SIDEBAR SLIDE MIXINS helper
+@mixin _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration, $sidebar-side:left) {
+  $multiplier: 1;
+  @if $sidebar-side == right {
+    $multiplier: -1;
+  }
+  #{$prefix}left: $sidebar-width * $multiplier;
+  @if $include-right != false {
+    #{$prefix}right:$sidebar-width * -$multiplier;
+  }
+  @if $transition-duration != false {
+    @include transition-duration($transition-duration);
+  }
+}
+
+// shift over for the sidebar
+// can do margin or left / right
+// $prefix:     "margin-" to adjust margin-left instead of left
+// $conditions: true => check for .sidebar-in or 980px
+@mixin shift-for-sidebar(
+  // the initial left and right values used in calculations
+  $initial-left:  0,
+  $initial-right: 0,
+  // alter the right side also?
+  $include-right: false,
+  // "margin-", "padding-", ""
+  $prefix:        null,
+  // width in pixels
+  $sidebar-width: $side-nav-width,
+  // transition durations for sliding in and out
+  $transition-duration-in:  $navbar-slide-in-duration,
+  $transition-duration-out: $navbar-slide-out-duration,
+  // apply as is, or apply when conditions are met?
+  $conditions:    true,
+  // is it the left or right sidebar that's in?
+  $sidebar-side:  left) {
+
+  @if $conditions != false{
+    @include transition-duration($transition-duration-out);
+    @include when-sidebar-in() {
+      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in, $sidebar-side);
+    }
+  } @else {
+    @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in, $sidebar-side);
+  }
+}
+
+
+@mixin when-sidebar-in($sidebar-side:left) {
+  // toggled in
+  $class-name: sidebar-in- + $sidebar-side;
+  &.#{$class-name}, .#{$class-name} &{
+    @content;
+  }
+  // desktop size
+  @include qif(desktop, true) {
+    @content;
+  }
+}
+
+
+@mixin navbar-slide-in-duration() {
+  @include transition-duration($navbar-slide-in-duration);
+}
+@mixin navbar-slide-out-duration() {
+  @include transition-duration($navbar-slide-out-duration);
+}
