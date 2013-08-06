@@ -27,7 +27,7 @@ html, body{
 }
 
 // for desktops, always show side nav and don't push everything else offscreen
-@include qif(desktop) {
+@include desktop {
   .frame{
     width:100%;
     .view{

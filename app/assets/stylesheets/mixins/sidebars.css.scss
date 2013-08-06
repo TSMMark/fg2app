@@ -39,9 +39,9 @@
   // is it the left or right sidebar that's in?
   $sidebar-side:  left) {
 
-  @if $conditions != false{
+  @if $conditions != false {
     @include transition-duration($transition-duration-out);
-    @include when-sidebar-in() {
+    @include when-sidebar-in {
       @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in, $sidebar-side);
     }
   } @else {
@@ -57,7 +57,7 @@
     @content;
   }
   // desktop size
-  @include qif(desktop, true) {
+  @include desktop {
     @content;
   }
 }
