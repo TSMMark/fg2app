@@ -59,9 +59,7 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     
     # remove opposite class 
     Fg2app.$body.removeClass(other_sidebar_class)
-
-    # 
-    Fg2app.$body.toggleClass(this_sidebar_class, !this_sidebar_is_in)
+                .toggleClass(this_sidebar_class, !this_sidebar_is_in)
 
     # if Browser.can("csstransitions") # we don't need this.. it'll just pop in instead of animate
     
