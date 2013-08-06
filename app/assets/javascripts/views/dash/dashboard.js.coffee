@@ -24,7 +24,7 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
 
   renderSidebar: =>
     pane  = new Fg2app.Views.Sidebar()
-    container = @$('#menu')
+    container = @$('#menu-left')
     @renderChildInto pane, container
 
   renderTopbar: =>

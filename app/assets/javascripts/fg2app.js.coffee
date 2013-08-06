@@ -16,7 +16,9 @@ window.Fg2app   =
     
 
   initialize: ->
-    @$.container  = $("#app-content")
+    @$.container  = $('#app-content')
+    @$container   = @$.container
+    @$body        = $('body')
     # Index Router must be initialized FIRST
     #   so that it is checked LAST
     new Fg2app.Routers.Index()

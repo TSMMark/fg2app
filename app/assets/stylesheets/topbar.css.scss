@@ -1,7 +1,5 @@
 
 
-
-
 .navbar{
   position:fixed;
   z-index:99;
@@ -56,8 +54,7 @@
 
 
     $btn-navbar-width: 31px;
-    .btn-navbar{
-      float:left;
+    [class*=btn-navbar] {
       overflow:hidden;
       margin: 0;
       padding: 2px 7px 2px 7px;
@@ -66,18 +63,33 @@
       position: relative;
 
       @include background($blue);
+      color: $off-white;
 
       @include desktop {
         display: none !important;
       }
 
       top: $navbar-padding;
-      left: $navbar-padding;
-      margin-right:   $navbar-padding/2;
       @include phone {
         top: $navbar-padding-phone;
-        left: $navbar-padding-phone;
-        margin-right:   $navbar-padding-phone/2;
+      }
+    }
+    .btn-navbar-left{
+      float:        left;
+      left:         $navbar-padding;
+      margin-right: $navbar-padding/2;
+      @include phone {
+        left:         $navbar-padding-phone;
+        margin-right: $navbar-padding-phone/2;
+      }
+    }
+    .btn-navbar-right {
+      float: right;
+      right:        $navbar-padding;
+      margin-left:  $navbar-padding/2;
+      @include phone {
+        right:        $navbar-padding-phone;
+        margin-left:  $navbar-padding-phone/2;
       }
     }
 
@@ -96,9 +108,11 @@
 
     .navbar-options {
       @include full-page;
-      left: $btn-navbar-width + ($navbar-padding * 2);
+      left:  $btn-navbar-width + ($navbar-padding * 2);
+      right: $btn-navbar-width + ($navbar-padding * 2);
       @include phone {
-        left: $btn-navbar-width + ($navbar-padding-phone * 2);
+        left:  $btn-navbar-width + ($navbar-padding-phone * 2);
+        right: $btn-navbar-width + ($navbar-padding * 2);
       }
       @include desktop {
         left: 0;
@@ -121,16 +135,20 @@
   font-size: 12px;
   @include hlh($navbar-height);
 
-  @include percent-for-all();
+  @include percent-for-all(0);
 
   // padding: 0 $navbar-padding/2;
   padding: 0;
+  margin:  0;
 
-  border-left: $light-border-light;
-  border-right: $light-border-dark;
-  &:first-child {
+  .inner{
+    border-left: $light-border-light;
+    border-right: $light-border-dark;
+  }
+  &:first-child .inner {
     border-left: $light-border-dark;
   }
+    
   @include phone {
     @include hlh($navbar-height-phone);
     // padding: 0 $navbar-padding-phone/2;

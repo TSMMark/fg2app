@@ -4,7 +4,8 @@ class Fg2app.Views.Topbar extends Support.CompositeView
   template: JST['components/topbar']
 
   events: 
-    'click .btn.btn-navbar[data-target]': 'clickExpandSidebar'
+    'click .btn.btn-navbar-left':   'expandSidebarLeft'
+    'click .btn.btn-navbar-right':  'expandSidebarRight'
 
   topbar_options: {}
 
@@ -40,15 +41,34 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     @
 
 
-  # events
-  clickExpandSidebar: (e)->
+  toggleSidebar: (e,side)->
+    e.preventDefault()
+    e.stopImmediatePropagation()
+
+    other_side          = side is "right" ? "left" : "right"
+
     # also close on press escape
     # TODO eventbroker this
-    $("body").toggleClass("sidebar-in-left")
+    this_sidebar_class  = "sidebar-in-#{side}"
+    other_sidebar_class = "sidebar-in-#{other_side}"
 
-    if Browser.can("csstransitions")
-      # use CSS3 Transitions instead
-      e.stopImmediatePropagation()
-      $($(e.currentTarget).data('target')).toggleClass("in")
+    this_sidebar_is_in  = Fg2app.$body.hasClass(this_sidebar_class)
+    
+    # other_sidebar_is_in = Fg2app.$body.hasClass(other_sidebar_class)
+
+    Fg2app.$body.removeClass(other_sidebar_class)
+    Fg2app.$body.toggleClass(this_sidebar_class, !this_sidebar_is_in)
+
+    # if Browser.can("csstransitions")
+    # use CSS3 Transitions instead
+    $("#menu-#{side}").toggleClass('in', !this_sidebar_is_in)
     
     # otherwise let Bootstrap handle it using jQuery animation
+
+
+  # events
+  expandSidebarLeft: (e)->
+    @toggleSidebar e,'left'
+
+  expandSidebarRight: (e)->
+    @toggleSidebar e,'right'
