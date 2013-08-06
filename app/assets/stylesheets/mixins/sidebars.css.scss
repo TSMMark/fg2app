@@ -10,13 +10,14 @@
     $multiplier:    -1;
     $opposite-side: left;
   }
-  #{$prefix}#{sidebar-side}:      $sidebar-width * $multiplier;
+  #{$prefix}#{$sidebar-side}:     $sidebar-width * $multiplier;
   @if $include-opposite != false {
     #{$prefix}#{$opposite-side}:  $sidebar-width * -$multiplier;
   }
   @if $transition-duration != false {
     @include transition-duration($transition-duration);
   }
+  color:red !important;
 }
 
 // shift over for the sidebar
@@ -41,6 +42,8 @@
   // is it the left or right sidebar that's in?
   $sidebar-side:  left) {
 
+  color:blue !important;
+
   @if $conditions != false {
     @include transition-duration($transition-duration-out);
     @include when-sidebar-in {
@@ -54,7 +57,7 @@
 
 @mixin when-sidebar-in($sidebar-side:left) {
   // toggled in
-  $class-name: sidebar-in- + $sidebar-side;
+  $class-name: sidebar-in-#{$sidebar-side};
   &.#{$class-name}, .#{$class-name} &{
     @content;
   }
