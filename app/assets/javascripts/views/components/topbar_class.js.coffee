@@ -71,7 +71,7 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
   # events
   expandSidebarLeft: (e)->
-    @toggleSidebar e,'left'
+    @toggleSidebar e, 'left'
 
   expandSidebarRight: (e)->
-    @toggleSidebar e,'right'
+    @toggleSidebar e, 'right'
