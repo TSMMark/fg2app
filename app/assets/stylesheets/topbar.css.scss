@@ -14,6 +14,10 @@
   @include navbar-slide-out-duration;
 
 
+  @include mobile(false) {
+    // right:0;
+    // left:0;
+  }
   /*    ALWAYS IN    */
   @include when-sidebar-in(left) {
     @include shift-for-sidebar($conditions:false, $sidebar-side:left);
@@ -24,13 +28,10 @@
   @include when-sidebar-in(right) {
     @include shift-for-sidebar($conditions:false, $sidebar-side:right);
     @include desktop(false) {
-      right:$side-nav-width;
+      left: -$right-side-nav-width;
     }
   }
-
-  @include mobile(false) {
-    right:0;
-  }
+  
 
 
   .navbar-inner{

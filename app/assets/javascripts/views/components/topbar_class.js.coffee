@@ -45,8 +45,10 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     e.preventDefault()
     e.stopImmediatePropagation()
 
-    # if the get opposite side
-    other_side          = side is "right" ? "left" : "right"
+    # get opposite side name
+    other_side  = switch side
+      when 'right' then 'left'
+      else 'right'
 
     # also close on press escape
     # TODO eventbroker this
@@ -57,7 +59,7 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     # if the sidebar is already in
     this_sidebar_is_in  = Fg2app.$body.hasClass(this_sidebar_class)
     
-    # remove opposite class 
+    # remove opposite class
     Fg2app.$body.removeClass(other_sidebar_class)
                 .toggleClass(this_sidebar_class, !this_sidebar_is_in)
 

@@ -61,38 +61,59 @@ html, body{
 
 
 // side-nav
-.menu.nav-collapse.collapse.width{
+// .menu.nav-collapse.collapse.width{
+.menu-side {
   display:block;
-  margin-left: -$side-nav-width;
-  @include transition-property(width, margin-left);
+  @include user-select(none);
+  width:auto;
+  position:relative;
+  height:100% !important;
+  overflow:hidden !important;
+
+  @include transition-property(width, margin-left, left, right);
   @include navbar-slide-out-duration;
 
-  @include when-sidebar-in {
-    margin-left: 0;
-    @include transition-property(width, margin-left);
+  @include when-sidebar-in(left) {
+    @include transition-property(width, margin-left, left, right);
+    @include navbar-slide-in-duration;
+  }
+  @include when-sidebar-in(right) {
+    @include transition-property(width, margin-left, left, right);
     @include navbar-slide-in-duration;
   }
 
-  float:left;
-  height:100% !important;
-  width:auto;
-  position:relative;
-  overflow:hidden !important;
-
-  // COMPASS MIXIN
-  @include user-select(none);
-
-  background-color: $side-nav-background;
-  width:$side-nav-width;
   // @include single-box-shadow(1px 1px 3px black);
-
-  .collapse-inner{
-    position:relative;
-    height:100%;
-    width:$side-nav-width;
-    @include scroll-on-hover(y);
-    background:$side-nav-under-background;
+  &#menu-left {
+    float:            left;
+    margin-left:      -$side-nav-width;
+    @include when-sidebar-in(left) {
+      margin-left:    0;
+    }
+    background-color: $side-nav-background;
+    width:            $side-nav-width;
   }
+
+  &#menu-right {
+    float:      none;
+    position:   fixed;
+    top:        0;
+    right:      -$right-side-nav-width;;
+    background: #000;
+    z-index:    9999999;
+    bottom:     0;
+    width:      $right-side-nav-width;
+    margin:     0;
+    @include when-sidebar-in(right) {
+      right:    0;
+    }
+  }
+}
+.sidebar-inner{
+  position:relative;
+  height:100%;
+  width:$side-nav-width;
+  @include scroll-on-hover(y);
+  background:$side-nav-under-background;
 }
 // ..nav-collapse
 
@@ -103,7 +124,7 @@ html, body{
     display:block;
     width:100%;
 
-    @include first-last-no-border('&', '.nav-option'){
+    @include first-last-no-border('&', '.nav-option') {
       background:transparent;
       &:hover{
         background:transparent;
@@ -135,7 +156,7 @@ html, body{
         font-weight: 100;
       }
       // phone
-      @include mobile{
+      @include mobile {
         min-height: 24px;
         font-size:$sidebar-font-size-phone;
         text-align:left;
@@ -150,7 +171,7 @@ html, body{
         i{
           display:block;
           font-size:48px;
-          @include mobile{
+          @include mobile {
             position: absolute;
             font-size: 23px;
             width: $sidebar-icon-size-phone;
@@ -159,7 +180,7 @@ html, body{
         }
 
         div{
-          @include mobile{
+          @include mobile {
             text-indent: 32px;
             line-height: $sidebar-icon-size-phone - 1;
           }
@@ -167,7 +188,7 @@ html, body{
       }
 
       .self-portrait{
-        @include mobile{
+        @include mobile {
           width: $sidebar-icon-size-phone;
           height: $sidebar-icon-size-phone;
           margin: 0;

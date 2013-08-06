@@ -3,21 +3,22 @@
       Mixins having to do with sidebar in and outness
    ==================== */
 // SLIDE FOR SIDEBAR SLIDE MIXINS helper
-@mixin _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-opposite, $transition-duration, $sidebar-side:left) {
+@mixin _shift-for-sidebar-mixin($prefix, $include-opposite, $transition-duration, $sidebar-side:left) {
   $multiplier:    1;
   $opposite-side: right;
+  $width:         $side-nav-width;
   @if $sidebar-side == right {
-    $multiplier:    -1;
+    // $multiplier:    -1;
     $opposite-side: left;
+    $width:         $right-side-nav-width;
   }
-  #{$prefix}#{$sidebar-side}:     $sidebar-width * $multiplier;
+  #{$prefix}#{$sidebar-side}:     $width * $multiplier;
   @if $include-opposite != false {
-    #{$prefix}#{$opposite-side}:  $sidebar-width * -$multiplier;
+    #{$prefix}#{$opposite-side}:  $width * -$multiplier;
   }
   @if $transition-duration != false {
     @include transition-duration($transition-duration);
   }
-  color:red !important;
 }
 
 // shift over for the sidebar
@@ -33,7 +34,7 @@
   // "margin-", "padding-", ""
   $prefix:        null,
   // width in pixels
-  $sidebar-width: $side-nav-width,
+  // $sidebar-width: $side-nav-width,
   // transition durations for sliding in and out
   $transition-duration-in:  $navbar-slide-in-duration,
   $transition-duration-out: $navbar-slide-out-duration,
@@ -42,15 +43,17 @@
   // is it the left or right sidebar that's in?
   $sidebar-side:  left) {
 
-  color:blue !important;
-
   @if $conditions != false {
     @include transition-duration($transition-duration-out);
-    @include when-sidebar-in {
-      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-opposite, $transition-duration-in, $sidebar-side);
+
+    @include when-sidebar-in($sidebar-side) {
+    @include transition-duration($transition-duration-out);
+      @include _shift-for-sidebar-mixin($prefix, /*$sidebar-width,*/ $include-opposite, $transition-duration-in, $sidebar-side);
     }
+
   } @else {
-    @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-opposite, $transition-duration-in, $sidebar-side);
+    @include transition-duration($transition-duration-out);
+    @include _shift-for-sidebar-mixin($prefix, /*$sidebar-width,*/ $include-opposite, $transition-duration-in, $sidebar-side);
   }
 }
 

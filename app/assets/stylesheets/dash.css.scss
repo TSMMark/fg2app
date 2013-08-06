@@ -37,7 +37,8 @@
       background: $highlight-green;
       text-align: center;
       color: $white;
-      @include shift-for-sidebar($include-opposite:true);
+      @include shift-for-sidebar($sidebar-side:left,  $conditions:true, $include-opposite:true);
+      @include shift-for-sidebar($sidebar-side:right, $conditions:true, $include-opposite:true);
     }
 
   }
