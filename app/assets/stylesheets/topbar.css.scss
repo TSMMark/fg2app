@@ -1,7 +1,7 @@
 
 
 .navbar{
-  position:fixed;
+  position:absolute;
   z-index:99;
 
   @include user-select(none);
@@ -10,25 +10,31 @@
   right: 0;
   left: 0;
 
-  @include transition-property(left, right);
-  @include navbar-slide-out-duration;
+  // @include transition-property(left, right);
+  // @include navbar-slide-out-duration;
 
 
   /*    ALWAYS IN    */
-  @include when-sidebar-in() {
-    @include shift-for-sidebar($conditions:false);
-    @include desktop(false) {
-      right:-$side-nav-width;
-    }
-  }
+  // @include when-sidebar-in(left) {
+  //   @include shift-for-sidebar($conditions:false, $sidebar-side:left);
+  //   @include desktop(false) {
+  //     right:-$side-nav-width;
+  //   }
+  // }
+  // @include when-sidebar-in(right) {
+  //   @include shift-for-sidebar($conditions:false, $sidebar-side:right);
+  //   @include desktop(false) {
+  //     right:$side-nav-width;
+  //   }
+  // }
 
-  @include mobile(false) {
-    right:0;
-  }
+  // @include mobile(false) {
+  //   right:0;
+  // }
 
 
   .navbar-inner{
-    $inner-height:        $navbar-height - ($navbar-padding * 2);
+    $inner-height:        $navbar-height       - ($navbar-padding * 2);
     $inner-height-phone:  $navbar-height-phone - ($navbar-padding-phone * 2);
 
     @include topbar-gradient;
