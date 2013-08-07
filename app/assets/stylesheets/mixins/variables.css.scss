@@ -102,6 +102,8 @@ $light-grey:        lighten($grey, 5%);
 $lighter-grey:      lighten($grey, 10%);
 $lightest-grey:     lighten($grey, 20%);
 
+$shadow-grey:       rgba($off-black, 0.7);
+
 
 $light-text:        $darkest-grey;
 $light-text-hover:  darken($darkest-grey, 20%);

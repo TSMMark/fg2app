@@ -57,6 +57,42 @@
   }
 }
 
+//    media queries
+@mixin left-sidebar-stay($bool:true) {
+  @include huge($bool) {
+    @content;
+  }
+}
+@mixin right-sidebar-stay($bool:true) {
+  @include desktop($bool) {
+    @content;
+  }
+}
+@mixin sidebar-stay($side, $bool:true) {
+  @if $side != right {
+    @include left-sidebar-stay($bool) {
+      @content;
+    }
+  } @else {
+    @include right-sidebar-stay($bool) {
+      @content;
+    } 
+  }
+}
+// alias sidebar-stay
+@mixin when-sidebar-always-in($side, $bool:true) {
+  @include sidebar-stay($side, $bool) { @content; }
+}
+// alias left-sidebar-stay
+@mixin when-left-sidebar-always-in($bool:true) {
+  @include when-sidebar-always-in(left, $bool) { @content; }
+}
+// alias right-sidebar-stay
+@mixin when-right-sidebar-always-in($bool:true) {
+  @include when-sidebar-always-in(right, $bool) { @content; }
+}
+
+// .. media queries ..
 
 @mixin when-sidebar-forced-in($sidebar-side:left) {
   // toggled in

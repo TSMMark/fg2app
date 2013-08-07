@@ -109,27 +109,6 @@
     @content;
   }
 }
-@mixin left-sidebar-stay($bool:true) {
-  @include huge($bool) {
-    @content;
-  }
-}
-@mixin right-sidebar-stay($bool:true) {
-  @include desktop($bool) {
-    @content;
-  }
-}
-@mixin sidebar-stay($side, $bool:true) {
-  @if $side != right {
-    @include left-sidebar-stay($bool) {
-      @content;
-    }
-  } @else {
-    @include right-sidebar-stay($bool) {
-      @content;
-    } 
-  }
-}
 
 // michaelsacca/Compass-Placeholder-Text-Mixin
 @mixin input-placeholder {
@@ -241,10 +220,13 @@
 
 // single-box-shadow($color, $hoff, $voff, $blur, $spread, $inset)
 @mixin shadow-bottom() {
-  @include single-box-shadow(rgba(#333, 0.7), 0px, 0px, 6px);
+  @include single-box-shadow($shadow-grey, 0px, 0px, 6px);
+}
+@mixin box-shadow-dark() {
+  @include single-box-shadow($shadow-grey, 0px, 0px, 10px, 2px);
 }
 @mixin box-shadow-light() {
-  @include single-box-shadow(rgba(#333, 0.6), 0px, 0px, 6px, 4px);
+  @include single-box-shadow($shadow-grey, 0px, 0px, 6px, 1px);
 }
 
 

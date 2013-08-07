@@ -88,13 +88,14 @@ html, body{
 // side-nav
 // .menu.nav-collapse.collapse.width{
 .menu-side {
-  display:block;
+  display:    block;
+  position:   fixed;
   @include user-select(none);
-  width:auto;
+  width:      auto;
   z-index:    50;
-  position:relative;
-  height:100% !important;
-  overflow:hidden !important;
+  position:   relative;
+  height:     100% !important;
+  overflow:     hidden !important;
 
   @include transition-property(width, margin-left, left, right);
   @include navbar-slide-out-duration;
@@ -110,31 +111,31 @@ html, body{
 
   // @include single-box-shadow(1px 1px 3px black);
   &#menu-left {
-    float:            left;
     margin-left:      -$side-nav-width;
+    background-color: $side-nav-background;
+    width:            $side-nav-width;
     @include when-sidebar-in(left) {
       @include navbar-slide-in-duration;
       margin-left:    0;
-    }
-    background-color: $side-nav-background;
-    width:            $side-nav-width;
-    @include when-sidebar-forced-in(left) {
-      @include box-shadow-light();
+      @include when-left-sidebar-always-in(false) {
+        @include box-shadow-light();
+      }
     }
   }
 
   &#menu-right {
-    float:      none;
-    position:   fixed;
-    top:        0;
-    right:      -$right-side-nav-width;;
+    top:              0;
+    right:            -$right-side-nav-width;
+    bottom:           0;
     background-color: $right-side-nav-background;
-    bottom:     0;
-    width:      $right-side-nav-width;
-    margin:     0;
+    width:            $right-side-nav-width;
+    margin:           0;
     @include when-sidebar-in(right) {
       @include navbar-slide-in-duration;
       right:    0;
+      @include when-right-sidebar-always-in(false) {
+        @include box-shadow-light();
+      }
     }
   }
 }
