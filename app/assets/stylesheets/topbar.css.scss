@@ -72,10 +72,6 @@
       @include background($blue);
       color: $off-white;
 
-      @include desktop {
-        display: none !important;
-      }
-
       top: $navbar-padding;
       @include phone {
         top: $navbar-padding-phone;
@@ -89,14 +85,20 @@
         left:         $navbar-padding-phone;
         margin-right: $navbar-padding-phone/2;
       }
+      @include left-sidebar-stay(true) {
+        display: none !important;
+      }
     }
     .btn-navbar-right {
-      float: right;
+      float:        right;
       right:        $navbar-padding;
       margin-left:  $navbar-padding/2;
       @include phone {
         right:        $navbar-padding-phone;
         margin-left:  $navbar-padding-phone/2;
+      }
+      @include right-sidebar-stay(true) {
+        display: none !important;
       }
     }
 
@@ -121,8 +123,10 @@
         left:   $btn-navbar-width + ($navbar-padding-phone * 2);
         right:  $btn-navbar-width + ($navbar-padding-phone * 2);
       }
-      @include desktop {
+      @include left-sidebar-stay(true) {
         left:   0;
+      }
+      @include right-sidebar-stay(true) {
         right:  0;
       }
     }

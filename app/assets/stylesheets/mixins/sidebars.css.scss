@@ -64,8 +64,8 @@
   &.#{$class-name}, .#{$class-name} &{
     @content;
   }
-  // desktop size
-  @include desktop {
+  // or if screen wide enough
+  @include sidebar-stay($sidebar-side) {
     @content;
   }
 }

@@ -52,18 +52,25 @@
       iPhone:(320,480) or (320,568)
       iPad:(768,980px)
   */
-  @if $device == desktop {
+  @if $device == huge {
     @if $only == true {
-      @media (min-#{$dim}: 980px) { @content; }
+      @media (min-#{$dim}: 1200px) { @content; }
     } @else {
-      @media (max-#{$dim}: 979px) { @content; }
+      @media (max-#{$dim}: 1199px) { @content; }
+    }
+  }
+  @else if $device == desktop {
+    @if $only == true {
+      @media (min-#{$dim}: 992px) { @content; }
+    } @else {
+      @media (max-#{$dim}: 991px) { @content; }
     }
   }
   @else if $device == tablet {
     @if $only == true {
-      @media (min-#{$dim}: 768px) and (max-#{$dim}: 979px) { @content; }
+      @media (min-#{$dim}: 768px) and (max-#{$dim}: 992px) { @content; }
     } @else {
-      @media (max-#{$dim}: 767px) , (min-#{$dim}: 980px) { @content; }
+      @media (max-#{$dim}: 767px) , (min-#{$dim}: 991px) { @content; }
     }
   }
   @else if $device == phone {
@@ -97,14 +104,40 @@
     @content;
   }
 }
+@mixin huge($is_below:true) {
+  @include qif(huge, $is_below) {
+    @content;
+  }
+}
+@mixin left-sidebar-stay($bool:true) {
+  @include huge($bool) {
+    @content;
+  }
+}
+@mixin right-sidebar-stay($bool:true) {
+  @include desktop($bool) {
+    @content;
+  }
+}
+@mixin sidebar-stay($side, $bool:true) {
+  @if $side != right {
+    @include left-sidebar-stay($bool) {
+      @content;
+    }
+  } @else {
+    @include right-sidebar-stay($bool) {
+      @content;
+    } 
+  }
+}
 
 // michaelsacca/Compass-Placeholder-Text-Mixin
 @mixin input-placeholder {
-  &.placeholder { @content; }
-  &:-moz-placeholder { @content; }
-  &::-moz-placeholder { @content; }
-  &:-ms-input-placeholder { @content; }
-  &::-webkit-input-placeholder { @content; } 
+  &.placeholder { @content }
+  &:-moz-placeholder { @content }
+  &::-moz-placeholder { @content }
+  &:-ms-input-placeholder { @content }
+  &::-webkit-input-placeholder { @content }
 }
 
 @mixin base-font{
