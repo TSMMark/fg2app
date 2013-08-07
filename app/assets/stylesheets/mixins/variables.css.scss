@@ -6,12 +6,12 @@ $normal-transition-duration   : 0.2s;
 $slow-transition-duration     : 0.35s;
 
 // slide durations
-// $default-slide-in-duration:   $slow-transition-duration;
-$default-slide-in-duration:   $normal-transition-duration;
+$default-slide-in-duration:   $slow-transition-duration;
+// $default-slide-in-duration:   $normal-transition-duration;
 $default-slide-out-duration:  $normal-transition-duration;
 
 /* side nav bar slide duration */
-$navbar-slide-in-duration:    $default-slide-in-duration;
+$navbar-slide-in-duration:    $default-slide-out-duration;
 $navbar-slide-out-duration:   $default-slide-out-duration;
 
 
@@ -27,12 +27,12 @@ $default-transition-function  : ease-in-out;
 $default-transition-delay     : false;
 
 
-$default-box-shadow-color: rgba(#333333, 0.6);
+$default-box-shadow-color:  rgba(#333333, 0.6);
 
 
 
-$phone-cutoff-size: tiny;
-$mobile-cutoff-size: phone;
+$phone-cutoff-size:   tiny;
+$mobile-cutoff-size:  phone;
 
 
 /* Element Sizes */
@@ -108,8 +108,8 @@ $light-text-hover:  darken($darkest-grey, 20%);
 $light-text-active: darken($darkest-grey, 30%);
 
 
+// LEFT SIDE PANEL
 $side-nav-width:    160px;
-
 // side navigation bar color
 $side-nav-under-background:   $normal-blue;
 $side-nav-background:         $normal-blue-dark;
@@ -124,15 +124,27 @@ $side-nav-portrait-size:  80px;
 $sidebar-icon-size-phone: 26px;
 $sidebar-font-size-phone: 16px;
 
+// RIGHT SIDE PANEL
 $right-side-nav-width:    230px;
+$right-side-nav-under-background:   $lightest-grey;
+$right-side-nav-background:         $lighter-grey;
+$right-side-nav-background-hover:   $lighter-grey;
+$right-side-nav-background-active:  $lightest-grey;
+
+$right-side-nav-color:              $offer-white;
+$right-side-nav-color-hover:        $white;
+$right-side-nav-color-active:       $white;
+
+$sidebar-icon-size-phone: 26px;
+$sidebar-font-size-phone: 16px;
 
 
 
 // background of body and pseudo-transparent
 $body-background: $white;
 
-$base-font: Monstercat;
-$base-font-family:  $base-font, sans-serif;
+$base-font: "Montserrat";
+$base-font-family:  #{$base-font}, sans-serif;
 
 $large-icon-size:60px;
 

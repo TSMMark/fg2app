@@ -239,8 +239,12 @@
   }
 }
 
+// single-box-shadow($color, $hoff, $voff, $blur, $spread, $inset)
 @mixin shadow-bottom() {
   @include single-box-shadow(rgba(#333, 0.7), 0px, 0px, 6px);
+}
+@mixin box-shadow-light() {
+  @include single-box-shadow(rgba(#333, 0.6), 0px, 0px, 6px, 4px);
 }
 
 

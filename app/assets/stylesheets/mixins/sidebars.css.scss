@@ -58,10 +58,17 @@
 }
 
 
-@mixin when-sidebar-in($sidebar-side:left) {
+@mixin when-sidebar-forced-in($sidebar-side:left) {
   // toggled in
   $class-name: sidebar-in-#{$sidebar-side};
   &.#{$class-name}, .#{$class-name} &{
+    @content;
+  }
+}
+
+@mixin when-sidebar-in($sidebar-side:left) {
+  // toggled in
+  @include when-sidebar-forced-in($sidebar-side) {
     @content;
   }
   // or if screen wide enough

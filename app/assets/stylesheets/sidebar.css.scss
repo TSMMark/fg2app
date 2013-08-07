@@ -39,11 +39,14 @@ html, body{
     @include when-sidebar-in(right) {
       right: $right-side-nav-width;
       @include navbar-slide-in-duration;
-      @include left-sidebar-stay(false) {
+      @include right-sidebar-stay(false) {
         left: -$right-side-nav-width;
         @include navbar-slide-out-duration;
       }
     }
+    // @include right-sidebar-stay(true) {
+
+    // }
   }
 }
 
@@ -88,7 +91,7 @@ html, body{
   display:block;
   @include user-select(none);
   width:auto;
-  z-index:    10;
+  z-index:    50;
   position:relative;
   height:100% !important;
   overflow:hidden !important;
@@ -115,6 +118,9 @@ html, body{
     }
     background-color: $side-nav-background;
     width:            $side-nav-width;
+    @include when-sidebar-forced-in(left) {
+      @include box-shadow-light();
+    }
   }
 
   &#menu-right {
@@ -122,7 +128,7 @@ html, body{
     position:   fixed;
     top:        0;
     right:      -$right-side-nav-width;;
-    background: #000;
+    background-color: $right-side-nav-background;
     bottom:     0;
     width:      $right-side-nav-width;
     margin:     0;
