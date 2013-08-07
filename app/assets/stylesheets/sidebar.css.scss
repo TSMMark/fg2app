@@ -88,6 +88,7 @@ html, body{
   display:block;
   @include user-select(none);
   width:auto;
+  z-index:    10;
   position:relative;
   height:100% !important;
   overflow:hidden !important;
@@ -122,7 +123,6 @@ html, body{
     top:        0;
     right:      -$right-side-nav-width;;
     background: #000;
-    z-index:    9999999;
     bottom:     0;
     width:      $right-side-nav-width;
     margin:     0;

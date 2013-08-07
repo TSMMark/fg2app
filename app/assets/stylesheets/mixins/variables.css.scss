@@ -6,7 +6,8 @@ $normal-transition-duration   : 0.2s;
 $slow-transition-duration     : 0.35s;
 
 // slide durations
-$default-slide-in-duration:   $slow-transition-duration;
+// $default-slide-in-duration:   $slow-transition-duration;
+$default-slide-in-duration:   $normal-transition-duration;
 $default-slide-out-duration:  $normal-transition-duration;
 
 /* side nav bar slide duration */
@@ -107,7 +108,7 @@ $light-text-hover:  darken($darkest-grey, 20%);
 $light-text-active: darken($darkest-grey, 30%);
 
 
-$side-nav-width: 160px;
+$side-nav-width:    160px;
 
 // side navigation bar color
 $side-nav-under-background:   $normal-blue;
@@ -119,11 +120,11 @@ $side-nav-color:              $offer-white;
 $side-nav-color-hover:        $white;
 $side-nav-color-active:       $white;
 
-$side-nav-portrait-size: 80px;
-$sidebar-icon-size-phone:26px;
-$sidebar-font-size-phone:16px;
+$side-nav-portrait-size:  80px;
+$sidebar-icon-size-phone: 26px;
+$sidebar-font-size-phone: 16px;
 
-$right-side-nav-width: 230px;
+$right-side-nav-width:    230px;
 
 
 
