@@ -7,9 +7,9 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
   className:    "layout-list-item-container"
 
   events: 
-    'touch li, .overlay'   : 'touchItem'
+    'click li, .overlay'   : 'touchItem'
 
-  hammer: [ 'li', '.overlay' ]
+  # hammer: [ 'li', '.overlay' ]
 
   initialize: (params)->
     super
