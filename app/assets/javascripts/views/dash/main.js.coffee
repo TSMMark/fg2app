@@ -9,7 +9,7 @@ class Fg2app.Views.Dashboard.Main extends Support.CompositeView
   render: =>
     @renderBody()
     @renderLayouts()
-    @
+    super
 
   renderBody: =>
     @$el.html @template

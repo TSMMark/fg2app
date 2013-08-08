@@ -60,7 +60,7 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     @renderBody()
     @renderSearchBar()
     #@renderList() # don't render list until we know the filter
-    @
+    super
 
   renderBody: =>
     @$el.html @template()

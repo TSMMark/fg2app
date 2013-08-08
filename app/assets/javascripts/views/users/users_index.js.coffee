@@ -7,4 +7,4 @@ class Fg2app.Views.UsersIndex extends Backbone.View
 
   render: ->
     $(@el).html(@template(users: @collection))
-    this
+    super

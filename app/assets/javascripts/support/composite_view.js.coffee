@@ -22,6 +22,11 @@ class Support.CompositeView extends Backbone.View
     @_removeFromParent()
     @
 
+  render: =>
+    super
+    @hammerify()
+    @
+
   bindTo: (source, event, callback)->
     source.on event, callback, @
     @bindings.push(source: source, event: event, callback: callback)
@@ -126,3 +131,5 @@ class Support.CompositeView extends Backbone.View
 
 
 _.extend Support.CompositeView.prototype, Support.Mixin.ScopedStorage
+_.extend Support.CompositeView.prototype, Support.Mixin.Hammerable
+

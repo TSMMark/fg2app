@@ -7,7 +7,9 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
   className:    "layout-list-item-container"
 
   events: 
-    'click li, .overlay'   : 'clickItem'
+    'touch li, .overlay'   : 'touchItem'
+
+  hammer: [ 'li', '.overlay' ]
 
   initialize: (params)->
     super
@@ -20,7 +22,7 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
       .bindEvents()
     @renderOnChange @model
     # @onChange @model, 'renderBody'
-    @
+    super
 
   renderBody: =>
     @$el.html @template( model: @model )
@@ -31,7 +33,7 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
     @bindTo @model, 'expand', @expandItem
     @bindTo @model, 'collapse', @collapseItem
 
-  clickItem: =>
+  touchItem: =>
     @model.trigger 'expand', model: @model
 
 

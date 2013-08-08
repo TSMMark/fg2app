@@ -6,8 +6,13 @@ class Fg2app.Views.Topbar extends Support.CompositeView
   template: JST['components/topbar']
 
   events: 
-    'click .btn.btn-navbar-left':   'expandSidebarLeft'
-    'click .btn.btn-navbar-right':  'expandSidebarRight'
+    'touch .btn.btn-navbar-left':   'expandSidebarLeft'
+    'touch .btn.btn-navbar-right':  'expandSidebarRight'
+
+  hammer: [
+    '.btn.btn-navbar-left'
+    '.btn.btn-navbar-right'
+  ]
 
   topbar_options: {}
 
@@ -29,7 +34,7 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
     current_option = @stave('current_option') || @default_option
     @broker.trigger 'setOption', current_option
-    @
+    super
 
   renderBody: ->
     @$el.html @template(view: @)
