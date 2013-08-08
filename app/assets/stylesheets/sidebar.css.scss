@@ -12,13 +12,6 @@ html, body{
 
 .frame{
   @include full-page;
-  position:absolute;
-  // height:100%;
-  // top:0;
-  // bottom:0;
-  // left:0;
-  // right:auto;
-  // width:100%;
   .view{
     @include full-page;
     height:100%;
@@ -44,9 +37,19 @@ html, body{
         @include navbar-slide-out-duration;
       }
     }
-    // @include right-sidebar-stay(true) {
-
-    // }
+    .view-overlay {
+      @include full-page();
+      display: none;
+      z-index: 99999;
+      background: transparent;
+      cursor: pointer;
+      @include when-sidebar-forced-in(left) {
+        display:  block;
+      }
+      @include when-sidebar-forced-in(right) {
+        display:  block;
+      }
+    }
   }
 }
 
@@ -89,13 +92,12 @@ html, body{
 // .menu.nav-collapse.collapse.width{
 .menu-side {
   display:    block;
-  position:   fixed;
   @include user-select(none);
   width:      auto;
   z-index:    50;
-  position:   relative;
+  position:   fixed;
   height:     100% !important;
-  overflow:     hidden !important;
+  overflow:   hidden !important;
 
   @include transition-property(width, margin-left, left, right);
   @include navbar-slide-out-duration;
@@ -111,12 +113,11 @@ html, body{
 
   // @include single-box-shadow(1px 1px 3px black);
   &#menu-left {
-    margin-left:      -$side-nav-width;
+    left:      -($side-nav-width + $side-nav-shim);
     background-color: $side-nav-background;
     width:            $side-nav-width;
     @include when-sidebar-in(left) {
-      @include navbar-slide-in-duration;
-      margin-left:    0;
+      left:    0;
       @include when-left-sidebar-always-in(false) {
         @include box-shadow-light();
       }
@@ -125,13 +126,12 @@ html, body{
 
   &#menu-right {
     top:              0;
-    right:            -$right-side-nav-width;
+    right:            -($right-side-nav-width + $side-nav-shim);
     bottom:           0;
     background-color: $right-side-nav-background;
     width:            $right-side-nav-width;
     margin:           0;
     @include when-sidebar-in(right) {
-      @include navbar-slide-in-duration;
       right:    0;
       @include when-right-sidebar-always-in(false) {
         @include box-shadow-light();

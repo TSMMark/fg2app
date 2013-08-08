@@ -3,11 +3,12 @@
 
 <div class="view">
 
+  <div class="view-overlay"></div>
+  
   <div id="top-bar"></div>
 
   <div id="main-content-container"></div>
 
 </div>
-
 
 <div id="menu-right" class="menu-side"></div>

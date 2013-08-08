@@ -1,6 +1,8 @@
 class Fg2app.Views.Topbar extends Support.CompositeView
 
-  broker: Backbone.EventBroker.get('topbar')
+  broker:         Backbone.EventBroker.get('topbar')
+  sidebarBroker:  Backbone.EventBroker.get('sidebar')
+
   template: JST['components/topbar']
 
   events: 
@@ -41,37 +43,13 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     @
 
 
-  toggleSidebar: (e,side)->
+  triggerSidebar: (e,side)=>
     e.preventDefault()
     e.stopImmediatePropagation()
+    @sidebarBroker.trigger("#{side}.toggle")
 
-    # get opposite side name
-    other_side  = switch side
-      when 'right' then 'left'
-      else 'right'
-
-    # also close on press escape
-    # TODO eventbroker this
-
-    this_sidebar_class  = "sidebar-in-#{side}"
-    other_sidebar_class = "sidebar-in-#{other_side}"
-
-    # if the sidebar is already in
-    this_sidebar_is_in  = Fg2app.$body.hasClass(this_sidebar_class)
-    
-    # remove opposite class
-    Fg2app.$body.removeClass(other_sidebar_class)
-                .toggleClass(this_sidebar_class, !this_sidebar_is_in)
-
-    # if Browser.can("csstransitions") # we don't need this.. it'll just pop in instead of animate
-    
-    # we don't need this because it's being handled in CSS under body.sidebar-in & {}
-    # $("#menu-#{side}").toggleClass('in', !this_sidebar_is_in)
-    
-
-  # events
   expandSidebarLeft: (e)->
-    @toggleSidebar e, 'left'
+    @triggerSidebar e, 'left'
 
   expandSidebarRight: (e)->
-    @toggleSidebar e, 'right'
+    @triggerSidebar e, 'right'

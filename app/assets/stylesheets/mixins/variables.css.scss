@@ -1,3 +1,21 @@
+@function dark($color){
+  @return darken($color, 5%);
+}
+@function darker($color){
+  @return darken($color, 10%);
+}
+@function darkest($color){
+  @return darken($color, 20%);
+}
+@function light($color){
+  @return lighten($color, 5%);
+}
+@function lighter($color){
+  @return lighten($color, 10%);
+}
+@function lightest($color){
+  @return lighten($color, 20%);
+}
 
 /* transition speeds */
 $instant-transition-duration  : 50ms;
@@ -61,12 +79,12 @@ $textColor: #333;
 // $normal-blue-dark:  rgb(60  , 143 , 197);
 
 $normal-blue:         rgb(48  , 134 , 195); 
-$normal-blue-dark:    darken($normal-blue, 5%);
-$normal-blue-darker:  darken($normal-blue, 10%);
-$normal-blue-light:   lighten($normal-blue, 5%);
+$normal-blue-dark:    dark($normal-blue);
+$normal-blue-darker:  darker($normal-blue);
+$normal-blue-light:   light($normal-blue);
 $light-blue:          $normal-blue-light;
 
-$normal-blue-lighter: lighten($normal-blue, 10%);
+$normal-blue-lighter: lighter($normal-blue);
 // $normal-blue-dark:  rgb(45  , 122 , 187);
 
 $blue:  $normal-blue;
@@ -92,15 +110,21 @@ $black:             black;
 $almost-black:      #050505;
 $off-black:         #0A0A0A;
 
+// slate
+$slate:             #4D4D4D;
+$dark-slate:        dark($slate);
+$darker-slate:      darker($slate);
+$darkest-slate:     darkest($slate);
+
 // grey
 $normal-grey:       rgb(189 , 190 , 194);
 $grey:              $normal-grey;
-$dark-grey:         darken($grey, 5%);
-$darker-grey:       darken($grey, 10%);
-$darkest-grey:      darken($grey, 20%);
-$light-grey:        lighten($grey, 5%);
-$lighter-grey:      lighten($grey, 10%);
-$lightest-grey:     lighten($grey, 20%);
+$dark-grey:         dark($grey);
+$darker-grey:       darker($grey);
+$darkest-grey:      darkest($grey);
+$light-grey:        light($grey);
+$lighter-grey:      lighter($grey);
+$lightest-grey:     lightest($grey);
 
 $shadow-grey:       rgba($off-black, 0.7);
 
@@ -110,6 +134,7 @@ $light-text-hover:  darken($darkest-grey, 20%);
 $light-text-active: darken($darkest-grey, 30%);
 
 
+$side-nav-shim:     3px;
 // LEFT SIDE PANEL
 $side-nav-width:    160px;
 // side navigation bar color
@@ -128,10 +153,10 @@ $sidebar-font-size-phone: 16px;
 
 // RIGHT SIDE PANEL
 $right-side-nav-width:    230px;
-$right-side-nav-under-background:   $lightest-grey;
-$right-side-nav-background:         $lighter-grey;
-$right-side-nav-background-hover:   $lighter-grey;
-$right-side-nav-background-active:  $lightest-grey;
+$right-side-nav-under-background:   dark($slate);
+$right-side-nav-background:         $slate;
+$right-side-nav-background-hover:   $slate;
+$right-side-nav-background-active:  $slate;
 
 $right-side-nav-color:              $offer-white;
 $right-side-nav-color-hover:        $white;
@@ -188,7 +213,7 @@ $status-icon-size:22px;
 // topbar
 
 $topbar-color-top:$off-white;
-$topbar-color-bottom:darken($off-white,2%);
+$topbar-color-bottom: darken($off-white,2%);
 $topbar-gradient:linear-gradient(top, $topbar-color-top, $topbar-color-bottom);
 
 
