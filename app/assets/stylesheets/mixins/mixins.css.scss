@@ -176,16 +176,17 @@
 }
 
 @mixin topbar-gradient($is_button:true) {
-  @include background($topbar-gradient);
+  // @include background($topbar-gradient);
+  @include background-with-css2-fallback($topbar-gradient, $topbar-gradient-fallback);
 }
 
 @mixin button-gradient($is_button:true) {
-  @include background($button-gradient);
+  @include background-with-css2-fallback($button-gradient, $button-gradient-fallback);
   @if $is_button == true{
     @include transition-property(opacity);
     @include transition-duration($button-hover-duration);
-    opacity: $button-default-opacity;
-    color:$white;
+    opacity:  $button-default-opacity;
+    color:    $white;
     &:hover{
       @include transition-property(opacity);
       @include transition-duration($button-hover-duration);

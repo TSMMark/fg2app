@@ -212,16 +212,18 @@ $status-icon-size:22px;
 
 // topbar
 
-$topbar-color-top:$off-white;
-$topbar-color-bottom: darken($off-white,2%);
-$topbar-gradient:linear-gradient(top, $topbar-color-top, $topbar-color-bottom);
+$topbar-color-top:          $off-white;
+$topbar-color-bottom:       darken($off-white,2%);
+$topbar-gradient-fallback:  mix($topbar-color-top, $topbar-color-bottom);
+$topbar-gradient:           linear-gradient(top, $topbar-color-top, $topbar-color-bottom);
 
-
-$button-gradient:         linear-gradient(top, color-stops($normal-blue 0%, $normal-blue 50%, $normal-blue-dark 51%, $normal-blue-dark 100%));
-$button-gradient-hover:   linear-gradient(top, color-stops($normal-blue-dark 0%, $normal-blue-dark 50%, $normal-blue-darker 51%, $normal-blue-darker 100%));
-$button-default-opacity:  1;
-$button-hover-opacity:    0.9;
-$button-active-opacity:   0.8;
+$button-gradient-fallback:        mix($normal-blue, $normal-blue-dark);
+$button-gradient-hover-fallback:  mix($normal-blue-dark, $normal-blue-darker);
+$button-gradient:                 linear-gradient(top, color-stops($normal-blue 0%, $normal-blue 50%, $normal-blue-dark 51%, $normal-blue-dark 100%));
+$button-gradient-hover:           linear-gradient(top, color-stops($normal-blue-dark 0%, $normal-blue-dark 50%, $normal-blue-darker 51%, $normal-blue-darker 100%));
+$button-default-opacity:          1;
+$button-hover-opacity:            0.9;
+$button-active-opacity:           0.8;
 
 
 $light-border-light:  1px solid rgba($white, 0.1);
