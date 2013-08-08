@@ -25,7 +25,12 @@
 //= require backbone
 //
 //  quick touch events on mobile devices
+//    https://github.com/nervetattoo/backbone.touch
 //= require backbone.touch.min
+//
+//  touch events
+//    http://eightmedia.github.io/hammer.js/
+//= require jquery.hammer.min
 //
 //  dot seperated events
 //    https://github.com/holt/backbone-structured-events
