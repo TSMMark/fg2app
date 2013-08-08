@@ -1,10 +1,13 @@
 class Fg2app.Views.Topbar extends Support.CompositeView
 
-  broker: Backbone.EventBroker.get('topbar')
+  broker:         Backbone.EventBroker.get('topbar')
+  sidebarBroker:  Backbone.EventBroker.get('sidebar')
+
   template: JST['components/topbar']
 
   events: 
-    'click .btn.btn-navbar[data-target]': 'clickExpandSidebar'
+    'click .btn.btn-navbar-left':   'expandSidebarLeft'
+    'click .btn.btn-navbar-right':  'expandSidebarRight'
 
   topbar_options: {}
 
@@ -40,14 +43,13 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     @
 
 
-  # events
-  clickExpandSidebar: (e)->
-    # also close on press escape
-    $("body").toggleClass("sidebar-in")
+  triggerSidebar: (e,side)=>
+    e.preventDefault()
+    e.stopImmediatePropagation()
+    @sidebarBroker.trigger("#{side}.toggle")
 
-    if Browser.can("csstransitions")
-      # use CSS3 Transitions instead
-      e.stopImmediatePropagation()
-      $($(e.currentTarget).data('target')).toggleClass("in")
-    
-    # otherwise let Bootstrap handle it using jQuery animation
+  expandSidebarLeft: (e)->
+    @triggerSidebar e, 'left'
+
+  expandSidebarRight: (e)->
+    @triggerSidebar e, 'right'

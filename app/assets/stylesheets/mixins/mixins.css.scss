@@ -1,4 +1,4 @@
-@mixin full-page($padding:0){
+@mixin full-page($padding:0) {
   display   : block;
   position  : absolute;
   padding   : 0;
@@ -21,7 +21,7 @@
   $w:((1/$n) - $padding);
   width: percentage($w) ;
 }
-@mixin percent-for-all($padding:0.01){
+@mixin percent-for-all($padding:0.01) {
   .count-1 &{
     @include percent-for-n(1, $padding);
   }
@@ -52,18 +52,25 @@
       iPhone:(320,480) or (320,568)
       iPad:(768,980px)
   */
-  @if $device == desktop {
+  @if $device == huge {
     @if $only == true {
-      @media (min-#{$dim}: 980px) { @content; }
+      @media (min-#{$dim}: 1200px) { @content; }
     } @else {
-      @media (max-#{$dim}: 979px) { @content; }
+      @media (max-#{$dim}: 1199px) { @content; }
+    }
+  }
+  @else if $device == desktop {
+    @if $only == true {
+      @media (min-#{$dim}: 992px) { @content; }
+    } @else {
+      @media (max-#{$dim}: 991px) { @content; }
     }
   }
   @else if $device == tablet {
     @if $only == true {
-      @media (min-#{$dim}: 768px) and (max-#{$dim}: 979px) { @content; }
+      @media (min-#{$dim}: 768px) and (max-#{$dim}: 992px) { @content; }
     } @else {
-      @media (max-#{$dim}: 767px) , (min-#{$dim}: 980px) { @content; }
+      @media (max-#{$dim}: 767px) , (min-#{$dim}: 991px) { @content; }
     }
   }
   @else if $device == phone {
@@ -82,72 +89,46 @@
   }
 }
 
-@mixin phone($is_below:true){
-  @include qif($phone-cutoff-size, $is_below){
+@mixin phone($is_below:true) {
+  @include qif($phone-cutoff-size, $is_below) {
     @content;
   }
 }
-@mixin mobile($is_below:true){
-  @include qif($mobile-cutoff-size, $is_below){
+@mixin mobile($is_below:true) {
+  @include qif($mobile-cutoff-size, $is_below) {
     @content;
   }
 }
-@mixin desktop($is_below:true){
-  @include qif(desktop, $is_below){
+@mixin desktop($is_below:true) {
+  @include qif(desktop, $is_below) {
+    @content;
+  }
+}
+@mixin huge($is_below:true) {
+  @include qif(huge, $is_below) {
     @content;
   }
 }
 
 // michaelsacca/Compass-Placeholder-Text-Mixin
 @mixin input-placeholder {
-  &.placeholder { @content; }
-  &:-moz-placeholder { @content; }
-  &::-moz-placeholder { @content; }
-  &:-ms-input-placeholder { @content; }
-  &::-webkit-input-placeholder { @content; } 
+  &.placeholder { @content }
+  &:-moz-placeholder { @content }
+  &::-moz-placeholder { @content }
+  &:-ms-input-placeholder { @content }
+  &::-webkit-input-placeholder { @content }
 }
 
 @mixin base-font{
   font-family: $base-font, sans-serif;
 }
 
-@mixin scroll-on-hover($d:y){
+@mixin scroll-on-hover($d:y) {
   overflow-#{$d}:hidden;
   &:hover{
     overflow-#{$d}:scroll;
   }
 }
-
-/* ====================
-      SLIDE FOR SIDEBAR SLIDE MIXINS
-   ==================== */
-// helper
-@mixin _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration){
-  #{$prefix}left:$sidebar-width;
-  @if $include-right != false{
-    #{$prefix}right:-$sidebar-width;
-  }
-  @if $transition-duration != false{
-    @include transition-duration($transition-duration);
-  }
-}
-
-// shift over for the sidebar
-// can do margin or left / right
-// $prefix:     "margin-" to adjust margin-left instead of left
-// $conditions: true => check for .sidebar-in or 980px
-@mixin shift-for-sidebar($initial-left:0, $initial-right:0, $include-right:false, $prefix:null, $sidebar-width:$side-nav-width, $transition-duration-in:$navbar-slide-in-duration, $transition-duration-out:$navbar-slide-out-duration, $conditions:true){
-
-  @if $conditions != false{
-    @include transition-duration($transition-duration-out);
-    @include when-sidebar-in(){
-      @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
-    }
-  } @else {
-    @include _shift-for-sidebar-mixin($prefix, $sidebar-width, $include-right, $transition-duration-in);
-  }
-}
-
 
 @mixin no-margin {
   margin:0;
@@ -164,41 +145,41 @@
 }
 
 // width and minimum width
-@mixin wmw($width:auto){
+@mixin wmw($width:auto) {
   width:$width;
   min-width:$width;
 }
 
 // height and line-height
-@mixin hlh($h:auto){
+@mixin hlh($h:auto) {
   height:$h;
   line-height:$h;
 }
 
 
 
-@mixin font-line-size($size:14px){
+@mixin font-line-size($size:14px) {
   line-height:$size;
   font-size:$size;
   // background-position:$size, $size;
 }
-@mixin icon-size($size:14px){
+@mixin icon-size($size:14px) {
   width:$size;
   height:$size;
   @include font-line-size($size);
   // background-position:$size, $size;
 }
 
-@mixin v-center($container-height, $self-height, $position:relative, $offset:top, $plus:-2px){
+@mixin v-center($container-height, $self-height, $position:relative, $offset:top, $plus:-2px) {
   position: $position;
   #{$offset}: ($container-height - $self-height) / 2 + $plus;
 }
 
-@mixin topbar-gradient($is_button:true){
+@mixin topbar-gradient($is_button:true) {
   @include background($topbar-gradient);
 }
 
-@mixin button-gradient($is_button:true){
+@mixin button-gradient($is_button:true) {
   @include background($button-gradient);
   @if $is_button == true{
     @include transition-property(opacity);
@@ -218,7 +199,7 @@
   }
 }
 
-@mixin hover-transition-durations($property:false){
+@mixin hover-transition-durations($property:false) {
   @if $property != false {
     @include transition-property($property);
   }
@@ -237,35 +218,23 @@
   }
 }
 
-@mixin shadow-bottom(){
-  @include single-box-shadow(rgba(#333, 0.7), 0px, 0px, 6px);
+// single-box-shadow($color, $hoff, $voff, $blur, $spread, $inset)
+@mixin shadow-bottom() {
+  @include single-box-shadow($shadow-grey, 0px, 0px, 6px);
+}
+@mixin box-shadow-dark() {
+  @include single-box-shadow($shadow-grey, 0px, 0px, 10px, 2px);
+}
+@mixin box-shadow-light() {
+  @include single-box-shadow($shadow-grey, 0px, 0px, 6px, 1px);
 }
 
-
-@mixin when-sidebar-in(){
-  // toggled in
-  &.sidebar-in, .sidebar-in &{
-    @content;
-  }
-  // desktop size
-  @include qif(desktop, true){
-    @content;
-  }
-}
-
-
-@mixin navbar-slide-in-duration(){
-  @include transition-duration($navbar-slide-in-duration);
-}
-@mixin navbar-slide-out-duration(){
-  @include transition-duration($navbar-slide-out-duration);
-}
 
 // makes the first and last element lose their respective borders
-@mixin first-last-no-border($parent:'&', $child:null, $axis:vertical){
+@mixin first-last-no-border($parent:'&', $child:null, $axis:vertical) {
   $dir-first:top;
   $dir-last:bottom;
-  @if($axis==horizontal){
+  @if($axis==horizontal) {
     $dir-first:left;
     $dir-last:right;
   }

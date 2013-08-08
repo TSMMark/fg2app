@@ -11,23 +11,50 @@ html, body{
 
 
 .frame{
-  position:absolute;
-  height:100%;
-  top:0;
-  bottom:0;
-  left:0;
-  width:200%;
+  @include full-page;
   .view{
-    position:relative;
+    @include full-page;
     height:100%;
     overflow:hidden;
     z-index:15;
-    width:50%;
+    // width:100%;
+
+    @include transition-property(left, right);
+    @include navbar-slide-out-duration;
+    @include when-sidebar-in(left) {
+      left: $side-nav-width;
+      @include navbar-slide-in-duration;
+      @include right-sidebar-stay(false) {
+        right: -$side-nav-width;
+        @include navbar-slide-out-duration;
+      }
+    }
+    @include when-sidebar-in(right) {
+      right: $right-side-nav-width;
+      @include navbar-slide-in-duration;
+      @include right-sidebar-stay(false) {
+        left: -$right-side-nav-width;
+        @include navbar-slide-out-duration;
+      }
+    }
+    .view-overlay {
+      @include full-page();
+      display: none;
+      z-index: 99999;
+      background: transparent;
+      cursor: pointer;
+      @include when-sidebar-forced-in(left) {
+        display:  block;
+      }
+      @include when-sidebar-forced-in(right) {
+        display:  block;
+      }
+    }
   }
 }
 
 // for desktops, always show side nav and don't push everything else offscreen
-@include qif(desktop) {
+@include desktop {
   .frame{
     width:100%;
     .view{
@@ -37,6 +64,7 @@ html, body{
 }
 
 #app-content{
+  position: relative;
   height:100%;
 
   #main-content-container{
@@ -61,38 +89,62 @@ html, body{
 
 
 // side-nav
-.menu.nav-collapse.collapse.width{
-  display:block;
-  margin-left: -$side-nav-width;
-  @include transition-property(width, margin-left);
+// .menu.nav-collapse.collapse.width{
+.menu-side {
+  display:    block;
+  @include user-select(none);
+  width:      auto;
+  z-index:    50;
+  position:   fixed;
+  height:     100% !important;
+  overflow:   hidden !important;
+
+  @include transition-property(width, margin-left, left, right);
   @include navbar-slide-out-duration;
 
-  @include when-sidebar-in {
-    margin-left: 0;
-    @include transition-property(width, margin-left);
+  @include when-sidebar-in(left) {
+    @include transition-property(width, margin-left, left, right);
+    @include navbar-slide-in-duration;
+  }
+  @include when-sidebar-in(right) {
+    @include transition-property(width, margin-left, left, right);
     @include navbar-slide-in-duration;
   }
 
-  float:left;
-  height:100% !important;
-  width:auto;
-  position:relative;
-  overflow:hidden !important;
-
-  // COMPASS MIXIN
-  @include user-select(none);
-
-  background-color: $side-nav-background;
-  width:$side-nav-width;
   // @include single-box-shadow(1px 1px 3px black);
-
-  .collapse-inner{
-    position:relative;
-    height:100%;
-    width:$side-nav-width;
-    @include scroll-on-hover(y);
-    background:$side-nav-under-background;
+  &#menu-left {
+    left:      -($side-nav-width + $side-nav-shim);
+    background-color: $side-nav-background;
+    width:            $side-nav-width;
+    @include when-sidebar-in(left) {
+      left:    0;
+      @include when-left-sidebar-always-in(false) {
+        @include box-shadow-light();
+      }
+    }
   }
+
+  &#menu-right {
+    top:              0;
+    right:            -($right-side-nav-width + $side-nav-shim);
+    bottom:           0;
+    background-color: $right-side-nav-background;
+    width:            $right-side-nav-width;
+    margin:           0;
+    @include when-sidebar-in(right) {
+      right:    0;
+      @include when-right-sidebar-always-in(false) {
+        @include box-shadow-light();
+      }
+    }
+  }
+}
+.sidebar-inner{
+  position:relative;
+  height:100%;
+  width:$side-nav-width;
+  @include scroll-on-hover(y);
+  background:$side-nav-under-background;
 }
 // ..nav-collapse
 
@@ -103,7 +155,7 @@ html, body{
     display:block;
     width:100%;
 
-    @include first-last-no-border('&', '.nav-option'){
+    @include first-last-no-border('&', '.nav-option') {
       background:transparent;
       &:hover{
         background:transparent;
@@ -135,7 +187,7 @@ html, body{
         font-weight: 100;
       }
       // phone
-      @include mobile{
+      @include mobile {
         min-height: 24px;
         font-size:$sidebar-font-size-phone;
         text-align:left;
@@ -150,7 +202,7 @@ html, body{
         i{
           display:block;
           font-size:48px;
-          @include mobile{
+          @include mobile {
             position: absolute;
             font-size: 23px;
             width: $sidebar-icon-size-phone;
@@ -159,7 +211,7 @@ html, body{
         }
 
         div{
-          @include mobile{
+          @include mobile {
             text-indent: 32px;
             line-height: $sidebar-icon-size-phone - 1;
           }
@@ -167,7 +219,7 @@ html, body{
       }
 
       .self-portrait{
-        @include mobile{
+        @include mobile {
           width: $sidebar-icon-size-phone;
           height: $sidebar-icon-size-phone;
           margin: 0;

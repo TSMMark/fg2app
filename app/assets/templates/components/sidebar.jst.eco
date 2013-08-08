@@ -1,5 +1,3 @@
-<!-- <div id="menu" class="menu nav-collapse collapse width"> -->
-  <!-- <div class="collapse-inner"> -->
 <ul class="nav nav-stacked" id="side-nav-list">
 
   <li><a class="nav-option">
@@ -65,5 +63,3 @@
     </ul>
   </li> -->
 </ul>
-  <!-- </div> -->
-<!-- </div> -->

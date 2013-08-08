@@ -2,7 +2,7 @@ class Fg2app.Views.Sidebar extends Support.CompositeView
 
   template: FunJST('components/sidebar')
 
-  className: 'collapse-inner'
+  className: 'sidebar-inner'
 
   initialize: ->
     super

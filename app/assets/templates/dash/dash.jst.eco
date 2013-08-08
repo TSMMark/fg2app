@@ -1,10 +1,14 @@
-<div id="menu" class="menu nav-collapse collapse width"></div>
+<div id="menu-left" class="menu-side"></div>
 
 
 <div class="view">
 
+  <div class="view-overlay"></div>
+  
   <div id="top-bar"></div>
 
   <div id="main-content-container"></div>
 
 </div>
+
+<div id="menu-right" class="menu-side"></div>
