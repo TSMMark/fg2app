@@ -1,37 +1,34 @@
 class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
+  layoutsBroker: Backbone.EventBroker.get('layouts')
+
   template: FunJST('layouts/list_item')
 
-  layoutsListBroker: Backbone.EventBroker.get('layouts')
-
-  # idAttribute:  ""
-  # tagName:      "li"
   className:    "layout-list-item-container"
 
   events: 
     'click li, .overlay'  : 'touchItem'
-    'swiperight'          : 'swipeRight'
+    'swiperight li'          : 'swipeRight'
 
-  hammer: true
-  # hammer: [true] #[ true, 'li', '.overlay' ]
+  hammer: 'li'
 
   initialize: (params)->
     super
-    # @model
+    @registerLayoutListEvents()
 
-  leave: =>
-    @layoutsListBroker.trigger 'collapse', model: @model if @expanded
-    super
 
+  ###
+  ================================
+                RENDER
+  ================================
+  ###
   render: =>
     @onceAgain 'renderExpander'
     @unbindFromAll()
     @renderBody()
-    @bindEvents()
 
     @renderOnChange @model
 
-    # @onChange @model, 'renderBody'
     super
 
   renderBody: =>
@@ -44,28 +41,49 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
       model       : @model
     @appendChild view
 
-  bindEvents: =>
-    @bindTo @model, 'expand', @expandItem
-    @bindTo @model, 'collapse', @collapseItem
+  applyImage: =>
+    @$('.list-item-thumb').css
+      'background-image': "url(#{ @model.get('thumb') })"
+
+
+
+  ###
+  ================================
+          Layout List Events
+  ================================
+  ###
+  registerLayoutListEvents: =>
+    @layoutsBroker.register
+      'collapseItem'  : 'collapseItem'
+      'expandItem'    : 'expandItem'
+      ,@
 
   touchItem: =>
-    @model.trigger 'expand', model: @model
+    @layoutsBroker.trigger 'expandItem', item: @
 
+  expandItem: (params)=>
+    if !@expanded && params.item == @
+      @expand()
+    else
+      @collapse()
 
-  expandItem: =>
+  collapseItem: (params)=>
+    @collapse() if params.item == @
+
+  expand: =>
     @expanded   = true
     @$el.addClass 'expanded'
     @doOnce 'renderExpander'
 
-  collapseItem: =>
+  collapse: =>
     @expanded   = false
     @$el.removeClass 'expanded'
 
   swipeRight: =>
-    @leave() if !@parent.expanded_item || @parent.expanded_item == @model
+    @leave()
 
+  leave: =>
+    @layoutsBroker.trigger 'collapseItem', item: @
+    super
 
-  applyImage: =>
-    @$('.list-item-thumb').css
-      'background-image': "url(#{ @model.get('thumb') })"
 
