@@ -1,27 +1,83 @@
 class Fg2app.Views.LayoutsList extends Support.CompositeView
 
-  topbarBroker: Backbone.EventBroker.get('topbar')
-  broker:       Backbone.EventBroker.get('layouts')
+  filterBroker:   Backbone.EventBroker.get('topbar')
+  layoutsBroker:  Backbone.EventBroker.get('layouts')
   
   template: JST['layouts/list']
 
   initialize: (params)->
     super
-    # @bindTo @collection, 'reset', @filter
 
     @baseCollection     = @collection
     @collection         = @collection.filtered(true)
     @categoryCollection = @collection.filtered(true)
 
-    @topbarBroker.register
+    @registerFilterEvents()
+
+    @registerLayoutListEvents()
+
+
+  ###
+  ================================
+                RENDER
+  ================================
+  ###
+  render: =>
+    @renderBody()
+    @renderSearchBar()
+    #@renderList() # don't render list until we know the filter
+    super
+
+  renderBody: =>
+    @$el.html @template()
+    @
+
+  renderSearchBar: =>
+    html = new Fg2app.Views.Elements.SearchField
+      className:    'layouts-list-search'
+      placeholder:  'Search'
+      broker:       @layoutsBroker
+      eventName:    'search'
+
+    @renderChildAs html, @$('.searchbar-container')
+    @
+
+  clearLayoutsList: =>
+    @leaveList 'layouts_list'
+
+  renderList: =>
+    @clearLayoutsList()
+    list  = @$('.layouts-list')
+    list.empty()
+    @clearExpandedItem()
+    @_expanded()
+
+    @collection.each (model)=>
+      view = @layoutView(model)
+      @layouts_list.push view
+      @appendChildTo view, list
+
+    @
+
+  layoutView: (model)=>
+    view = new Fg2app.Views.LayoutListItem
+      model       : model,
+      collection  : @collection
+
+
+
+  ###
+  ================================
+                FILTER
+  ================================
+  ###
+  registerFilterEvents: =>
+    @filterBroker.register
       'setOption' : 'filterBy'
-      ,@
-    @broker.register
-      'search'    : 'filterSearch'
       ,@
 
   filterBy: (criteria=null)=>
-    @broker.trigger 'search.reset'
+    @layoutsBroker.trigger 'search.reset'
     fn = switch criteria
       when 'active'   then @filterActive
       when 'expired'  then @filterExpired
@@ -56,58 +112,38 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     @categoryCollection = new_collection if is_category
     @renderList()
 
-  render: =>
-    @renderBody()
-    @renderSearchBar()
-    #@renderList() # don't render list until we know the filter
-    @
 
-  renderBody: =>
-    @$el.html @template()
-    @
 
-  renderSearchBar: =>
-    html = new Fg2app.Views.Elements.SearchField
-      className:    'layouts-list-search'
-      placeholder:  'Search'
-      broker:       @broker
-      eventName:    'search'
-
-    @renderChildAs html, @$('.searchbar-container')
-    @
-
-  renderList: =>
-    list  = @$('.layouts-list')
-    list.empty()
-    @expanded_item  = null
-
-    @collection.each (model)=>
-      @appendChildTo @layoutView(model), list
-
-    # when one model expands, collapse the previously expanded one
-    @bindTo @collection, 'expand', @expandOneItem
-    
-    @expanded false
-    @
+  ###
+  ================================
+          Layout List Events
+  ================================
+  ###
+  registerLayoutListEvents: =>
+    @layoutsBroker.register
+      'search'        : 'filterSearch'
+      'collapseItem'  : 'collapseItem'
+      'expandItem'    : 'expandItem'
+      ,@
 
   expanded: (bool=true)=>
     @$el.toggleClass 'one-is-expanded', !!bool
-
-  expandOneItem: (params={})=>
-    # collapse the currently expanded model
-    @expanded_item && @expanded_item.trigger 'collapse'
-
-    # if we're not clicking the one that's already expanded
-    if params.model isnt @expanded_item
-      # store the currently expanded model
-      @expanded_item = params.model
-    else
-      # there is no expanded_item
-      @expanded_item = null
-
+  _expanded: =>
     @expanded !!@expanded_item
 
-  layoutView: (model)=>
-    view = new Fg2app.Views.LayoutListItem
-      model       : model,
-      collection  : @collection
+  clearExpandedItem: =>
+    @expanded_item  = null
+
+  expandItem: (params)=>
+
+    if !params.item || params.item isnt @expanded_item
+      @expanded_item = params.item
+    else
+      @clearExpandedItem()
+
+    @_expanded()
+    
+  collapseItem: (params)=>
+    if params.item is @expanded_item
+      @clearExpandedItem()
+      @_expanded()

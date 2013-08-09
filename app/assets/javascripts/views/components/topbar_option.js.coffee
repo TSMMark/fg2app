@@ -5,7 +5,9 @@ class Fg2app.Views.TopbarOption extends Support.CompositeView
   template: JST['components/topbar_option']
 
   events:
-    'click' : 'click'
+    'touch' : 'touch'
+
+  hammer: true
 
   initialize: (params)->
     super
@@ -18,12 +20,12 @@ class Fg2app.Views.TopbarOption extends Support.CompositeView
     @$el.attr 'class',  "navbar-option-#{@action}"
     @$el.data 'action', "#{@action}"
     @$el.html @template(view: @)
-    @
+    super
 
   isActive: false
   setOption: (option_name=null)=>
     @isActive = option_name == @action
     @$el.toggleClass 'active', @isActive
 
-  click:  =>
+  touch:  =>
     @broker.trigger 'setOption', @action unless @isActive

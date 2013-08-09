@@ -1,55 +1,89 @@
 class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
+  layoutsBroker: Backbone.EventBroker.get('layouts')
+
   template: FunJST('layouts/list_item')
 
-  # idAttribute:  ""
-  # tagName:      "li"
   className:    "layout-list-item-container"
 
   events: 
-    'click li, .overlay'   : 'clickItem'
+    'click li, .overlay'  : 'touchItem'
+    'swiperight li'          : 'swipeRight'
+
+  hammer: 'li'
 
   initialize: (params)->
     super
-    # @model
+    @registerLayoutListEvents()
 
+
+  ###
+  ================================
+                RENDER
+  ================================
+  ###
   render: =>
     @onceAgain 'renderExpander'
     @unbindFromAll()
     @renderBody()
-      .bindEvents()
+
     @renderOnChange @model
-    # @onChange @model, 'renderBody'
-    @
+
+    super
 
   renderBody: =>
     @$el.html @template( model: @model )
     @applyImage()
     @
 
-  bindEvents: =>
-    @bindTo @model, 'expand', @expandItem
-    @bindTo @model, 'collapse', @collapseItem
-
-  clickItem: =>
-    @model.trigger 'expand', model: @model
-
-
-  expandItem: =>
-    @$el.addClass 'expanded'
-    @doOnce 'renderExpander'
-
-  collapseItem: =>
-    @$el.removeClass 'expanded'
-
-
   renderExpander: =>
     view = new Fg2app.Views.LayoutListItemOptions
       model       : @model
     @appendChild view
 
-
   applyImage: =>
     @$('.list-item-thumb').css
       'background-image': "url(#{ @model.get('thumb') })"
+
+
+
+  ###
+  ================================
+          Layout List Events
+  ================================
+  ###
+  registerLayoutListEvents: =>
+    @layoutsBroker.register
+      'collapseItem'  : 'collapseItem'
+      'expandItem'    : 'expandItem'
+      ,@
+
+  touchItem: =>
+    @layoutsBroker.trigger 'expandItem', item: @
+
+  expandItem: (params)=>
+    if !@expanded && params.item == @
+      @expand()
+    else
+      @collapse()
+
+  collapseItem: (params)=>
+    @collapse() if params.item == @
+
+  expand: =>
+    @expanded   = true
+    @$el.addClass 'expanded'
+    @doOnce 'renderExpander'
+
+  collapse: =>
+    @expanded   = false
+    @$el.removeClass 'expanded'
+
+  swipeRight: =>
+    @leave()
+
+  leave: =>
+    @layoutsBroker.trigger 'collapseItem', item: @
+    super
+
 

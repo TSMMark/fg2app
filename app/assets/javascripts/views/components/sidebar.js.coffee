@@ -11,6 +11,7 @@ class Fg2app.Views.Sidebar extends Support.CompositeView
   render:->
     @$el.html @template(something:"thing!")
     @applyLinks()
+    super
 
   applyLinks: =>
 

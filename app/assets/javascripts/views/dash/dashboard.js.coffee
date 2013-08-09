@@ -6,7 +6,9 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
     body: JST['dash/dash']
 
   events:
-    'mousedown .view-overlay' : 'closeSidebars'
+    'touch .view-overlay'     : 'closeSidebars'
+
+  hammer: '.view-overlay'
 
   initialize: ->
     # listeners
@@ -20,7 +22,7 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
     @renderMainContent()
     @renderSidebar()
     @renderTopbar()
-    @
+    super
 
   renderBody: =>
     @$el.html @templates.body

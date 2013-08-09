@@ -30,7 +30,7 @@ class Fg2app.Views.Elements.SearchField extends Support.CompositeView
   render:=>
     @$el.html @template(view: @)
     @input  = @$('input')
-    @
+    super
 
   change:=>
     return if @last_val == (val = @input.val())
