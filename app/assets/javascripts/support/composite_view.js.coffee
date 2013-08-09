@@ -1,11 +1,13 @@
 class Support.CompositeView extends Backbone.View
-  
+
+
   constructor: ->
+    @bindings   = _ []
+
+    @children   = _ []
+    @siblings   = _ []
+    @parent     = null
     super
-    @children  = _ []
-    @bindings  = _ []
-    @siblings  = _ []
-    @parent    = null
 
   initialize: (params)->
     super
@@ -14,10 +16,11 @@ class Support.CompositeView extends Backbone.View
       @view       = params.view         if params.view        isnt undefined
       @collection = params.collection   if params.collection  isnt undefined
 
-  leave: =>
+  leave: ->
     # super
     @unbind()
     @unbindFromAll()
+
     @stopListening()
     @remove()
     @_leaveChildren()
@@ -42,6 +45,15 @@ class Support.CompositeView extends Backbone.View
   render: =>
     super
     @hammerify()
+    @
+
+  registerTo: (broker, register)->
+    broker = Backbone.EventBroker.broker broker
+    _(register).each (callback, event)=>
+      callback = switch typeof callback
+        when 'function' then callback
+        else @[callback]
+      @listenTo broker, event, callback
     @
 
   bindTo: (source, event, callback)=>
@@ -153,4 +165,6 @@ class Support.CompositeView extends Backbone.View
 
 _.extend Support.CompositeView.prototype, Support.Mixin.ScopedStorage
 _.extend Support.CompositeView.prototype, Support.Mixin.Hammerable
+
+# _.extend Support.CompositeView.prototype, Support.Mixin.Brokerable
 

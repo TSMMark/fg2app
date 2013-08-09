@@ -4,20 +4,22 @@ window.Support  =
 window.Global ||= {}
 window.Dispatch = _.extend {}, Backbone.Events
 window.Fg2app   =
-  env:          null
-  $:            {}
-  Routers:      {}
-  Models:       {}
-  Collections:  {}
+  env:            null
+  current_router: null
+
+  $:              {}
+  Routers:        {}
+  Models:         {}
+  Collections:    {}
   
   Views:
-    Elements:   {}
-    Dashboard:  {}
+    Elements:     {}
+    Dashboard:    {}
+    Editor:       {}
     
 
   initialize: ->
-    @$.container  = $('#app-content')
-    @$container   = @$.container
+    @$container   = $('#app-content-container')
     @$body        = $('body')
     # Index Router must be initialized FIRST
     #   so that it is checked LAST

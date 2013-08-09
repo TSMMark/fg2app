@@ -22,9 +22,8 @@ class Fg2app.Views.Elements.SearchField extends Support.CompositeView
     @broker       = Backbone.EventBroker.broker params.broker
     @eventName    = params.eventName
     
-    @broker.register 
+    @registerTo @broker, 
       'search.reset'  : 'reset'
-      ,@
 
 
   render:=>

@@ -16,7 +16,7 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
   topbar_options: {}
 
-  initialize: (params)->
+  initialize: (params={})->
     super
     @listenTo @broker, 'setOption', @setCurrentOption
     
@@ -49,6 +49,7 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
 
   triggerSidebar: (e,side)=>
+    LOG 'topbad trigger', side
     e.preventDefault()
     e.stopImmediatePropagation()
     @sidebarBroker.trigger("#{side}.toggle")

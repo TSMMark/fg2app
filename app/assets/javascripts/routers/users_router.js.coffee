@@ -10,7 +10,7 @@ class Fg2app.Routers.Users extends Backbone.Router
   index: ->
     alert 'index'
     view = new Fg2app.Views.UsersIndex(collection: @collection)
-    Fg2app.$.container.html(view.render().el)
+    Fg2app.$container.html(view.render().el)
 
   notFound: ->
     Backbone.history.navigate('')

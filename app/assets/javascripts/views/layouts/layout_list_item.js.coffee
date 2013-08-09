@@ -53,15 +53,16 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
   ================================
   ###
   registerLayoutListEvents: =>
-    @layoutsBroker.register
+    @registerTo @layoutsBroker,
       'collapseItem'  : 'collapseItem'
       'expandItem'    : 'expandItem'
-      ,@
 
   touchItem: =>
     @layoutsBroker.trigger 'expandItem', item: @
 
   expandItem: (params)=>
+    @registers
+    LOG 'expand', params
     if !@expanded && params.item == @
       @expand()
     else

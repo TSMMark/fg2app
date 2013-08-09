@@ -20,28 +20,28 @@
 }
 @include phone {
   #app-content{
-
-    // make room for footer
-    #main-content-container{
-      bottom: $footer-height-phone;
-    }
-
-    .dash-fanbux{
-      position: fixed;
-      display: block;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      z-index: 1050;
-      height: $footer-height-phone;
-      background: $highlight-green;
-      text-align: center;
-      color: $white;
-      @include shift-for-sidebar($sidebar-side:left,  $conditions:true, $include-opposite:true);
-      @include shift-for-sidebar($sidebar-side:right, $conditions:true, $include-opposite:true);
-    }
-
+    
   }
+  // make room for footer
+  #main-content-container{
+    bottom: $footer-height-phone;
+  }
+
+  .dash-fanbux{
+    position: fixed;
+    display: block;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1050;
+    height: $footer-height-phone;
+    background: $highlight-green;
+    text-align: center;
+    color: $white;
+    @include shift-for-sidebar($sidebar-side:left,  $conditions:true, $include-opposite:true);
+    @include shift-for-sidebar($sidebar-side:right, $conditions:true, $include-opposite:true);
+  }
+
 }
 
 /*  */

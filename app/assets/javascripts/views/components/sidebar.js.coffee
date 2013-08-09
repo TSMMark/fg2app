@@ -9,11 +9,9 @@ class Fg2app.Views.Sidebar extends Support.CompositeView
 
 
   render:->
-    @$el.html @template(something:"thing!")
+    @$el.html @template()
     @applyLinks()
     super
 
   applyLinks: =>
-
-  collapse: (method="toggle")->
-    alert method
+    

@@ -5,6 +5,11 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   
   template: JST['layouts/list']
 
+  events: 
+    'click .btn-new-layout' : 'newLayout'
+
+  hammer: '.btn-new-layout'
+
   initialize: (params)->
     super
 
@@ -16,6 +21,10 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
 
     @registerLayoutListEvents()
 
+
+  newLayout: =>
+    Navigate 'layouts/new'
+    @layoutsBroker.trigger 'new'
 
   ###
   ================================
@@ -72,9 +81,8 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   ================================
   ###
   registerFilterEvents: =>
-    @filterBroker.register
+    @registerTo @filterBroker,
       'setOption' : 'filterBy'
-      ,@
 
   filterBy: (criteria=null)=>
     @layoutsBroker.trigger 'search.reset'
@@ -120,11 +128,10 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   ================================
   ###
   registerLayoutListEvents: =>
-    @layoutsBroker.register
+    @registerTo @layoutsBroker,
       'search'        : 'filterSearch'
       'collapseItem'  : 'collapseItem'
       'expandItem'    : 'expandItem'
-      ,@
 
   expanded: (bool=true)=>
     @$el.toggleClass 'one-is-expanded', !!bool
@@ -135,7 +142,6 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     @expanded_item  = null
 
   expandItem: (params)=>
-
     if !params.item || params.item isnt @expanded_item
       @expanded_item = params.item
     else

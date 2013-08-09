@@ -11,12 +11,12 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
   hammer: '.view-overlay'
 
   initialize: ->
-    # listeners
-    @sidebarBroker.register 
+    super
+
+    @registerTo @sidebarBroker, 
       'left.toggle'   : 'toggleSidebarLeft'
       'right.toggle'  : 'toggleSidebarRight'
-      ,@
-
+      
   render: =>
     @renderBody()
     @renderMainContent()
@@ -26,7 +26,6 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
 
   renderBody: =>
     @$el.html @templates.body
-
 
   renderMainContent: =>
     pane  = new Fg2app.Views.Dashboard.Main()
@@ -39,7 +38,7 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
     @renderChildInto pane, container
 
   renderTopbar: =>
-    pane  = new Fg2app.Views.DashTopbar( route: 'dash')
+    pane  = new Fg2app.Views.Dashboard.Topbar()
     container = @$('#top-bar')
     @renderChildAs pane, container
 
@@ -57,6 +56,8 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
                 .removeClass(@sidebarInClass('right'))
 
   toggleSidebar: (side)=>
+    LOG 'dashboard', side
+
     # get opposite side name
     other_side  = switch side
       when 'right' then 'left'

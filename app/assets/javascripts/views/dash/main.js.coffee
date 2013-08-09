@@ -4,6 +4,7 @@ class Fg2app.Views.Dashboard.Main extends Support.CompositeView
   id: 'main-content'
 
   initialize: ->
+    super
     # listeners
 
   render: =>

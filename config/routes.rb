@@ -36,9 +36,13 @@ Fg2app::Application.routes.draw do
     #:path => 'users',
     #:skip => [:sessions],
 
+  get 'layouts(/:id)'   => 'dash#index', constraints: { id: /\d.+/ }
+  get 'layouts([/#_]+)' => 'dash#index'
+  get 'foo([/#_]+)' => 'dash#index'
+  get '([/#_]+)' => 'dash#index'
+  
   # catch all
-  # match '*route', to: 'dash#index'
-  get 'layouts(/:id)' => 'dash#index'
+  match '*route', to: 'dash#index'
 
   #as :user do
     # sessions

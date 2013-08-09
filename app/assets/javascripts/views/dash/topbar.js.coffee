@@ -1,4 +1,4 @@
-class Fg2app.Views.DashTopbar extends Fg2app.Views.Topbar
+class Fg2app.Views.Dashboard.Topbar extends Fg2app.Views.Topbar
 
   initialize: ->
     super
