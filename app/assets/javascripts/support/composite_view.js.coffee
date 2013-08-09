@@ -24,6 +24,21 @@ class Support.CompositeView extends Backbone.View
     @_removeFromParent()
     @
 
+  # leave a list of Views
+  #   if passed a string, list = @[string].
+  #     and list will be emptied when complete
+  leaveList: (list)=>
+    original_list = list
+    list && switch typeof list
+      when 'string'
+        original_list = @[list]
+        @leaveList original_list
+        @[list] = _ []
+      else
+        list.map (item)->
+          item.leave && item.leave()
+    original_list
+
   render: =>
     super
     @hammerify()
