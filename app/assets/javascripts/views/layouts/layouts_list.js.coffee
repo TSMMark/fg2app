@@ -18,6 +18,7 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
       ,@
     @broker.register
       'search'    : 'filterSearch'
+      'collapse'  : 'collapseItem'
       ,@
 
   filterBy: (criteria=null)=>
@@ -93,19 +94,31 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   expanded: (bool=true)=>
     @$el.toggleClass 'one-is-expanded', !!bool
 
+  _expanded: =>
+    @expanded !!@expanded_item
+
   expandOneItem: (params={})=>
     # collapse the currently expanded model
-    @expanded_item && @expanded_item.trigger 'collapse'
+    # @expanded_item && @expanded_item.trigger 'collapse'
+
+    was_expanded = @expanded_item
+    @collapseExpanded()
 
     # if we're not clicking the one that's already expanded
-    if params.model isnt @expanded_item
+    if params.model isnt was_expanded
       # store the currently expanded model
       @expanded_item = params.model
-    else
-      # there is no expanded_item
-      @expanded_item = null
 
-    @expanded !!@expanded_item
+    @_expanded()
+    
+  collapseExpanded: =>
+    @expanded_item && @expanded_item.trigger 'collapse'
+    @expanded_item  = null
+    @_expanded()
+
+  collapseItem: (params={})=>
+    @collapseExpanded() if params.model is @expanded_item
+    @_expanded()
 
   layoutView: (model)=>
     view = new Fg2app.Views.LayoutListItem

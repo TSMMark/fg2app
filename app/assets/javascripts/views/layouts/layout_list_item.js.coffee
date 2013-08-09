@@ -2,25 +2,35 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
   template: FunJST('layouts/list_item')
 
+  layoutsListBroker: Backbone.EventBroker.get('layouts')
+
   # idAttribute:  ""
   # tagName:      "li"
   className:    "layout-list-item-container"
 
   events: 
-    'click li, .overlay'   : 'touchItem'
+    'click li, .overlay'  : 'touchItem'
+    'swiperight'          : 'swipeRight'
 
-  # hammer: [ 'li', '.overlay' ]
+  hammer: true
+  # hammer: [true] #[ true, 'li', '.overlay' ]
 
   initialize: (params)->
     super
     # @model
 
+  leave: =>
+    @layoutsListBroker.trigger 'collapse', model: @model if @expanded
+    super
+
   render: =>
     @onceAgain 'renderExpander'
     @unbindFromAll()
     @renderBody()
-      .bindEvents()
+    @bindEvents()
+
     @renderOnChange @model
+
     # @onChange @model, 'renderBody'
     super
 
@@ -28,6 +38,11 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
     @$el.html @template( model: @model )
     @applyImage()
     @
+
+  renderExpander: =>
+    view = new Fg2app.Views.LayoutListItemOptions
+      model       : @model
+    @appendChild view
 
   bindEvents: =>
     @bindTo @model, 'expand', @expandItem
@@ -38,17 +53,16 @@ class Fg2app.Views.LayoutListItem extends Support.CompositeView
 
 
   expandItem: =>
+    @expanded   = true
     @$el.addClass 'expanded'
     @doOnce 'renderExpander'
 
   collapseItem: =>
+    @expanded   = false
     @$el.removeClass 'expanded'
 
-
-  renderExpander: =>
-    view = new Fg2app.Views.LayoutListItemOptions
-      model       : @model
-    @appendChild view
+  swipeRight: =>
+    @leave() if !@parent.expanded_item || @parent.expanded_item == @model
 
 
   applyImage: =>
