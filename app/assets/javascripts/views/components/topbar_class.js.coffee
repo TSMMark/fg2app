@@ -13,6 +13,8 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     '.btn.btn-navbar-left'
     '.btn.btn-navbar-right'
   ]
+  
+  side_panels: [ 'left' , 'right' ]
 
   topbar_options: {}
 
@@ -32,8 +34,9 @@ class Fg2app.Views.Topbar extends Support.CompositeView
     @renderBody()
     @renderOptions()
 
-    current_option = @stave('current_option') || @default_option
-    @broker.trigger 'setOption', current_option
+    unless @default_option is null
+      current_option = @stave('current_option') || @default_option
+      @broker.trigger 'setOption', current_option
     super
 
   renderBody: ->
@@ -49,7 +52,6 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
 
   triggerSidebar: (e,side)=>
-    LOG 'topbad trigger', side
     e.preventDefault()
     e.stopImmediatePropagation()
     @sidebarBroker.trigger("#{side}.toggle")

@@ -7,4 +7,5 @@ Support.Mixin.ScopedStorage =
 
   stave: (name, value)->
     name = "#{@_name_of_class()}-#{name}"
+    LOG 'storing', name, value
     Stave(name, value)

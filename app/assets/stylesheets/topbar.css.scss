@@ -1,5 +1,6 @@
 
 
+$btn-navbar-width: 31px;
 .navbar{
   position:fixed;
   z-index:99;
@@ -60,7 +61,6 @@
 
 
 
-    $btn-navbar-width: 31px;
     [class*=btn-navbar] {
       overflow:hidden;
       margin: 0;
@@ -115,21 +115,6 @@
       }
     }
 
-    .navbar-options {
-      @include full-page;
-      left:   $btn-navbar-width + ($navbar-padding * 2);
-      right:  $btn-navbar-width + ($navbar-padding * 2);
-      @include phone {
-        left:   $btn-navbar-width + ($navbar-padding-phone * 2);
-        right:  $btn-navbar-width + ($navbar-padding-phone * 2);
-      }
-      @include left-sidebar-stay(true) {
-        left:   0;
-      }
-      @include right-sidebar-stay(true) {
-        right:  0;
-      }
-    }
   }
   // ..navbar-inner
 
@@ -137,7 +122,27 @@
 }
 // ..navbar
 
-
+.navbar-options {
+  @include full-page;
+  .has-sidebar-left & {
+    left:   $btn-navbar-width + ($navbar-padding * 2);
+    @include phone {
+      left:   $btn-navbar-width + ($navbar-padding-phone * 2);
+    }
+  }
+  .has-sidebar-right & {
+    right:  $btn-navbar-width + ($navbar-padding * 2);
+    @include phone {
+      right:  $btn-navbar-width + ($navbar-padding-phone * 2);
+    }
+  }
+  @include left-sidebar-stay(true) {
+    left:   0 !important;
+  }
+  @include right-sidebar-stay(true) {
+    right:  0 !important;
+  }
+}
 
 [class*=navbar-option-] {
   display: block;

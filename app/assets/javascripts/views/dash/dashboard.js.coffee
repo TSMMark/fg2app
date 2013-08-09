@@ -26,21 +26,25 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
 
   renderBody: =>
     @$el.html @templates.body
+    @
 
   renderMainContent: =>
     pane  = new Fg2app.Views.Dashboard.Main()
     container = @$('#main-content-container')
     @renderChildInto pane, container
+    @
 
   renderSidebar: =>
     pane  = new Fg2app.Views.Sidebar()
     container = @$('#menu-left')
     @renderChildInto pane, container
+    @
 
   renderTopbar: =>
-    pane  = new Fg2app.Views.Dashboard.Topbar()
+    pane  = new Fg2app.Views.Dashboard.DashboardTopbar()
     container = @$('#top-bar')
     @renderChildAs pane, container
+    @
 
   toggleSidebarLeft: =>
     @toggleSidebar('left')

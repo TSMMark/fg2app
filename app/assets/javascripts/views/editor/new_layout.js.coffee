@@ -12,27 +12,24 @@ class Fg2app.Views.Editor.NewLayout extends Support.CompositeView
 
   initialize: ->
     super
-    # listeners
-    # @sidebarBroker.register 
-    #   'left.toggle'   : 'toggleSidebarLeft'
-    #   'right.toggle'  : 'toggleSidebarRight'
-    #   ,@
 
   render: =>
     @renderBody()
-    @renderTopbar()
-    @renderFooter()
-    @renderContent()
+    .renderTopbar()
+    .renderFooter()
+    .renderContent()
     super
 
   renderBody: =>
     @$el.html @templates.body
+    @
 
   renderContent: =>
-
+    @
 
   renderTopbar: =>
-    
+    view =  new Fg2app.Views.Editor.EditorTopbar
+    @renderChildInto view, @$('#top-bar')
 
   renderFooter: =>
-
+    @

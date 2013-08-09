@@ -1,4 +1,6 @@
-class Fg2app.Views.Dashboard.Topbar extends Fg2app.Views.Topbar
+class Fg2app.Views.Dashboard.DashboardTopbar extends Fg2app.Views.Topbar
+
+  side_panels: [ 'left' , 'right' ]
 
   initialize: ->
     super
