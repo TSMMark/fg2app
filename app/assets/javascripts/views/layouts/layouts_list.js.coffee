@@ -42,15 +42,21 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
     @renderChildAs html, @$('.searchbar-container')
     @
 
+  clearLayoutsList: =>
+    @leaveList 'layouts_list'
+
   renderList: =>
+    @clearLayoutsList()
     list  = @$('.layouts-list')
     list.empty()
     @clearExpandedItem()
+    @_expanded()
 
     @collection.each (model)=>
-      @appendChildTo @layoutView(model), list
+      view = @layoutView(model)
+      @layouts_list.push view
+      @appendChildTo view, list
 
-    @expanded false
     @
 
   layoutView: (model)=>
