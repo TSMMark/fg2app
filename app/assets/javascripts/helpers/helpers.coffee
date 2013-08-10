@@ -1,3 +1,6 @@
+Helper.define 'Extend', (cla, mix)->
+  _.extend cla.prototype, mix
+
 window.Navigate = (path, params={})->
   Navigator.navigate path, params
 # window.history.back()

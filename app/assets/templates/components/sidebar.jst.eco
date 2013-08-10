@@ -35,7 +35,7 @@
     </div>
   </a></li>
   
-  <li><a class="nav-option link-settings" href="<%= Paths.omniauth_facebook %>" >
+  <li><a class="nav-option link-settings" href="<%= Helper.Paths.omniauth_facebook %>" >
     <div class="nav-option-inner">
       <i class="icon-gear"></i>
       <div>Settings</div>

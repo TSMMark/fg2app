@@ -18,12 +18,18 @@ class Fg2app.Views.Topbar extends Support.CompositeView
 
   topbar_options: {}
 
+  are_tabs: true
+
   initialize: (params={})->
     super
     @listenTo @broker, 'setOption', @setCurrentOption
-    
+    @are_tabs = false if params.are_tabs is false
+
     if typeof params.topbar_options is 'object'
       @topbar_options = _.extend @topbar_options, params.topbar_options
+
+    _.each @topbar_options, (option)=>
+      option.is_tab = @are_tabs if typeof option.is_tab isnt 'boolean'
 
   setCurrentOption: (name)->
     @stave 'current_option', name

@@ -7,9 +7,11 @@ class Fg2app.Views.Editor.EditorTopbar extends Fg2app.Views.Topbar
 
   side_panels: null
 
+  are_tabs: false
+
   topbar_options:
     [{
-      action: 'dashboard'
+      action: 'navigate.dashboard'
       icon: 'reply'
       label: 'Back to Dashboard'
     },{

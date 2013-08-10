@@ -10,7 +10,7 @@ window.Helper =
 
     throw new Error("Reserved helper name") if name == "define"
 
-    window[name]        = func;
+    window.Helper[name]      = func;
 
     window.jst_helpers[name] = func if(template)
     func
