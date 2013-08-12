@@ -1,8 +1,4 @@
-<div class="navbar 
-  <% _.isArray(@view.side_panels) && for side in @view.side_panels: %>
-    has-sidebar-<%= side %>
-  <% end %>
-">
+<div class="navbar">
   <div class="navbar-inner">
 
     <% if _(@view.side_panels).contains('left'): %>
@@ -14,7 +10,6 @@
     <div class="navbar-options count-<%= @view.topbar_options.length %>">
 
     </div>
-
 
     <% if _(@view.side_panels).contains('right'): %>
       <a class="btn btn-navbar-right">

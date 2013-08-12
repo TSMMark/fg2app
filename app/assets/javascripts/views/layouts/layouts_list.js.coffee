@@ -34,12 +34,19 @@ class Fg2app.Views.LayoutsList extends Support.CompositeView
   render: =>
     @renderBody()
     @renderSearchBar()
+    @renderButtons()
     #@renderList() # don't render list until we know the filter
     super
 
   renderBody: =>
     @$el.html @template()
     @
+
+  renderButtons: =>
+    container = @$ '.list-header'
+    new_layout_button   = new Fg2app.Views.Components.Buttons.NewLayoutButton()
+
+    @appendChildTo new_layout_button, container
 
   renderSearchBar: =>
     html = new Fg2app.Views.Elements.SearchField

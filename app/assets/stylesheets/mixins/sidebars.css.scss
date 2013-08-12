@@ -59,15 +59,33 @@
 
 //    media queries
 @mixin left-sidebar-stay($bool:true) {
-  @include huge($bool) {
-    @content;
+  @if $bool == false {
+    @include huge($bool) {
+      @content;
+    }
+  } @else {
+    @include when-has-sidebar(left) {
+      @include huge($bool) {
+        @content;
+      }
+    }
   }
 }
+
 @mixin right-sidebar-stay($bool:true) {
-  @include desktop($bool) {
-    @content;
+  @if $bool == false {
+    @include desktop($bool) {
+      @content;
+    }
+  } @else {
+    @include when-has-sidebar(left) {
+      @include desktop($bool) {
+        @content;
+      }
+    }
   }
 }
+
 @mixin sidebar-stay($side, $bool:true) {
   @if $side != right {
     @include left-sidebar-stay($bool) {
@@ -98,6 +116,15 @@
   // toggled in
   $class-name: sidebar-in-#{$sidebar-side};
   &.#{$class-name}, .#{$class-name} &{
+    @content;
+  }
+}
+
+// if the page HAS sidebar left / right
+@mixin when-has-sidebar($sidebar-side:left) {
+  // page has left/right sidebar
+  $class-name: has-sidebar-#{$sidebar-side};
+  .#{$class-name} &{
     @content;
   }
 }

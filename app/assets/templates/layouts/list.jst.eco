@@ -1,10 +1,12 @@
 <div class="list-header">
   <div class="searchbar-container"></div>
-  <div class="btn-new-layout">
+  
+  <!-- <div class="btn-new-layout">
     <i class="icon-plus"></i>
     New Layout
     <i class="icon-chevron-sign-down icon-expander"></i>
-  </div>
+  </div> -->
+  
 </div>
 
 <div class="layouts-list-scroller">

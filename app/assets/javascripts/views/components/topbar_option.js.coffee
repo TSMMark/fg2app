@@ -1,4 +1,4 @@
-class Fg2app.Views.TopbarOption extends Support.CompositeView
+class Fg2app.Views.TopbarOption extends Fg2app.Views.Elements.Button
 
   broker: Backbone.EventBroker.get('topbar')
 
@@ -12,7 +12,7 @@ class Fg2app.Views.TopbarOption extends Support.CompositeView
   hammer: true
 
   initialize: (params)->
-    super
+    super params
     @action   = params.action
     @label    = params.label
     @icon     = params.icon
@@ -39,5 +39,3 @@ class Fg2app.Views.TopbarOption extends Support.CompositeView
   touch:  =>
     @broker.trigger 'setOption', @action unless @isActive
 
-
-_.extend Fg2app.Views.TopbarOption.prototype, Support.Mixin.Buttonable

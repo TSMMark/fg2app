@@ -1,3 +1,11 @@
+# add / remove body classes depending on the present sidebars
+Helper.define 'establishSidebars', (sides, $el)->
+  possible_sides = ['left', 'right']
+  _.each possible_sides, (side)->
+    c = "has-sidebar-#{side}"
+    $el.toggleClass c, _.include(sides, side)
+
+
 Helper.define 'Extend', (cla, mix)->
   _.extend cla.prototype, mix
 
@@ -19,36 +27,4 @@ class window.NavigatorClass
 
 
 window.Navigator = new NavigatorClass()
-
-  # history:  []
-  # _marker:   0
-
-  # _navigate: (path, params={})=>
-  #   LOG '_nav', @history, @_marker
-  #   params.trigger  = true unless params.trigger is false
-  #   Backbone.history.navigate path, params
-
-  # navigate: (path, params={})=>
-  #   @history.splice @_marker + 1
-  #   @history.push path
-  #   @_marker = @history.length - 1
-  #   @_navigate path, params
-
-  # back: (params={})=>
-  #   @_navigate_to_marker(@_marker - 1, params)
-
-  # forward: (params={})=>
-  #   @_navigate_to_marker(@_marker + 1, params)
-
-  # _navigate_to_marker: (marker, params={})=>
-  #   min = 0
-  #   max = @history.length - 1
-  #   marker = Math.min marker, max
-  #   marker = Math.max marker, min
-  #   LOG @_marker, marker
-  #   if marker isnt @_marker
-  #     @_marker = marker
-  #     @_navigate(@history[@_marker], params)
-
-
 

@@ -1,0 +1,9 @@
+<% if @view.icon_left : %>
+  <i class="<%= @view.icon_left %>"></i>
+<% end %>
+
+<%= @view.button_text %>
+
+<% if @view.icon_right : %>
+  <i class="<%= @view.icon_right %>"></i>
+<% end %>

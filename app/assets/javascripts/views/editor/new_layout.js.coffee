@@ -12,6 +12,7 @@ class Fg2app.Views.Editor.NewLayout extends Support.CompositeView
 
   initialize: ->
     super
+    Helper.establishSidebars [], Fg2app.$body
 
   render: =>
     @renderBody()
@@ -28,7 +29,7 @@ class Fg2app.Views.Editor.NewLayout extends Support.CompositeView
     @
 
   renderTopbar: =>
-    view =  new Fg2app.Views.Editor.EditorTopbar
+    view =  new Fg2app.Views.Editor.EditorTopbar()
     @renderChildInto view, @$('#top-bar')
 
   renderFooter: =>

@@ -14,6 +14,8 @@ window.Fg2app   =
   
   Views:
     Elements:     {}
+    Components:
+      Buttons:  {}
     Dashboard:    {}
     Editor:       {}
     
