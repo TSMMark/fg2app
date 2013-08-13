@@ -40,6 +40,10 @@
 //    https://github.com/efeminella/backbone-eventbroker
 //= require backbone-eventbroker
 //
+//  backbone-forms
+//    https://github.com/powmedia/backbone-forms
+//= require backbone-forms.min
+//
 //= require ./helpers/helper_definer
 //= require ./helpers/fun_jst
 //= require_tree ./helpers
