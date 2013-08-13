@@ -29,4 +29,6 @@ class Fg2app.Views.Editor.NewLayout extends Support.CompositeView
     @renderChildInto view, @$('#footer')
 
   renderContent: =>
-    @
+    view = new Fg2app.Views.Editor.InfoStep()
+    @renderChildInto view, @$('#main-content-container')
+    
