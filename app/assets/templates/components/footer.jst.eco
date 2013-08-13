@@ -1,6 +1,7 @@
 <div class="footer">
   <div class="footer-inner">
-    <button class="btn btn-back"><i class="icon-caret-left"></i> Back</button>
-    <button class="btn btn-next">Next <i class="icon-caret-right"></i></button>
+    <!-- <button class="btn btn-back"><i class="icon-caret-left"></i> Back</button> -->
+    <button class="btn btn-back"><i></i> Back</button>
+    <button class="btn btn-next">Next <i></i></button>
   </div>
 </div>

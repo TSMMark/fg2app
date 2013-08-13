@@ -170,6 +170,11 @@
   // background-position:$size, $size;
 }
 
+@mixin be-an-icon($icon-name) {
+  @extend [class^="icon-"], [class*=" icon-"];
+  @extend .icon-#{$icon-name};
+}
+
 @mixin v-center($container-height, $self-height, $position:relative, $offset:top, $plus:-2px) {
   position: $position;
   #{$offset}: ($container-height - $self-height) / 2 + $plus;

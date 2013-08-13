@@ -42,3 +42,14 @@ class Fg2app.Models.Layout extends Backbone.Model
       'https://fbcdn-photos-g-a.akamaihd.net/hphotos-ak-prn1/851562_443659299060007_2032650863_n.gif'
     ]
     imgs.shuffle().pop()
+
+
+  schema:
+    name:         'Text'
+    description:  'Text'
+
+
+
+
+
+

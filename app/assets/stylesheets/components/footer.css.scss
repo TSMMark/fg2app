@@ -48,6 +48,7 @@
       right: auto;
       i {
         left: 6%;
+        @include be-an-icon(caret-left);
       }
     }
     &.btn-next {
@@ -55,6 +56,7 @@
       left: auto;
       i {
         right: 6%;
+        @include be-an-icon(caret-right);
       }
     }
   }
