@@ -1,0 +1,62 @@
+
+.footer {
+  height: $footer-height;
+  @include phone {
+    height: $footer-height-phone;
+  }
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $footer-background-color;
+
+
+  button, .button, .btn {
+    position: absolute;
+    height: $footer-button-height;
+    top:    $footer-button-padding;
+    padding:0 3%;
+    font-size: $footer-button-font-size;
+    letter-spacing: 1px;
+
+    @include phone {
+      height: $footer-button-height-phone;
+      top:    $footer-button-padding-phone;
+    }
+
+    @include text-shadow(none);
+
+    background: $footer-button-background-color;
+    color:      $footer-button-color;
+    &:hover, &.hover {
+      background: $footer-button-background-color-hover;
+      color:      $footer-button-color-hover;
+    }
+    &:active, &.active {
+      background: $footer-button-background-color-active;
+      color:      $footer-button-color-active;
+    }
+
+    i {
+      position: absolute;
+      bottom: auto;
+      top: $footer-button-icon-padding - 1px;
+    }
+    &.btn-back {
+      left:   4%;
+      right: auto;
+      i {
+        left: 6%;
+      }
+    }
+    &.btn-next {
+      right:  4%;
+      left: auto;
+      i {
+        right: 6%;
+      }
+    }
+  }
+}
+

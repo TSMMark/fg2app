@@ -64,10 +64,6 @@ $navbar-padding-phone: 7px;
 
 
 
-// $footer-height-phone: 18px;
-$footer-height-phone: 0;
-
-
 
 
 /* Colors */
@@ -230,5 +226,36 @@ $light-border-light:  1px solid rgba($white, 0.1);
 $light-border-dark:   1px solid rgba($black, 0.1);
 $light-border-top:    $light-border-light;
 $light-border-bottom: $light-border-dark;
+
+
+
+
+// footer
+$footer-background-color:                 $slate;
+
+$footer-height:                           64px;
+$footer-height-phone:                     48px;
+
+// footer buttons
+$footer-button-height:                    30px;
+$footer-button-height-phone:              30px;
+
+$footer-button-font-size:                 13px;
+
+$footer-button-icon-padding:  ($footer-button-height - $footer-button-font-size) / 2;
+
+$footer-button-padding:       ($footer-height - $footer-button-height) / 2;
+$footer-button-padding-phone: ($footer-height-phone - $footer-button-height-phone) / 2;
+
+$footer-button-color:                     $light-grey;
+$footer-button-background-color:          lighter($slate);
+
+$footer-button-color-hover:               rgba($off-white, 0.6);
+$footer-button-background-color-hover:    rgba($blue, 0.6);
+
+$footer-button-color-active:              $off-white;
+$footer-button-background-color-active:   $blue;
+
+
 
 

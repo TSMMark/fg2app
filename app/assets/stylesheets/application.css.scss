@@ -32,15 +32,14 @@
 
 // CSS that makes "facebook-esque" sidebars work
 // @import "enable_sidebar";
-@import "sidebar";
-
-@import "topbar";
+@import "components/sidebar";
+@import "components/topbar";
+@import "components/footer";
 
 /* pages */
-@import "dash";
+@import "pages/dash";
 
-// assets
-@import "list_item_expander";
+@import "components/list_item_expander";
 
 
 body{

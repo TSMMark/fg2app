@@ -20,12 +20,13 @@ class Fg2app.Views.Editor.NewLayout extends Support.CompositeView
     @$el.html @templates.body
     @
 
-  renderContent: =>
-    @
-
   renderTopbar: =>
     view =  new Fg2app.Views.Editor.EditorTopbar()
     @renderChildInto view, @$('#top-bar')
 
   renderFooter: =>
+    view =  new Fg2app.Views.Editor.EditorFooter()
+    @renderChildInto view, @$('#footer')
+
+  renderContent: =>
     @

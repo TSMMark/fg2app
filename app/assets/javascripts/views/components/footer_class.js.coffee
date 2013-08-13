@@ -1,4 +1,4 @@
-class Fg2app.Views.Footer extends Support.CompositeView
+class Fg2app.Views.FooterClass extends Support.CompositeView
 
   broker:   Backbone.EventBroker.get('footer')
 
@@ -16,4 +16,3 @@ class Fg2app.Views.Footer extends Support.CompositeView
   renderBody: ->
     @$el.html @template(view: @)
     @
-    

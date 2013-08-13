@@ -1,4 +1,4 @@
-class Fg2app.Views.Topbar extends Support.CompositeView
+class Fg2app.Views.TopbarClass extends Support.CompositeView
 
   broker:         Backbone.EventBroker.get('topbar')
   sidebarBroker:  Backbone.EventBroker.get('sidebar')

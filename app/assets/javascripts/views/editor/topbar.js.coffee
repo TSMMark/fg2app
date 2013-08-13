@@ -1,4 +1,4 @@
-class Fg2app.Views.Editor.EditorTopbar extends Fg2app.Views.Topbar
+class Fg2app.Views.Editor.EditorTopbar extends Fg2app.Views.TopbarClass
 
   initialize: ->
     super
