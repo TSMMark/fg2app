@@ -1,2 +1,23 @@
-<h2>ENTER YOUR INFORMATION BELOW</h2>
-<div>( or skip this step )</div>
+<div class="row-fluid">
+  <div class="span12">
+    <h2>ENTER YOUR INFORMATION BELOW</h2>
+    <a href="#" class="note">( or skip this step <i class="icon-mail-forward"></i> )</a>
+  </div>
+</div>
+
+<!-- <div class="accordion" id="info-accordion">
+  
+  <h4>General Info</h4>
+  <div class="row-fluid">
+    <div class="span4">
+      Name The project
+    </div>
+    <div class="span4">
+      Custom Alias
+    </div>
+    <div class="span4">
+      Tags
+    </div>
+  </div>
+
+</div> -->

@@ -41,7 +41,5 @@
 
 @import "components/list_item_expander";
 
+@import "global";
 
-body{
-  @include base-font;
-}
