@@ -26,7 +26,3 @@ Support.Mixin.Buttonable =
 
   _trigger_navigate: (path)->
     Navigate path
-
-
-  # initialize: ->
-  #   @_super('initialize')

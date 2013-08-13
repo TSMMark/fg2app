@@ -5,11 +5,6 @@ class Fg2app.Views.Editor.NewLayout extends Support.CompositeView
   templates: 
     body: JST['editor/new_layout']
 
-  # events:
-  #   'touch .view-overlay'     : 'closeSidebars'
-
-  # hammer: '.view-overlay'
-
   initialize: ->
     super
     Helper.establishSidebars [], Fg2app.$body
