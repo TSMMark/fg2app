@@ -17,7 +17,7 @@ class Fg2app.Views.Editor.InfoStep extends Support.CompositeView
 
   renderForm: =>
     generalInfoForm = new Fg2app.Forms.Layouts.GeneralInfo
-    accordion = new Fg2app.Views.Elements.Accordion
+    accordion       = new Fg2app.Views.Elements.Accordion
       attributes:
         id: 'layout-info-accordion'
       groups:
@@ -29,11 +29,11 @@ class Fg2app.Views.Editor.InfoStep extends Support.CompositeView
         },{
           header: 'Analytics'
           name: 'analytics-info'
-          inner: 'inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>'
+          inner: 'content<br/>content<br/>content<br/>content<br/>content<br/>'
         },{
           header: 'Third Category'
           name: 'third-info'
-          inner: 'inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>'
+          inner: 'content<br/>content<br/>content<br/>content<br/>content<br/>content<br/>content<br/>'
         }]
     @appendChild accordion
     @
