@@ -1,16 +1,16 @@
 class Support.CompositeView extends Backbone.View
 
 
-  constructor: ->
+  constructor: (params)->
     @bindings   = _ []
 
     @children   = _ []
     @siblings   = _ []
     @parent     = null
-    super
+    super params
 
   initialize: (params)->
-    super
+    super params
     if params
       @model      = params.model        if params.model       isnt undefined
       @view       = params.view         if params.view        isnt undefined

@@ -17,7 +17,8 @@ class Fg2app.Views.Editor.InfoStep extends Support.CompositeView
 
   renderForm: =>
     accordion = new Fg2app.Views.Elements.Accordion
-      name: 'layout-info-accordion'
+      attributes:
+        id: 'layout-info-accordion'
       groups:
         [{
           name: 'general-info'
