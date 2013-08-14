@@ -7,4 +7,12 @@ form {
       @include be-a-span(4);
     }
   }
+  label {
+    color: $light-text;
+  }
+  .help-block {
+    font-size: 11px;
+    line-height: 11px;
+    color: lighter($light-text);
+  }
 }

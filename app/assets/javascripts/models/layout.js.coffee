@@ -45,8 +45,21 @@ class Fg2app.Models.Layout extends Backbone.Model
 
 
   schema:
-    name:         'Text'
-    description:  'Text'
+    name:
+      type:   'Text'
+      title:  'Name'
+      help:   'the title when people share it on social networks'
+    description:
+      type:   'Text'
+      title:  'Description'
+      help:   'the description when people share it on social networks'
+    alias:
+      type:   'Text'
+      title:  'Custom Link'
+      help:   'shortlink alias'
+      # template: _.template '
+      #   TEMPLATE
+      #   '
 
 
 

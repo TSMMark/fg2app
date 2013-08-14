@@ -42,7 +42,11 @@
 //
 //  backbone-forms
 //    https://github.com/powmedia/backbone-forms
-//= require backbone-forms.min
+//= require backbone/forms/backbone-forms.min
+//  
+//  bootstrap forms template
+//    https://github.com/powmedia/backbone-forms
+//= require backbone/forms/templates/fangate
 //
 //= require ./helpers/helper_definer
 //= require ./helpers/fun_jst

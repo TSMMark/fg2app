@@ -22,15 +22,18 @@ class Fg2app.Views.Editor.InfoStep extends Support.CompositeView
         id: 'layout-info-accordion'
       groups:
         [{
+          header: 'General Info'
           name: 'general-info'
-          inner: generalInfoForm.render().el
+          inner: generalInfoForm
           in: true
         },{
+          header: 'Analytics'
           name: 'analytics-info'
-          inner: 'eeenner'
+          inner: 'inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>'
         },{
+          header: 'Third Category'
           name: 'third-info'
-          inner: 'eeenner'
+          inner: 'inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>inner<br/>'
         }]
     @appendChild accordion
     @

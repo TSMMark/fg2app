@@ -1,6 +1,6 @@
 //    bootstrap
 // define bootstrap vars
-$linkColor:                     #0685A6;
+$linkColor:                     $blue;
 
 $btnPrimaryBackground:          #2C95B1;
 $btnPrimaryBackgroundHighlight: #126C83;
@@ -41,10 +41,10 @@ $baseFontFamily:  $base-font-family;
 // $serifFontFamily:              $placeholderText;
 
 $navbarBackgroundHighlight:     #333;
-$navbarBackground:              black;
-$navbarText:                    whitesmoke;
-$navbarLinkColor:               whitesmoke;
-$navbarLinkColorHover:          white;
+$navbarBackground:              $black;
+$navbarText:                    $off-white;
+$navbarLinkColor:               $off-white;
+$navbarLinkColorHover:          $white;
 $navbarLinkColorActive:         #CCC;
 
 // import bootstrap
