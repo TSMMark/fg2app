@@ -8,12 +8,6 @@ class Fg2app.Views.Elements.Accordion extends Support.CompositeView
 
   initialize: (params={})->
     params.attributes ||= {}
-    # unless params.name
-    #   name  = (Math.random() * 10).toFixed(8).split('.').join('')
-    #   params.name = "accordion-#{name}"
-    
-    # params.attributes['id'] = params.name
-    LOG 'params', params
     
     super params
     @groups   = params.groups

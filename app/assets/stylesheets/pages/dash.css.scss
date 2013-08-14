@@ -18,13 +18,21 @@
 .dash-fanbux{
 
 }
+
+// make room for footer
+#main-content-container{
+  @include scroll-on-hover(y);
+
+  // only if .has-footer &
+  bottom: $footer-height;
+  @include phone {
+    bottom: $footer-height-phone;
+  }
+}
+
 @include phone {
   #app-content{
     
-  }
-  // make room for footer
-  #main-content-container{
-    bottom: $footer-height-phone;
   }
 
   .dash-fanbux{

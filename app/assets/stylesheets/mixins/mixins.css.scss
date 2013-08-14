@@ -126,7 +126,7 @@
 @mixin scroll-on-hover($d:y) {
   overflow-#{$d}:hidden;
   &:hover{
-    overflow-#{$d}:scroll;
+    overflow-#{$d}:auto;
   }
 }
 
@@ -173,6 +173,19 @@
 @mixin be-an-icon($icon-name) {
   @extend [class^="icon-"], [class*=" icon-"];
   @extend .icon-#{$icon-name};
+}
+
+@mixin be-a-span($width) {
+  @extend .span#{$width};
+  @extend [class*="span"];
+}
+
+@mixin be-a-row($fluid) {
+  $suffix: '';
+  @if $fluid == fluid {
+    $suffix: -fluid;
+  }
+  @extend .row#{$suffix};
 }
 
 @mixin v-center($container-height, $self-height, $position:relative, $offset:top, $plus:-2px) {

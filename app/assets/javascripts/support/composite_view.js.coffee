@@ -76,7 +76,7 @@ class Support.CompositeView extends Backbone.View
 
   renderChildInto: (view, container, siblings=null)=>
     @renderChild view, siblings
-    $(container).empty().append view.el
+    $(container).empty().html view.el
     @
       
   renderChildAs: (view, container, siblings=null)=>

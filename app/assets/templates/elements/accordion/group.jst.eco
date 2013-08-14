@@ -5,7 +5,5 @@
   </a>
 </div>
 <div id="<%= @view.name %>" class="accordion-body collapse <% if @view.in : %> in <% end %>">
-  <div class="accordion-inner">
-    <%= @view.inner %>
-  </div>
+  <div class="accordion-inner"></div>
 </div>

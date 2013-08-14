@@ -1,0 +1,10 @@
+
+form {
+  fieldset {
+    @include be-a-row(fluid);
+
+    & > div {
+      @include be-a-span(4);
+    }
+  }
+}

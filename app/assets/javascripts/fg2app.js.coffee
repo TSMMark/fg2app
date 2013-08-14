@@ -18,6 +18,9 @@ window.Fg2app   =
       Buttons:  {}
     Dashboard:    {}
     Editor:       {}
+
+  Forms: 
+    Layouts:    {}
     
 
   initialize: ->

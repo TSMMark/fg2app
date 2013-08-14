@@ -16,13 +16,14 @@ class Fg2app.Views.Editor.InfoStep extends Support.CompositeView
     @
 
   renderForm: =>
+    generalInfoForm = new Fg2app.Forms.Layouts.GeneralInfo
     accordion = new Fg2app.Views.Elements.Accordion
       attributes:
         id: 'layout-info-accordion'
       groups:
         [{
           name: 'general-info'
-          inner: 'eeenner'
+          inner: generalInfoForm.render().el
           in: true
         },{
           name: 'analytics-info'
