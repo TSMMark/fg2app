@@ -1,6 +1,6 @@
-<div class="row-fluid">
+<div class="row-fluid spacer">
   <div class="span12">
-    <h2>ENTER YOUR INFORMATION</h2>
+    <h2>Project Info</h2>
     <a href="#" class="note">( or skip this step <i class="icon-mail-forward"></i> )</a>
   </div>
 </div>

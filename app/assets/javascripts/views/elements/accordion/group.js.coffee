@@ -6,7 +6,7 @@ class Fg2app.Views.Elements.AccordionGroup extends Support.CompositeView
 
   className: 'accordion-group'
 
-  $establish:
+  $elements:
     'accordion_inner': '.accordion-inner'
 
   initialize: (params={})->
@@ -15,16 +15,17 @@ class Fg2app.Views.Elements.AccordionGroup extends Support.CompositeView
     @inner      = params.inner
     @accordion  = params.accordion
     @name       = params.name
+    @header_tag = 'h4'
     super params
 
   render: =>
     @renderBody()
+    .findElements()
     .renderInner()
     super
 
   renderBody: =>
     @$el.html @template(view: @)
-    @establish()
     @
 
   renderInner: =>
@@ -35,8 +36,8 @@ class Fg2app.Views.Elements.AccordionGroup extends Support.CompositeView
         @$accordion_inner.html @inner
     @
 
-  establish: (refresh=false)=>
-    _.each @$establish, (selector, varname)=>
+  findElements: (refresh=false)=>
+    _.each @$elements, (selector, varname)=>
       varname     = "$#{varname}"
       @[varname]  = @$("#{selector}") if !@[varname] || refresh
     @

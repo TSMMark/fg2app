@@ -123,7 +123,7 @@
 // if the page HAS sidebar left / right
 @mixin when-has-sidebar($sidebar-side:left) {
   // page has left/right sidebar
-  $class-name: has-sidebar-#{$sidebar-side};
+  $class-name: has-bar-#{$sidebar-side};
   .#{$class-name} &{
     @content;
   }

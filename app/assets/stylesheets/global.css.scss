@@ -14,6 +14,9 @@ body{
   .accordion-group {
     border: none;
     border-bottom: $light-border-dark;
+    &:first-child {
+      border-top: $light-border-dark;
+    }
   }
   .accordion-heading {
     border: none;

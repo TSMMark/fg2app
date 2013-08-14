@@ -1,8 +1,8 @@
 # add / remove body classes depending on the present sidebars
-Helper.define 'establishSidebars', (sides, $el)->
-  possible_sides = ['left', 'right']
+Helper.define 'establishBars', (sides, $el)->
+  possible_sides = ['left', 'right', 'bottom']
   _.each possible_sides, (side)->
-    c = "has-sidebar-#{side}"
+    c = "has-bar-#{side}"
     $el.toggleClass c, _.include(sides, side)
 
 

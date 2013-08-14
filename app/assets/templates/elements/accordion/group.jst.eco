@@ -1,7 +1,9 @@
 <div class="accordion-heading">
   <a class="accordion-toggle" href="#<%= @view.name %>"
     data-toggle="collapse" data-parent="#<%= @view.accordion %>" >
-    <%= @view.header %>
+    <<%= @view.header_tag %>>
+      <%= @view.header %>
+    </<%= @view.header_tag %>>
   </a>
 </div>
 <div id="<%= @view.name %>" class="accordion-body collapse <% if @view.in : %> in <% end %>">

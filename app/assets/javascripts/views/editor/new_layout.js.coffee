@@ -7,7 +7,7 @@ class Fg2app.Views.Editor.NewLayout extends Support.CompositeView
 
   initialize: ->
     super
-    Helper.establishSidebars [], Fg2app.$body
+    Helper.establishBars ['bottom'], Fg2app.$body
 
   render: =>
     @renderBody()

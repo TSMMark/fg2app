@@ -17,7 +17,7 @@ class Fg2app.Views.Dashboard.Fullpage extends Support.CompositeView
       'left.toggle'   : 'toggleSidebarLeft'
       'right.toggle'  : 'toggleSidebarRight'
 
-    Helper.establishSidebars ['left','right'], Fg2app.$body
+    Helper.establishBars ['left','right'], Fg2app.$body
       
   render: =>
     @renderBody()
