@@ -64,7 +64,7 @@
       @content;
     }
   } @else {
-    @include when-has-sidebar(left) {
+    @include when-has-bar(left) {
       @include huge($bool) {
         @content;
       }
@@ -78,7 +78,7 @@
       @content;
     }
   } @else {
-    @include when-has-sidebar(left) {
+    @include when-has-bar(left) {
       @include desktop($bool) {
         @content;
       }
@@ -121,7 +121,7 @@
 }
 
 // if the page HAS sidebar left / right
-@mixin when-has-sidebar($sidebar-side:left) {
+@mixin when-has-bar($sidebar-side:left) {
   // page has left/right sidebar
   $class-name: has-bar-#{$sidebar-side};
   .#{$class-name} &{

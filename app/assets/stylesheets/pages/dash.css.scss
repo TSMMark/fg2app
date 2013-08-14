@@ -23,10 +23,14 @@
 #main-content-container{
   @include scroll-on-hover(y);
 
+  @extend .container-fluid;
+
   // only if .has-footer &
-  bottom: $footer-height;
-  @include phone {
-    bottom: $footer-height-phone;
+  @include when-has-bar(bottom) {
+    bottom: $footer-height;
+    @include phone {
+      bottom: $footer-height-phone;
+    }
   }
 }
 
