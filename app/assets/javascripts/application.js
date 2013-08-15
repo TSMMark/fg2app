@@ -28,6 +28,10 @@
 //    https://github.com/nervetattoo/backbone.touch
 //= require backbone.touch.min
 //
+//  backbone keys
+//    https://github.com/nervetattoo/backbone.keys
+//= require backbone/backbone.keys
+//
 //  touch events
 //    http://eightmedia.github.io/hammer.js/
 //= require jquery.hammer.min
@@ -44,7 +48,7 @@
 //    https://github.com/powmedia/backbone-forms
 //= require backbone/forms/backbone-forms.min
 //  
-//  bootstrap forms template
+//  backbone forms template
 //    https://github.com/powmedia/backbone-forms
 //= require backbone/forms/templates/fangate
 //

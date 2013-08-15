@@ -20,6 +20,16 @@ Support.Mixin.Leaveable =
     @_removeFromParent()
     @
 
+  # register to EventBroker with listenTo so they get cleaned up
+  registerTo: (broker, register)->
+    broker = Backbone.EventBroker.broker broker
+    _(register).each (callback, event)=>
+      callback = switch typeof callback
+        when 'function' then callback
+        else @[callback]
+      @listenTo broker, event, callback
+    @
+
   # leave a list of Views
   #   if passed a string, list = @[string].
   #     and list will be emptied when complete
@@ -35,16 +45,7 @@ Support.Mixin.Leaveable =
           item.leave && item.leave()
     original_list
 
-  registerTo: (broker, register)->
-    broker = Backbone.EventBroker.broker broker
-    _(register).each (callback, event)=>
-      callback = switch typeof callback
-        when 'function' then callback
-        else @[callback]
-      @listenTo broker, event, callback
-    @
-
-  bindTo: (source, event, callback)->
+  bindOnto: (source, event, callback)->
     source.on event, callback, @
     @bindings.push(source: source, event: event, callback: callback)
     @

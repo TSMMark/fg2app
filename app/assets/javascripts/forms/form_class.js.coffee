@@ -6,3 +6,4 @@ class Fg2app.Forms.FormClass extends Backbone.Form
 
 
 _.extend Fg2app.Forms.FormClass.prototype, Support.Mixin.Leaveable
+_.extend Fg2app.Forms.FormClass.prototype, Support.Mixin.Brokerable

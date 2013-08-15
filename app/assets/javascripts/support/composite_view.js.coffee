@@ -20,7 +20,7 @@ class Support.CompositeView extends Backbone.View
 # # # # # SPECIFIC EVENTS # # # # #
 
   onChange: (source, method_name, callback=null)=>
-    @bindTo source, 'change', (e)=>
+    @bindOnto source, 'change', (e)=>
       @[method_name].apply()
       callback && callback(e)
     @
@@ -58,6 +58,7 @@ class Support.CompositeView extends Backbone.View
 _.extend Support.CompositeView.prototype, Support.Mixin.ScopedStorage
 _.extend Support.CompositeView.prototype, Support.Mixin.Hammerable
 _.extend Support.CompositeView.prototype, Support.Mixin.Leaveable
+_.extend Support.CompositeView.prototype, Support.Mixin.Brokerable
 
 # _.extend Support.CompositeView.prototype, Support.Mixin.Brokerable
 
